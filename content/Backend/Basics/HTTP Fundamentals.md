@@ -58,23 +58,15 @@
 ### 3. Deep Dive: How Multiplexing Works in HTTP/2
 
 > [!NOTE] The Binary Framing Breakdown
-> 
+>
 > HTTP/2 breaks all communication down into binary-encoded messages:
-> 
->   
-> 
+>
 > - **Frame:** The smallest unit of communication (e.g., `HEADERS` frame for metadata, `DATA` frame for payload).
->     
->       
->     
+>
 > - **Stream:** A bidirectional flow of bytes within an established TCP connection, carrying a unique stream ID.
->     
->       
->     
+>
 > - **Message:** A complete sequence of frames that map to an HTTP request or response.
->     
->       
->     
+
 
 - Rather than waiting for Request 1 to complete before dispatching Request 2, HTTP/2 cuts both payloads into frames with distinct `Stream ID` tags (e.g., Stream 1, Stream 3).
 

@@ -4,25 +4,22 @@
 
 > [!summary] The Core Rendering Pipeline
 > Once the browser constructs the **DOM** (from HTML) and the **CSSOM** (from CSS), it combines them to convert code into physical display pixels through five sequential stages:
-> 
+>
 > $$\text{DOM + CSSOM} \longrightarrow \text{Render Tree} \longrightarrow \text{Layout (Reflow)} \longrightarrow \text{Paint (Repaint)} \longrightarrow \text{Composite}$$
-> 
-> 
+
 
 > [!abstract] Pipeline Stage Definitions
 > 1. **Render Tree**: A tree of visual elements combining DOM structure with calculated CSS styles. Omits non-visual nodes (`<head>`, `<script>`, `display: none`), but retains elements with `visibility: hidden` (since they occupy physical space).
 > 2. **Reflow (Layout)**: The browser calculates the exact geometric position, bounding box coordinates, and dimensions for every visible element on the page relative to the viewport.
 > 3. **Paint (Repaint)**: The browser fills in visual pixels (colors, borders, shadows, backgrounds, text rasterization) into drawing command bitmaps (layers).
 > 4. **Composite**: The browser groups painted surfaces into GPU memory textures (**compositing layers**) and composites them onto the screen using the **Compositor Thread** and GPU.
-> 
-> 
+
 
 > [!danger] Reflow vs. Repaint vs. Composite Triggers
 > * **Reflow always triggers Repaint and Composite**: Changing an element's geometry (`width`, `height`, `margin`, `top`, `left`, `fontSize`) forces recalculation of surrounding elements, followed by repainting and recompositing.
 > * **Repaint triggers Composite (skips Reflow)**: Changing visual appearance without altering geometry (`color`, `background-color`, `box-shadow`, `visibility`) skips layout recalculation but re-rasterizes the pixels.
 > * **Composite-Only (skips Reflow AND Repaint)**: Changing properties handled directly by the GPU (`transform`, `opacity`, `filter`) bypasses both Layout and Paint completely.
-> 
-> 
+
 
 ---
 

@@ -3,63 +3,38 @@
 ## Key Concepts
 
 > [!summary] Prototypal Inheritance Defined
-> 
+>
 > JavaScript uses **delegation-based prototypal inheritance**, not classical class-based inheritance. Objects directly inherit properties and methods from other objects via an internal link known as `[[Prototype]]`. When a property or method is accessed on an object, the engine searches the object itself first, then walks up the **Prototype Chain** until it finds the property or reaches the end (`null`).
-> 
->   
+
 
 > [!abstract] Function `.prototype` vs. Object `[[Prototype]]` (`__proto__`)
-> 
->   
-> 
+>
 > - **`Function.prototype`**: A property that exists on function objects (specifically constructor functions). It acts as the blueprint object that will be assigned as the `[[Prototype]]` of any new instance instantiated via `new Constructor()`.
->     
->       
->     
+>
 > - **`[[Prototype]]` (or `__proto__`)**: The internal pointer present on **every object instance** pointing to its parent prototype object.
->     
->       
->     
+>
 > - Relationship: `new Person().__proto__ === Person.prototype` (or standard `Object.getPrototypeOf(new Person()) === Person.prototype`).
->     
->       
->     
+
 
 > [!info] The `new` Operator Lifecycle
-> 
+>
 > When invoking a constructor function with `new Constructor(args)`:
-> 
->   
-> 
+>
 > 1. A brand new plain JavaScript object `{}` is allocated in memory.
->     
->       
->     
+>
 > 2. The internal `[[Prototype]]` of this new object is set to `Constructor.prototype`.
->     
->       
->     
+>
 > 3. The constructor function is executed with its `this` context bound to the newly created object.
->     
->       
->     
+>
 > 4. If the constructor returns a non-primitive object explicitly, that object is returned; otherwise, the newly created object (`this`) is returned.
->     
->       
->     
+
 
 > [!tip] Static Methods in Prototype Architecture
-> 
->   
-> 
+>
 > - **Instance Methods**: Attached to `Constructor.prototype` (`Person.prototype.walk`). Shared across all instances via prototype delegation to save memory.
->     
->       
->     
+>
 > - **Static Methods**: Attached directly to the constructor function object itself (`Person.isPerson = function() {}`). They are called directly on the constructor (`Person.isPerson()`) and are **not** present on instances (`new Person().isPerson` is `undefined`).
->     
->       
->     
+
 
 ## Common Interview Questions
 

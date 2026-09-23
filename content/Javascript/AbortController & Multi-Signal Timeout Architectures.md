@@ -3,51 +3,34 @@
 ## Key Concepts
 
 > [!summary] What is `AbortController`?
-> 
+>
 > `AbortController` is a standard browser and Node.js interface that communicates cancellation signals to asynchronous operations. It instantiates two paired mechanisms:
-> 
->   
-> 
+>
 > - **`controller`**: Holds the command method `.abort(reason)`.
->     
->       
->     
+>
 > - **`controller.signal`**: An instance of `AbortSignal` (which extends `EventTarget`) passed to consumers (such as `fetch()`, event listeners, or custom async pipelines). Once triggered, `signal.aborted` flips to `true`, and it dispatches an `'abort'` event carrying `signal.reason`.
->     
->       
->     
+
 
 > [!abstract] Native Timeouts (`AbortSignal.timeout`)
-> 
+>
 > Modern runtimes support `AbortSignal.timeout(ms)`, which returns an `AbortSignal` that aborts automatically after a set duration with a `DOMException: TimeoutError`. This eliminates the need for manual `setTimeout` management for single timeouts.
-> 
->   
+
 
 > [!danger] Multi-Signal Aggregation (`AbortSignal.any`)
-> 
+>
 > In complex applications, operations often need to cancel on **multiple independent triggers** (e.g., user hits a Cancel button OR a global 5-second timeout expires OR an authentication token expires).
-> 
->   
-> 
+>
 > - `AbortSignal.any([signal1, signal2, ...])` accepts an array of signals and returns a composite signal that aborts as soon as the **first** input signal fires, forwarding its exact `reason`.
->     
->       
->     
+
 
 > [!tip] Composing Many Controllers with a Unified Timeout
-> 
+>
 > When orchestrating multiple discrete operations (e.g., parallel file uploads, batch API requests) that each require their own controller while sharing a single master timeout:
-> 
->   
-> 
+>
 > 1. Use `AbortSignal.any()` to attach the parent timeout to every child signal, OR
->     
->       
->     
+>
 > 2. Attach a single listener to a master `AbortSignal.timeout()` that iterates over and aborts a pool of child `AbortController` instances.
->     
->       
->     
+
 
 ## Common Interview Questions
 

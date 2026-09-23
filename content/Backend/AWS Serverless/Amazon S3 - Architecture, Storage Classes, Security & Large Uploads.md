@@ -50,10 +50,9 @@
 ### 2. S3 Security Controls & Defense-in-Depth
 
 > [!NOTE]
-> 
+>
 > S3 security requires layers of controls across identity, transit, at-rest storage, and networking:
-> 
->   
+
 
 - **Block Public Access (BPA):** Account-level and bucket-level master switch that overrides all bucket policies and ACLs, preventing accidental public leaks.
 

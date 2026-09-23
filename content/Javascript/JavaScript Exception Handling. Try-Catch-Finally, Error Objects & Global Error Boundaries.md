@@ -3,59 +3,38 @@
 ## Key Concepts
 
 > [!summary] Structured Exception Handling
-> 
+>
 > Synchronous and `async/await` runtime errors are trapped using `try...catch...finally`:
-> 
->   
-> 
+>
 > - `try`: Wraps code that might throw an exception.
->     
->       
->     
+>
 > - `catch (err)`: Executes only if an exception is thrown inside `try`. Optional catch binding (`catch { ... }`) allows omitting `err` if unused (ES2019).
->     
->       
->     
+>
 > - `finally`: Unconditionally executes after `try` and `catch` finish, even if an unhandled error is thrown or a `return` statement is encountered.
->     
->       
->     
+
 
 > [!abstract] Standard Error Objects
-> 
+>
 > Built-in error constructors inherit from `Error.prototype`. They capture a `.message`, a `.name`, and an engine-generated `.stack` trace. Standard subclasses include `TypeError`, `ReferenceError`, `SyntaxError`, `RangeError`, `URIError`, and `EvalError`.
-> 
->   
+
 
 > [!danger] The Uncaught Exception Hazard
-> 
+>
 > In single-threaded JavaScript:
-> 
->   
-> 
+>
 > - In the browser: An uncaught exception halts execution of the current task/script, logs to devtools, but leaves the overall page session alive.
->     
->       
->     
+>
 > - In Node.js: An uncaught exception leaves the process in an indeterminate state; by default, Node.js terminates the process (`process.exit(1)`).
->     
->       
->     
+
 
 > [!tip] Global Unhandled Exception Handling
-> 
+>
 > When code runs outside a local `try...catch` (e.g., forgotten catch blocks, background event handlers):
-> 
->   
-> 
+>
 > - **Browser**: Trapped globally via `window.onerror` / `window.addEventListener('error', ...)` for synchronous runtime errors, and `window.addEventListener('unhandledrejection', ...)` for unhandled promise rejections.
->     
->       
->     
+>
 > - **Node.js**: Trapped globally via `process.on('uncaughtException', ...)` and `process.on('unhandledRejection', ...)`.
->     
->       
->     
+
 
 ## Common Interview Questions
 

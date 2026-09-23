@@ -1,16 +1,14 @@
 # Component Isolation and Independent State Architecture
 
 > [!note] Core Mental Model
-> 
+>
 > The principle that **"each element has its own everything"** means that in React, every declared instance of a component operates as an entirely self-contained, isolated runtime sandbox. Even if two elements share the exact same source code, definition, or function, their **state, effects, refs, update queues, and DOM bindings are completely distinct and independent in memory**.
-> 
->   
+
 
 > [!abstract] Why Components Do Not Leak State
-> 
+>
 > Component functions are not singletons. React creates an independent **Fiber node instance** in the heap for every single element mounted in the UI tree. When you call `useState` or `useRef`, the allocated data structures attach directly to that specific element's Fiber node—never to the component function itself or to a shared global registry.
-> 
->   
+
 
 ## Shared Code Definition vs Independent Fiber Allocations
 
@@ -191,7 +189,7 @@ export function Dashboard() {
   return (
     <div>
       {/* Element A: Holds its own state, refs, DOM node, and intervals */}
-      <IndependentWidget label="Widget A" />
+      <IndependentWidget label="Widget A" /
 
       {/* Element B: Completely isolated; changes in Widget A will NOT touch Widget B */}
       <IndependentWidget label="Widget B" />

@@ -3,63 +3,37 @@
 ## Key Concepts
 
 > [!summary] The Four Equality Operations
-> 
+>
 > JavaScript specifies four distinct comparison operations under the ECMAScript standard:
-> 
->   
-> 
+>
 > 1. **Loose Equality / Abstract Equality (`==`)**: Compares values with implicit type coercion.
->     
->       
->     
+>
 > 2. **Strict Equality (`===`)**: Compares type and value without type coercion.
->     
->       
->     
+>
 > 3. **SameValue (`Object.is`)**: Exact identity comparison; distinguishes `+0` from `-0`, and evaluates `NaN === NaN` as `true`.
->     
->       
->     
+>
 > 4. **SameValueZero**: Internal equality algorithm used by modern collections (`Set`, `Map`, `Array.prototype.includes`). Like `SameValue`, it considers `NaN` equal to `NaN`, but treats `+0` and `-0` as identical.
->     
->       
->     
+
 
 > [!abstract] Loose Equality Edge Cases (`==`)
-> 
->   
-> 
+>
 > - `null == undefined` is hard-coded to evaluate to `true` (and neither loosely equals any other falsy value like `0`, `""`, or `false`).
->     
->       
->     
+>
 > - Comparing a `boolean` to anything coerces the boolean to a number first (`true` $\to$ `1`, `false` $\to$ `0`).
->     
->       
->     
+>
 > - Comparing a `string` to a `number` coerces the string to a number via the `ToNumber` abstract operation.
->     
->       
->     
+>
 > - Comparing an `object` to a `primitive` runs `ToPrimitive(object)`.
->     
->       
->     
+
 
 > [!danger] The Anomalies of `===`
-> 
+>
 > Strict equality has two major IEEE 754 floating-point edge cases:
-> 
->   
-> 
+>
 > 1. `NaN === NaN` is `false` (by specification, `NaN` is not equal to any value, including itself).
->     
->       
->     
+>
 > 2. `+0 === -0` is `true` (even though they have distinct sign bits in memory and behave differently in division: `1 / +0 === Infinity`, while `1 / -0 === -Infinity`).
->     
->       
->     
+
 
 ## Common Interview Questions
 

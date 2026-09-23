@@ -48,17 +48,11 @@
 |**OPTIONS**|**Yes**|**Yes**|Inspect communication options/capabilities supported by the server.|
 
 > [!WARNING] Common Interview Trap: POST vs. PUT
-> 
->   
-> 
+>
 > - **`POST /users`**: Creates a new user record. If called 5 times, it generates 5 unique records with different IDs. **Not idempotent.**
->     
->       
->     
+>
 > - **`PUT /users/42`**: Replaces user 42 with the incoming representation. If called 5 times, user 42 still has that exact payload. **Idempotent.**
->     
->       
->     
+
 
 ### 2. CORS, Preflight, Simple vs. Non-Simple Requests
 

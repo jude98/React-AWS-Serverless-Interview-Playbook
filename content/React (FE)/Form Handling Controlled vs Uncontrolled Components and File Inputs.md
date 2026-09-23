@@ -1,16 +1,14 @@
 # Form Handling Controlled vs Uncontrolled Components and File Inputs
 
 > [!note] Core Mental Model
-> 
+>
 > In **Controlled Components**, form data is handled by a React component via internal state (`useState`); React is the single source of truth. In **Uncontrolled Components**, form data is handled directly by the browser DOM itself, and values are queried on demand via `useRef` or native `FormData`.
-> 
->   
+
 
 > [!abstract] Why File Inputs (`<input type="file" />`) Are ALWAYS Uncontrolled
-> 
+>
 > A file input's `value` attribute on the DOM node is **strictly read-only** for JavaScript due to browser security guardrails. Because React cannot imperatively set or push programmatic file values into `<input type="file" />`, React cannot control it; therefore, it is inherently uncontrolled.
-> 
->   
+
 
 ## Controlled vs Uncontrolled Architecture
 
@@ -223,7 +221,7 @@ export function FileUploadForm() {
         type="file"
         ref={fileInputRef}
         onChange={handleFileChange}
-      />
+      /
 
       {selectedFileName && (
         <div>

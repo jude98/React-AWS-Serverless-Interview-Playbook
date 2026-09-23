@@ -3,48 +3,32 @@
 ## Key Concepts
 
 > [!summary] Primitives vs. Structural Types (Objects)
-> 
+>
 > JavaScript has **8 data types**:
-> 
->   
-> 
+>
 > - **7 Primitives**: `string`, `number`, `bigint`, `boolean`, `undefined`, `symbol`, and `null`. They are immutable and passed by value.
->     
->       
->     
+>
 > - **1 Structural / Reference Type**: `object` (which includes plain objects, arrays, functions, dates, regex, maps, and sets). Objects are mutable and passed by reference.
->     
->       
->     
+
 
 > [!abstract] "Everything in JavaScript is an Object" — Myth vs. Reality
-> 
+>
 > Primitives are **not** objects. However, when you access a method or property on a primitive (e.g., `'hello'.toUpperCase()`), the engine performs **autoboxing** (or primitive wrapping). It temporarily wraps the primitive in its corresponding wrapper object (`String`, `Number`, `Boolean`), executes the method, and immediately discards the wrapper object for garbage collection.
-> 
->   
+
 
 > [!info] The `typeof` Operator & Its Quirks
-> 
->   
-> 
+>
 > - `typeof null === 'object'` is a historical bug in JavaScript's original C implementation (type tag for references was `000`, and `null` was represented as the NULL pointer `0x00`).
->     
->       
->     
+>
 > - `typeof function() {} === 'function'` is an intentional exception for callable objects.
->     
->       
->     
+>
 > - `typeof NaN === 'number'`, even though `NaN` stands for "Not-a-Number".
->     
->       
->     
+
 
 > [!tip] Prototype & Prototypal Inheritance
-> 
-> Every JavaScript object contains an internal slot called `[[Prototype]]` (accessible via `Object.getPrototypeOf(obj)` or legacy `__proto__`). If a property is not found on the object itself, the engine traverses up the **Prototype Chain** until it reaches `Object.prototype.`[[Prototype]]`, which terminates at `null`.
-> 
->   
+>
+> Every JavaScript object contains an internal slot called `[[Prototype]]` (accessible via `Object.getPrototypeOf(obj)` or legacy `__proto__`). If a property is not found on the object itself, the engine traverses up the **Prototype Chain** until it reaches `Object.prototype.[[Prototype]]`, which terminates at `null`.
+
 
 ## Common Interview Questions
 

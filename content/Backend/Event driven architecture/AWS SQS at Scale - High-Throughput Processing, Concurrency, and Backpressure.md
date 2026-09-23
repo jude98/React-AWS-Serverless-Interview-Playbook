@@ -47,14 +47,14 @@
 - **Visibility Timeout Math**:
 
     > [!tip] Formula
-    > 
+    >
     > $\text{VisibilityTimeout} \ge 6 \times \text{Function Timeout}$
-    > 
-    >   
-    > 
+    >
+    >
+    >
     > _Example_: If Lambda timeout is 30 seconds, set Queue `VisibilityTimeout` to at least 180 seconds.
-    > 
-    >   
+    >
+    >
 
 - **Partial Batch Handling**: Without `ReportBatchItemFailures`, throwing an unhandled exception fails the **entire batch**, returning all 10 messages back to the queue even if 9 succeeded. With `ReportBatchItemFailures`, the handler returns a payload containing `batchItemFailures: [{ itemIdentifier: messageId }]`, deleting succeeded messages from the queue and retrying only failed ones.
 

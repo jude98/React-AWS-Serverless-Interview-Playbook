@@ -1,10 +1,9 @@
 # React Image and Icon Optimization
 
 > [!abstract] High-Level Summary
-> 
+>
 > Media assets (images and icons) often account for the bulk of page weight and Layout Shifts (CLS). Optimizing them in React requires modern format adoption, responsive resolution sizing, lazy loading off-screen assets, and picking the right delivery strategy for SVG icons (sprites vs. React components) to avoid bundle bloat.
-> 
->   
+
 
 ## Key Concepts
 

@@ -3,55 +3,34 @@
 ## Key Concepts
 
 > [!danger] What is Event Loop Starvation?
-> 
+>
 > Event loop starvation occurs when high-priority tasks (synchronous CPU work, microtasks, or `process.nextTick` calls) continuously occupy or refill the execution pipeline, preventing lower-priority tasks (macrotasks, I/O callbacks, timers, and browser rendering phases) from ever being dequeued and processed.
-> 
->   
+
 
 > [!abstract] The Architectural Root Cause
-> 
+>
 > The Event Loop drains specific queues **exhaustively** before moving to subsequent phases:
-> 
->   
-> 
+>
 > - **Microtask Queue & `process.nextTick`**: The runtime guarantees that all microtasks are cleared before advancing. If a running microtask schedules another microtask recursively, the queue never empties.
->     
->       
->     
+>
 > - **The Consequence**: As long as the Call Stack is busy or the microtask queue is continually replenished, the Event Loop cannot progress to the **Macrotask Queue** (I/O, `setTimeout`, `setImmediate`) or perform **DOM Reflow/Paint** cycles in the browser.
->     
->       
->     
+
 
 > [!summary] Symptoms of Starvation
-> 
->   
-> 
+>
 > - **Browser**: Complete UI freezing, unresponsive tabs, unclickable buttons, stalled CSS animations, and `Page Unresponsive` crash dialogs.
->     
->       
->     
+>
 > - **Node.js**: HTTP request timeouts, blocked incoming socket connections, failed heartbeat health-checks (triggering erroneous container restarts in Kubernetes), and stalled database query callbacks.
->     
->       
->     
+
 
 > [!tip] Core Remediation Patterns
-> 
->   
-> 
+>
 > 1. **Cooperative Multitasking / Time-Slicing**: Breaking large synchronous loops into small chunks and yielding control back to the event loop.
->     
->       
->     
+>
 > 2. **Macrotask Deferral**: Replacing recursive microtasks/`nextTick` with macrotask yielding (`setImmediate`, `setTimeout(..., 0)`, or `scheduler.yield()`).
->     
->       
->     
+>
 > 3. **Thread Offloading**: Moving heavy computational logic completely off the main JavaScript thread using **Worker Threads** (Node.js) or **Web Workers** (Browser).
->     
->       
->     
+
 
 ## Common Interview Questions
 

@@ -1,10 +1,9 @@
 # Offline-First Frontend Architecture and Synchronization Engine
 
 > [!abstract] Architectural Overview
-> 
+>
 > Building an offline-first application requires inverting the traditional client-server relationship: **the local client database is the primary source of truth for all reads and writes**, while the remote backend functions as a secondary synchronization and persistence target. All user actions are optimistically applied to local storage and appended to an **append-only Write-Ahead Log (WAL) / Mutation Queue**, which drains sequentially or idempotently once connectivity is restored.
-> 
->   
+
 
 ## Key Concepts
 

@@ -3,71 +3,42 @@
 ## Key Concepts
 
 > [!summary] Browser Storage Spectrum
-> 
+>
 > Client-side storage bridges offline persistence, cross-request state, and session management. Runtimes provide distinct mechanisms tailored to specific storage capacities, access latency, persistence models, and security profiles:
-> 
->   
-> 
+>
 > - **Web Storage (`localStorage` / `sessionStorage`)**: Synchronous, string-only key-value pairs stored per origin.
->     
->       
->     
+>
 > - **Cookies (`document.cookie` / HTTP Headers)**: Small text fragments transmitted automatically across HTTP request/response headers for stateful server-client sessions.
->     
->       
->     
+>
 > - **IndexedDB**: Asynchronous, transactional, indexable NoSQL object store capable of holding hundreds of megabytes or gigabytes of structured data, blobs, and typed arrays.
->     
->       
->     
+>
 > - **Cache API (`caches`)**: Specialized storage for request/response network pairs, primarily managed by Service Workers for offline Progressive Web Apps (PWAs).
->     
->       
->     
+>
 > - **Origin Private File System (OPFS)**: High-performance, private virtual filesystem API providing fast, low-level in-place byte writes (ideal for SQLite compiled to WebAssembly).
->     
->       
->     
+
 
 > [!abstract] Scope & Cardinality
-> 
->   
-> 
+>
 > - **Same-Origin Policy (SOP)**: All browser storage is partitioned strictly by origin (`protocol + hostname + port`).
->     
->       
->     
+>
 > - **`localStorage`**: Persists indefinitely across tabs, windows, and browser restarts until explicitly cleared.
->     
->       
->     
+>
 > - **`sessionStorage`**: Scoped exclusively to the **top-level browser tab/window**. Survives page reloads, but closing the tab destroys the data entirely. Opening the same URL in a new tab instantiates a completely independent, fresh session.
->     
->       
->     
+>
 > - **Cookies**: Scoped to domain and path hierarchies (`Domain=.example.com; Path=/`).
->     
->       
->     
+
 
 > [!danger] Security Vectors: XSS vs. CSRF
-> 
->   
-> 
+>
 > - **Cross-Site Scripting (XSS)**: Malicious JavaScript injected into the application. Any sensitive token stored in `localStorage`, `sessionStorage`, or accessible via `document.cookie` can be exfiltrated instantly by malicious scripts.
->     
->       
->     
+>
 > - **Cross-Site Request Forgery (CSRF)**: Forged requests sent from third-party origins using the user's ambient authentication cookies. Defended via `SameSite` cookie flags (`Strict`/`Lax`) and CSRF tokens.
->     
->       
->     
+
 
 > [!tip] Thread Blocking & Synchronous I/O
-> 
+>
 > `localStorage` and `sessionStorage` run on the **browser's main thread** with **synchronous disk I/O**. Reading or writing large payloads (>100KB) blocks the Call Stack, triggering frame drops and Input Delay (INP) degradations. Never use them for heavy or high-frequency writes; prefer `IndexedDB`.
-> 
->   
+
 
 ## Common Interview Questions
 

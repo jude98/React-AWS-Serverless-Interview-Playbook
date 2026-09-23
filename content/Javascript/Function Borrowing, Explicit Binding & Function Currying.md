@@ -3,46 +3,30 @@
 ## Key Concepts
 
 > [!summary] Explicit Binding & Function Borrowing
-> 
+>
 > **Explicit Binding** forces a function to execute with a specific context object using `.call()`, `.apply()`, or `.bind()`. **Function Borrowing** is the pattern where an object utilizes an existing method from another object or built-in prototype (such as `Array.prototype` or `Object.prototype`) without copying or inheriting that method.
-> 
->   
+
 
 > [!abstract] `.call()` vs. `.apply()` vs. `.bind()`
-> 
->   
-> 
+>
 > - **`.call(thisArg, arg1, arg2, ...)`**: Invokes the function immediately with arguments passed individually as a comma-separated list.
->     
->       
->     
+>
 > - **`.apply(thisArg, [argsArray])`**: Invokes the function immediately with arguments passed as a single array or array-like object.
->     
->       
->     
+>
 > - **`.bind(thisArg, arg1, ...)`**: Does **not** invoke the function immediately. Instead, it returns a new bound function with `this` permanently set and optional preset leading arguments (**Partial Application**).
->     
->       
->     
+
 
 > [!info] Function Currying Defined
-> 
+>
 > Currying is a functional programming technique that transforms a function callable as $f(a, b, c)$ into a sequence of nested unary (single-argument) functions callable as $f(a)(b)(c)$. It enables high code reusability, function specialization, and declarative pipeline design.
-> 
->   
+
 
 > [!tip] Currying Mechanisms in JavaScript
-> 
->   
-> 
+>
 > 1. **Currying via `.bind()`**: Pre-sets leading arguments by passing them during function binding (partial application), ignoring the `thisArg` (passing `null` or `{}`).
->     
->       
->     
+>
 > 2. **Currying via Closures**: Nesting return functions that close over previous arguments in memory until all required parameters are collected.
->     
->       
->     
+
 
 ## Common Interview Questions
 

@@ -6,8 +6,7 @@
 > 2. **Context API**: A dependency-injection vehicle embedded directly within React's Fiber reconciliation loop.
 > 3. **Client State Libraries** (Zustand, Redux, Jotai): External, framework-agnostic stores using the **pub/sub pattern** with selective subscriptions.
 > 4. **Server State Managers** (TanStack Query / React Query): Asynchronous caches that handle remote data, caching, deduplication, and synchronization.
-> 
-> 
+
 
 > [!abstract] Reconciliation-Bound Context vs Pub/Sub Selective Stores
 > React Context has no selector mechanism out of the box. When a Context value changes, React flags **all consumer Fibers as dirty** during the render phase. In contrast, external stores (Zustand, Jotai) live outside React's heap. Components subscribe directly to specific slices using selectors via `useSyncExternalStore`; only components whose selected slice changes re-render.

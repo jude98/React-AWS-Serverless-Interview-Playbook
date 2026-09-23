@@ -1,16 +1,14 @@
 # React useEffect and Synchronization Architecture
 
 > [!note] The True Mental Model of useEffect
-> 
+>
 > `useEffect` is **not** a lifecycle hook masquerading as `componentDidMount` or `componentDidUpdate`. Its sole purpose is **synchronization**: keeping your React component's state and props in sync with an **external, non-React system** (e.g., browser APIs, timers, WebSockets, canvas contexts, or third-party imperative widgets).
-> 
->   
+
 
 > [!abstract] Why useEffect is an Anti-Pattern for Direct Data Fetching and State Derivation
-> 
+>
 > Using `useEffect` to fetch data or derive state creates **waterfalls**, **race conditions**, **unnecessary double renders**, and **boilerplate-heavy error/loading tracking**. React state should either be computed on the fly during rendering (for derived values) or managed via dedicated async caching primitives like TanStack Query, SWR, or Server Components.
-> 
->   
+
 
 ## The Synchronization Cycle vs Lifecycle Fallacy
 

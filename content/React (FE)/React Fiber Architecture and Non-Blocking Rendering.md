@@ -1,16 +1,14 @@
 # React Fiber Architecture and Non-Blocking Rendering
 
 > [!note] Core Definition of React Fiber
-> 
+>
 > **React Fiber** is the rewrite of React’s core reconciliation engine introduced in React 16. It replaced the synchronous, recursive **Stack Reconciler** with an asynchronous, incremental, linked-list-based architecture capable of pausing, resuming, prioritizing, and aborting rendering tasks.
-> 
->   
+
 
 > [!abstract] What is a Fiber? (The Unit of Work)
-> 
+>
 > A **Fiber** is a plain JavaScript object representing a **unit of work**. It mirrors a component instance or DOM node and forms a mutable singly-linked tree using `child`, `sibling`, and `return` pointers. It acts as a custom virtual call stack frame implemented in heap memory rather than on the JavaScript engine's native call stack.
-> 
->   
+
 
 ## Evolution: Legacy Stack Reconciler vs Modern Fiber Engine
 

@@ -4,14 +4,12 @@
 > Web token storage is a fundamental trade-off between **Cross-Site Scripting (XSS)** vulnerability and **Cross-Site Request Forgery (CSRF)** vulnerability:
 > * **Web Storage (`localStorage` / `sessionStorage`)**: Accessible to *any* JavaScript executing on the page. Completely vulnerable to token theft via **XSS**.
 > * **Cookies (`HttpOnly`)**: Inaccessible to JavaScript, neutralizing token exfiltration via XSS, but inherently susceptible to **CSRF** unless strict attributes (`SameSite`, CSRF tokens) are configured.
-> 
-> 
+
 
 > [!abstract] Modern Industry Gold Standard
 > 1. **Access Token (Short-lived, ~5–15 mins)**: Kept **in-memory only** (in a React state, closure, or client-side store) OR in a secure cookie.
 > 2. **Refresh Token (Long-lived, ~7–30 days)**: Stored in an **`HttpOnly`, `Secure`, `SameSite=Strict` (or `Lax`) cookie** restricted to the auth renewal path (`/api/auth/refresh`) with server-side token rotation and reuse detection.
-> 
-> 
+
 
 ---
 

@@ -1,16 +1,14 @@
 # Combining React Context and useReducer Architecture
 
 > [!note] Core Mental Model
-> 
+>
 > Pairing `useReducer` with React Context creates an ergonomic, built-in state management pattern often referred to as the **"Lightweight Redux" pattern**. `useReducer` manages complex state transitions via deterministic actions and pure reducer functions, while React Context distributes both the **state** and the **dispatch** function throughout the component tree without prop drilling.
-> 
->   
+
 
 > [!abstract] The Split-Context Optimization
-> 
+>
 > A common performance pitfall is putting both `state` and `dispatch` inside a single Context provider. Whenever state updates, every consumer of that context re-renders—even components that only need `dispatch`. Splitting them into **two independent contexts** (`StateContext` and `DispatchContext`) ensures components that only trigger actions never re-render when state changes.
-> 
->   
+
 
 ## Architecture: Dual-Context with useReducer
 

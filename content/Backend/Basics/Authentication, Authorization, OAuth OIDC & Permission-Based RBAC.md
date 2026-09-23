@@ -87,12 +87,11 @@ When storing session identifiers or refresh tokens in cookies:
 ### 4. Designing Permission-Based Access Control (PBAC / Granular RBAC)
 
 > [!IMPORTANT] Core Architectural Rule
-> 
+>
 > **Assign roles to users, but assign permissions to roles. Check permissions in code, never roles.**
-> 
+>
 > Hardcoding `if (user.role === 'admin')` creates tight coupling. If product requirements introduce an `Auditor` or `Manager` role with partial administrative duties, you must track down and update every role check. Checking `if (hasPermission(user, 'invoice:delete'))` requires changing only the database role mapping.
-> 
->   
+
 
 #### Data Model (Relational Schema)
 
@@ -203,7 +202,7 @@ export const Can: React.FC<CanProps> = ({ user, perform, children, fallback = nu
 export const UserManagementRow = ({ currentUser, targetUser }: any) => {
   return (
     <div>
-      <span>{targetUser.name}</span>
+      <span>{targetUser.name}</span
 
       {/* UI adapts based on granular capability, not role names */}
       <Can

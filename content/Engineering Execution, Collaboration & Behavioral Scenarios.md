@@ -133,8 +133,8 @@ Use a structured, multi-phase framework:
 - **Surface the Cost of Tradeoffs**:
 
     > "We can build this emergency prototype for tomorrow's demo, but doing so requires halting our current work on the checkout stability upgrade, pushing that release by three days. Let's align with Product and determine if the trade-off makes business sense."
-    > 
-    >   
+    >
+    >
 
 - **Provide Actionable Options**:
 

@@ -3,41 +3,27 @@
 ## Key Concepts
 
 > [!summary] What is Cross-Tab Communication?
-> 
+>
 > Cross-tab communication allows multiple browser contexts (windows, tabs, or iframes) under the **same origin** to exchange messages, synchronize application state, and coordinate events (e.g., logging a user out across all tabs, sharing a shopping cart, or maintaining a single leader election).
-> 
->   
+
 
 > [!abstract] The 5 Core Communication Mechanisms
-> 
->   
-> 
+>
 > 1. **BroadcastChannel API**: Purpose-built, publish-subscribe message bus designed specifically for 1-to-many communication across tabs, windows, and workers of the same origin.
->     
->       
->     
+>
 > 2. **SharedWorker (`new SharedWorker()`)**: A shared background OS thread that maintains persistent connections to all tabs via dedicated `MessagePort` channels, acting as a centralized state coordinator.
->     
->       
->     
+>
 > 3. **`localStorage` + `storage` Event**: Storage-backed event signaling. Writing to `localStorage` triggers an event exclusively in _other_ open tabs of the same origin.
->     
->       
->     
+>
 > 4. **Service Worker + `Clients.matchAll()`**: Network-proxy worker that intercepts requests and can broadcast messages across all active browser client contexts.
->     
->       
->     
+>
 > 5. **`window.postMessage` + `window.opener`**: Point-to-point (1-to-1) direct message passing between a parent window and child windows/tabs spawned via `window.open()`.
->     
->       
->     
+
 
 > [!danger] Same-Origin Policy (SOP) Constraint
-> 
+>
 > With the sole exception of `window.postMessage`, **all cross-tab communication mechanisms are strictly bound to the Same-Origin Policy** (`protocol + hostname + port`). Tabs open on `[https://app.example.com](https://app.example.com)` cannot communicate with `[https://api.example.com](https://api.example.com)` or `[http://app.example.com](http://app.example.com)` using BroadcastChannel, SharedWorker, or `localStorage`.
-> 
->   
+
 
 ## Common Interview Questions
 

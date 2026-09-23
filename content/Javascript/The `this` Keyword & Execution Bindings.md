@@ -3,55 +3,33 @@
 ## Key Concepts
 
 > [!summary] What is `this`?
-> 
+>
 > `this` is a keyword representing an internal execution binding that evaluates dynamically at runtime based on **how and where a function is invoked** (its call-site), rather than where it is declared—with the single major exception of **Arrow Functions**, which bind `this` lexically.
-> 
->   
+
 
 > [!abstract] The 4 Rules of `this` Binding (Precedence Order)
-> 
->   
-> 
+>
 > 1. **`new` Binding** _(Highest precedence)_: Inside a constructor function or class instantiated with `new`, `this` refers to the newly allocated instance object.
->     
->       
->     
+>
 > 2. **Explicit Binding** (`call`, `apply`, `bind`): Forces `this` to point to a specifically supplied object context.
->     
->       
->     
+>
 > 3. **Implicit Binding**: When a method is called with a dot notation (`obj.method()`), `this` refers to the immediate parent object to the left of the dot.
->     
->       
->     
+>
 > 4. **Default Binding** _(Lowest precedence)_: Standalone function calls (`fn()`). Points to the global object (`window`/`global`) in sloppy mode, or `undefined` in strict mode.
->     
->       
->     
+
 
 > [!info] Behavior in Special Scenarios
-> 
->   
-> 
+>
 > - **Used Alone (Global Scope)**: Refers to the global execution context's global object (`window` in browser, module exports in Node ESM/CJS, or universally `globalThis`).
->     
->       
->     
+>
 > - **In Arrow Functions**: Arrow functions do **not** have their own `this`. They capture and retain the `this` value of their enclosing lexical execution context at definition time; explicit bindings (`call`/`apply`/`bind`) on them are silently ignored.
->     
->       
->     
+>
 > - **In DOM Event Handlers**:
->     
->       
+>
 >     - Regular callback function: `this` points directly to `event.currentTarget` (the DOM element that attached the listener).
->         
->           
->         
+>
 >     - Arrow function callback: `this` points to the outer scope (commonly `window`), losing access to the DOM target element.
->         
->           
->         
+
 
 ## Common Interview Questions
 

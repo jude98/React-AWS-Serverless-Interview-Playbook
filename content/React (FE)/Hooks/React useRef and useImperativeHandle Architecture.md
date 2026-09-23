@@ -1,16 +1,14 @@
 # React useRef and useImperativeHandle Architecture
 
 > [!note] The Core Mental Model of useRef
-> 
+>
 > `useRef` provides a persistent, mutable container (`{ current: value }`) whose reference remains stable across the entire component lifecycle. Mutating `.current` **does not trigger a re-render**. It is an "escape hatch" to hold values that do not affect the component's visual rendering output or to directly interact with native browser DOM nodes.
-> 
->   
+
 
 > [!abstract] The Purpose of useImperativeHandle
-> 
+>
 > By default, passing a `ref` exposes the entire raw underlying DOM element. `useImperativeHandle` customizes the instance value exposed to parent components, letting you expose a controlled, restrictive API (e.g., exposing only `.focus()` and `.scrollIntoView()` rather than the entire `<input />` node). In React 19, `ref` can be passed as a standard prop (deprecating the need for `forwardRef`), while `useImperativeHandle` continues to shape the exposed imperative interface.
-> 
->   
+
 
 ## State vs Ref Mental Model
 

@@ -3,142 +3,80 @@
 ## Key Concepts
 
 > [!summary] The High-Level Request Pipeline
-> 
+>
 > When a user enters a URL (e.g., `[https://api.example.com/v1/users](https://api.example.com/v1/users)`) into the browser's address bar and hits **Enter**, the browser initiates a multi-layered journey spanning the application layer, OS networking, transport protocols, edge routing, server processing, and client-side rendering:
-> 
->   
-> 
+>
 > $$\text{URL Parsing \& HSTS} \to \text{DNS Resolution} \to \text{TCP Handshake} \to \text{TLS Negotiation} \to \text{HTTP Request/Response} \to \text{Critical Rendering Path (CRP)}$$
 
 > [!abstract] 1. Navigation & URL Parsing
-> 
->   
-> 
+>
 > - **Input Processing**: The browser distinguishes whether the text is a valid search term (passed to default search engine) or a protocol/domain URI.
->     
->       
->     
+>
 > - **URL Anatomy**: `[https://api.example.com:443/v1/users?sort=asc#profile](https://api.example.com:443/v1/users?sort=asc#profile)`
->     
->       
+>
 >     - **Scheme/Protocol**: `https`
->         
->           
->         
+>
 >     - **Host / Domain**: `api.example.com`
->         
->           
->         
+>
 >     - **Port**: `:443` (implicit for HTTPS; `:80` for HTTP)
->         
->           
->         
+>
 >     - **Path**: `/v1/users`
->         
->           
->         
+>
 >     - **Query String**: `?sort=asc`
->         
->           
->         
+>
 >     - **Fragment / Hash**: `#profile` (never sent to the server; resolved entirely by the client/DOM).
->         
->           
->         
+>
 > - **HSTS (HTTP Strict Transport Security)**: The browser checks its internal preloaded HSTS list. If present, it forces HTTPS immediately, preventing plaintext `http://` downgrade attacks (SSL stripping).
->     
->       
->     
+
 
 > [!info] 2. DNS Resolution (Resolving Domain to IP)
-> 
+>
 > The browser translates human-readable hostnames into network routable IP addresses (IPv4/IPv6) via a hierarchical caching lookup:
-> 
->   
-> 
+>
 > 1. **Browser DNS Cache**: Chrome (`chrome://net-internals/#dns`).
->     
->       
->     
+>
 > 2. **OS Cache & Hosts File**: Checks local operating system DNS cache and the `/etc/hosts` file.
->     
->       
->     
+>
 > 3. **Recursive Resolver (ISP / 8.8.8.8 / 1.1.1.1)**: If uncached, queries recursively:
->     
->       
+>
 >     - **Root Nameservers (`.`)**: Directs to the Top-Level Domain (TLD) servers.
->         
->           
->         
+>
 >     - **TLD Nameservers (`.com`)**: Directs to the Authoritative nameserver for `example.com`.
->         
->           
->         
+>
 >     - **Authoritative Nameservers**: Returns the final `A` (IPv4) or `AAAA` (IPv6) record.
->         
->           
->         
+
 
 > [!tip] 3. Transport & Security (TCP Handshake & TLS 1.3)
-> 
->   
-> 
+>
 > - **TCP 3-Way Handshake**:
->     
->       
+>
 >     - Client sends **SYN** (Synchronize).
->         
->           
->         
+>
 >     - Server replies with **SYN-ACK** (Synchronize-Acknowledge).
->         
->           
->         
+>
 >     - Client replies with **ACK** (Acknowledge). A reliable, ordered byte stream is established ($1\text{ RTT}$).
->         
->           
->         
+>
 > - **TLS 1.3 Cryptographic Handshake**:
->     
->       
+>
 >     - **ClientHello**: Supported cipher suites and key share (Diffie-Hellman parameters).
->         
->           
->         
+>
 >     - **ServerHello & Certificate**: Server selects cipher suite, sends public key share, and provides its X.509 SSL/TLS certificate.
->         
->           
->         
+>
 >     - **Certificate Verification**: Browser validates the certificate against its Root Certificate Authorities (CA store) via CRL/OCSP stapling.
->         
->           
->         
+>
 >     - **Session Keys Derived**: Both parties compute symmetric encryption keys. TLS 1.3 establishes encrypted communication in just **$1\text{ RTT}$** (or $0\text{ RTT}$ via session resumption).
->         
->           
->         
+
 
 > [!danger] 4. HTTP Round-Trip, Gateway & Web Server Handling
-> 
->   
-> 
+>
 > - **HTTP Request**: The client dispatches headers (`Host`, `User-Agent`, `Accept`, `Cookie`, `Authorization`).
->     
->       
->     
+>
 > - **Edge Network / CDN (Cloudflare, Fastly)**: Terminates TLS close to the user (Anycast DNS routing), serves static assets from edge cache, or forwards dynamic requests upstream.
->     
->       
->     
+>
 > - **Reverse Proxy / Load Balancer (Nginx, HAProxy, AWS ALB)**: Balances traffic, applies rate-limiting, and routes to application server instances.
->     
->       
->     
+>
 > - **Server Processing & Response**: The application runs logic, queries the database, and returns an HTTP status code (e.g., `200 OK`) with response headers (`Content-Type`, `Cache-Control`, `Set-Cookie`) and payload bytes (HTML stream).
->     
->       
->     
+
 
 ## The Critical Rendering Path (CRP)
 
@@ -215,23 +153,23 @@ CSS Bytes  ──> Tokens ──> CSSOM Tree ┘
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Optimized Page Load</title>
+  <title>Optimized Page Load</title
 
   <!-- 1. Resource Hints: Speed up DNS and TLS handshakes for external APIs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://analytics.example.com">
+  <link rel="dns-prefetch" href="https://analytics.example.com"
 
   <!-- 2. Critical Inlined CSS: Prevents render blocking for above-the-fold content -->
   <style>
     body { margin: 0; font-family: sans-serif; }
     .hero { height: 100vh; background: #111; color: #fff; }
-  </style>
+  </style
 
   <!-- 3. Non-critical CSS loaded asynchronously -->
-  <link rel="preload" href="/styles/non-critical.css" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="/styles/non-critical.css" as="style" onload="this.rel='stylesheet'"
 
   <!-- 4. Defer JavaScript execution until DOM parsing completes -->
-  <script src="/scripts/app.js" defer></script>
+  <script src="/scripts/app.js" defer></script
 
   <!-- 5. Independent third-party scripts run asynchronously -->
   <script src="https://analytics.example.com/tracker.js" async></script>

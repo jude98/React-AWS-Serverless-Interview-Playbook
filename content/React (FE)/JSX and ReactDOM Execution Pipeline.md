@@ -1,16 +1,14 @@
 # JSX and ReactDOM Execution Pipeline
 
 > [!note] Core Definition of JSX
-> 
+>
 > JSX (JavaScript XML) is a declarative syntax extension for JavaScript that allows developers to write HTML-like markup inside JavaScript files. It is not valid ECMAScript on its own; compilers (Babel, SWC, ESBuild) must transpile it into native JavaScript objects before runtimes can execute it.
-> 
->   
+
 
 > [!abstract] ReactDOM vs React Core
-> 
+>
 > `react` is the abstract engine that models component logic, hooks, and Virtual DOM state trees. `react-dom` is the platform-specific renderer for web browsers that bridges Virtual DOM trees to native browser DOM nodes (`HTMLElement`) and reconciles mutations.
-> 
->   
+
 
 ## Key Concepts
 

@@ -1,18 +1,16 @@
 # React useTransition, useDeferredValue, and Concurrent Prioritization
 
 > [!note] The Core Purpose of Transitions
-> 
+>
 > `useTransition` and `useDeferredValue` are Concurrent React primitives that let you differentiate between **urgent updates** (e.g., typing in an input, clicking a tab, dragging a slider) and **non-urgent transitions** (e.g., filtering a list of 10,000 items, switching a heavy analytical view). They tell React: _"Keep the UI responsive to user input; render this heavy background work in an interruptible, low-priority lane."_
-> 
->   
+
 
 > [!abstract] useDeferredValue vs. Debouncing
-> 
+>
 > **Debouncing** is an artificial, fixed timer (e.g., wait 300ms after the last keystroke before triggering work). If the user types on a fast machine, it introduces unnecessary lag; if the machine is slow, 300ms may still freeze the frame rate.
-> 
+>
 > **`useDeferredValue`** has **no fixed timeout**. It updates immediately on fast devices, and on slower devices, it leverages React’s cooperative time-slicing to yield to the main thread during render, rendering in the background and aborting outdated work as soon as new input arrives.
-> 
->   
+
 
 ## Urgent vs Non-Urgent Priority Scheduling
 
@@ -179,7 +177,7 @@ export function TabContainer() {
       <button onClick={() => handleSelectTab('home')}>Home</button>
       <button onClick={() => handleSelectTab('analytics')}>
         Analytics (Heavy)
-      </button>
+      </button
 
       {/* isPending allows showing an inline transition indicator */}
       {isPending && <span> Switching view...</span>}

@@ -1,10 +1,9 @@
 # Framework Evaluation and Migration Architectural Decision Framework
 
 > [!abstract] Architectural Decision Matrix
-> 
+>
 > Choosing or migrating a frontend framework is not merely a syntax preference; it is a fundamental trade-off across **Rendering Architecture (CSR vs. SSR/SSG/ISR/RSC)**, **Bundle Budget & Runtime Overhead**, **Ecosystem & Community Longevity**, **Hiring & Developer Experience (DX)**, and **Total Cost of Ownership (Infra & Operational Complexity)**.
-> 
->   
+
 
 ## Key Concepts
 

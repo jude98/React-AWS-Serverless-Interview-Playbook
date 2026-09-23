@@ -10,22 +10,19 @@
 > 1. **Capturing Phase**: Event descends from `window` through the DOM hierarchy down to the target.
 > 2. **Target Phase**: Event reaches the element where the event originated.
 > 3. **Bubbling Phase**: Event ascends back up through parent nodes to `window` (default phase for listeners unless `{ capture: true }` is specified).
-> 
-> 
+
 
 > [!danger] The Memory Leak Hazard (Why We Must Remove Listeners)
 > * **Retaining Heap References**: Because the DOM node holds a strong reference to the callback, and the callback forms a **closure** enclosing its outer scope, any variables, large objects, or component instances captured in that closure cannot be garbage collected.
 > * **Detached DOM Tree Leaks**: If a DOM element is removed from the visible document via `.remove()` or component unmounting without unhooking its listeners (or if a detached element remains referenced by a global listener), the browser retains both the detached DOM subtree and all enclosed closures in heap memory.
 > * **Process/Thread Boundary Overhead**: In Chromium/Node-like environments, listeners bridge the JavaScript engine (V8) and the layout/DOM engine (Blink), allocating native memory handles that persist until unregistered.
-> 
-> 
+
 
 > [!tip] Modern Removal & Cleanup Techniques
 > * `removeEventListener(type, exactFunctionReference, options)`: Requires passing the **exact same function reference** in memory.
 > * `AbortController` / `AbortSignal`: Modern pattern allowing one-shot teardown of multiple listeners across different elements with a single `.abort()` call.
 > * `{ once: true }`: Automatically deregisters and releases the listener from memory after its first invocation.
-> 
-> 
+
 
 ## Common Interview Questions
 

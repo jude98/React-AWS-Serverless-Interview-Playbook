@@ -3,118 +3,107 @@
 ## Key Concepts
 
 > [!summary] What is Tree Shaking?
-> 
+>
 > **Tree shaking** is a dead-code elimination technique used by modern JavaScript bundlers (Rollup, Webpack, Vite/esbuild, Turbopack) to remove unused exports from the final production bundle. The term envisions your application dependency graph as a tree: live dependencies represent green leaves, while unused exports represent dead leaves that can be shaken off.
-> 
->   
+
 
 > [!abstract] Why ES Modules (ESM / ES6) Enable Tree Shaking
-> 
+>
 > Tree shaking relies strictly on **static analysis** of the module graph at compile time:
-> 
->   
-> 
+>
 > - **ESM (`import` / `export`)**: The structure is **static**. Imports and exports cannot be placed inside conditional blocks or dynamically generated at runtime. The bundler reads the Abstract Syntax Tree (AST) without executing the code and determines precisely which exports are never referenced.
->     
->       
->     
+>
 > - **CommonJS (`require()` / `module.exports`)**: The structure is **dynamic**. Statements like `if (condition) require(moduleName)` or `module.exports[dynamicKey] = fn` evaluate only at runtime. Bundlers cannot safely determine if an export is used without executing the entire program, causing dead-code elimination to fail or fall back to bundling the entire module.
->     
->       
->     
+
 
 > [!danger] What is a Barrel File?
-> 
+>
 > A **barrel file** is a central module (commonly `index.js` or `index.ts`) that re-exports multiple named exports from various individual modules in a directory:
-> 
->   
-> 
+>
 > JavaScript
-> 
+>
 > ```
 > // components/index.js (The Barrel)
 > export * from './Button';
 > export * from './Modal';
 > export * from './DataGrid'; // Might bring in heavy dependencies like charting/canvas!
 > ```
-> 
+>
 > While barrel files offer clean import ergonomics (`import { Button } from '@/components'`), they can become a primary bottleneck for bundle size and build performance.
-> 
->   
+
 
 > [!tip] Why Tree Shaking is Difficult: The Side-Effect Problem
-> 
+>
 > Bundlers can only eliminate unused code if they can prove with mathematical certainty that importing the unused file produces **no side effects** (e.g., mutating global prototypes, modifying `window`, running top-level setup scripts, or initializing polyfills). If a file has side effects, skipping its execution changes the runtime behavior of the program, forcing the bundler to retain it.
-> 
->   
+
 
 ## Common Interview Questions
 
 - "What is tree shaking, and why does it work with ES Modules (ESM) but fail with CommonJS (CJS)?"
-    
-      
-    
+
+
+
 - "What is a barrel file, and how does it negatively impact tree shaking and cold start times in development (e.g., Vite/Next.js)?"
-    
-      
-    
+
+
+
 - "What is the purpose of the `"sideEffects": false` flag in `package.json`?"
-    
-      
-    
+
+
+
 - "Why can class declarations or transpiled Babel code inadvertently break tree shaking?"
-    
-      
-    
+
+
+
 - "How does importing `import { map } from 'lodash'` differ from `import map from 'lodash/map'` in terms of bundling?"
-    
-      
-    
+
+
+
 - "How do modern compilers/frameworks (like Next.js optimizePackageImports or Turbopack) solve barrel file issues?"
-    
-      
-    
+
+
+
 
 ## Deep Dive & Talking Points
 
 ### 1. Static Analysis: ESM vs. CommonJS
 
 - **ES Modules (Static Graph)**:
-    
-      
+
+
     - `import` and `export` statements must reside at top-level scope.
-        
-          
-        
+
+
+
     - Specifiers must be static string literals (not dynamic variables).
-        
-          
-        
+
+
+
     - Bundlers can construct the entire dependency graph deterministically during the parsing phase.
-        
-          
-        
+
+
+
 - **CommonJS (Dynamic Execution)**:
-    
-      
+
+
     - `require()` is simply an ordinary function call executed at runtime.
-        
-          
-        
+
+
+
     - `module.exports` is a plain JavaScript object that can be mutated dynamically (`Object.assign(module.exports, ...)`).
-        
-          
-        
+
+
+
     - Bundlers cannot determine the shape of `module.exports` purely through static AST analysis.
-        
-          
-        
+
+
+
 
 ### 2. The Mechanics of Why Tree Shaking is Hard: Side Effects
 
 Even if an exported function is never invoked, importing its module might execute top-level code:
 
-  
+
 
 ```javascript
 // analytics.js
@@ -125,22 +114,22 @@ export function trackEvent() { ... }
 
 If a consumer writes `import { trackEvent } from './analytics.js'`, but never calls `trackEvent()`, can the bundler delete `analytics.js`?
 
-  
+
 
 - **No**: Deleting `analytics.js` eliminates `window.__APP_ANALYTICS_INITIALIZED__ = true`, altering global application state.
-    
-      
-    
+
+
+
 - **The Engine's Dilemma**: Unless instructed otherwise, bundlers must assume top-level expressions have potential side effects.
-    
-      
-    
+
+
+
 
 ### 3. Why Barrel Files Complicate Tree Shaking
 
 When you write:
 
-  
+
 
 ```javascript
 import { Button } from './components'; // refers to components/index.js
@@ -148,26 +137,26 @@ import { Button } from './components'; // refers to components/index.js
 
 The bundler must parse **every single module re-exported by `index.js`**, traversing their dependency sub-trees.
 
-  
+
 
 1. **Accidental Side-Effect Retainers**: If `DataGrid` (also re-exported in `index.js`) imports a CSS file (`import './styles.css'`) or executes a top-level regex/date parser that the bundler cannot prove is side-effect free, the bundler **must retain `DataGrid` and all its transitive dependencies** in the final bundle, even though the consumer only asked for `Button`.
-    
-      
-    
+
+
+
 2. **Circular Dependencies**: Interdependent barrel exports frequently trigger cyclic module dependencies, preventing bundlers from ordering the initialization graph and breaking tree shaking.
-    
-      
-    
+
+
+
 3. **Dev Server Degradation (Vite / Turbopack)**: In development, unbundled ESM environments (like Vite) or fast bundlers must request, parse, and compile hundreds or thousands of files just to resolve a single icon or button imported from a massive barrel file (e.g., Lucide, Material-UI, or internal design systems).
-    
-      
-    
+
+
+
 
 ### 4. The Solution: Declaring `"sideEffects"` in `package.json`
 
 To inform bundlers that unused re-exported modules can be safely pruned without executing their top-level code, libraries declare:
 
-  
+
 
 ```json
 {
@@ -178,7 +167,7 @@ To inform bundlers that unused re-exported modules can be safely pruned without 
 
 Or specify explicit exceptions:
 
-  
+
 
 ```json
 {
@@ -192,7 +181,7 @@ Or specify explicit exceptions:
 
 When a bundler encounters `"sideEffects": false`, it bypasses unreferenced re-exports in barrel files completely, dropping the associated code from the final bundle.
 
-  
+
 
 ## Code Snippets / Examples
 
@@ -255,7 +244,7 @@ import { add } from './math-esm';
 
 When bundlers cannot determine whether a top-level function call produces side effects, developers and compilers (like Babel/SWC) add purity comments:
 
-  
+
 
 ```javascript
 // Bundler cannot be sure if configureButton() modifies globals or DOM

@@ -1,10 +1,9 @@
 # Advanced React Performance Optimization Patterns
 
 > [!abstract] Architectural Overview
-> 
+>
 > Beyond asset compression, data windowing, and server-state caching, deep frontend optimization targets **render-tree reconciliation costs**, **context propagation boundaries**, **main-thread scheduling**, and **memory lifecycle management**. The goal is minimizing unnecessary component re-evaluations and keeping task execution times strictly below the 50ms long-task threshold.
-> 
->   
+
 
 ## Key Concepts
 

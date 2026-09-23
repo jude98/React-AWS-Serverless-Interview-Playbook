@@ -3,75 +3,43 @@
 ## Key Concepts
 
 > [!summary] Protocol Layer Architecture
-> 
+>
 > Modern web communication is organized into hierarchical abstraction layers (OSI / TCP-IP models):
-> 
->   
-> 
+>
 > - **Transport Layer (L4)**: Governs host-to-host data delivery via **TCP** (reliable, ordered, connection-oriented) or **UDP** (lightweight, connectionless, low-latency).
->     
->       
->     
+>
 > - **Security Layer (L4.5 / L5)**: **TLS/SSL** establishes an encrypted, authenticated session on top of the transport layer before application data is sent.
->     
->       
->     
+>
 > - **Application Layer (L7)**: High-level protocols like **HTTP/1.1**, **HTTP/2**, **HTTP/3**, and **SSH** that define message syntax, semantics, and resource retrieval.
->     
->       
->     
+
 
 > [!abstract] Transport Layer: TCP vs. UDP
-> 
->   
-> 
+>
 > - **TCP (Transmission Control Protocol)**: Establishes a virtual circuit via a **3-Way Handshake (SYN, SYN-ACK, ACK)**. Guarantees in-order packet delivery, error-checking, acknowledgments, retransmissions, flow control (sliding window), and congestion control.
->     
->       
->     
+>
 > - **UDP (User Datagram Protocol)**: "Fire-and-forget" connectionless datagram delivery. No handshake, no delivery guarantees, no retransmissions, and no ordering. Offers minimal protocol overhead and zero head-of-line blocking at the transport layer.
->     
->       
->     
+
 
 > [!info] Security: TLS/SSL vs. SSH
-> 
->   
-> 
+>
 > - **TLS (Transport Layer Security)**: Successor to SSL (Secure Sockets Layer, now deprecated). Secures application traffic (like HTTP $\to$ HTTPS) using public-key cryptography (X.509 PKI certificates) to authenticate servers and negotiate ephemeral symmetric session keys.
->     
->       
->     
+>
 > - **SSH (Secure Shell)**: An application/transport protocol designed specifically for secure remote server administration, shell access, tunneling, and file transfer (`sftp`/`scp`). Uses asymmetric host keys and user authentication (public/private key pairs or passwords), bypassing public Certificate Authorities (CAs) by default via a trust-on-first-use (TOFU) or enterprise certificate authority model.
->     
->       
->     
+
 
 > [!tip] HTTP vs. HTTPS
-> 
->   
-> 
+>
 > - **HTTP**: Application-layer protocol transmitted in **plaintext** over port 80. Susceptible to packet-sniffing, man-in-the-middle (MITM) tampering, and session hijacking.
->     
->       
->     
+>
 > - **HTTPS**: Standard HTTP layered directly over an encrypted **TLS tunnel** over port 443. Guarantees **Confidentiality** (data encryption), **Integrity** (message tampering detection via HMACs), and **Authentication** (proves server identity via trusted CAs).
->     
->       
->     
+
 
 > [!danger] HTTP Evolution: HTTP/1.1 vs. HTTP/2.0
-> 
->   
-> 
+>
 > - **HTTP/1.1**: Text-based protocol. Suffers from **Application-Level Head-of-Line (HoL) Blocking** on a single TCP connection because requests must be served in the exact order they were sent. Browsers mitigate this by opening up to 6 concurrent TCP connections per domain.
->     
->       
->     
+>
 > - **HTTP/2.0**: Binary-framed protocol. Introduces **Multiplexing** (multiple concurrent bidirectional request/response streams over a **single TCP connection**), HPACK header compression, stream prioritization, and Server Push.
->     
->       
->     
+
 
 ## Common Interview Questions
 

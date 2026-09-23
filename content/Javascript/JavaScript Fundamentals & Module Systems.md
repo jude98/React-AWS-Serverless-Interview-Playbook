@@ -3,58 +3,40 @@
 ## Key Concepts
 
 > [!summary] JavaScript Core Nature
-> 
+>
 > A single-threaded, synchronous-by-default runtime language with a non-blocking, asynchronous event-driven architecture powered by the Event Loop.
-> 
->   
+
 
 > [!abstract] ECMAScript vs. JavaScript
-> 
+>
 > ECMAScript (ES) is the open standard specification (ECMA-262); JavaScript is the dialect implementation containing standard ECMAScript plus host environment APIs (DOM, Node.js core modules).
-> 
->   
+
 
 > [!info] ESNext
-> 
+>
 > The dynamic label referring to whatever proposed features are currently in pipeline stages (TC39 process) destined for the upcoming ECMAScript release.
-> 
->   
+
 
 > [!example] CommonJS (CJS) vs. ECMAScript Modules (ESM)
-> 
->   
-> 
+>
 > - **CommonJS (CJS)**: Legacy Node.js module system (`require` / `module.exports`); loaded synchronously and dynamically evaluated at runtime.
->     
->       
->     
+>
 > - **ECMAScript Modules (ESM)**: Official language standard module system (`import` / `export`); parsed and resolved statically at compile time, enabling dead-code elimination (tree-shaking).
->     
->       
->     
+
 
 > [!tip] Static vs. Dynamic Resolution
-> 
+>
 > Static imports resolve module specifiers at parse/compile-time before script execution; dynamic imports (`import()`) evaluate specifiers at runtime and return promises, enabling on-demand code-splitting.
-> 
->   
+
 
 > [!important] SemVer & Dependency Management
-> 
->   
-> 
+>
 > - **Semantic Versioning (SemVer)**: `MAJOR.MINOR.PATCH` format indicating breaking changes, backward-compatible features, and backward-compatible bug fixes respectively.
->     
->       
->     
+>
 > - **`package-lock.json`**: Deterministic snapshot of the exact dependency graph tree, ensuring byte-for-byte identical installations across environments.
->     
->       
->     
+>
 > - **Peer Dependencies**: Dependencies that a plugin or library expects the host consuming application to install directly, preventing duplicate multi-version instances in memory.
->     
->       
->     
+
 
 ## Common Interview Questions
 

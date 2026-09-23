@@ -3,39 +3,28 @@
 ## Key Concepts
 
 > [!summary] Control Flow Overview
-> 
+>
 > Control flow defines the order in which statements are evaluated at runtime. Branching constructs allow programs to take divergent paths based on boolean evaluation (`if...else`, ternary `?:`) or strict pattern matching (`switch`).
-> 
->   
+
 
 > [!abstract] `if...else` Evaluation & Truthiness
-> 
+>
 > An `if (expression)` statement coerces its condition via the `ToBoolean` abstract operation. If the result is truthy, the `if` block executes; otherwise, execution falls through to subsequent `else if` conditions or the optional terminating `else` block.
-> 
->   
+
 
 > [!info] The Conditional (Ternary) Operator (`condition ? expr1 : expr2`)
-> 
+>
 > The only operator in JavaScript taking three operands. Unlike `if...else` (which is a **statement**), the ternary operator is an **expression** that evaluates and returns a value, making it valid inside JSX, template literals, and variable assignments.
-> 
->   
+
 
 > [!danger] `switch` Statement: Fall-Through & Strict Matching
-> 
->   
-> 
+>
 > - The `switch (expression)` statement compares candidate cases using **strict equality (`===`)**—no type coercion occurs.
->     
->       
->     
+>
 > - Execution jumps to the matching `case` and continues sequentially across subsequent cases (**fall-through**) until a `break` or `return` statement is encountered, or the block ends.
->     
->       
->     
+>
 > - The `default` clause handles unmatched expressions regardless of its position in the block, though it is conventionally placed at the end.
->     
->       
->     
+
 
 ## Common Interview Questions
 

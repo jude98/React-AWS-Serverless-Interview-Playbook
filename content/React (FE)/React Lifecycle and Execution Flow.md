@@ -1,16 +1,14 @@
 # React Lifecycle and Execution Flow
 
 > [!note] Lifecycle Summary
-> 
+>
 > React execution flows through two main phases across three stages: The **Render Phase** (pure, computes Virtual DOM diffs without side effects) and the **Commit Phase** (synchronously mutates the real DOM, paints pixels, and triggers effects).
-> 
->   
+
 
 > [!abstract] Architectural Transition
-> 
+>
 > Modern React replaces sequential, imperative class lifecycles (`mount` -> `update` -> `unmount`) with declarative state synchronization (`useEffect`, `useLayoutEffect`) managed by the Fiber reconciler.
-> 
->   
+
 
 ## Visual Lifecycle Flow
 

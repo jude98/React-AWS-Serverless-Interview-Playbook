@@ -1,10 +1,9 @@
 # Comprehensive Performance Optimization Architecture in React
 
 > [!note] The Core Philosophy of React Performance
-> 
+>
 > **"Measure before you optimize."** Premature optimization adds cognitive overhead, code complexity, and subtle bugs (like stale closures). Optimization should follow a systematic methodology: **Audit $\rightarrow$ Eliminate Unnecessary Work $\rightarrow$ Break Up Long Tasks $\rightarrow$ Minimize Network Payload $\rightarrow$ Optimize DOM Nodes.**
-> 
->   
+
 
 ## The Holistic 5-Pillar Optimization Pipeline
 

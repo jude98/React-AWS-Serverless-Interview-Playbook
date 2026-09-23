@@ -7,28 +7,24 @@
 > 1. **Capturing Phase (Trickling)**: The event starts from the `Window`, descends through `Document`, `<html>`, `<body>`, and down ancestor nodes toward the target element.
 > 2. **Target Phase**: The event reaches the deepest element where the interaction physically occurred (`event.target`).
 > 3. **Bubbling Phase**: The event reverses direction and ascends back up through parent elements all the way back to `Window`.
-> 
-> 
+
 
 > [!abstract] Event Listener Phase Configuration
 > `addEventListener(type, listener, useCapture)`:
 > * By default, `useCapture` is `false` (or omitted). The listener fires **only during the Target and Bubbling phases**.
 > * Passing `true` (or `{ capture: true }`) configures the listener to fire **during the Capturing phase**.
-> 
-> 
+
 
 > [!info] `event.target` vs. `event.currentTarget`
 > * `event.target`: The actual deepest DOM node where the user initiated the interaction (e.g., the specific `<span>` or `<button>` clicked).
 > * `event.currentTarget`: The element to which the event listener is currently attached (equivalent to `this` inside standard non-arrow listener functions).
-> 
-> 
+
 
 > [!danger] Halting Event Propagation
 > * `event.stopPropagation()`: Prevents the event from traveling further along the propagation path (neither continuing down during capture nor ascending up during bubble). Other listeners attached to the *same current element* will still execute.
 > * `event.stopImmediatePropagation()`: Prevents the event from bubbling/capturing **and** immediately blocks execution of any other listeners registered on that exact same element for that event type.
 > * `event.preventDefault()`: Prevents the default browser action (e.g., following a link, submitting a form, checking a checkbox); does **not** stop propagation.
-> 
-> 
+
 
 > [!tip] Event Delegation Defined
 > A design pattern where instead of binding individual listeners to numerous child elements, you attach a **single event listener** to a common parent element. The parent leverages event bubbling to intercept events originating from any existing or dynamically appended children.

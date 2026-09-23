@@ -1,23 +1,16 @@
 # Rules of Hooks and Internal Linked List Architecture
 
 > [!note] The Two Rules of Hooks
-> 
->   
-> 
+>
 > 1. **Only Call Hooks at the Top Level**: Do not call hooks inside loops, conditions, nested functions, or `try`/`catch` blocks.
->     
->       
->     
+>
 > 2. **Only Call Hooks from React Functions**: Call them only from React function components or custom hooks, never from regular JavaScript utility functions or class methods.
->     
->       
->     
+
 
 > [!abstract] Why the Top-Level Rule Exists (The Linked List Model)
-> 
+>
 > React does **not** identify hooks by names, keys, or labels. Under the hood, a component’s Fiber node stores all hooks in a **sequential, singly-linked list** (`fiber.memoizedState`). React tracks which state belongs to which hook purely through an internal **pointer index** that advances on each call. If a hook is wrapped inside a condition or loop, the invocation count shifts, corrupting the pointer sequence and cross-wiring the component's state variables.
-> 
->   
+
 
 ## How React Tracks Hooks Under the Hood
 

@@ -1,29 +1,20 @@
 # Code Splitting vs Lazy Loading in React
 
 > [!note] Core Mental Model
-> 
+>
 > **Code Splitting** is a **build-time preparation** technique where bundlers (Webpack, Vite, Rollup, ESBuild) divide a single monolithic JavaScript bundle into smaller, discrete chunks using dynamic imports (`import()`).
-> 
+>
 > **Lazy Loading** is a **runtime deferral strategy** that waits to download and execute those chunks, images, or components until they are actually needed on screen (e.g., via user navigation, viewport scrolling, or user clicks).
-> 
->   
+
 
 > [!abstract] Build Time vs Runtime Relationship
-> 
->   
-> 
+>
 > - Code Splitting produces the split files (e.g., `dashboard.chunk.js`, `admin.chunk.js`).
->     
->       
->     
+>
 > - Lazy Loading determines _when_ the browser makes the network request to fetch them (paired with `React.lazy()` and `<Suspense>`).
->     
->       
->     
+>
 > - You can have code splitting without lazy loading (e.g., split vendor chunks loaded in parallel upfront), and you can have lazy loading without code splitting (e.g., native browser `<img loading="lazy" />` or off-screen iframes).
->     
->       
->     
+
 
 ## The Build-Time vs Runtime Pipeline
 
@@ -189,7 +180,7 @@ export function App() {
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </Suspense>
-      </ErrorBoundary>
+      </ErrorBoundary
 
       <div className="extra-tools">
         <button
@@ -197,7 +188,7 @@ export function App() {
           onClick={() => setShowChart(true)}
         >
           Open Analytics Chart
-        </button>
+        </button
 
         {showChart && (
           <Suspense fallback={<div>Loading Chart...</div>}>

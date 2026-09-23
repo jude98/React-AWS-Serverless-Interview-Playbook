@@ -3,60 +3,34 @@
 ## Key Concepts
 
 > [!summary] Scope Boundaries
-> 
->   
-> 
+>
 > - `var` is **function-scoped** (or global). It ignores block delimiters (`if`, `for`, `while`, `{}`) and only respects boundaries created by functions.
->     
->       
->     
+>
 > - `let` and `const` are **block-scoped**. They are strictly confined to the closest enclosing pair of curly braces `{}`.
->     
->       
->     
+
 
 > [!abstract] Hoisting & Initialization Behavior
-> 
->   
-> 
+>
 > - `var`: Registered in memory during Phase 1 (Creation Phase) and immediately initialized to `undefined`.
->     
->       
->     
+>
 > - `let` and `const`: Registered in memory during Phase 1, but left **uninitialized**. They enter the **Temporal Dead Zone (TDZ)** and throw a `ReferenceError` if accessed before the declaration line in Phase 2.
->     
->       
->     
+
 
 > [!info] Re-declaration & Reassignment
-> 
->   
-> 
+>
 > - `var`: Can be re-declared and reassigned within the same scope without error.
->     
->       
->     
+>
 > - `let`: Can be reassigned, but **cannot** be re-declared within the same scope.
->     
->       
->     
+>
 > - `const`: Cannot be re-declared and **cannot be reassigned**; must be initialized immediately at the declaration statement.
->     
->       
->     
+
 
 > [!tip] Global Object Pollution
-> 
->   
-> 
+>
 > - In global scope (outside any function), `var` attaches directly as a property on the global object (`window.x` in browser, `global.x` in Node.js non-module scripts).
->     
->       
->     
+>
 > - Top-level `let` and `const` live in the Declarative Environment Record and **never** attach to the global object.
->     
->       
->     
+
 
 ## Common Interview Questions
 

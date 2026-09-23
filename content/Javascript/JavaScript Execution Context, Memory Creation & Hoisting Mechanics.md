@@ -3,50 +3,34 @@
 ## Key Concepts
 
 > [!summary] Execution Context & The Call Stack
-> 
+>
 > An Execution Context (EC) is the abstract environment where JavaScript code is evaluated and executed. The engine tracks these contexts using the Call Stack (LIFO: Last In, First Out). The engine begins with the Global Execution Context (GEC), and a new Function Execution Context (FEC) is created whenever a function is invoked.
-> 
->   
+
 
 > [!abstract] Two-Phase Execution Lifecycle
-> 
+>
 > Every Execution Context runs in two discrete phases:
-> 
->   
-> 
+>
 > 1. **Phase 1: Creation Phase (Memory Allocation)**: The engine scans declarations, registers memory space for identifiers, initializes variables, and resolves lexical references.
->     
->       
->     
+>
 > 2. **Phase 2: Code Execution Phase**: The engine executes code line-by-line, runs assignments, resolves operations, and handles function calls.
->     
->       
->     
+
 
 > [!info] Hoisting Mechanics
-> 
+>
 > Hoisting is the observable side effect of Phase 1:
-> 
->   
-> 
+>
 > - **Function Declarations**: Stored entirely in memory with the function body attached, making them fully callable before declaration.
->     
->       
->     
+>
 > - **`var` Declarations**: Registered and initialized immediately with `undefined`.
->     
->       
->     
+>
 > - **`let` and `const` Declarations**: Registered in lexical memory, but left **uninitialized**.
->     
->       
->     
+
 
 > [!danger] Temporal Dead Zone (TDZ)
-> 
+>
 > The period between entering a block scope (Phase 1) and the point where the `let` or `const` variable's declaration statement is evaluated in Phase 2. Accessing the variable during this window throws a `ReferenceError`.
-> 
->   
+
 
 ## Common Interview Questions
 

@@ -3,66 +3,38 @@
 ## Key Concepts
 
 > [!summary] Foundations: SOP vs. CORS
-> 
->   
-> 
+>
 > - **Same-Origin Policy (SOP)**: A core browser security mechanism that restricts a document or script loaded by one origin from reading resources or interacting directly with a document from a different origin (`protocol + domain + port`). It prevents `evil.com` from inspecting `bank.com`'s DOM, `localStorage`, or read API responses.
->     
->       
->     
+>
 > - **CORS (Cross-Origin Resource Sharing)**: A standard server-driven relaxation of SOP via HTTP headers (`Access-Control-Allow-Origin`, `Access-Control-Allow-Credentials`) that allows designated trusted origins to read server responses.
->     
->       
->     
+
 
 > [!abstract] Authentication vs. Authorization
-> 
->   
-> 
+>
 > - **Authentication (AuthN)**: _Who are you?_ Validating the caller's identity (passwords, TOTP 2FA, biometric WebAuthn, OAuth SSO).
->     
->       
->     
+>
 > - **Authorization (AuthZ)**: _What are you allowed to do?_ Determining permissions and access rights (RBAC: Role-Based Access Control, ABAC: Attribute-Based Access Control). AuthN always precedes AuthZ.
->     
->       
->     
+
 
 > [!danger] Attack Vectors: XSS vs. CSRF
-> 
->   
-> 
+>
 > - **XSS (Cross-Site Scripting)**: An attacker injects **arbitrary JavaScript** that executes inside the victim's browser context under the trusted origin.
->     
->       
+>
 >     - _Types_: Stored (saved in DB), Reflected (reflected in URL/query), DOM-based (injected into client-side DOM sinks).
->         
->           
->         
+>
 >     - _Impact_: Session hijacking, exfiltrating tokens/cookies, keylogging, full account takeover.
->         
->           
->         
+>
 > - **CSRF (Cross-Site Request Forgery)**: An attacker tricks a victim's authenticated browser into executing an **unwanted state-changing action** on a trusted site where the user is currently logged in.
->     
->       
+>
 >     - _Mechanism_: Explains the browser's ambient credential behavior (automatically attaching cookies to cross-site requests). The attacker cannot _read_ the response due to SOP, but the state-changing mutation executes on the server.
->         
->           
->         
+
 
 > [!tip] Token Topology: Access Tokens vs. Refresh Tokens
-> 
->   
-> 
+>
 > - **Access Token (JWT / Bearer)**: Short-lived (~5–15 minutes). Contains cryptographic claims/scopes. Statelessly validated by microservices via signature verification without constant DB lookups. Kept in **in-memory JavaScript state** to resist XSS.
->     
->       
->     
+>
 > - **Refresh Token**: Long-lived (~7–30 days). Opaque string or signed token used exclusively to mint new access tokens. Kept in an **`HttpOnly; Secure; SameSite=Strict` (or `Lax`) cookie** with a restricted `/api/auth/refresh` path to resist both XSS and CSRF.
->     
->       
->     
+
 
 ## Common Interview Questions
 

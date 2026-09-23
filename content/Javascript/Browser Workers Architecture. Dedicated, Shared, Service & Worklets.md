@@ -9,22 +9,19 @@
 > * **No DOM Access**: Workers run in an isolated execution context (`WorkerGlobalScope`) and have **zero access** to `window`, `document`, DOM nodes, or local storage.
 > * **Available APIs**: Can access `fetch`, `XMLHttpRequest`, `IndexedDB`, `WebSockets`, `crypto`, `location`, `navigator`, and `setTimeout`/`setInterval`.
 > * **Communication**: Primarily communicate with the main thread via message passing (`postMessage` and `onmessage`), serializing data through the **Structured Clone Algorithm** or zero-copy **Transferable Objects**.
-> 
-> 
+
 
 > [!info] The 4 Main Types of Workers
 > 1. **Dedicated Web Workers (`new Worker()`)**: Linked to a single script/tab instance. Used to offload CPU-heavy computations (image processing, big data parsing, cryptography, complex math).
 > 2. **Shared Workers (`new SharedWorker()`)**: Shared across multiple browser contexts (tabs, windows, iframes) of the same origin. Managed via explicit `MessagePort` connections.
 > 3. **Service Workers (`navigator.serviceWorker.register()`)**: Event-driven network proxies sitting between the browser, network, and disk cache. Powers PWAs, offline caching, background sync, and push notifications.
 > 4. **Worklets (AudioWorklet, PaintWorklet, AnimationWorklet)**: Ultra-lightweight, high-priority render/audio pipeline hooks operating directly in the browser's rendering/audio rendering engines with strict real-time deadlines.
-> 
-> 
+
 
 > [!danger] Data Passing Overhead: Structured Cloning vs. Transferables
 > * **Structured Clone**: Deep copies objects by default. Passing a 100MB object between threads duplicates it in heap memory and can cause a temporary UI hitch during serialization.
 > * **Transferable Objects** (`ArrayBuffer`, `MessagePort`, `ImageBitmap`): Transfers ownership of raw memory instantly ($O(1)$) with zero copy. Once transferred, the buffer becomes **detached** (byte length 0) and completely inaccessible on the sender thread.
-> 
-> 
+
 
 ---
 

@@ -1,16 +1,14 @@
 # React Fundamentals and Core Concepts
 
 > [!note] React Core Definition
-> 
+>
 > A declarative, component-based JavaScript library designed exclusively for building responsive user interfaces by synchronizing view states via a virtual representation of the DOM.
-> 
->   
+
 
 > [!abstract] Library vs Framework
-> 
+>
 > A library is unopinionated and gives you control over architectural decisions (Inversion of Control remains with the developer); a framework controls the architecture and lifecycle, calling your code into its prescribed skeleton.
-> 
->   
+
 
 ## Key Concepts
 

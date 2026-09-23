@@ -1,16 +1,14 @@
 # Importance of Keys in React
 
 > [!note] Core Definition
-> 
+>
 > A `key` is a special string attribute that gives elements inside an array a stable, persistent identity across renders. It acts as an identity badge that allows React’s reconciliation algorithm to distinguish between which items were inserted, reordered, kept, or deleted.
-> 
->   
+
 
 > [!abstract] Identity vs Position
-> 
+>
 > Without keys, React identifies list elements strictly by their **array index position**. With unique keys, React identifies elements by their **data identity**, allowing it to move existing DOM nodes and preserve component state regardless of positional shifts.
-> 
->   
+
 
 ## How React Reconciles Lists: With vs Without Keys
 

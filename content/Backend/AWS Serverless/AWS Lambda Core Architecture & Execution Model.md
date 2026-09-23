@@ -33,10 +33,9 @@
 ### 1. Execution Context Lifecycle (`Init` → `Invoke` → `Shutdown`)
 
 > [!NOTE]
-> 
+>
 > The execution environment lifecycle consists of three distinct phases managed by AWS:
-> 
->   
+
 
 1. **Init Phase:**
 

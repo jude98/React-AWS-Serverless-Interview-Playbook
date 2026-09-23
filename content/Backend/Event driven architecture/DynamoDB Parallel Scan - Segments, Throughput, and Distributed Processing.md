@@ -47,10 +47,10 @@
 - **The Filter Trap**: A `FilterExpression` is applied **after** DynamoDB reads up to 1 MB of data from storage.
 
     > [!warning] Critical RCU Cost Rule
-    > 
+    >
     > You are charged RCUs for **all data read from disk**, not the records returned after filtering. Running a parallel scan with a restrictive filter still burns massive read capacity.
-    > 
-    >   
+    >
+    >
 
 - **Throttling Blast Radius**: An unthrottled parallel scan can consume tens of thousands of RCUs in seconds. If the table shares provisioned or on-demand throughput with critical online transaction processing (OLTP) traffic, the scan can throttle end-user operations.
 

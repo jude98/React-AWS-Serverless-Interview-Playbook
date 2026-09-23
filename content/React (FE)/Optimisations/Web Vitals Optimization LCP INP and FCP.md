@@ -1,10 +1,9 @@
 # Web Vitals Optimization LCP INP and FCP
 
 > [!abstract] Core Metric Focus
-> 
+>
 > Optimizing Core Web Vitals targets the critical phases of the page lifecycle: **FCP** (perceived start of load), **LCP** (loading the primary content), and **INP** (runtime UI responsiveness across all interactions). High scores require a combination of edge caching, critical asset prioritization, and breaking long tasks on the main thread.
-> 
->   
+
 
 ## Key Concepts
 

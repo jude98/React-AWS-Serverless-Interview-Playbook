@@ -49,10 +49,9 @@
 ### 2. EventBridge Pipes: Eliminating Glue Code
 
 > [!NOTE]
-> 
+>
 > EventBridge Pipes provide a structured, serverless 4-stage pipeline for direct point-to-point integration:
-> 
->   
+
 
 1. **Source:** Ingests from streaming or queuing sources (SQS, Kinesis, DynamoDB Streams, Kafka).
 

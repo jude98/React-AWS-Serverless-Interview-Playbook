@@ -10,14 +10,12 @@
 > * **State Preservation**: Persists state across multiple invocations without polluting the global namespace.
 > * **Function Factories & Partial Application**: Powers currying, configuration wrappers, and memoization patterns.
 > * **Event Handlers & Callback Registration**: Allows asynchronous callbacks to retain reference to the exact environment and data in which they were originally registered.
-> 
-> 
+
 
 > [!danger] Disadvantages & Pitfalls
 > * **Memory Leaks / Over-Retention**: Variables retained inside closures cannot be garbage-collected as long as a reference to the inner function remains reachable in memory.
 > * **Performance Overhead**: Higher memory footprint compared to prototype-delegated methods because closed-over variables are stored in heap memory frames rather than shared on a single prototype.
-> 
-> 
+
 
 > [!tip] Currying via Closures
 > Currying leverages closures by nesting unary functions where each level captures one argument into its lexical environment until all required arguments are collected, at which point the final computation evaluates.

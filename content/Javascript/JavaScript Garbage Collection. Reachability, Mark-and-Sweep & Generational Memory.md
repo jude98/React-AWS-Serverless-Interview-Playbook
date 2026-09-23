@@ -3,63 +3,40 @@
 ## Key Concepts
 
 > [!summary] What is Garbage Collection (GC)?
-> 
+>
 > JavaScript manages memory automatically. Developers do not manually allocate or free heap space via operations like `malloc()` or `free()`. The **Garbage Collector** continuously monitors object allocations in heap memory, identifies objects that are no longer accessible to the program, and reclaims their memory.
-> 
->   
+
 
 > [!abstract] The Reachability Principle
-> 
+>
 > Memory reclamation in modern JavaScript engines is rooted in the concept of **Reachability**, not simple reference counting:
-> 
->   
-> 
+>
 > - **Roots**: The foundational set of inherently reachable values. These include global variables (`window`, `globalThis`), active call stack frames (local variables and parameters of currently executing functions), and active closures.
->     
->       
->     
+>
 > - **Reachable Object**: Any object that is either a Root or can be accessed through a chain of references starting from a Root.
->     
->       
->     
+>
 > - **Unreachable Object**: An object that cannot be reached from any Root, even if it has references pointing to other unreachable objects. Unreachable objects are marked for reclamation.
->     
->       
->     
+
 
 > [!info] The Mark-and-Sweep Algorithm
-> 
+>
 > The primary algorithm powering modern garbage collection:
-> 
->   
-> 
+>
 > 1. **Mark Phase**: The GC traverses the entire object graph starting from the Roots, marking every encountered object as "active/alive."
->     
->       
->     
+>
 > 2. **Sweep Phase**: The GC traverses the heap memory sequentially. Any object not marked as alive is reclaimed, and its memory space is added to the free-memory pool.
->     
->       
->     
+>
 > 3. **Compact Phase (Mark-Compact)**: To eliminate memory fragmentation, surviving objects are relocated into contiguous blocks of memory, and references to them are updated.
->     
->       
->     
+
 
 > [!tip] Generational Hypothesis & V8 Memory Spaces
-> 
+>
 > V8 divides the heap into two main generations based on the observation that **most objects die young**:
-> 
->   
-> 
+>
 > - **Young Generation (New Space)**: Where new objects are allocated. Small (usually 1–64 MB) and split into two semi-spaces. Managed by a fast, frequent stop-and-copy collector called **Scavenge**.
->     
->       
->     
+>
 > - **Old Generation (Old Space)**: Objects that survive multiple Scavenge cycles are promoted to Old Space. Managed by the heavier **Major GC (Mark-Sweep-Compact)**.
->     
->       
->     
+
 
 ## Common Interview Questions
 

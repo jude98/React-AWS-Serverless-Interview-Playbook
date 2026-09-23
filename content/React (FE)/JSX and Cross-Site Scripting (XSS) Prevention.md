@@ -1,25 +1,18 @@
 # JSX and Cross-Site Scripting (XSS) Prevention
 
 > [!note] Core Defense Mechanisms
-> 
+>
 > React defends against Cross-Site Scripting (XSS) through two primary layers:
-> 
->   
-> 
+>
 > 1. **Automatic String Escaping**: String content inside `{expression}` is sanitized and inserted as text nodes, not executable HTML.
->     
->       
->     
+>
 > 2. **Object Tagging via `$$typeof`**: Every valid React element is tagged with `Symbol.for('react.element')`, preventing server-injected JSON payloads from impersonating Virtual DOM nodes.
->     
->       
->     
+
 
 > [!abstract] Why `Symbol` Prevents JSON Injection
-> 
+>
 > Standard JSON specifications (`JSON.parse` and `JSON.stringify`) support only strings, numbers, booleans, objects, arrays, and null. JavaScript `Symbol` values cannot be serialized or deserialized through JSON. Consequently, an attacker attempting to pass raw component-like JSON via an API response cannot forge a valid `Symbol` reference.
-> 
->   
+
 
 ## Visual Architecture of React XSS Defense
 

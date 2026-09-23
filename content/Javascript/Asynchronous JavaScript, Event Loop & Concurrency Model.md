@@ -3,63 +3,38 @@
 ## Key Concepts
 
 > [!summary] Single-Threaded Non-Blocking Architecture
-> 
+>
 > JavaScript's engine (V8, JavaScriptCore) has a single Call Stack and executes one instruction at a time. Concurrency is achieved not through multithreaded JS code execution, but via host environment APIs (Browser Web APIs or Node.js `libuv`), which offload asynchronous tasks (timers, network requests, disk I/O) and push callbacks to queues monitored by the **Event Loop**.
-> 
->   
+
 
 > [!abstract] Task Queues & Priority Hierarchies
-> 
+>
 > When the Call Stack clears, the Event Loop processes queues in strict priority order:
-> 
->   
-> 
+>
 > 1. **Node.js-Only Priority Phase**: `process.nextTick` queue runs before any other microtask.
->     
->       
->     
+>
 > 2. **Microtask Queue**: Promises (`.then`, `.catch`, `.finally`), `async/await` resumption steps, and `queueMicrotask` (or `MutationObserver` in browsers). The engine **completely empties** the microtask queue (including microtasks queued by running microtasks) before yielding.
->     
->       
->     
+>
 > 3. **Macrotask / Task Queue**: `setTimeout`, `setInterval`, `setImmediate` (Node.js), DOM event listeners, and I/O callbacks.
->     
->       
->     
+
 
 > [!info] The Evolution of Async Flow
-> 
->   
-> 
+>
 > - **Callbacks**: Passing a function as an argument to execute upon operation completion; led to inversion of control, poor error handling, and deeply nested pyramids of code (**Callback Hell**).
->     
->       
->     
+>
 > - **Promises**: Concrete object state representation (`pending`, `fulfilled`, `rejected`) providing immutable resolution, chainability (`.then()`), and centralized error propagation (`.catch()`).
->     
->       
->     
+>
 > - **Async/Await**: Syntactic sugar over Promises and Generators; pauses function execution linearly without blocking the Call Stack thread.
->     
->       
->     
+
 
 > [!tip] Node.js Timers: `setImmediate` vs. `process.nextTick` vs. `setTimeout`
-> 
->   
-> 
+>
 > - `process.nextTick()`: Not part of the official libuv loop; runs immediately after current tick completes, starving I/O if called recursively.
->     
->       
->     
+>
 > - `setImmediate()`: Executes in the **Check Phase** of the libuv event loop (designed to run after I/O callbacks).
->     
->       
->     
+>
 > - `setTimeout(fn, 0)`: Executes in the **Timers Phase**; in Node.js, `0ms` is converted to minimum `1ms`.
->     
->       
->     
+
 
 ## Common Interview Questions
 

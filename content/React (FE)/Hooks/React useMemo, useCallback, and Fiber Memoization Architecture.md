@@ -1,16 +1,14 @@
 # React useMemo, useCallback, and Fiber Memoization Architecture
 
 > [!note] Core Mental Model
-> 
+>
 > `useMemo` caches the **result of a calculation** between renders. `useCallback` caches a **function definition** between renders. In fact, `useCallback(fn, deps)` is syntactic sugar for `useMemo(() => fn, deps)`. Both hooks optimize performance by preserving referential identity across re-renders to prevent unnecessary computations and child re-renders.
-> 
->   
+
 
 > [!abstract] How Memoization Works in the Fiber Node
-> 
+>
 > React does not use an external cache table or hash map for `useMemo` and `useCallback`. Inside the component's Fiber node, the hook's `memoizedState` property stores a simple two-element array: `[valueOrFunction, dependencies]`. On every re-render, React performs a shallow reference check (`Object.is`) across the dependency array; if all dependencies are identical, React returns the cached first element without executing the factory function.
-> 
->   
+
 
 ## How useMemo and useCallback Are Stored in the Fiber Tree
 
@@ -210,13 +208,13 @@ export function ParentDashboard() {
   return (
     <div>
       {/* Updating count re-renders Parent, but ExpensiveList skips re-render! */}
-      <button onClick={() => setCount(c => c + 1)}>Counter: {count}</button>
+      <button onClick={() => setCount(c => c + 1)}>Counter: {count}</button
 
       <input
         value={filterText}
         onChange={(e) => setFilterText(e.target.value)}
         placeholder="Filter 5,000 items..."
-      />
+      /
 
       <ExpensiveList items={filteredItems} onItemClick={handleItemClick} />
     </div>

@@ -1,10 +1,9 @@
 # TanStack Query Server State and Stale While Revalidate Patterns
 
 > [!abstract] Fundamental Paradigm Shift
-> 
+>
 > React Query (TanStack Query) shifts state management from **Client State** (UI toggles, form inputs, local state) to **Server State** (data stored on a remote server, asynchronously fetched, out-of-band shared, and inherently out-of-date). It eliminates boilerplate `useEffect` + `useState` fetching patterns and implements the **Stale-While-Revalidate (SWR)** caching pattern on the client.
-> 
->   
+
 
 ## Key Concepts
 

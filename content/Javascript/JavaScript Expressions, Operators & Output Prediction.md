@@ -3,65 +3,38 @@
 ## Key Concepts
 
 > [!summary] Expressions vs. Statements
-> 
->   
-> 
+>
 > - **Expression**: Any unit of code that resolves to a value (e.g., `5 + 2`, `x = 10`, `fn()`, `a ? b : c`). Can be passed as function arguments or assigned to variables.
->     
->       
->     
+>
 > - **Statement**: An instruction that performs an action (e.g., `if (...) {}`, `for (...) {}`, `return;`). Statements cannot be used where values are expected.
->     
->       
->     
+
 
 > [!abstract] Logical Short-Circuiting & Modern Operators
-> 
->   
-> 
+>
 > - `&&` (Logical AND): Returns the **first falsy operand**, or the last operand if all are truthy.
->     
->       
->     
+>
 > - `||` (Logical OR): Returns the **first truthy operand**, or the last operand if all are falsy.
->     
->       
->     
+>
 > - `??` (Nullish Coalescing): Returns right-hand side **only if left-hand side is `null` or `undefined`**. Treats `0`, `""`, and `false` as valid values.
->     
->       
->     
+>
 > - `?.` (Optional Chaining): Short-circuits and evaluates to `undefined` instead of throwing a `TypeError` if target is nullish.
->     
->       
->     
+
 
 > [!info] Unary Operators (`+`, `-`, `++`, `--`, `typeof`, `delete`, `void`)
-> 
->   
-> 
+>
 > - Unary `+` / `-`: Converts operand to number via `ToNumber`.
->     
->       
->     
+>
 > - Prefix (`++x`) vs. Postfix (`x++`): Prefix increments and returns the new value; postfix increments but returns the value _before_ incrementing.
->     
->       
->     
+>
 > - `delete`: Removes own properties from an object; returns `true` on deletion or if property doesn't exist, but **cannot delete variables declared with `var`, `let`, or `const`**.
->     
->       
->     
+>
 > - `void`: Evaluates an expression and unconditionally returns `undefined` (e.g., `void 0`).
->     
->       
->     
+
 
 > [!danger] The Comma Operator (`,`)
-> 
+>
 > Evaluates each of its operands from left to right and **returns the value of the last operand**. Commonly used in minified code or concise expressions, but often appears as a trap in interviews.
-> 
->   
+
 
 ## Common Interview Questions
 

@@ -1,10 +1,9 @@
 # Why You Might Not Need Redux and Modern State Alternatives
 
 > [!abstract] Architectural Thesis
-> 
+>
 > Stating "Redux has too much boilerplate" or "its creator regretted it" is an interview trap. Dan Abramov never called Redux a mistake—in his seminal essay _You Might Not Need Redux_, he explained that Redux trades local simplicity for indirection to decouple "what happened" from "how state updates." The modern shift away from Redux happened because **80% of what developers put into Redux was actually Server State (now solved by TanStack Query/SWR)**, while modern tools like **Zustand, Jotai, or Redux Toolkit (RTK)** handle the remaining client state with drastically less cognitive overhead.
-> 
->   
+
 
 ## Key Concepts
 

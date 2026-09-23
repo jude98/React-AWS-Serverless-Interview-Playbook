@@ -3,60 +3,38 @@
 ## Key Concepts
 
 > [!summary] What is Strict Mode?
-> 
+>
 > Introduced in ECMAScript 5 (ES5), **Strict Mode** is an opt-in mode that enforces a restricted variant of JavaScript. It converts silent errors into explicit runtime exceptions, disables deprecated/unsafe syntax, secures the `this` binding, and helps modern JavaScript engines optimize code execution.
-> 
->   
+
 
 > [!abstract] Enabling Strict Mode
-> 
+>
 > Activated using the string literal pragma `"use strict";` (or `'use strict';`):
-> 
->   
-> 
+>
 > - **File-Level**: Placed at the very top of a script to apply to the entire file.
->     
->       
->     
+>
 > - **Function-Level**: Placed as the first statement inside a function body to scope strictness only to that function.
->     
->       
->     
+>
 > - **Automatic**: Implicitly enabled in **ECMAScript Modules (ESM)** (`import`/`export` or `<script type="module">`) and inside all **ES6 `class`** declarations/expressions.
->     
->       
->     
+
 
 > [!danger] Key Strictness Enforcements
-> 
->   
-> 
+>
 > 1. **No Accidental Globals**: Assigning to an undeclared variable throws a `ReferenceError` instead of creating a global property on `window`/`global`.
->     
->       
->     
+>
 > 2. **No Silent Failures**: Assigning to read-only properties, modifying frozen objects, or deleting non-configurable properties throws a `TypeError`.
->     
->       
->     
+>
 > 3. **Secured `this` Context**: Standalone/free function invocations set `this` to `undefined` rather than the global object.
->     
->       
->     
+>
 > 4. **No Duplicate Parameters**: Writing identical parameter names in a function declaration throws a `SyntaxError`.
->     
->       
->     
+>
 > 5. **Banned Legacy Features**: Forbids the `with` statement and legacy octal literals (e.g., `010`).
->     
->       
->     
+
 
 > [!info] Optimization & Security Benefits
-> 
+>
 > Strict mode prevents variables from dynamically aliasing through deprecated features like `eval()` creating scope bindings or the `arguments.callee` pointer. Because scopes remain strictly lexical and predictable, JIT compilers (like V8) can perform aggressive optimizations (such as inline caching and dead-code elimination).
-> 
->   
+
 
 ## Common Interview Questions
 

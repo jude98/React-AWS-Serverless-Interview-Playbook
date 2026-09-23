@@ -193,7 +193,7 @@ import { ErrorBoundary } from './ErrorBoundary';
 export function UserDashboard({ selectedUserId }) {
   return (
     <div className="dashboard-layout">
-      <nav>Sidebar Navigation (Always Safe)</nav>
+      <nav>Sidebar Navigation (Always Safe)</nav
 
       <main>
         {/*

@@ -1,10 +1,9 @@
 # High-Volume Time-Series Chart Architecture
 
 > [!abstract] Architectural Overview
-> 
+>
 > Rendering 3 days of minute-by-minute data equals **4,320 points per series**. With multiple metrics or zooming, rendering raw SVG DOM nodes causes severe layout thrashing and high INP. The solution requires a **Canvas/WebGL rendering core**, a **hybrid DOM overlay for interactions**, **data downsampling (LTTB/Bucketing)**, and an **OffscreenCanvas / Web Worker pipeline** to keep the React main thread unblocked.
-> 
->   
+
 
 ## Key Concepts
 
@@ -233,7 +232,7 @@ export const HighVolumeChart: React.FC<ChartProps> = ({ data, width, height }) =
       onPointerLeave={handlePointerLeave}
     >
       {/* Base Canvas */}
-      <canvas ref={canvasRef} style={{ width, height }} className="absolute inset-0" />
+      <canvas ref={canvasRef} style={{ width, height }} className="absolute inset-0" /
 
       {/* GPU-Accelerated Hardware Transformed Crosshair */}
       <div

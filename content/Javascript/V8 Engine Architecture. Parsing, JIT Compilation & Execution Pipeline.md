@@ -4,32 +4,28 @@
 
 > [!summary] High-Level V8 Execution Pipeline
 > The V8 engine (used in Chrome, Node.js, Deno, and Electron) transforms raw JavaScript source code into optimized native machine code through a multi-stage pipeline:
-> 
+>
 > $$\text{Source Code} \xrightarrow{\text{Scanner}} \text{Tokens} \xrightarrow{\text{Parser}} \text{AST} \xrightarrow{\text{Ignition}} \text{Bytecode} \xrightarrow{\text{Sparkplug / Maglev / TurboFan}} \text{Optimized Machine Code}$$
-> 
-> 
+
 
 > [!abstract] Phase 1: Parsing (Lexical Analysis & Syntax Analysis)
 > * **Scanner (Lexer / Tokenizer)**: Converts the raw character stream into a sequence of standardized lexical tokens (keywords, identifiers, literals, operators).
 > * **Parser**: Validates grammar against the ECMAScript specification and builds an **Abstract Syntax Tree (AST)**—a hierarchical tree representing the syntactic structure of the program.
 > * **Pre-Parser vs. Full Parser**: To speed up startup, functions that are not immediately invoked are **pre-parsed** (syntax-checked only, skipping AST and scope allocation) until called.
-> 
-> 
+
 
 > [!info] Phase 2: Bytecode Generation (Ignition Interpreter)
 > * **Ignition**: V8’s register-based bytecode interpreter.
 > * Consumes the AST and generates compact, platform-independent **Bytecode**.
 > * Begins executing immediately to achieve rapid initial page/application startup, while collecting runtime profiling feedback (type feedback vectors).
-> 
-> 
+
 
 > [!tip] Phase 3: Just-In-Time (JIT) Multi-Tier Compilation
 > JIT compilation blends interpretation with native compilation at runtime:
 > * **Sparkplug**: Non-optimizing baseline compiler that converts bytecode directly to native machine code without looking at type feedback, accelerating execution with minimal compilation overhead.
 > * **Maglev**: Mid-tier optimizing compiler that uses type feedback to produce reasonably fast machine code quickly.
 > * **TurboFan**: Top-tier optimizing compiler. Takes "hot" functions along with accumulated type profiling data and generates highly optimized native machine code (using techniques like inlining, loop unrolling, and hidden class assumptions).
-> 
-> 
+
 
 > [!danger] De-optimization (Deopt / Bailout)
 > JavaScript is dynamically typed. TurboFan optimizes code assuming types remain homogeneous (e.g., a function always receives integers). If an assumption is violated (e.g., passing a string to a function optimized for numbers), the engine triggers a **De-optimization bailout**, discarding the optimized machine code and dropping execution back down to Ignition bytecode or Maglev.

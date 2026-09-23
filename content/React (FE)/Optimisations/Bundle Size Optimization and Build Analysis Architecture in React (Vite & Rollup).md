@@ -1,31 +1,20 @@
 # Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)
 
 > [!note] The Core Objective
-> 
+>
 > Bundle size optimization is the discipline of minimizing the JavaScript payload delivered over the wire to accelerate **First Contentful Paint (FCP)**, **Largest Contentful Paint (LCP)**, and reduce **Total Blocking Time (TBT)**. Modern toolchains (Vite built on Rollup/Rolldown) rely on static AST inspection, ES module semantics for tree shaking, dynamic code splitting, manual chunk separation, and content-hashed immutable CDN caching.
-> 
->   
+
 
 > [!abstract] Architectural Strategy
-> 
->   
-> 
+>
 > 1. **Measure & Visualize**: Generate interactive treemaps via `rollup-plugin-visualizer` to pinpoint heavy dependencies and accidental duplication.
->     
->       
->     
+>
 > 2. **Eliminate Dead Code (Tree Shaking)**: Ensure pure ESM consumption and verify `sideEffects: false` configurations.
->     
->       
->     
+>
 > 3. **Chunk Splitting**: Separate core framework libraries (`react`, `react-dom`) into long-lived vendor chunks while dynamic application features load on demand.
->     
->       
->     
+>
 > 4. **Edge CDN Caching**: Leverage content hashes (`[name]-[hash].js`) with `Cache-Control: public, max-age=31536000, immutable` headers.
->     
->       
->     
+
 
 ## The Bundle Optimization and Delivery Pipeline
 
@@ -179,10 +168,9 @@ export default defineConfig({
 ```
 
 > [!warning] The Circular Dependency Pitfall of Manual Chunks
-> 
+>
 > Do not over-split `manualChunks` into dozens of micro-chunks (e.g., one per npm package). If Module A and Module B in different chunks import each other, Rollup is forced to create intermediary glue chunks or introduces execution-order evaluation bugs in the browser. Group dependencies by **cohesion and update frequency**.
-> 
->   
+
 
 ## 3. Tree Shaking: Mechanics, Blockers, and Fixes
 

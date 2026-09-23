@@ -3,37 +3,28 @@
 ## Key Concepts
 
 > [!summary] Scope & Lexical Scoping
-> 
+>
 > **Scope** dictates the accessibility and visibility of variables and functions at different parts of your code during runtime. JavaScript uses **Lexical Scoping** (Static Scoping), meaning a function's scope is determined by where it is physically written in the source code, _not_ where it is called.
-> 
->   
+
 
 > [!abstract] The Lexical Environment
-> 
+>
 > The internal engine construct created during the Execution Context's memory phase. It consists of two parts:
-> 
->   
-> 
+>
 > 1. **Environment Record**: The actual memory space storing local variable/function declarations (`var`, `let`, `const`, `function`).
->     
->       
->     
+>
 > 2. **Outer Lexical Reference**: A pointer to the Lexical Environment of its parent (the scope where the function was lexically declared).
->     
->       
->     
+
 
 > [!info] The Scope Chain
-> 
+>
 > The mechanism the JavaScript engine uses to resolve variable values. If an identifier isn't found in the local Environment Record, the engine follows the Outer Lexical Reference to search the parent scope, continuing upwards until it hits the Global Lexical Environment. If it's still not found, it throws a `ReferenceError`.
-> 
->   
+
 
 > [!danger] Shadowing and Illegal Shadowing
-> 
+>
 > **Shadowing** occurs when a variable declared in an inner scope shares the same name as a variable in an outer scope, overriding it within that inner block. **Illegal Shadowing** happens when an inner `var` attempts to shadow an outer `let` or `const` across a block boundary, causing a `SyntaxError` because `var` ignores blocks and attempts to illegally redeclare the existing block-scoped variable.
-> 
->   
+
 
 ## Common Interview Questions
 

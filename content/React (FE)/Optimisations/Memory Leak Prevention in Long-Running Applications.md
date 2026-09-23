@@ -1,10 +1,9 @@
 # Memory Leak Prevention in Long-Running Applications
 
 > [!abstract] Architectural Overview
-> 
+>
 > Long-running web applications (e.g., trading terminals, dashboards, SaaS tools, and continuous feeds) cannot rely on page reloads to clear the heap. Preventing memory leaks requires **strict deterministic lifecycle management**, **unbinding async listeners**, **evicting unbounded caches**, **managing closure scopes**, and **integrating automated heap profiling and leak detection into CI/CD**.
-> 
->   
+
 
 ## Key Concepts
 

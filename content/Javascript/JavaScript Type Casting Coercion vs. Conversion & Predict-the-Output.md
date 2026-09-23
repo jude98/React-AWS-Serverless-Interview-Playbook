@@ -3,66 +3,40 @@
 ## Key Concepts
 
 > [!summary] Type Conversion vs. Type Coercion
-> 
->   
-> 
+>
 > - **Type Conversion (Explicit)**: The developer intentionally converts a value from one type to another using built-in functions or operators (e.g., `Number("42")`, `String(123)`, `Boolean(val)`).
->     
->       
->     
+>
 > - **Type Coercion (Implicit)**: The JavaScript engine automatically converts types behind the scenes when evaluating expressions with mismatched types (e.g., `"5" + 2`, `if ("hello")`).
->     
->       
->     
+
 
 > [!abstract] The Three Target Types
-> 
+>
 > Coercion and conversion only ever convert values into three target types:
-> 
->   
-> 
+>
 > 1. **To Boolean**: Evaluated via truthy/falsy rules.
->     
->       
->     
+>
 > 2. **To String**: Triggered by string concatenation or string functions.
->     
->       
->     
+>
 > 3. **To Number**: Triggered by arithmetic operators (`-`, `*`, `/`, `%`), bitwise operators, or numeric comparison (`>`, `<`).
->     
->       
->     
+
 
 > [!danger] The 8 Falsy Values
-> 
+>
 > Only eight values evaluate to `false` in JavaScript; **all** other values (including empty arrays `[]`, empty objects `{}`, and the string `"0"`) are truthy:
-> 
->   
-> 
+>
 > - `false`, `0`, `-0`, `0n` (BigInt zero), `""` (empty string), `null`, `undefined`, `NaN`.
->     
->       
->     
+
 
 > [!info] Object-to-Primitive Algorithm (`ToPrimitive`)
-> 
+>
 > When an object is coerced into a primitive (string or number), the engine looks for:
-> 
->   
-> 
+>
 > 1. `[Symbol.toPrimitive](hint)` if defined.
->     
->       
->     
+>
 > 2. If hint is **"string"**: calls `.toString()` first, then `.valueOf()`.
->     
->       
->     
+>
 > 3. If hint is **"number"** or **"default"**: calls `.valueOf()` first, then `.toString()`.
->     
->       
->     
+
 
 ## Common Interview Questions
 

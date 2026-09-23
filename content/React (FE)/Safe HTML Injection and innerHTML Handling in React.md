@@ -1,16 +1,14 @@
 # Safe HTML Injection and innerHTML Handling in React
 
 > [!note] The Core Concept
-> 
+>
 > By default, React treats all data embedded in `{expression}` as pure strings and injects it using browser APIs like `textContent` (or `document.createTextNode`), completely neutralizing executable tags. To deliberately render raw HTML strings, React provides `dangerouslySetInnerHTML`, which maps directly to the browser's native `innerHTML`.
-> 
->   
+
 
 > [!abstract] Why the Name "dangerouslySetInnerHTML"?
-> 
+>
 > The API was intentionally named with the prefix "dangerously" to remind developers that directly injecting unverified HTML bypasses React’s sanitization pipeline, re-opening the application to Cross-Site Scripting (XSS) attacks.
-> 
->   
+
 
 ## How React Renders by Default: textContent vs innerHTML
 

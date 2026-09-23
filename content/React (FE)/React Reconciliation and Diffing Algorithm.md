@@ -1,25 +1,18 @@
 # React Reconciliation and Diffing Algorithm
 
 > [!note] Core Definition
-> 
+>
 > Reconciliation is React's recursive algorithm that diffs two Virtual DOM trees to determine the minimal, optimal set of real DOM mutations needed to keep the UI in sync with the latest state.
-> 
->   
+
 
 > [!abstract] From $O(n^3)$ to $O(n)$: The Heuristic Diff
-> 
+>
 > The state-of-the-art tree diffing algorithms (like the Levenshtein distance on trees) have a complexity of $O(n^3)$. To display 1,000 elements, $10^9$ comparisons would be required. React reduces this to **$O(n)$** using a **heuristic diffing algorithm** based on two practical assumptions:
-> 
->   
-> 
+>
 > 1. Two elements of different types produce completely different trees.
->     
->       
->     
+>
 > 2. The developer can hint at which child elements remain stable across renders using a unique, consistent `key` prop.
->     
->       
->     
+
 
 ## The Reconciliation Diffing Pipeline
 

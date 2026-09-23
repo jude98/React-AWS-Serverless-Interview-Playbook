@@ -75,10 +75,10 @@
 - **Schema Discovery**: When enabled on an event bus, EventBridge samples ingested events, infers their JSON Schema/OpenAPI definition, and uploads them to the Schema Registry.
 
     > [!warning] Production Governance
-    > 
+    >
     > Enable Schema Discovery in **Development and Staging environments**, but disable it in high-volume production environments to avoid unnecessary AWS Discovery costs and unintended schema version churn.
-    > 
-    >   
+    >
+    >
 
 - **Code Bindings**: Generate typed SDK packages directly from the registry using the AWS SAM CLI or CloudFormation, providing end-to-end compile-time safety for event producers and consumers.
 

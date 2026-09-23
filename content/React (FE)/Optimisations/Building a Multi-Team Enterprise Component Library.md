@@ -1,10 +1,9 @@
 # Building a Multi-Team Enterprise Component Library
 
 > [!abstract] Architectural Overview
-> 
+>
 > Building a design system and component library across multiple teams is an **infrastructure, governance, contract design, and developer experience challenge** rather than a styling exercise. It requires a **headless/composition-first API**, **token-driven theme architecture**, **strict tree-shaking bundling**, **versioning governance (SemVer + Changesets)**, and **automated regression guardrails (visual, visual regression, accessibility, and bundle budgets)**.
-> 
->   
+
 
 ## Key Concepts
 

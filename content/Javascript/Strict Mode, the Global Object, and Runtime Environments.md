@@ -3,50 +3,34 @@
 ## Key Concepts
 
 > [!summary] Strict Mode (`"use strict"`)
-> 
+>
 > An opt-in pragma introduced in ECMAScript 5 (ES5) that enforces stricter parsing and error handling rules at runtime. It eliminates silent failures by turning them into explicit runtime exceptions, disables features that confuse JavaScript engines (aiding engine optimization), and prevents unsafe global variable leakage.
-> 
->   
+
 
 > [!abstract] Automatic Strict Mode Contexts
-> 
+>
 > You do **not** need to declare `"use strict"` manually in modern JavaScript if your code runs inside:
-> 
->   
-> 
+>
 > - **ECMAScript Modules (ESM)**: Modules (`import` / `export` or `<script type="module">`) are strictly evaluated in strict mode by default.
->     
->       
->     
+>
 > - **ES6 Classes**: All code written inside class declarations and class expressions (constructors and methods) executes automatically in strict mode.
->     
->       
->     
+
 
 > [!info] The Global Object Across Runtimes
-> 
+>
 > The root container providing global variables, built-in functions (`parseInt`, `fetch`), and runtime-specific APIs:
-> 
->   
-> 
+>
 > - **Browser**: Represented by `window` (and `self` inside Web Workers).
->     
->       
->     
+>
 > - **Node.js**: Represented by `global`.
->     
->       
->     
+>
 > - **Universal Standard**: `globalThis` (ES2020) provides a unified, cross-platform pointer to the global object regardless of environment.
->     
->       
->     
+
 
 > [!danger] Default `this` Binding Behavior
-> 
+>
 > In standard (sloppy) mode, calling a standalone function (`foo()`) binds `this` to the global object (`window` or `global`). In strict mode, `this` in standalone functions defaults strictly to `undefined`, preventing accidental mutation of global state.
-> 
->   
+
 
 ## Common Interview Questions
 

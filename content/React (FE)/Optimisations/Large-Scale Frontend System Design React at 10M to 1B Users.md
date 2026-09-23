@@ -1,10 +1,9 @@
 # Large-Scale Frontend System Design React at 10M to 1B Users
 
 > [!abstract] High-Level Architectural Thesis
-> 
+>
 > Scaling a frontend application to tens of millions of daily active users (and hundreds of millions to a billion total users) is not about micro-optimizing component renders; it is an **infrastructure, delivery, resilience, and operational observability challenge**. The system must shift execution to the edge, treat client-side bundles as versioned distributed deployments, aggressively eliminate main-thread bottlenecks, isolate failures, and protect backend origins from thundering herds.
-> 
->   
+
 
 ## Key Concepts
 

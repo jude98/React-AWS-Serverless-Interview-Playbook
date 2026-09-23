@@ -1,10 +1,9 @@
 # High-Scale Data Table Architecture Handling Millions of Records
 
 > [!abstract] Architectural Strategy
-> 
+>
 > A browser cannot hold or render millions of records simultaneously without exhausting memory (OOM crash) and freezing the main thread. Handling millions of rows requires an **end-to-end windowing pipeline**: **cursor-based pagination/streaming at the API layer**, **sparse chunk caching on the client**, **bi-directional DOM virtualization (rows + columns)**, and **CSS layout isolation**.
-> 
->   
+
 
 ## Key Concepts
 

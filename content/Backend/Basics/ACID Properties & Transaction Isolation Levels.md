@@ -43,10 +43,9 @@
 ### 2. Read Phenomena / Anomalies
 
 > [!WARNING] The Distinction Between Non-Repeatable Read and Phantom Read
-> 
+>
 > A **non-repeatable read** affects _existing rows_ (updates/deletes). A **phantom read** affects _predicate query ranges_ (new rows inserted matching a `WHERE` clause).
-> 
->   
+
 
 - **Dirty Read:**
 

@@ -1,16 +1,14 @@
 # React Strict Mode and Double-Invocation Behavior
 
 > [!note] Strict Mode Core Purpose
-> 
+>
 > `<React.StrictMode>` is a developer-only tool that helps catch side-effect bugs, impure functions, missing effect cleanups, and deprecated patterns by **intentionally double-invoking** specific functions and simulating mount-unmount-remount cycles in development. It does nothing in production.
-> 
->   
+
 
 > [!abstract] Why React Executes Things Twice
-> 
+>
 > React's concurrent architecture requires components to be resilient to being mounted, destroyed, and re-mounted multiple times. Strict Mode forces this behavior early to expose latent bugs—such as uncleaned event listeners, memory leaks, or race conditions—before they hit production.
-> 
->   
+
 
 ## Key Concepts
 

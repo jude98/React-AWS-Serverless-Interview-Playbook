@@ -59,10 +59,9 @@ An IAM JSON policy document consists of statements defining access permissions:
 ### 2. IAM Roles: Trust Policy vs. Permissions Policy
 
 > [!NOTE]
-> 
+>
 > Every IAM Role requires two distinct policies to function:
-> 
->   
+
 
 1. **Trust Policy (AssumeRole Policy):** Defines **who can assume** the role (e.g., the Lambda service `lambda.amazonaws.com`, an EC2 instance, or another AWS Account ID).
 

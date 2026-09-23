@@ -11,8 +11,7 @@
 > 5. **Networking Layer**: Implements protocol stacks (HTTP/1.1, HTTP/2, HTTP/3, TLS, DNS, TCP/UDP), connection pooling, socket caching, and proxy resolution.
 > 6. **UI Backend**: Platform-agnostic drawing primitives (windows, combo boxes, fonts) delegating to host OS graphics APIs (DirectX, Skia, CoreGraphics).
 > 7. **Data Storage Layer**: Persistence layer managing disk and memory caches (`localStorage`, `sessionStorage`, `IndexedDB`, `Cache API`, Cookies, OPFS).
-> 
-> 
+
 
 > [!abstract] Multi-Process vs. Single-Process Architecture
 > Modern browsers (Chromium architecture) isolate responsibilities into sandboxed operating system processes to guarantee security, fault isolation, and stability:
@@ -20,23 +19,20 @@
 > * **Renderer Process**: Sandboxed per-tab (or per-site-instance via **Site Isolation**) running Blink + V8. If a malicious script crashes or exploits a page, it cannot compromise the host OS or read data from adjacent tabs.
 > * **GPU Process**: Handles isolated GPU rasterization and compositor frame rendering.
 > * **Network Process**: Handles all network I/O, TLS termination, and disk cache management in modern Chrome (separated from the main browser process).
-> 
-> 
+
 
 > [!danger] Why Standard Parsers (LL/LR) Fail for HTML
 > Traditional programming languages use deterministic **Context-Free Grammars (CFG)** parsed by standard **LL(k)** or **LR(k)** parsers. HTML **cannot** be parsed by traditional parsers because:
 > 1. **Fault Tolerance (Tag Soup)**: The web cannot break when authors omit closing tags (`<p>Hello <p>World`).
 > 2. **Dynamic Re-entrancy (`document.write`)**: JavaScript can execute during parsing and inject new markup directly into the unparsed input stream, mutating the tokenizer's current position.
 > 3. **Context Sensitivity**: Certain tags change how following characters are interpreted (e.g., `<script>`, `<style>`, `<iframe>` switch the tokenizer into CDATA or raw text modes).
-> 
-> 
+
 
 > [!tip] HTML5 Parsing Specification (Tokenization $\to$ Tree Construction)
 > The HTML5 specification standardizes parsing via a deterministic, two-stage state machine:
 > 4. **Tokenization (Lexical Analysis)**: Converts character streams into structured tokens: `StartTag`, `EndTag`, `Character`, `Comment`, or `DOCTYPE`.
 > 5. **Tree Construction**: Consumes tokens using a **State Machine** paired with an **Open Elements Stack** and an **Active Formatting Elements List** to enforce HTML semantics and build the DOM tree.
-> 
-> 
+
 
 ---
 
@@ -191,13 +187,13 @@ console.log(tokenizeHTML("<p>Hello</p>"));
 <!DOCTYPE html>
 <html>
 <body>
-  <div>Before script</div>
+  <div>Before script</div
 
   <script>
     // document.write re-enters the tokenizer, injecting characters directly
     // into the remaining input byte stream during tree construction!
     document.write("<span>Injected inline during parsing</span>");
-  </script>
+  </script
 
   <div>After script</div>
 </body>

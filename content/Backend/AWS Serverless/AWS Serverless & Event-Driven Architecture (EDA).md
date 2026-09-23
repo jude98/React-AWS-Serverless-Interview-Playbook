@@ -51,21 +51,13 @@
 ### 3. Messaging Patterns: SQS vs. SNS vs. EventBridge
 
 > [!NOTE]
-> 
->   
-> 
+>
 > - **SQS (Queueing):** 1-to-1 decoupling, message buffering, rate limiting, polling-based.
->     
->       
->     
+>
 > - **SNS (Pub/Sub):** 1-to-Many push notifications, high throughput, lightweight filtering.
->     
->       
->     
+>
 > - **EventBridge (Event Bus):** 1-to-Many smart routing, schema registry, native integration with AWS services and SaaS partners, advanced content-based filtering.
->     
->       
->     
+
 
 ### 4. Handling Distributed Failures & Idempotency
 

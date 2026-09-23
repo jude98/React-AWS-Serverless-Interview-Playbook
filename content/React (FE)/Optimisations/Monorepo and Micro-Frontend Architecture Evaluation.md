@@ -1,10 +1,9 @@
 # Monorepo and Micro-Frontend Architecture Evaluation
 
 > [!abstract] Architectural Thesis
-> 
+>
 > **Monorepo** and **Micro-Frontends (MFEs)** solve two completely different problems and are not mutually exclusive. A Monorepo is a **code management, build, and dependency strategy** (handling _how code is stored and built_), whereas Micro-Frontends represent an **organizational and deployment strategy** (handling _how independent teams deploy and isolate runtime ownership_). You can have a Monolithic Repo with a Monolithic SPA, a Monorepo containing Micro-Frontends, or Poly-repo Micro-Frontends.
-> 
->   
+
 
 ## Key Concepts
 

@@ -8,15 +8,13 @@
 > * `fulfilled`: The operation succeeded; has a permanent immutable value.
 > * `rejected`: The operation failed; has an associated reason/error.
 > Once settled (`fulfilled` or `rejected`), a Promise's state and value are permanently locked.
-> 
-> 
+
 
 > [!abstract] What is `async/await`?
 > Introduced in ES2017 (ES8), `async/await` is syntactic sugar built directly on top of **Promises and Generators**:
 > * Declaring a function `async` guarantees it returns a Promise implicitly (wrapping any returned non-Promise value with `Promise.resolve()`).
 > * The `await` keyword pauses the execution of the surrounding `async` function until the awaited Promise settles, unpacking the fulfilled value or throwing the rejection error.
-> 
-> 
+
 
 > [!info] Why Do We Need `async/await`?
 > While Promises solved the inversion of control and nesting problems of callbacks, complex Promise chains still introduced friction:
@@ -24,15 +22,13 @@
 > 2. **Unified Error Handling**: Allows synchronous and asynchronous runtime errors to be caught in the exact same `try...catch` block.
 > 3. **Intermediate Scope Preservation**: Avoids the "nested `.then()` trap" where variables computed in early Promise steps are needed three steps down the chain.
 > 4. **Clean Stack Traces**: `await` preserves meaningful execution contexts in stack traces, whereas long `.then()` chains often collapse into anonymous callback traces.
-> 
-> 
+
 
 > [!danger] The Sequential Await Anti-Pattern
 > Using `await` sequentially on independent operations converts what could be parallel network/database calls into a slow sequential waterfall:
 > * **Anti-pattern**: `const a = await fetchA(); const b = await fetchB();` (Total time = $T_A + T_B$).
 > * **Solution**: Launch both concurrently and await the combined result using `Promise.all([fetchA(), fetchB()])` (Total time = $\max(T_A, T_B)$).
-> 
-> 
+
 
 ## Common Interview Questions
 

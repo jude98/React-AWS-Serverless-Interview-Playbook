@@ -3,88 +3,51 @@
 ## Key Concepts
 
 > [!summary] First-Class Citizens / First-Class Functions
-> 
+>
 > In JavaScript, functions are **first-class citizens** (first-class objects). They can be stored in variables, passed as arguments to other functions (callbacks), returned from functions (higher-order functions), and assigned dynamic properties.
-> 
->   
+
 
 > [!abstract] Function Declaration vs. Function Expression
-> 
->   
-> 
+>
 > - **Function Declaration (Statement)**: Defined using `function name() {}`. Parsed during Phase 1 (Memory Creation Phase) and **hoisted with its full body**, making it callable before its definition.
->     
->       
->     
+>
 > - **Function Expression**: A function assigned to a variable (`const fn = function() {}`). Only the variable declaration is hoisted; invoking it before the assignment statement throws a `TypeError` (`var`) or `ReferenceError` (`let`/`const`).
->     
->       
->     
+>
 > - **Named Function Expression (NFE)**: An expression with an internal name (`const fn = function myName() {}`). The internal identifier is accessible **only inside its own function body**, which is useful for self-recursion and clean stack traces.
->     
->       
->     
+
 
 > [!info] Arrow Functions vs. Regular Functions
-> 
+>
 > Arrow functions (`() => {}`) provide concise syntax, but introduce four fundamental behavioral differences:
-> 
->   
-> 
+>
 > 1. **No own `this`**: They resolve `this` lexically from the enclosing execution context.
->     
->       
->     
+>
 > 2. **No `arguments` object**: Must use rest parameters (`...args`) instead.
->     
->       
->     
+>
 > 3. **Cannot be used as constructors**: Lack internal `[[Construct]]` slot; invoking with `new` throws a `TypeError`.
->     
->       
->     
+>
 > 4. **No `prototype` property**: Cannot participate in prototype-based inheritance as constructor blueprints.
->     
->       
->     
+
 
 > [!tip] Parameters vs. Arguments & Variadic Handling
-> 
->   
-> 
+>
 > - **Parameters**: Identifiers declared in the function's definition signature.
->     
->       
->     
+>
 > - **Arguments**: Actual values passed to the function when it is invoked.
->     
->       
->     
+>
 > - **Default Parameters**: Assigned using `=`; evaluate only when the passed argument is strictly `undefined`.
->     
->       
->     
+>
 > - **Rest Parameters (`...args`)**: Collects remaining arguments into a true `Array` instance.
->     
->       
->     
+>
 > - **`arguments` Object**: Legacy, array-like object available only in non-arrow functions.
->     
->       
->     
+
 
 > [!danger] Constructor Functions vs. Factory Functions
-> 
->   
-> 
+>
 > - **Constructor Function**: Invoked with `new`. Allocates a fresh object inheriting from the constructor's `.prototype`, binds `this` to that instance, and returns it implicitly.
->     
->       
->     
+>
 > - **Factory Function**: Any function that constructs and returns a **brand-new object instance every time it is invoked** without requiring the `new` keyword.
->     
->       
->     
+
 
 ## Common Interview Questions
 

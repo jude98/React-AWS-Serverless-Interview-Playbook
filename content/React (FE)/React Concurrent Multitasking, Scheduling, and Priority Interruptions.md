@@ -1,16 +1,14 @@
 # React Concurrent Multitasking, Scheduling, and Priority Interruptions
 
 > [!note] Core Mental Model
-> 
+>
 > React does not use true operating system multi-threading. Instead, it implements **cooperative multitasking via time-slicing** on a single thread. The React Scheduler acts like a mini-OS: it breaks rendering into atomic Fiber units of work, yields control back to the browser event loop every ~5ms, checks for higher-priority user inputs (e.g., clicks or keystrokes), and can pause, discard, or restart lower-priority rendering passes.
-> 
->   
+
 
 > [!abstract] Single WorkInProgress Tree Constraint
-> 
+>
 > At any given point in time, React maintains only **one active `workInProgress` (WIP) tree** alongside the mounted `current` tree. React does _not_ juggle multiple parallel branch trees simultaneously in memory. When interrupted, React either suspends the current pass or resets the WIP tree pointer, processes the urgent update, and then restarts or resumes the background task using the latest state.
-> 
->   
+
 
 ## Priority Preemption and Interruption Workflow
 
@@ -210,7 +208,7 @@ export function SearchFilter() {
   return (
     <div>
       {/* Keystrokes feel responsive with 0ms lag */}
-      <input value={input} onChange={handleChange} placeholder="Type rapidly..." />
+      <input value={input} onChange={handleChange} placeholder="Type rapidly..." /
 
       {isPending && <p>Filtering list in background...</p>}
 

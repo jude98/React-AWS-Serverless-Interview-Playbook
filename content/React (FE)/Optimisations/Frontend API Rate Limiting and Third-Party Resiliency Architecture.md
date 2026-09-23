@@ -1,10 +1,9 @@
 # Frontend API Rate Limiting and Third-Party Resiliency Architecture
 
 > [!abstract] Resiliency Principle
-> 
+>
 > The frontend must never be a passive victim of rate limits (`429 Too Many Requests`) or third-party downstream outages. The architecture must adopt **proactive client-side throttling/queuing**, **reactive backoff with full jitter**, **graceful UI degradation with blast-radius containment**, and **intelligent telemetry sampling** (never spamming monitoring systems with predictable rate-limit errors).
-> 
->   
+
 
 ## Key Concepts
 
@@ -222,7 +221,7 @@ export const ThirdPartyStockWidget = () => {
             Live updates paused (Rate limited)
           </span>
         )}
-      </div>
+      </div
 
       {data ? (
         <div>Value: ${data.price}</div>

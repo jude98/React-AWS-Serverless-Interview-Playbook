@@ -3,62 +3,37 @@
 ## Key Concepts
 
 > [!summary] Structured Data (JSON)
-> 
+>
 > JSON (JavaScript Object Notation) is a lightweight, language-agnostic, text-based data interchange format. It supports only a subset of JavaScript primitives (`string`, `number`, `boolean`, `null`) along with plain `Object` and `Array` structures. It does not support `undefined`, functions, symbols, BigInt, or circular references.
-> 
->   
+
 
 > [!abstract] Keyed Collections: `Map` vs. Plain `Object`
-> 
->   
-> 
+>
 > - `Map`: Direct key-value collection where keys can be **any type** (primitives, objects, functions), insertion order is strictly guaranteed, size is retrieved in $O(1)$ via `.size`, and built-in iterable protocol is supported.
->     
->       
->     
+>
 > - Plain `Object`: Keys must be `string` or `symbol`, prototypes introduce default fallback keys, and size must be calculated manually (`Object.keys(obj).length`).
->     
->       
->     
+
 
 > [!info] Sets: Unique Collections
-> 
->   
-> 
+>
 > - `Set`: Collection of unique values (both primitive and object references). Value equality is evaluated via the `SameValueZero` algorithm (meaning `NaN === NaN`, and `+0 === -0`).
->     
->       
->     
+
 
 > [!danger] Garbage Collection & Weak Collections (`WeakMap`, `WeakSet`)
-> 
->   
-> 
+>
 > - In `Map` and `Set`, references to keys/values are held **strongly**, preventing garbage collection (GC) even if no other references exist in the application.
->     
->       
->     
+>
 > - In `WeakMap` and `WeakSet`, entries hold **weak references** to their object keys/members. If an object has no other strong references, it is eligible for garbage collection, automatically removing the entry.
->     
->       
->     
+>
 > - Weak collections are **not iterable**, have no `.size` property, and accept **only objects** (and non-registered symbols) as keys/elements.
->     
->       
->     
+
 
 > [!tip] Indexed Collections: Standard `Array` vs. `TypedArray`
-> 
->   
-> 
+>
 > - Standard `Array`: Dynamic, resizable, heterogeneous lists (can hold mixed types). Engines optimize them under the hood (e.g., packed vs. holey elements, SMI vs. double elements).
->     
->       
->     
+>
 > - `TypedArray` (`Int8Array`, `Uint8Array`, `Float64Array`, etc.): Fixed-length, contiguous raw memory views over an underlying `ArrayBuffer`. Designed for high-performance binary data manipulation (WebGL, Canvas, Web Workers, WebAssembly, file streams).
->     
->       
->     
+
 
 ## Common Interview Questions
 

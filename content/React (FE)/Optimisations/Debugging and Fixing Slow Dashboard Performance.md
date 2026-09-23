@@ -1,10 +1,9 @@
 # Debugging and Fixing Slow Dashboard Performance
 
 > [!abstract] High-Level Diagnostic Flow
-> 
+>
 > Triage performance systematically from outside to inside: **Network & Delivery (TTFB, Pre-flights, Payload)** $\rightarrow$ **Core Web Vitals & Rendering (LCP, INP, CLS)** $\rightarrow$ **Bundle Analysis (Code Splitting, Tree-Shaking)** $\rightarrow$ **Application & State (Rerenders, API Chaining, Virtualization)**. Never optimize blindly without profiling first.
-> 
->   
+
 
 ## Key Concepts
 
@@ -142,7 +141,7 @@ const AnalyticsChart = lazy(() =>
 export const DashboardView = () => {
   return (
     <div className="dashboard-container">
-      <header className="h-16">Fast-rendering Summary Cards</header>
+      <header className="h-16">Fast-rendering Summary Cards</header
 
       {/* Chart chunk is fetched on-demand without blocking initial page interactive time */}
       <Suspense fallback={<div className="h-64 animate-pulse bg-gray-200" />}>

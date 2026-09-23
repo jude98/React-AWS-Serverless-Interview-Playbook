@@ -3,61 +3,35 @@
 ## Key Concepts
 
 > [!summary] Iteration Protocols (Iterable vs. Iterator)
-> 
+>
 > An object is an **Iterable** if it implements the `[Symbol.iterator]` method, which returns an **Iterator**. An **Iterator** is an object with a `.next()` method returning `{ value: any, done: boolean }`.
-> 
->   
-> 
+>
 > - **Built-in Iterables**: Arrays, Strings, Maps, Sets, `TypedArrays`, `NodeList`, `arguments`.
->     
->       
->     
+>
 > - **Not Iterable**: Plain Objects (`{}`) do _not_ implement `[Symbol.iterator]` by default.
->     
->       
->     
+
 
 > [!abstract] Loop Constructs Comparison
-> 
->   
-> 
+>
 > - `for`: Classic indexed counter loop; best for fine-grained index control, reverse iterations, or multi-step increments.
->     
->       
->     
+>
 > - `while` / `do...while`: Condition-first or condition-last evaluation; used when iteration count is non-deterministic.
->     
->       
->     
+>
 > - `for...of`: Traverses **values** of any **Iterable**; cleanly supports `break`, `continue`, `return`, and `await` (with `for await...of`).
->     
->       
->     
+>
 > - `for...in`: Traverses **enumerable property keys** of an object (including inherited properties across the prototype chain); **never** recommended for arrays.
->     
->       
->     
+>
 > - `Array.prototype.forEach`: Higher-order function; **cannot be broken or stopped early** via `break` or `continue`.
->     
->       
->     
+
 
 > [!danger] Control Flow: `break` vs. `continue` vs. `labeled statements`
-> 
->   
-> 
+>
 > - `break`: Immediately terminates the innermost (or labeled) loop/switch construct.
->     
->       
->     
+>
 > - `continue`: Skips the remainder of the current iteration body and evaluates the loop condition/increment step.
->     
->       
->     
+>
 > - **Labeled Statements**: Identifiers preceding a loop (e.g., `outerLoop: for (...)`) enabling targeted `break` or `continue` from deeply nested loops.
->     
->       
->     
+
 
 ## Common Interview Questions
 

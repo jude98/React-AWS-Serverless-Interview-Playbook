@@ -1,16 +1,14 @@
 # React State and Props Architecture
 
 > [!note] State vs Props Core Mental Model
-> 
+>
 > **Props** (short for properties) represent external configuration passed down from a parent component; they are read-only and owned by the caller. **State** represents internal, reactive memory managed and owned by the component itself over its lifecycle.
-> 
->   
+
 
 > [!abstract] React Immutability and `Object.is`
-> 
+>
 > React triggers re-renders using **shallow reference equality checks** (`Object.is`). Mutating an object or array in place preserves its memory reference pointer, leading React to believe nothing changed and causing it to bail out of rendering. To signal a state update, you must create a new object or array reference (e.g., via spread syntax `...` or shallow copying).
-> 
->   
+
 
 ## State vs Props Comparison
 

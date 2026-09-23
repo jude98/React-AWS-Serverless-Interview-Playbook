@@ -1,16 +1,14 @@
 # React useState Hook and State Batching Architecture
 
 > [!note] The Stateless Nature of Plain Functions
-> 
+>
 > Standard JavaScript functions cannot preserve local state across invocations because their activation records (call stack frames) are discarded as soon as execution completes. Before React 16.8, functional components were strictly **Stateless Functional Components (SFCs)** used only for presentation (`UI = f(props)`). `useState` bridges this gap by offloading reactive state to an external memory record—the component's internal **Fiber node** on the heap—preserving state across functional re-executions.
-> 
->   
+
 
 > [!abstract] Automatic Batching in React 18+
-> 
+>
 > **Batching** is React's optimization where multiple state updates are grouped into a single re-render pass. Prior to React 18, batching only occurred inside synthetic event handlers. In React 18+, **Automatic Batching** applies uniformly across **Promises, `setTimeout`, native event listeners, and asynchronous API callbacks**. To opt out and force an immediate, synchronous DOM repaint, React provides `flushSync`.
-> 
->   
+
 
 ## Evolution: Class Instances vs Functional Closure State
 

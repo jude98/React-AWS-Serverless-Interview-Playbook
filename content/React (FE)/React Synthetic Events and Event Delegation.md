@@ -1,16 +1,14 @@
 # React Synthetic Events and Event Delegation
 
 > [!note] Core Definition
-> 
+>
 > A **SyntheticEvent** is a cross-browser, cross-platform wrapper around the browser’s native DOM event (`NativeEvent`). It provides a normalized, consistent API across all browsers (like Chrome, Safari, Firefox, Edge) following the W3C event specification.
-> 
->   
+
 
 > [!abstract] Event Delegation Architecture (React 17+ vs Legacy)
-> 
+>
 > Instead of attaching individual event listeners to every single DOM node you render in JSX, React attaches **one single event listener per event type** directly onto the **root DOM container** (`#root`). When an event occurs anywhere in the DOM tree, it bubbles up to this root container, where React intercepts it, wraps it into a `SyntheticEvent`, and dispatches it through its internal Fiber tree.
-> 
->   
+
 
 ## The End-to-End Event Delegation Pipeline
 

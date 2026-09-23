@@ -35,10 +35,9 @@
 ### 1. The Core Meaning of C, A, and P
 
 > [!NOTE] Precision Matters
-> 
+>
 > Always clarify the precise academic definitions of each letter, as candidates frequently confuse them with colloquial system design terms.
-> 
->   
+
 
 - **Consistency ($C$):**
 

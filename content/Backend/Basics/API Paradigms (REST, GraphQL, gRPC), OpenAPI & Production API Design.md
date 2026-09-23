@@ -69,33 +69,19 @@
 When a client requests an API endpoint, returning bare objects or raw arrays is fragile. High-reliability backends adhere to explicit standards:
 
 > [!IMPORTANT] Production API Response Checklist
-> 
->   
-> 
+>
 > 1. **Accurate HTTP Status Code:** Never return `200 OK` with `{ success: false, error: "..." }`. Use proper 4xx/5xx codes.
->     
->       
->     
+>
 > 2. **Consistent Top-Level Envelope:** Separate data, metadata, and error details predictably.
->     
->       
->     
+>
 > 3. **Pagination Metadata:** Provide cursor tokens or total counts, current limits, and navigation markers.
->     
->       
->     
+>
 > 4. **RFC 9457 (formerly RFC 7807) Problem Details:** Standardize machine-readable errors (`type`, `title`, `status`, `detail`, `instance`).
->     
->       
->     
+>
 > 5. **Correlation / Request ID:** Return an `X-Request-ID` or include a `traceId` in error payloads to link frontend errors directly to backend distributed traces.
->     
->       
->     
+>
 > 6. **Deprecation Headers:** Use `Deprecation` and `Sunset` headers when deprecating fields.
->     
->       
->     
+
 
 ### 4. What is OpenAPI (OAS)?
 

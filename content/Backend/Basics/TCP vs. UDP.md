@@ -59,14 +59,11 @@
 ### 3. The Head-of-Line (HoL) Blocking Problem & Modern UDP
 
 > [!IMPORTANT] The HTTP/2 vs. HTTP/3 Interview Pivot
-> 
+>
 > An essential modern interview talking point: HTTP/2 multiplexed multiple streams over a **single TCP connection**, meaning a single dropped packet stalls **all** multiplexed streams until TCP retransmits it (Transport-level Head-of-Line blocking).
-> 
->   
-> 
+>
 > **HTTP/3 solves this by switching to QUIC over UDP**: QUIC implements its own independent stream-level packet loss recovery in user space. If packet drops occur in Stream A, Stream B continues processing without stalling.
-> 
->   
+
 
 ### 4. Real-World Decision Matrix: When to Use What
 
