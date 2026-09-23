@@ -185,6 +185,8 @@ console.log(int32View.byteLength); // 16
 
 ## Related Topics
 
+- [[JavaScript Polyfills & Core Runtime Implementations|Array & Object Polyfills: Map, Filter, Reduce, Flat & DeepClone]]
+
 - [[JavaScript Data Types, Objects & Prototypal Inheritance]]
 
 - [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Memory Management and Garbage Collection in V8]]

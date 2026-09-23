@@ -238,6 +238,8 @@ function cancellableSleep(ms, signal) {
 
 ## Related Topics
 
+- [[JavaScript Polyfills & Core Runtime Implementations|Cancelable Network Requests & Timeout Wrappers]]
+
 - [[DOM Event Listeners, Browser Memory Management & Teardown Mechanics]]
 
 - [[JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns]]

@@ -205,6 +205,8 @@ console.log(boundIntroduce("Germany")); // "Alex lives in Berlin, Germany"
 
 ## Related Topics
 
+- [[JavaScript Polyfills & Core Runtime Implementations|JavaScript Polyfills: Call, Apply, Bind & Currying Implementations]]
+
 - [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
 
 - [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]

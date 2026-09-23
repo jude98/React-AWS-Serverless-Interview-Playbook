@@ -215,6 +215,8 @@ async function handleRequest(userId) {
 
 ## Related Topics
 
+- [[JavaScript Polyfills & Core Runtime Implementations|Promises/A+ Spec Polyfill & Microtask Scheduling]]
+
 * [[Asynchronous JavaScript, Event Loop & Concurrency Model]]
 * [[Event Loop Starvation. Causes, Mechanics & Mitigation Strategies|Event Loop Starvation: Causes, Mechanics & Mitigation Strategies]]
 * [[JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries|JavaScript Exception Handling: Try-Catch-Finally, Error Objects & Global Error Boundaries]]
