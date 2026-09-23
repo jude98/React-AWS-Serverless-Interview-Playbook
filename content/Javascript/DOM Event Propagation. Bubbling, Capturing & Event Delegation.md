@@ -58,7 +58,6 @@
 * Mouse movement: `mouseenter` and `mouseleave` (do not bubble; use `mouseover` and `mouseout` if bubbling is needed).
 * Media/Resource loading: `load`, `unload`, `error` (on images/scripts), `scroll` (on elements, though `window` scroll can be listened to).
 
-
 * Always verify if an event bubbles when attempting to apply Event Delegation.
 
 ### 3. The Power of Event Delegation
@@ -82,7 +81,6 @@
 <div id="parent" style="padding: 20px; background: #eee;">
   <button id="child">Click Me</button>
 </div>
-
 ```
 
 ```javascript
@@ -111,7 +109,6 @@ parent.addEventListener("click", (event) => {
 // 1. Parent Captured (Trickle Down)
 // 2. Child Target Phase
 // 3. Parent Bubbled (Bubble Up)
-
 ```
 
 ### 2. Halting Propagation vs. Immediate Propagation
@@ -131,7 +128,6 @@ btn.addEventListener("click", () => {
 document.body.addEventListener("click", () => {
   console.log("Body clicked"); // Will NOT execute due to propagation halt
 });
-
 ```
 
 ### 3. Production Event Delegation Pattern (Using `.closest()`)
@@ -150,7 +146,6 @@ document.body.addEventListener("click", () => {
     </tr>
   </tbody>
 </table>
-
 ```
 
 ```javascript
@@ -160,7 +155,7 @@ const table = document.querySelector("#user-table");
 table.addEventListener("click", (event) => {
   // Find the closest action button regardless of whether user clicked the SVG, span, or button
   const deleteBtn = event.target.closest(".btn-delete");
-  
+
   // Guard clause: click occurred outside the target interactive element
   if (!deleteBtn || !table.contains(deleteBtn)) return;
 
@@ -170,7 +165,6 @@ table.addEventListener("click", (event) => {
   console.log(`Deleting user ID: ${userId}`);
   row.remove();
 });
-
 ```
 
 ## Comparison Matrix: Propagation Methods & Properties

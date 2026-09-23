@@ -66,113 +66,62 @@
 ## Common Interview Questions
 
 - "What is the difference between `||` and `??` (Nullish Coalescing)?"
-    
-      
-    
+
 - "Explain the difference between prefix increment (`++i`) and postfix increment (`i++`)."
-    
-      
-    
+
 - "What does the comma operator do, and what does `let a = (1, 2, 3);` evaluate to?"
-    
-      
-    
+
 - "What does `delete` actually do? Can you delete a variable or a prototype property?"
-    
-      
-    
+
 - "Why does `typeof null` return `'object'`, while `typeof undefined` returns `'undefined'`?"
-    
-      
-    
+
 - "Can you chain optional chaining with function calls or dynamic properties (`obj?.[key]?.()` )?"
-    
-      
-    
+
 - "Explain operator precedence and associativity: why does `1 < 2 < 3` return `true`, but `3 > 2 > 1` return `false`?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. `||` vs. `??` (Logical OR vs. Nullish Coalescing)
 
 - **`||` Trap**: Checks for _falsy_ values (`false`, `0`, `""`, `NaN`, `null`, `undefined`). If a valid input is `0` (e.g., `score || 10`) or an empty string, `||` accidentally falls back to the default.
-    
-      
-    
+
 - **`??` Solution**: Specifically checks for _nullish_ values (`null` or `undefined`). Valid values like `0`, `""`, and `false` are retained.
-    
-      
-    
+
 - _Restriction_: You cannot combine `??` directly with `&&` or `||` without explicit parentheses (`(a || b) ?? c`), throwing a `SyntaxError`.
-    
-      
-    
 
 ### 2. Postfix vs. Prefix Evaluation Flow
 
 - `let y = x++`:
-    
-      
+
     1. Temporary variable copies current `x`.
-        
-          
-        
+
     2. `x` is incremented in memory.
-        
-          
-        
+
     3. Returns the temporary copy (original value).
-        
-          
-        
+
 - `let y = ++x`:
-    
-      
+
     1. `x` is incremented in memory.
-        
-          
-        
+
     2. Returns the newly updated value of `x`.
-        
-          
-        
 
 ### 3. Relational Operator Chaining Trap (`1 < 2 < 3` vs. `3 > 2 > 1`)
 
 - JavaScript evaluates comparison operators from **left to right** (left-associative).
-    
-      
-    
+
 - `1 < 2 < 3` $\to$ `(1 < 2) < 3` $\to$ `true < 3` $\to$ `1 < 3` $\to$ `true`.
-    
-      
-    
+
 - `3 > 2 > 1` $\to$ `(3 > 2) > 1` $\to$ `true > 1` $\to$ `1 > 1` $\to$ `false`.
-    
-      
-    
 
 ### 4. The `delete` Operator Mechanics
 
 - Deletes only **own configurable properties** from an object.
-    
-      
-    
+
 - Returns `false` in strict mode when attempting to delete non-configurable properties (or throws a `TypeError`).
-    
-      
-    
+
 - Does **not** affect prototype properties; deleting an inherited property on an instance does nothing and leaves the prototype intact.
-    
-      
-    
+
 - Cannot delete direct variable bindings declared with `var`, `let`, `const`, or function declarations.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -209,7 +158,7 @@ console.log(result); // 9 (last expression is returned)
 
 // Postfix vs Prefix in complex expressions
 let a = 1;
-let b = a++ + ++a; 
+let b = a++ + ++a;
 // Step 1: a++ yields 1 (a becomes 2)
 // Step 2: ++a increments a to 3, yields 3
 // Result: 1 + 3 = 4
@@ -273,40 +222,23 @@ console.log(void 0);       // undefined (idiomatic safe replacement for global u
 ## Related Topics
 
 - [[JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output|JavaScript Type Casting: Coercion vs. Conversion & Predict-the-Output]]
-    
-      
-    
+
 - [[JavaScript Equality Comparisons & Internal Algorithms]]
-    
-      
-    
+
 - [[JavaScript Data Types, Objects & Prototypal Inheritance]]
-    
-      
-    
+
 - [[JavaScript Control Flow. If-Else, Ternary & Switch Statements|Control Flow and Conditional Statements]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #operators #expressions #precedence #short-circuit
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

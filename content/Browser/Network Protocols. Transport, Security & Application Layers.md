@@ -76,101 +76,56 @@
 ## Common Interview Questions
 
 - "What is the difference between TCP and UDP? When would you choose UDP over TCP?"
-    
-      
-    
+
 - "What is the concrete difference between HTTP and HTTPS? What extra latency does HTTPS introduce?"
-    
-      
-    
+
 - "What is TLS/SSL, and how does the hybrid encryption model (asymmetric + symmetric) work during the TLS handshake?"
-    
-      
-    
+
 - "Compare SSH and TLS: How do their trust models and typical use cases differ?"
-    
-      
-    
+
 - "What is Head-of-Line (HoL) blocking, and how does HTTP/2 solve it at the application layer while remaining vulnerable to it at the transport layer?"
-    
-      
-    
+
 - "How does HTTP/2 multiplexing work over a single TCP connection compared to HTTP/1.1?"
-    
-      
-    
+
 - "What is HPACK in HTTP/2, and why was header compression necessary?"
-    
-      
-    
 
 ## Deep Dive & Talking Points
 
 ### 1. TCP vs. UDP: Mechanics & Trade-Offs
 
 - **TCP Guarantees**:
-    
-      
+
     - **Connection-Oriented**: 3-Way Handshake establishes sequence numbers.
-        
-          
-        
+
     - **Reliability & Ordering**: If packet #2 is lost, the receiver buffers packet #3 and holds delivery to the application until packet #2 is retransmitted.
-        
-          
-        
+
     - **Flow & Congestion Control**: Dynamically scales transmission rate using sliding window algorithms (e.g., CUBIC, BBR) to avoid overwhelming the network or receiver buffer.
-        
-          
-        
+
     - **Trade-off**: High connection setup latency ($1\text{ RTT}$) and packet retransmission delays.
-        
-          
-        
+
 - **UDP Characteristics**:
-    
-      
+
     - Zero handshake ($0\text{ RTT}$ startup).
-        
-          
-        
+
     - 8-byte header overhead (compared to TCP's minimum 20-byte header).
-        
-          
-        
+
     - Packets can arrive out of order, duplicated, or not at all.
-        
-          
-        
+
     - **Use Cases**: Real-time gaming, VoIP (Zoom, Discord), DNS queries, WebRTC media streams, and **HTTP/3 (QUIC)**.
-        
-          
-        
 
 ### 2. TLS/SSL & The Hybrid Encryption Pattern
 
 - Modern cryptography avoids using purely asymmetric or purely symmetric encryption:
-    
-      
+
     - **Asymmetric Encryption (RSA, ECC)**: Highly secure for initial key exchange without prior shared secrets, but computationally slow and CPU-heavy.
-        
-          
-        
+
     - **Symmetric Encryption (AES-GCM, ChaCha20-Poly1305)**: Blazing fast and efficient on modern CPUs with hardware acceleration, but requires both parties to possess the same shared key securely.
-        
-          
-        
+
 - **The Hybrid Solution**:
-    
-      
+
     1. The **TLS Handshake** uses asymmetric cryptography (Diffie-Hellman / ECDHE) and digital certificates to authenticate the server and safely negotiate a temporary secret.
-        
-          
-        
+
     2. Once the shared secret is established, the connection switches entirely to **symmetric encryption** for bulk data transfer.
-        
-          
-        
 
 ### 3. SSH vs. TLS
 
@@ -184,42 +139,24 @@
 ### 4. HTTP/1.1 vs. HTTP/2.0
 
 - **The Problem in HTTP/1.1**:
-    
-      
+
     - Pipelining was unreliable and disabled by default. If a client requested an image and a script over a single TCP connection, the script response could not be returned until the image was fully transmitted (**Application HoL Blocking**).
-        
-          
-        
+
     - Workarounds: Domain sharding (splitting assets across `static1.cdn.com`, `static2.cdn.com`), CSS sprite sheets, asset inlining.
-        
-          
-        
+
 - **The HTTP/2 Solution**:
-    
-      
+
     - **Binary Framing Layer**: Replaces plain text with binary frames (`HEADERS`, `DATA`, `SETTINGS`).
-        
-          
-        
+
     - **Multiplexing**: Streams are split into discrete, numbered frames that interleave over a single connection and reassemble at the receiver.
-        
-          
-        
+
     - **HPACK Compression**: Headers are no longer sent repeatedly in plaintext. A dynamic shared lookup table compresses headers by sending only diffs/indices across requests.
-        
-          
-        
+
 - **The HTTP/2 Transport Catch (Why HTTP/3 exists)**:
-    
-      
+
     - HTTP/2 multiplexes streams over **one TCP connection**.
-        
-          
-        
+
     - If a single TCP packet is dropped at the IP layer, TCP halts the _entire_ connection until the missing packet is retransmitted. This causes **Transport-Level Head-of-Line Blocking**, stalling all multiplexed streams simultaneously. (HTTP/3 fixes this by running over UDP via QUIC).
-        
-          
-        
 
 ## Code Snippets / Architectural Comparisons
 
@@ -227,7 +164,7 @@
 
 HTTP
 
-```
+```text
 /* HTTP/1.1: Human-Readable Plaintext Format */
 GET /api/v1/users HTTP/1.1
 Host: example.com
@@ -237,7 +174,7 @@ Cookie: session_id=xyz123...
 (Headers sent in full plaintext on EVERY single request)
 ```
 
-```
+```text
 /* HTTP/2: Binary Framing Layer */
 +-----------------------------------------------+
 | Length (24)  | Type (8)     | Flags (8)       |
@@ -283,7 +220,7 @@ const udpServer = dgram.createSocket("udp4");
 udpServer.on("message", (msg, rinfo) => {
   // No connection established; sender info (IP/port) arrives with each packet
   console.log(`Received UDP packet from ${rinfo.address}:${rinfo.port}: ${msg.toString()}`);
-  
+
   const reply = Buffer.from("UDP Datagram Reply");
   udpServer.send(reply, rinfo.port, rinfo.address);
 });
@@ -341,40 +278,23 @@ server.listen(443, () => {
 ## Related Topics
 
 - [[What Happens When You Enter a URL in the Browser. The End-to-End Lifecycle|What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
-    
-      
-    
+
 - [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Client-Side Browser Storage: Mechanisms, Architecture & Security]]
-    
-      
-    
+
 - [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Web Security: XSS, CSRF, CORS & CSP]]
-    
-      
-    
+
 - [[Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs|WebSockets, Server-Sent Events (SSE) & Real-Time Architectures]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #networking #http #https #tcp #udp #tls #ssl #ssh #http2
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

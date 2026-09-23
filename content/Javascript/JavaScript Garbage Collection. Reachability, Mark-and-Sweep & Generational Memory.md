@@ -64,134 +64,74 @@
 ## Common Interview Questions
 
 - "How does Garbage Collection work in modern JavaScript engines?"
-    
-      
-    
+
 - "What is the difference between the Reference Counting algorithm and the Mark-and-Sweep algorithm?"
-    
-      
-    
+
 - "What is a circular reference, and why did it cause memory leaks in older browsers?"
-    
-      
-    
+
 - "What defines a 'Root' in JavaScript memory management?"
-    
-      
-    
+
 - "What is the Generational Hypothesis in V8, and how does Scavenger differ from Major GC?"
-    
-      
-    
+
 - "Can an object have multiple incoming references and still be garbage collected?"
-    
-      
-    
+
 - "How do `WeakMap` and `WeakSet` relate to garbage collection and memory leak prevention?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Reachability vs. Reference Counting (The Circular Reference Trap)
 
 - **Reference Counting (Legacy / Obsolete)**:
-    
-      
+
     - Tracked how many pointers referenced an object. If `count === 0`, free the memory.
-        
-          
-        
+
     - **Fatal Flaw**: If Object A references Object B, and Object B references Object A (`a.b = b; b.a = a;`), their reference counts remain at least `1`. Even if both objects are disconnected from the application, reference counting could never collect them, creating permanent memory leaks (infamous in early Internet Explorer versions).
-        
-          
-        
+
 - **Mark-and-Sweep (Modern Standard)**:
-    
-      
+
     - Completely immune to circular references.
-        
-          
-        
+
     - The algorithm checks: _Can this island of objects be reached from the Roots?_ If the cycle is disconnected from the root set, the mark phase never visits them, and the sweep phase reclaims the entire disconnected cycle.
-        
-          
-        
 
 ### 2. Generational Collection in V8 (New Space vs. Old Space)
 
 - **The Generational Hypothesis**: Empirically, the vast majority of allocations (temporary variables, loop buffers, short-lived promises) become unreachable almost immediately.
-    
-      
-    
+
 - **Young Generation (Scavenge Collection)**:
-    
-      
+
     - Uses **Cheney’s copying algorithm** across two semi-spaces: `From-Space` and `To-Space`.
-        
-          
-        
+
     - When `From-Space` fills, the collector traverses reachable objects, copies them contiguously to `To-Space`, and clears `From-Space` in one operation.
-        
-          
-        
+
     - Very fast (milliseconds) because it only visits surviving objects, ignoring the dead ones.
-        
-          
-        
+
 - **Old Generation (Mark-Sweep-Compact)**:
-    
-      
+
     - If an object survives consecutive Scavenge rounds, it is promoted ("tenured") to Old Space.
-        
-          
-        
+
     - Scanned less frequently because it holds long-lived state (singletons, global configurations, module caches).
-        
-          
-        
 
 ### 3. Mitigating GC Pauses: Orinoco (Concurrent & Incremental GC)
 
 - Historically, GC was a **Stop-the-World** event: JavaScript execution halted completely while the heap was swept, causing noticeable UI jank or dropped frames.
-    
-      
-    
+
 - Modern V8 (project **Orinoco**) introduced:
-    
-      
+
     - **Incremental Marking**: Breaks marking down into tiny chunks interleaved with JavaScript execution.
-        
-          
-        
+
     - **Concurrent Marking/Sweeping**: Worker threads scan and sweep memory in the background without halting the main JavaScript thread.
-        
-          
-        
+
     - **Parallel Collection**: Multiple threads work together during unavoidable pause phases to minimize stop-the-world time.
-        
-          
-        
 
 ### 4. Common Sources of Accidental Retention (Memory Leaks)
 
 - **Forgotten Global Variables**: Unintentional assignment to undeclared variables (`name = 'val'`) anchors objects directly to `window`/`globalThis`.
-    
-      
-    
+
 - **Dangling Event Listeners**: Elements removed from the DOM while an active listener retains a closure pointing to surrounding component state.
-    
-      
-    
+
 - **Forgotten Timers**: `setInterval` callbacks keep all closed-over scope variables alive until `clearInterval` is called.
-    
-      
-    
+
 - **Unbounded Caching**: Using standard `Map` or plain objects as caches without size limits or TTL expiration instead of `WeakMap` or an LRU cache.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -259,11 +199,11 @@ button = null; // The associated cache object in weakMetadataCache is automatica
 // Exposing GC in Node for memory profiling (run with: node --expose-gc script.js)
 if (globalThis.gc) {
   console.log("Memory before:", process.memoryUsage().heapUsed / 1024 / 1024, "MB");
-  
+
   let heavyBuffer = new Array(1e6).fill("leak");
-  
+
   heavyBuffer = null; // Nullify reference to make memory unreachable
-  
+
   globalThis.gc(); // Force full garbage collection pass
   console.log("Memory after GC:", process.memoryUsage().heapUsed / 1024 / 1024, "MB");
 }
@@ -281,40 +221,23 @@ if (globalThis.gc) {
 ## Related Topics
 
 - [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
-    
-      
-    
+
 - [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures: Encapsulation, Currying & Output Puzzles]]
-    
-      
-    
+
 - [[DOM Event Listeners, Browser Memory Management & Teardown Mechanics]]
-    
-      
-    
+
 - [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #v8 #garbage-collection #mark-and-sweep #memory-leaks #memory-management
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

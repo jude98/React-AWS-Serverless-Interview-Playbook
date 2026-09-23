@@ -14,7 +14,6 @@
 
 ## State vs Props Comparison
 
-
 ```mermaid
 flowchart TD
     subgraph PARENT ["Parent Component Scope"]
@@ -37,20 +36,18 @@ flowchart TD
 
 ## How React Determines Re-renders: Reference Equality Check
 
-
 ```mermaid
 flowchart TD
     A["Calling `setState(nextState)`"] --> B["React performs shallow check:<br/>`Object.is(currentState, nextState)`"]
-    
+
     B -->|true: Identical Reference / Primitive Value| C["Bailout: No Re-render Scheduled<br/>VDOM Diffing and DOM Updates Skipped"]
-    
+
     B -->|false: New Reference / Different Value| D["Schedule Re-render in Work Queue"]
     D --> E["Re-execute Component Function"]
     E --> F["Reconcile Virtual DOM and Patch Real DOM"]
 ```
 
 ## The Prop Drilling Problem and Architectural Alternatives
-
 
 ```mermaid
 flowchart TD
@@ -60,7 +57,7 @@ flowchart TD
         D_L2["Header Component (Passes user prop)"]
         D_L3["Navbar Component (Passes user prop)"]
         D_Target["UserProfile Component (Actually consumes user prop)"]
-        
+
         D_Root -->|user| D_L1
         D_L1 -->|user| D_L2
         D_L2 -->|user| D_L3
@@ -81,162 +78,96 @@ flowchart TD
 ### 1. What is State?
 
 - Internal, mutable memory preserved between re-renders by React’s Fiber node.
-    
-      
-    
+
 - Defined via `useState` or `useReducer`.
-    
-      
-    
+
 - Changes to state are asynchronous/batched and trigger a re-render of the component and its children (unless memoized).
-    
-      
-    
 
 ### 2. What are Props?
 
 - Input arguments passed down into a component (like parameters to a function).
-    
-      
-    
+
 - Flow is strictly **unidirectional** (top-to-bottom).
-    
-      
-    
+
 - In development mode, React enforces prop immutability by applying `Object.freeze(props)`. Attempting to mutate `props.title = 'new'` throws a runtime error in strict mode.
-    
-      
-    
 
 ### 3. Shallow Copying and Immutability
 
 - React checks if state changed using `Object.is(prev, next)`.
-    
-      
-    
+
 - **The In-Place Mutation Trap**:
-    
-      
-    
-    ```    JavaScript
-    // BUG: React bails out because the memory address is unchanged
-    user.name = "Alice";
-    setUser(user); // Object.is(oldUser, newUser) === true -> NO RENDER
-    ```
-    
+
+```javascript
+// BUG: React bails out because the memory address is unchanged
+user.name = "Alice";
+setUser(user); // Object.is(oldUser, newUser) === true -> NO RENDER
+```
+
 - **The Immutable Solution**:
-    
-      
-    
-    ```JavaScript
-    // CORRECT: Creates a brand-new object reference in memory
-    setUser({ ...user, name: "Alice" }); // Object.is returns false -> TRIGGERS RENDER
-    ```
-    
+
+```javascript
+// CORRECT: Creates a brand-new object reference in memory
+setUser({ ...user, name: "Alice" }); // Object.is returns false -> TRIGGERS RENDER
+```
 
 ### 4. What is Prop Drilling?
 
 - The process of passing props through multiple levels of intermediary components that do not need the data themselves, merely serving as conduits to deliver it to a deeply nested child.
-    
-      
-    
+
 - **Why it hurts maintainability**: Tightly couples intermediate components to data shapes they don't care about, making refactoring brittle and tedious.
-    
-      
-    
 
 ## Common Interview Questions
 
 - What is the difference between state and props in React?
-    
-      
-    
+
 - Why can’t you mutate state or props directly in React?
-    
-      
-    
+
 - How does React detect when a state variable has changed?
-    
-      
-    
+
 - What does `Object.freeze()` do to props in development mode?
-    
-      
-    
+
 - What is prop drilling, and at what point does it become a problem?
-    
-      
-    
+
 - How does component composition solve prop drilling without needing Context or external state libraries?
-    
-      
-    
+
 - What is the difference between a shallow copy and a deep copy when updating nested state?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 - **Why Immutability Matters for Concurrent React**:
-    
-      
+
     - Immutability allows React to perform $O(1)$ reference equality checks (`prev === next`) instead of performing expensive, recursive $O(n)$ deep object comparisons across complex state trees.
-        
-          
-        
+
     - In Concurrent Mode, components can pause and restart rendering. If state objects are mutated in-place, concurrent render tasks could read torn or half-written values, corrupting the UI.
-        
-          
-        
+
 - **Why Props are Frozen (`Object.freeze`)**:
-    
-      
+
     - Components must behave as pure functions with respect to their props. If a child modifies a prop object in-place, it unintentionally mutates the parent’s state object behind the scenes, causing unpredictable cross-tree side effects.
-        
-          
-        
+
 - **Solving Prop Drilling Without Overusing Context**:
-    
-      
+
     - _Beginner impulse_: Jump straight to Redux or React Context.
-        
-          
-        
+
     - _Senior architectural approach_: Leverage **Component Composition**. Instead of passing individual data props through 4 levels of containers, pass the configured consumer component directly as `children` or via dedicated slot props:
-        
-          
-        
-        
-        ```        JavaScript
-        // Passing slot instead of drilling props
-        <Layout sidebar={<UserProfile user={user} />} />
-        ```
-        
+
+```javascript
+// Passing slot instead of drilling props
+<Layout sidebar={<UserProfile user={user} />} />
+```
 
 ## Best Practices for State and Props
 
 1. **Keep State Minimal**: Never duplicate props in state. If a value can be computed or derived on the fly (e.g., `fullName = firstName + ' ' + lastName`), calculate it during render; do not duplicate it into a separate `useState`.
-    
-      
-    
+
 2. **Lift State Up Carefully**: Place state at the lowest common ancestor of the components that require it. Do not elevate state to the global level unless genuinely needed application-wide.
-    
-      
-    
+
 3. **Use Functional State Updates**: Always use `setState(prev => prev + 1)` when the next state depends on the previous state to avoid stale closure bugs during concurrent batching.
-    
-      
-    
+
 4. **Normalize Deeply Nested State**: Avoid deeply nested objects in state. Deep updates require cumbersome spread syntax (`{ ...prev, a: { ...prev.a, b: ... } }`). Normalize structures using entity dictionaries or tools like `immer`.
-    
-      
-    
 
 ## Code Snippets / Examples
 
-
-```JavaScript
+```javascript
 import { useState } from 'react';
 
 // 1. Shallow Copying vs Direct Mutation Demonstration
@@ -316,44 +247,25 @@ function AppLayout({ header, children }) {
 ## Related Topics
 
 - [[React Lifecycle and Execution Flow|React Component Lifecycle]]
-    
-      
-    
+
 - [[React Reconciliation and Diffing Algorithm]]
-    
-      
-    
+
 - [[React State Management Architecture, Context vs External Stores vs React Query|React Context API vs State Libraries]]
-    
-      
-    
+
 - [[React useMemo, useCallback, and Fiber Memoization Architecture|Pure Components and React memo]]
-    
-      
-    
+
 - [[JavaScript Data Types, Objects & Prototypal Inheritance|JavaScript Pass-by-Reference vs Pass-by-Value]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #react-state #react-props #immutability #mermaid
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

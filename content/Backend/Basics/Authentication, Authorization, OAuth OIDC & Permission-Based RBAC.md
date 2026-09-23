@@ -3,67 +3,36 @@
 ## Key Concepts
 
 - **Authentication (AuthN) vs. Authorization (AuthZ):** AuthN answers _"Who are you?"_ (verifying identity). AuthZ answers _"What are you allowed to do?"_ (verifying permissions/access).
-    
-      
-    
+
 - **Stateful Sessions:** Client receives an opaque session ID (`sid`) stored in an `HttpOnly` cookie. The server maintains session state in a centralized store (e.g., Redis). Immediate invalidation is straightforward, but it requires distributed storage at scale.
-    
-      
-    
+
 - **Stateless Tokens (JWT):** A JSON Web Token encodes cryptographically signed claims (`header.payload.signature`). The backend verifies the signature using an asymmetric public key or shared secret without querying a central database. Immediate revocation is challenging without a token blocklist.
-    
-      
-    
+
 - **Bearer Token Scheme:** An HTTP authentication scheme (`Authorization: Bearer <token>`) where possession of the token grants access—no proof of key ownership is required by the carrier.
-    
-      
-    
+
 - **OAuth 2.0 vs. OpenID Connect (OIDC):**
-    
-      
+
     - **OAuth 2.0** is an **authorization framework** granting delegated access (issues `access_token` scoped for APIs). It does not standardize user identity.
-        
-          
-        
+
     - **OIDC** is an **identity layer built on top of OAuth 2.0** (issues an `id_token` as a JWT to standardize authentication and profile retrieval).
-        
-          
-        
+
 - **OAuth 1.0 vs. 2.0:** OAuth 1.0 relied on cryptographic request signing (HMAC-SHA1) on every call. OAuth 2.0 delegated transport security to TLS/HTTPS and introduced distinct Authorization Grants (e.g., Authorization Code Flow with PKCE).
-    
-      
-    
+
 - **Role-Based Access Control (RBAC) vs. Permission-Based Access Control (PBAC):** Hardcoding checks like `if (role === 'admin')` causes role explosion and fragile code. Modern enterprise systems decouple users from roles, and map roles to granular permissions (`resource:action`). **Code checks permissions, never roles.**
-    
-      
-    
 
 ## Common Interview Questions
 
 - What are the architectural trade-offs between stateful session cookies and stateless JWTs?
-    
-      
-    
+
 - What security flags are mandatory for session cookies, and what attack vectors do they mitigate?
-    
-      
-    
+
 - Why is OAuth 2.0 not an authentication protocol by itself, and how does OpenID Connect solve that?
-    
-      
-    
+
 - What are the major vulnerabilities of OAuth 1.0, and why was OAuth 2.0 designed to replace it?
-    
-      
-    
+
 - How do you implement instant revocation for stateless JWTs when a user logs out or is compromised?
-    
-      
-    
+
 - Why should applications check granular permissions (e.g., `posts:delete`) instead of roles (e.g., `role === 'editor'`) in both frontend and backend architectures?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
@@ -81,28 +50,17 @@
 
 When storing session identifiers or refresh tokens in cookies:
 
-  
-
 - **`HttpOnly`:** Disallows client-side JavaScript access via `document.cookie` (neutralizes cross-site scripting / XSS token theft).
-    
-      
-    
+
 - **`Secure`:** Instructs the browser to transmit the cookie over encrypted HTTPS connections only.
-    
-      
-    
+
 - **`SameSite=Strict | Lax | None`:** Prevents cross-site request forgery (CSRF). `Lax` allows safe top-level navigations; `Strict` blocks all cross-site transfers.
-    
-      
-    
+
 - **`Domain` & `Path`:** Restricts the cookie scope to specific origins and URI subtrees.
-    
-      
-    
 
 ### 3. OAuth 2.0 vs. OpenID Connect (OIDC) & OAuth 1.0
 
-```
+```text
 +-------------------------------------------------------------+
 |                  OpenID Connect (OIDC)                      |
 |  - Authentication (Who are you?)                            |
@@ -119,20 +77,12 @@ When storing session identifiers or refresh tokens in cookies:
 ```
 
 - **OAuth 1.0 vs. OAuth 2.0:**
-    
-      
+
     - _OAuth 1.0:_ Required custom cryptographic signatures (nonce, timestamps, HMAC secret keys) computed for every HTTP request. Extremely difficult for developers to implement; brittle.
-        
-          
-        
+
     - _OAuth 2.0:_ Offloaded cryptographic transport complexity to **TLS/HTTPS**. Replaced complex signing with bearer tokens and introduced standard flows (notably Authorization Code with PKCE for SPAs and mobile apps).
-        
-          
-        
+
 - **Why OAuth 2.0 is NOT Authentication:** An `access_token` is an opaque artifact meant for an API resource server; it tells the API what scopes the bearer can execute. It conveys no standardized information about who logged in, when, or how. OIDC adds the `id_token` (formatted as a verifiable JWT) to standardize identity assertions.
-    
-      
-    
 
 ### 4. Designing Permission-Based Access Control (PBAC / Granular RBAC)
 
@@ -148,7 +98,7 @@ When storing session identifiers or refresh tokens in cookies:
 
 Plaintext
 
-```
+```text
 Users (1) <---> (N) UserRoles (N) <---> (1) Roles
                                               |
                                              (1)
@@ -164,38 +114,25 @@ Users (1) <---> (N) UserRoles (N) <---> (1) Roles
 #### Frontend vs. Backend Enforcement
 
 - **Backend (Source of Truth):**
-    
-      
+
     - Extract permissions during token generation and encode them in the JWT payload as a flat array: `permissions: ["posts:read", "posts:write"]`.
-        
-          
-        
+
     - Use guards or middleware to intercept routes: `@RequirePermission('posts:delete')`.
-        
-          
-        
+
 - **Frontend (User Experience Only):**
-    
-      
+
     - The frontend checks permissions solely to toggle UI elements (render/disable buttons, hide menu links).
-        
-          
-        
+
     - Never rely on the frontend for access security; clients can be manipulated.
-        
-          
-        
 
 ## Code Snippets / Examples
 
-
-
-```TypeScript
+```typescript
 // ============================================================================
 // 1. Permission-Based Access Control (PBAC) Engine
 // ============================================================================
 
-export type Permission = 
+export type Permission =
   | "users:read"
   | "users:write"
   | "users:delete"
@@ -233,9 +170,9 @@ export const requirePermission = (permission: Permission) => {
 
     if (!hasPermission(req.user, permission)) {
       // 403 Forbidden: Client is authenticated, but lacks the necessary capability
-      return res.status(403).json({ 
-        error: "Forbidden", 
-        missingPermission: permission 
+      return res.status(403).json({
+        error: "Forbidden",
+        missingPermission: permission
       });
     }
 
@@ -267,11 +204,11 @@ export const UserManagementRow = ({ currentUser, targetUser }: any) => {
   return (
     <div>
       <span>{targetUser.name}</span>
-      
+
       {/* UI adapts based on granular capability, not role names */}
-      <Can 
-        user={currentUser} 
-        perform="users:delete" 
+      <Can
+        user={currentUser}
+        perform="users:delete"
         fallback={<span className="disabled-text">No delete permission</span>}
       >
         <button onClick={() => deleteUser(targetUser.id)}>Delete User</button>
@@ -283,7 +220,6 @@ export const UserManagementRow = ({ currentUser, targetUser }: any) => {
 
 ## Related Topics
 
-
 - [[Storage Strategies for Authorization Tokens. Access vs Refresh Tokens]]
 
 - [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles]]
@@ -294,25 +230,16 @@ export const UserManagementRow = ({ currentUser, targetUser }: any) => {
 
 - [[Client-Side Browser Storage. Mechanisms, Architecture & Security]]
 
-
 ## Tags
 
 #fullstack #interview #security #authentication #authorization #jwt #oauth #rbac
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

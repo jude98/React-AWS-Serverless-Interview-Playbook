@@ -3,162 +3,92 @@
 ## Key Concepts
 
 - **Event Bus Decoupling Paradox**: EventBridge decouples producers from consumers at runtime, but tight semantic coupling remains at the **event schema/contract** level.
-    
-      
-    
+
 - **Tolerant Reader Pattern**: Consumers should read only the fields they care about and ignore unrecognized fields, allowing producers to add non-breaking fields freely.
-    
-      
-    
+
 - **Non-Breaking vs. Breaking Changes**:
-    
-      
+
     - _Additive/Non-Breaking_: Adding optional fields, adding new event types (`detail-type`).
-        
-          
-        
+
     - _Breaking_: Renaming fields, changing data types, removing fields, altering nullability, changing semantic meaning of an existing field.
-        
-          
-        
+
 - **EventBridge Schema Registry & Discovery**: Automatically detects event structures from the bus, infers OpenAPI 3.0 or JSONSchema specifications, and generates strongly typed client code bindings (TypeScript, Java, Python).
-    
-      
-    
+
 - **Dual-Publishing & Versioned `detail-type`**: Breaking changes should be introduced via explicit semantic versioning in `detail-type` (e.g., `OrderPlaced.v2`) or metadata payloads (`schemaVersion: "2.0"`), running dual publishing until legacy consumers migrate.
-    
-      
-    
+
 - **Contract Testing & CI/CD Guardrails**: Use schema validation in the publishing pipeline (e.g., JSON Schema validation in code/interceptors or CI linting) to prevent breaking mutations from reaching production buses.
-    
-      
-    
 
 ## Common Interview Questions
 
 - How do you handle schema evolution across dozens of independent microservices consuming the same EventBridge bus?
-    
-      
-    
+
 - What constitutes a breaking change in an asynchronous event-driven system, and how does EventBridge rule pattern matching behave when schemas change?
-    
-      
-    
+
 - How does the EventBridge Schema Registry work, and what is the role of Schema Discovery in staging vs. production environments?
-    
-      
-    
+
 - What strategies would you use to deprecate an existing event version without breaking legacy downstream subscribers?
-    
-      
-    
+
 - How do EventBridge Input Transformers interact with schema changes, and why can they become an operational liability?
-    
-      
-    
+
 - How do you implement schema governance and prevent unauthorized event schema drift across cross-account buses?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. The Core Strategy: Forward & Backward Compatibility
 
 - **Tolerant Reader Strategy**:
-    
-      
+
     - Consumers must never perform strict schema validation that throws errors on unexpected properties (e.g., in Zod/TypeScript, avoid `.strict()` unless parsing internal models; allow passthrough of unknown attributes).
-        
-          
-        
+
     - All new fields added to existing events **must be optional**.
-        
-          
-        
+
 - **Rule Pattern Matching Resilience**:
-    
-      
+
     - EventBridge Rules match patterns strictly against fields in the event envelope and `detail`.
-        
-          
-        
+
     - If a rule filters on `{ "detail": { "status": ["PAID"] } }`, renaming `status` to `orderStatus` breaks rule evaluation immediately, silently causing the consumer to receive zero events.
-        
-          
-        
 
 ### 2. Versioning Strategies for Breaking Changes
 
 - **Pattern A: Versioned Event Types (`detail-type`) — Recommended**:
-    
-      
+
     - Keep the original event untouched: `detail-type: "OrderPlaced.v1"`.
-        
-          
-        
+
     - Introduce the breaking schema as `detail-type: "OrderPlaced.v2"`.
-        
-          
-        
+
     - Producers **dual-publish** both `v1` and `v2` during the transition window.
-        
-          
-        
+
     - Consumers migrate to `v2` at their own pace. Once metrics show zero invocations or after a sunset deadline, deprecate and remove `v1`.
-        
-          
-        
+
 - **Pattern B: Envelope Metadata Versioning**:
-    
-      
+
     - Place a `schemaVersion` attribute inside the payload (`"schemaVersion": "2.0.0"`).
-        
-          
-        
+
     - Consumers branch processing logic internally based on `schemaVersion`, or EventBridge rules filter specifically on the version.
-        
-          
-        
+
 - **Pattern C: Event Translation Layer (Adapter / Step Functions)**:
-    
-      
+
     - If producers cannot dual-publish, route the new event format through an AWS Lambda or Step Function adapter that translates `v2` into `v1` and publishes both onto the bus.
-        
-          
-        
 
 ### 3. EventBridge Schema Registry & Discovery
 
 - **Schema Discovery**: When enabled on an event bus, EventBridge samples ingested events, infers their JSON Schema/OpenAPI definition, and uploads them to the Schema Registry.
-    
-      
-    
+
     > [!warning] Production Governance
     > 
     > Enable Schema Discovery in **Development and Staging environments**, but disable it in high-volume production environments to avoid unnecessary AWS Discovery costs and unintended schema version churn.
     > 
     >   
-    
+
 - **Code Bindings**: Generate typed SDK packages directly from the registry using the AWS SAM CLI or CloudFormation, providing end-to-end compile-time safety for event producers and consumers.
-    
-      
-    
 
 ### 4. Input Transformers: The Silent Failure Risk
 
 - Input Transformers restructure an event's JSON before passing it to targets (e.g., mapping `$.detail.userId` to `<cognitoId>`).
-    
-      
-    
+
 - If a producer renames `userId` to `customerId`, the Input Transformer will output empty strings or fail validation, causing target delivery failures without alerting the producer.
-    
-      
-    
+
 - Prefer delivering the raw event envelope to the consumer when possible, or ensure input transformers are covered by end-to-end integration tests.
-    
-      
-    
 
 ### Schema Change Decision Matrix
 
@@ -326,7 +256,6 @@ export const handler = async (event: { detail: unknown }) => {
 
 ## Related Topics
 
-
 - [[Amazon EventBridge - Event Buses, Pipes, Patterns & Schemas]]
 
 - [[Handling Event Clogging and Backpressure in Amazon EventBridge]]
@@ -337,25 +266,16 @@ export const handler = async (event: { detail: unknown }) => {
 
 - [[Clean Architecture, Directory Structure & DTOs]]
 
-
 ## Tags
 
 #fullstack #interview #aws #eventbridge #serverless #system-design #event-driven-architecture
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

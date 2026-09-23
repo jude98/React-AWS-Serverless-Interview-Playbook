@@ -9,165 +9,92 @@
 ## Key Concepts
 
 - **Local Source of Truth**: UI components never bind directly to network requests; they subscribe to reactive local databases (**IndexedDB** via `idb`, RxDB, Dexie.js, or WatermelonDB).
-    
-      
-    
+
 - **Write-Ahead Log (WAL) / Outbox Pattern**: Every mutating user action generates an immutable mutation record stored in an IndexedDB Outbox table with a deterministic unique ID (`UUID v4` or `ULID`), state status (`PENDING`, `SYNCING`, `FAILED`), retry count, and timestamp.
-    
-      
-    
+
 - **Service Workers & Cache Storage**: Cache application assets (HTML shells, JS/CSS bundles, static icons) via Service Workers using a Cache-First strategy to ensure the app boots with zero network connectivity.
-    
-      
-    
+
 - **Idempotency Keys**: Network synchronizations can retry multiple times due to patchy connectivity. Every mutation carries a unique client-generated idempotency token so the backend never processes duplicate records.
-    
-      
-    
+
 - **Conflict Resolution Strategies**:
-    
-      
+
     - **LWW (Last-Write-Wins)**: High-risk, simple; uses client/server timestamps. Prone to clock skew overwrites.
-        
-          
-        
+
     - **CRDTs (Conflict-free Replicated Data Types)**: Mathematically guaranteed convergence without central arbitration (e.g., Yjs, Automerge) for collaborative or granular fields.
-        
-          
-        
+
     - **Three-Way Merge / Version Vectors**: Track entity revision numbers; detect conflicts and invoke custom domain merge rules or manual user arbitration.
-        
-          
-        
+
 - **Background Synchronization**: Use the browser's native `Background Sync API` (or fallback listeners on `online` and `visibilitychange` events) to drain the outbox queue reliably.
-    
-      
-    
 
 ## Common Interview Questions
 
 - How do you guarantee zero data loss when a user performs 50 offline mutations and abruptly closes the browser tab?
-    
-      
-    
+
 - Why should you avoid using `localStorage` for offline data storage, and why is IndexedDB the standard?
-    
-      
-    
+
 - How do you handle primary key assignment (IDs) for records created while offline before the database assigns an auto-incrementing ID?
-    
-      
-    
+
 - What is an Outbox Pattern, and how does it prevent race conditions when syncing multiple offline edits to the same entity?
-    
-      
-    
+
 - How do you resolve merge conflicts when two offline clients update the same record with conflicting changes?
-    
-      
-    
+
 - What happens if a queued mutation fails due to a validation error (422) on the server rather than a network disconnect?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. The Offline-First Read/Write Lifecycle
 
 1. **User Triggers Action (Write)**:
-    
-      
+
     - Generate a client-side collision-resistant ID (`crypto.randomUUID()`).
-        
-          
-        
+
     - Open an IndexedDB transaction.
-        
-          
-        
+
     - Write updated data to the local entity table (UI updates instantly via reactive subscription).
-        
-          
-        
+
     - Write an intent record to the local `mutation_outbox` table.
-        
-          
-        
+
     - Close transaction (atomic local persistence).
-        
-          
-        
+
 2. **Connectivity Check & Queue Drain**:
-    
-      
+
     - The queue processor listens to `window.addEventListener('online', ...)`.
-        
-          
-        
+
     - Reads the oldest `PENDING` mutations in FIFO order.
-        
-          
-        
+
     - Sets status to `SYNCING` to prevent duplicate concurrent queue runners.
-        
-          
-        
+
     - Dispatches HTTP requests with `X-Idempotency-Key: mutation.id`.
-        
-          
-        
+
 3. **Acknowledgment & Cleanup**:
-    
-      
+
     - On `200 OK`: Delete mutation record from `mutation_outbox`.
-        
-          
-        
+
     - Update local entity record with server confirmation tokens / updated revision hashes.
-        
-          
-        
+
 4. **Handling Unrecoverable Errors (e.g., 400/422 Validation Failures)**:
-    
-      
+
     - Network errors (`5xx`, timeouts, dropped connections) remain in queue for exponential backoff retries.
-        
-          
-        
+
     - Business/schema errors (`400`, `422`, `403`) cannot be resolved by retrying. Mark mutation as `DEAD_LETTER` / `CONFLICT`, notify the user with a UI diff prompt, and rollback the local entity change if rejected.
-        
-          
-        
 
 ### 2. Primary Key Generation While Offline
 
 - **The Pitfall**: Never rely on backend auto-incrementing integers (`id: 1042`). When offline, creating parent and child records (e.g., an Invoice and its LineItems) requires foreign keys before talking to the server.
-    
-      
-    
+
 - **The Solution**: Use client-side generated UUIDs or ULIDs as canonical IDs across both client and server databases from day one.
-    
-      
-    
 
 ### 3. Queue Compaction (Optimization)
 
 - If an offline user changes a document title 10 times in 5 minutes, do not send 10 network requests when returning online.
-    
-      
-    
+
 - Run **Queue Compaction / Squashing** before draining: coalesce multiple updates to the same entity ID into a single unified patch mutation, preserving original intent while minimizing network bandwidth.
-    
-      
-    
 
 ## Code Snippets / Examples
 
 ### IndexedDB Outbox Engine and Queue Processor
 
-
-```TypeScript
+```typescript
 import { openDB, DBSchema, IDBPDatabase } from 'idb';
 
 interface OutboxMutation {
@@ -218,7 +145,7 @@ class OfflineSyncEngine {
     const timestamp = Date.now();
 
     const tx = db.transaction(['notes', 'mutation_outbox'], 'readwrite');
-    
+
     // Save to local UI store
     await tx.objectStore('notes').put({
       id: noteId,
@@ -305,9 +232,7 @@ export const syncEngine = new OfflineSyncEngine();
 
 ### Hook Subscribing Directly to Local Storage
 
-
-
-```TypeScript
+```typescript
 import React, { useState, useEffect } from 'react';
 import { syncEngine } from './syncEngine';
 
@@ -372,44 +297,25 @@ export const OfflineNoteEditor = ({ noteId }: { noteId: string }) => {
 ## Related Topics
 
 - [[Frontend API Rate Limiting and Third-Party Resiliency Architecture]]
-    
-      
-    
+
 - [[Large-Scale Frontend System Design React at 10M to 1B Users]]
-    
-      
-    
+
 - [[TanStack Query Server State and Stale While Revalidate Patterns]]
-    
-      
-    
+
 - [[Memory Leak Prevention in Long-Running Applications]]
-    
-      
-    
+
 - [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Service Workers and Progressive Web Apps Architecture]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #offline-first #indexeddb #service-workers #outbox-pattern #sync-engine #crdt
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

@@ -34,12 +34,11 @@ async function asyncFn() {
 
 asyncFn();
 console.log("10");
-
 ```
 
 **Output:**
 
-```
+```text
 1
 4
 5
@@ -50,7 +49,6 @@ console.log("10");
 9
 2
 3
-
 ```
 
 **Walkthrough:**
@@ -62,11 +60,9 @@ console.log("10");
 * `resolve()` moves the promise to fulfilled and enqueues `.then()` to the **Microtask Queue**.
 * Logs `5`.
 
-
 4. `asyncFn()` is called:
 * Logs `7` synchronously.
 * Hits `await null`. The expression is evaluated, and the remainder of `asyncFn` is queued as a **microtask**.
-
 
 5. `console.log("10")` runs synchronously $\to$ logs `10`.
 6. **Call stack is now empty.** The engine drains the **Microtask Queue**:
@@ -75,12 +71,10 @@ console.log("10");
 * Hits `await Promise.resolve()`. The rest of `asyncFn()` is enqueued as a new microtask.
 * Third microtask: The resumed `asyncFn()` logs `9`.
 
-
 7. **Microtask queue is empty.** The engine takes **one macrotask** (`setTimeout`):
 * Logs `2`.
 * `Promise.resolve().then(...)` schedules a new microtask.
 * The current macrotask finishes.
-
 
 8. The engine drains the microtask queue before picking another macrotask $\to$ logs `3`.
 
@@ -97,26 +91,23 @@ queueMicrotask(() => console.log("queueMicrotask"));
 if (typeof process !== "undefined" && process.nextTick) {
   process.nextTick(() => console.log("nextTick"));
 }
-
 ```
 
 **In Node.js:**
 
-```
+```text
 nextTick
 Promise
 queueMicrotask
 setTimeout
-
 ```
 
 **In Modern Browser:**
 
-```
+```text
 Promise
 queueMicrotask
 setTimeout
-
 ```
 
 **Walkthrough:**
@@ -141,14 +132,12 @@ function b() {
 
 b();
 console.log(a);
-
 ```
 
 **Output:**
 
-```
+```text
 1
-
 ```
 
 **Walkthrough:**
@@ -160,7 +149,6 @@ function b() {
   a = 10;         // Mutates the LOCAL variable 'a', NOT the outer global 'a'
   return;
 }
-
 ```
 
 The mutation `a = 10` affects only the local binding. The global `a` remains `1`.
@@ -179,15 +167,13 @@ function test(a = x, b = () => x) {
 }
 
 test();
-
 ```
 
 **Output:**
 
-```
+```text
 10
 20
-
 ```
 
 **Walkthrough:**
@@ -201,7 +187,6 @@ test();
 ```javascript
 let y = 1;
 function fail(y = y) {} // ReferenceError: Cannot access 'y' before initialization
-
 ```
 
 ---
@@ -216,19 +201,17 @@ for (var i = 0; i < 3; i++) {
 for (let j = 0; j < 3; j++) {
   setTimeout(() => console.log("let:", j), 0);
 }
-
 ```
 
 **Output:**
 
-```
+```text
 var: 3
 var: 3
 var: 3
 let: 0
 let: 1
 let: 2
-
 ```
 
 **Walkthrough:**
@@ -266,25 +249,22 @@ console.log(obj.regularFn());
 console.log(extracted());
 console.log(obj.arrowFn());
 console.log(obj.nested.getNames());
-
 ```
 
 **Output (Non-Strict Mode Browser):**
 
-```
+```text
 Outer
 undefined (or window.name if set)
 undefined (or window.name if set)
 ["N/A", "Inner"]
-
 ```
 
 **Output (Strict Mode `'use strict';`):**
 
-```
+```text
 Outer
 TypeError: Cannot read properties of undefined (reading 'name')
-
 ```
 
 **Walkthrough:**
@@ -315,15 +295,13 @@ const instance = new Child();
 const { getName } = instance;
 console.log(instance.getName());
 console.log(getName());
-
 ```
 
 **Output:**
 
-```
+```text
 Child
 Child
-
 ```
 
 **Walkthrough:**
@@ -349,12 +327,11 @@ console.log(null > 0);
 console.log(null >= 0);
 console.log(NaN == NaN);
 console.log(Object.is(NaN, NaN));
-
 ```
 
 **Output:**
 
-```
+```text
 true
 true
 true
@@ -365,7 +342,6 @@ false
 true
 false
 true
-
 ```
 
 **Walkthrough:**
@@ -376,7 +352,6 @@ true
 * `[] == 0`: Array coerced via `ToPrimitive([])` $\to$ `""` $\to$ Number `0`.
 * `0 == 0` evaluates to `true`.
 
-
 2. `[] == 0`: `ToPrimitive([])` is `""`, and `Number("")` is `0` $\to$ `0 == 0` is `true`.
 3. `[""] == false`: `[""].toString()` is `""`. `"" == false` $\to$ `0 == 0` $\to$ `true`.
 4. `null == undefined`: Specified by the ECMAScript spec as loose equal (`true`), but strict inequality (`false`).
@@ -385,7 +360,6 @@ true
 * Relational operators (`>`, `<`, `>=`, `<=`) coerce operands using `ToNumeric`. `null` converts to `+0`.
 * `null > 0` $\to$ `0 > 0` (`false`).
 * `null >= 0` $\to$ `0 >= 0` (`true`).
-
 
 6. `NaN == NaN`: `NaN` is not equal to any value, including itself. `Object.is(NaN, NaN)` uses SameValue equality $\to$ `true`.
 
@@ -402,14 +376,12 @@ a[b] = 123;
 a[c] = 456;
 
 console.log(a[b]);
-
 ```
 
 **Output:**
 
-```
+```text
 456
-
 ```
 
 **Walkthrough:**
@@ -437,17 +409,15 @@ let x = 1;
 let y = x = typeof z;
 console.log("x:", x);
 console.log("y:", y);
-
 ```
 
 **Output:**
 
-```
+```text
 a: 2
 b: 10
 x: "undefined"
 y: "undefined"
-
 ```
 
 **Walkthrough:**
@@ -460,11 +430,8 @@ y: "undefined"
 * Addition: `1 + 9 = 10`.
 * Final `a` is `2`; `b` is `10`.
 
-
 2. `typeof z`: `typeof` on an undeclared variable is safe and returns `"undefined"`.
 * Assignment operators group right-to-left: `x = "undefined"`, then `y = "undefined"`.
-
-
 
 ---
 
@@ -490,12 +457,11 @@ console.log(config.falsy ?? true);
 
 console.log(config.nil ?? "fallback");
 console.log(config.undef ?? "fallback");
-
 ```
 
 **Output:**
 
-```
+```text
 10
 0
 default
@@ -504,7 +470,6 @@ true
 false
 fallback
 fallback
-
 ```
 
 **Walkthrough:**
@@ -531,15 +496,13 @@ function strict(a) {
   console.log(a);
 }
 strict(10);
-
 ```
 
 **Output:**
 
-```
+```text
 99
 10
-
 ```
 
 **Walkthrough:**
@@ -564,23 +527,20 @@ function mutateUser() {
 }
 
 console.log(mutateUser());
-
 ```
 
 **In Non-Strict Mode:**
 
-```
+```text
 admin
-
 ```
 
 *(Fails silently; assignment is ignored).*
 
 **In Strict Mode (`"use strict"`):**
 
-```
+```text
 TypeError: Cannot assign to read only property 'role' of object '#<Object>'
-
 ```
 
 ---
@@ -614,12 +574,11 @@ Promise.resolve().then(() => {
 });
 
 console.log("End");
-
 ```
 
 **Output:**
 
-```
+```text
 Start
 G1
 Gen sync: 1
@@ -628,7 +587,6 @@ P1
 G2
 Gen in Promise: 2
 P2
-
 ```
 
 **Walkthrough:**
@@ -641,7 +599,6 @@ P2
 * Yields `1`.
 * Synchronous log: `Gen sync: 1`.
 
-
 5. Second Promise schedules its `.then(...)` into the Microtask Queue.
 6. Synchronous log: `End`.
 7. **Stack clears; microtasks drain:**
@@ -650,10 +607,7 @@ P2
 * Yields `2`.
 * Logs `Gen in Promise: 2`.
 
-
 * Second microtask runs: Logs `P2`.
-
-
 
 ---
 

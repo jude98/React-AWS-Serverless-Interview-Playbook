@@ -3,56 +3,30 @@
 ## Key Concepts
 
 - **REST (Representational State Transfer):** An architectural style defined by Roy Fielding relying on stateless communication, standard HTTP methods, and resource-oriented URIs (`/resources/:id`).
-    
-      
-    
+
 - **GraphQL:** A query language and runtime created by Meta; enables clients to request exact data shapes in a single round-trip over a single HTTP endpoint (usually `POST /graphql`), eliminating over-fetching and under-fetching.
-    
-      
-    
+
 - **gRPC:** A high-performance RPC framework by Google built on **HTTP/2 transport** and **Protocol Buffers (Protobuf)**; provides strict binary serialization, strongly typed contracts, and bidirectional streaming for microservices.
-    
-      
-    
+
 - **OpenAPI Specification (OAS):** A vendor-neutral, machine-readable format (YAML/JSON) for describing RESTful APIs; enables automated client SDK generation, mock servers, and interactive documentation (Swagger UI).
-    
-      
-    
+
 - **The 6 REST Architectural Constraints:** Client-Server, Stateless, Cacheable, Uniform Interface, Layered System, and Code on Demand (optional).
-    
-      
-    
+
 - **API Response Best Practices:** Consistent envelopes, precise HTTP status codes, structured error formats (RFC 7807 / RFC 9457), deterministic pagination, metadata, and idempotency guarantees.
-    
-      
-    
 
 ## Common Interview Questions
 
 - What are Roy Fielding's 6 constraints of REST, and what does it take for an API to be truly "RESTful" (Richardson Maturity Model Level 3 / HATEOAS)?
-    
-      
-    
+
 - How do REST, GraphQL, and gRPC compare in terms of network efficiency, serialization overhead, and tooling?
-    
-      
-    
+
 - How does GraphQL solve over-fetching and under-fetching, and what are its operational trade-offs (e.g., the $N+1$ problem, HTTP caching difficulties)?
-    
-      
-    
+
 - Why is gRPC faster than REST over JSON, and why is it difficult to consume directly from a browser?
-    
-      
-    
+
 - What should a production-ready JSON API response contain for both success and error cases?
-    
-      
-    
+
 - What are the trade-offs between Offset-based and Cursor-based pagination?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
@@ -71,50 +45,28 @@
 ### 2. The 6 REST Constraints
 
 1. **Client-Server Architecture:** Separation of user interface concerns from data storage concerns.
-    
-      
-    
+
 2. **Statelessness:** No client context is stored on the server between requests; every request must contain all necessary session and authentication credentials.
-    
-      
-    
+
 3. **Cacheability:** Responses must explicitly declare whether they are cacheable to prevent clients from reusing stale data (`Cache-Control`).
-    
-      
-    
+
 4. **Uniform Interface:**
-    
-      
+
     - Resource identification in requests (URIs: `/users/42`).
-        
-          
-        
+
     - Resource manipulation through representations (sending JSON to modify state).
-        
-          
-        
+
     - Self-descriptive messages (proper `Content-Type` headers).
-        
-          
-        
+
     - **HATEOAS** (Hypermedia as the Engine of Application State): Providing hypermedia links pointing to related actions.
-        
-          
-        
+
 5. **Layered System:** The client cannot tell whether it is connected directly to the end server or to an intermediate proxy, CDN, or load balancer.
-    
-      
-    
+
 6. **Code on Demand (Optional):** Server can extend client functionality by transferring executable code (e.g., JavaScript).
-    
-      
-    
 
 ### 3. What to Include When Designing an API Response
 
 When a client requests an API endpoint, returning bare objects or raw arrays is fragile. High-reliability backends adhere to explicit standards:
-
-  
 
 > [!IMPORTANT] Production API Response Checklist
 > 
@@ -148,28 +100,18 @@ When a client requests an API endpoint, returning bare objects or raw arrays is 
 ### 4. What is OpenAPI (OAS)?
 
 - A standard specification (using YAML or JSON) for describing REST APIs independent of programming language.
-    
-      
-    
+
 - **Why it matters:**
-    
-      
+
     - **Contract-First Development:** Frontend and backend teams can agree on API shapes before writing code.
-        
-          
-        
+
     - **Codegen:** Generates typed TypeScript fetch clients, server boilerplate, and validation schemas automatically.
-        
-          
-        
+
     - **Documentation & Mocking:** Generates Swagger/Redoc UI documentation and allows mock servers (e.g., Prism) to run against the spec during frontend development.
-        
-          
-        
 
 ## Code Snippets / Examples
 
-```TypeScript
+```typescript
 // ============================================================================
 // 1. Standard Production API Envelopes
 // ============================================================================
@@ -255,44 +197,25 @@ async function fetchUsersByCursor(opts: { cursor?: string; limit: number }) {
 ## Related Topics
 
 - [[HTTP Fundamentals|HTTP Fundamentals & HTTP-1.1 vs HTTP-2]]
-    
-      
-    
+
 - [[HTTP Methods, CORS, Status Codes & Caching]]
-    
-      
-    
+
 - [[Clean Architecture, Directory Structure & DTOs]]
-    
-      
-    
+
 - [[Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs|WebSockets vs WebRTC vs Server-Sent Events (SSE)]]
-    
-      
-    
+
 - [[High-Scale Data Table Architecture Handling Millions of Records|Database Indexing & Cursor vs Offset Pagination]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #api-design #rest #graphql #grpc #openapi #system-design
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

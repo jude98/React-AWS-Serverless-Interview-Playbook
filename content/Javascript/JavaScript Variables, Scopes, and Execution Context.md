@@ -61,90 +61,50 @@
 ## Common Interview Questions
 
 - "What are the three main differences between `var`, `let`, and `const`?"
-    
-      
-    
+
 - "Why does `console.log(a)` print `undefined` for `var a = 10`, but throws a `ReferenceError` for `let a = 10`?"
-    
-      
-    
+
 - "Does `const` make objects truly immutable? How do you make an object immutable in JavaScript?"
-    
-      
-    
+
 - "Explain the classic `for (var i = 0; i < 3; i++) setTimeout` bug and how `let` fixes it under the hood."
-    
-      
-    
+
 - "What happens if you re-declare a `let` variable in a child block vs. the same block?"
-    
-      
-    
+
 - "Why is global `var` considered bad practice in terms of the `window` object?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Scope: Function Scope vs. Block Scope
 
 - **`var` Scope Leakage**: Because `var` is function-scoped, loops and conditional blocks leak variables into the surrounding function or global environment, often causing unintentional variable shadowing or overwriting.
-    
-      
-    
+
 - **`let` / `const` Isolation**: Variables declared inside `if (true) { ... }` or `for (...) { ... }` cannot be referenced outside those braces, preserving encapsulation and reducing side effects.
-    
-      
-    
 
 ### 2. The Mechanics of Hoisting & TDZ
 
 - All three variable types are hoisted (registered in memory during Phase 1 of the Execution Context).
-    
-      
-    
+
 - **The Core Difference**:
-    
-      
+
     - `var` is automatically initialized with `undefined`.
-        
-          
-        
+
     - `let` and `const` remain uninitialized. The engine actively checks access and throws `ReferenceError: Cannot access 'x' before initialization` until execution reaches the declaration line.
-        
-          
-        
 
 ### 3. Mutability: Reassignment vs. Mutation (`const`)
 
 - `const` enforces **immutable reference bindings**, not immutable value contents.
-    
-      
-    
+
 - Primitive types (`string`, `number`, `boolean`) stored in `const` cannot change because they are values.
-    
-      
-    
+
 - Complex types (`Object`, `Array`) stored in `const` hold a memory pointer/reference. The reference itself cannot be reassigned to another object or array, but internal properties/elements can be modified freely.
-    
-      
-    
+
 - To achieve shallow immutability, use `Object.freeze(obj)`. For deep immutability, use recursive freezing or libraries like Immutable.js/Immer.
-    
-      
-    
 
 ### 4. The Loop Trap: `var` vs. `let` in Closures
 
 - With `var i = 0`: A single variable `i` is shared across all loop iterations. When asynchronous callbacks (like `setTimeout`) run, they all read that single final value of `i`.
-    
-      
-    
+
 - With `let i = 0`: The engine creates a brand-new lexical scope and variable binding for **every single iteration**, preserving the specific value captured in each iteration's closure.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -215,40 +175,23 @@ const frozenUser = Object.freeze({ name: "Alice" });
 ## Related Topics
 
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
-    
-      
-    
+
 - [[DOM Event Listeners, Browser Memory Management & Teardown Mechanics|JavaScript Memory Management and Object Mutability]]
-    
-      
-    
+
 - [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #variables #scopes #es6
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

@@ -40,7 +40,6 @@ sequenceDiagram
     Auth-->>User: Set-Cookie: newRefreshToken (Rotated!)
     Auth-->>Memory: Response Body: { accessToken: "new_token_xyz" }
     Memory->>API: Re-try failed original request with new token
-
 ```
 
 ---
@@ -76,7 +75,6 @@ flowchart TD
         C5["Bank executes unauthorized transfer"]
         C1 --> C2 --> C3 --> C4 --> C5
     end
-
 ```
 
 ---
@@ -90,12 +88,9 @@ flowchart TD
 * If an attacker exploits an XSS vulnerability, they cannot execute `localStorage.getItem('token')` to pull the token out of long-term storage.
 * While an XSS attacker can execute API calls while the page is open, they cannot easily copy the token to use from an external script indefinitely.
 
-
 * **The Tab Refresh Problem**: Because in-memory variables are wiped on page reload, trigger a **Silent Refresh** on app initialization (`App.tsx` mount):
 * Call `/api/auth/refresh` on load.
 * The browser includes the `HttpOnly` refresh cookie, returns a fresh access token, and repopulates the in-memory variable.
-
-
 
 ### 2. Long-Lived Refresh Token: `HttpOnly` Cookie
 
@@ -106,19 +101,14 @@ flowchart TD
 * `SameSite=Strict` (or `Lax`): Prevents the browser from attaching the cookie on cross-site requests, neutralizing CSRF attacks.
 * `Path=/api/auth`: Restricts transmission so the refresh cookie is **only** sent when hitting authentication endpoints, not on every generic asset/data request.
 
-
-
 ### 3. `localStorage` (When is it appropriate?)
 
 * **Appropriate for**:
 * Non-sensitive user preferences (e.g., `theme: "dark"`, `sidebarCollapsed: true`, `locale: "en-US"`).
 * Publicly cached data that carries zero security risk if read by a third party.
 
-
 * **NEVER use for**:
 * JWTs, access tokens, refresh tokens, passwords, credit card data, PII (Personally Identifiable Information).
-
-
 
 ### 4. `sessionStorage` (When is it appropriate?)
 
@@ -126,11 +116,8 @@ flowchart TD
 * Multi-step checkout/registration forms where data should not bleed into other open tabs.
 * Storing state that should discard immediately when the tab closes.
 
-
 * **Avoid for**:
 * Authentication tokens, as it has the same XSS exposure as `localStorage` for the lifetime of that tab.
-
-
 
 ---
 
@@ -139,7 +126,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     A["Client calls /api/auth/refresh with Refresh Token R1"] --> B{"Is R1 valid & unexpired?"}
-    
+
     B -->|NO / Already Used| C["🚨 BREACH DETECTED: Token Reuse Alert!"]
     C --> D["Invalidate ALL refresh tokens for this user family in DB"]
     D --> E["Force immediate re-authentication across all devices"]
@@ -148,7 +135,6 @@ flowchart TD
     F --> G["Issue new Refresh Token R2 & new Access Token A2"]
     G --> H["Set-Cookie: R2 (HttpOnly, Secure, SameSite=Strict)"]
     H --> I["Return A2 in JSON body to client"]
-
 ```
 
 * **Token Rotation**: Every time a refresh token is used, it is revoked and a brand new refresh token is issued.
@@ -173,17 +159,13 @@ flowchart TD
 * Many developers store JWTs in `localStorage` simply because it is easy to read with JavaScript and attach as `Authorization: Bearer <token>`.
 * In an enterprise environment, any third-party npm dependency (`node_modules`), injected analytics script, or compromised CDN script can execute `localStorage.getItem()` and instantly exfiltrate user credentials.
 
-
 * **Why `SameSite=Lax` vs `SameSite=Strict` Matters**:
 * `SameSite=Strict`: The cookie is **never** sent in cross-site requests (e.g., following a link from an external email or site to your app). Best for financial/sensitive apps, though it requires users to re-click or re-navigate to stay logged in from external links.
 * `SameSite=Lax`: Default in modern browsers. Cookies are withheld on cross-site sub-requests (images, iframes, background POSTs), but sent when a user navigates to the origin site via a standard top-level link (GET request).
 
-
 * **Backend-for-Frontend (BFF) Pattern**:
 * In modern architectures (e.g., Next.js / Remix / API Gateways), the browser **never touches the raw access token**.
 * The Next.js / BFF server maintains the session with secure encrypted cookies, and the BFF server attaches the JWT when forwarding requests to downstream backend microservices. The browser only holds an opaque encrypted session ID.
-
-
 
 ---
 
@@ -280,7 +262,6 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 ```
 
 ---

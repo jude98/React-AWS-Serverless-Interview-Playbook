@@ -41,7 +41,6 @@ flowchart TD
         SC1 -.->|Updates user| S
         Note over S,SC2: Changing 'user' notifies ONLY Component A.<br/>Component B does NOT re-render!
     end
-
 ```
 
 ## Decision Matrix: What Tool Where?
@@ -59,7 +58,6 @@ flowchart TD
     Q_Client -->|High Frequency / Complex Slices:<br/>Audio player, canvas, carts, dashboards| EXT["Use Zustand or Jotai<br/>• Fine-grained selector subscriptions<br/>• Zero extra re-renders on sibling slices<br/>• External pub/sub outside Fiber tree"]
 
     Start -->|Local Form or Modal State| LOC["Use useState / useReducer<br/>• Keep state as close to leaves as possible"]
-
 ```
 
 ---
@@ -73,8 +71,6 @@ flowchart TD
 * **Component Rigidity**: Intermediate components cannot easily be reused elsewhere without mocking props they do not use.
 * **Refactoring Friction**: Adding, renaming, or removing a prop requires editing every layer along the path.
 * **Unnecessary Render Cascades**: While intermediate components can be wrapped in `React.memo`, managing memoization across deep hierarchies adds cognitive load and fragile equality checks.
-
-
 
 ### 2. Why Context API Lives in the Reconciliation Loop
 
@@ -90,8 +86,6 @@ flowchart TD
 * Components register a listener callback and a selector: `useStore(state => state.activeItemId)`.
 * When the store mutates, it executes subscriber callbacks. React evaluates whether the output of the component's specific selector changed; if it has not, the component **does not render**.
 
-
-
 ### 4. Client State vs Server State: Why React Query Replaces Global Stores
 
 Before libraries like TanStack Query, developers cached API data in global stores (Redux, Zustand) using repetitive boilerplate (`FETCH_START`, `FETCH_SUCCESS`, `FETCH_ERROR`).
@@ -99,12 +93,9 @@ Before libraries like TanStack Query, developers cached API data in global store
 * **Server State is fundamentally different from Client State**:
 * It is asynchronous, remotely owned, not guaranteed to be up-to-date, and requires cache invalidation, deduplication, and retry logic.
 
-
 * **TanStack Query** manages server state exclusively:
 * Eliminates 80–90% of global state store code by caching server responses directly at the network boundary.
 * Leaves client stores (Zustand) lean—handling only truly local, transient UI state (e.g., sidebar collapse, active modals, multi-step filter forms).
-
-
 
 ---
 
@@ -136,19 +127,15 @@ Before libraries like TanStack Query, developers cached API data in global store
 * **Context is a Transport Layer, Not a State Manager**:
 * Context does not manage state; `useState` or `useReducer` manages state. Context is simply a **dependency injection tunnel** that distributes values across subtrees to avoid prop drilling.
 
-
 * **The "Context Performance Problem"**:
 * Context itself is fast, but it forces an architectural tradeoff: you either accept coarse re-renders across all consumers or break your state into dozens of fine-grained, nested providers (`<AuthProvider>`, `<ThemeProvider>`, `<CartProvider>`), leading to "provider hell."
 * External stores solve this by allowing a single flat store while using selectors to provide sub-millisecond, granular UI re-renders.
-
 
 * **The Modern Full-Stack State Split**:
 * **Server State**: Managed by TanStack Query or SWR (caching, deduplicating, re-fetching).
 * **Global Client State**: Managed by Zustand (modals, UI preferences, user input across routes).
 * **Ambient Static Data**: Managed by Context (themes, translations, security tokens).
 * **Local Component State**: Managed by `useState` / `useReducer` (toggles, input focus).
-
-
 
 ---
 
@@ -173,7 +160,6 @@ export function UserProfile({ userId }) {
 
   return <h1>{user.name}</h1>;
 }
-
 ```
 
 ```jsx
@@ -207,7 +193,6 @@ export function CartBadge() {
   console.log('CartBadge rendered');
   return <span>Items: {cartCount}</span>;
 }
-
 ```
 
 ```jsx
@@ -236,7 +221,6 @@ function Header({ children }) {
   // Header does not know or care that `user` exists
   return <header className="top-nav">{children}</header>;
 }
-
 ```
 
 ---

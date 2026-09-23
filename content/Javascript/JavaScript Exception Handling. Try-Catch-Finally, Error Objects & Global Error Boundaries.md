@@ -60,86 +60,48 @@
 ## Common Interview Questions
 
 - "What happens if both the `try` block and the `finally` block have a `return` statement?"
-    
-      
-    
+
 - "Can a synchronous `try...catch` block catch an error thrown inside a `setTimeout` callback? Why or why not?"
-    
-      
-    
+
 - "How do you catch unhandled asynchronous Promise rejections across an entire application?"
-    
-      
-    
+
 - "What is the recommended operational practice when `process.on('uncaughtException')` is triggered in Node.js?"
-    
-      
-    
+
 - "What is the difference between `Error.captureStackTrace` and standard custom error subclassing?"
-    
-      
-    
+
 - "How does optional catch binding work, and when should you use it?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. The `finally` Block Override Rule
 
 - If the `finally` block contains a `return` or `throw` statement, it **overrides and discards** any `return` value or uncaught `throw` from within the preceding `try` or `catch` blocks.
-    
-      
-    
+
 - Cleanup code (closing file handles, clearing connection pools, stopping timers) belongs in `finally`.
-    
-      
-    
 
 ### 2. The Asynchronous Trap with Synchronous `try...catch`
 
 - A standard `try...catch` cannot trap errors inside asynchronous callbacks like `setTimeout` or raw event listeners.
-    
-      
-    
+
 - **Why?** The `try` block finishes executing and is popped off the Call Stack immediately. When the timer callback fires later from the Task Queue, it runs in a brand-new call stack with no surrounding `try` block.
-    
-      
-    
+
 - **Solution**: Wrap logic inside the callback itself in `try...catch`, or use Promises with `async/await`.
-    
-      
-    
 
 ### 3. Handling Global Unhandled Errors in the Browser
 
 - **`window.addEventListener('error', callback)`**: Intercepts unhandled synchronous runtime errors and resource loading failures (e.g., broken `<img>` or `<script>` tags, using capture phase `{ capture: true }`).
-    
-      
-    
+
 - **`window.addEventListener('unhandledrejection', callback)`**: Catches rejected Promises that do not have a `.catch()` attached. Commonly used to pipe telemetry to tools like Sentry or Datadog.
-    
-      
-    
 
 ### 4. Handling Global Unhandled Errors in Node.js
 
 - **`process.on('uncaughtException', (err) => { ... })`**:
-    
-      
+
     - The process is now in an undefined, corrupted state (file descriptors might be half-written, memory buffers leaked).
-        
-          
-        
+
     - Best practice: Log the stack trace, flush telemetry logs, and exit the process (`process.exit(1)`). Let an external process supervisor (PM2, Kubernetes, Docker) restart a clean instance.
-        
-          
-        
+
 - **`process.on('unhandledRejection', (reason, promise) => { ... })`**: Traps unhandled Promise rejections. In modern Node.js versions, unhandled rejections terminate the process with exit code 1 if not intercepted.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -251,40 +213,23 @@ process.on("uncaughtException", (error) => {
 ## Related Topics
 
 - [[JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns|JavaScript Asynchronous Programming: Promises, Async/Await and Event Loop]]
-    
-      
-    
+
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries|Node.js Process Lifecycle and Exit Codes]]
-    
-      
-    
+
 - [[Debugging and Fixing Slow Dashboard Performance|Frontend Error Logging and Observability: Sentry and Datadog]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #error-handling #try-catch #exceptions #nodejs #browser
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

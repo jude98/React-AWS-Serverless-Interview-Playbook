@@ -52,87 +52,50 @@
 ## Common Interview Questions
 
 - "What is `AbortController`, and how does it cancel an ongoing `fetch()` request under the hood?"
-    
-      
-    
+
 - "What is the difference between `AbortSignal.timeout()` and `controller.abort()`?"
-    
-      
-    
+
 - "How do you combine multiple cancellation triggers (e.g., user cancellation + request timeout) using `AbortSignal.any()`?"
-    
-      
-    
+
 - "If you abort a `fetch()` request, does the server stop processing it immediately?"
-    
-      
-    
+
 - "How do you make a custom asynchronous function support cancellation via an `AbortSignal`?"
-    
-      
-    
+
 - "How can you time out multiple distinct `AbortController` instances simultaneously?"
-    
-      
-    
+
 - "How do you distinguish between a user-initiated abort and a timeout abort in a `catch` block?"
-    
-      
-    
 
 ## Deep Dive & Talking Points
 
 ### 1. How `AbortController` Works Under the Hood
 
 - When passed to `fetch(url, { signal })`, the native network layer listens to `signal.addEventListener('abort', ...)`:
-    
-      
+
     - The browser/Node closes the active TCP socket or HTTP/2 stream (sending an `RST_STREAM` frame).
-        
-          
-        
+
     - The `fetch()` promise rejects immediately with a `DOMException` named `'AbortError'` (or the custom `signal.reason`).
-        
-          
-        
+
     - **Server nuance**: The server will stop receiving data from the client, but depending on the backend runtime, ongoing server-side database work may still run unless the server actively listens for socket disconnect events.
-        
-          
-        
 
 ### 2. Differentiating Cancellation vs. Timeout
 
 - Traditional `controller.abort()` throws:
-    
+
     `DOMException: This operation was aborted` (name: `'AbortError'`).
-    
-      
-    
+
 - `AbortSignal.timeout(ms)` throws:
-    
+
     `DOMException: The operation was aborted due to timeout` (name: `'TimeoutError'`).
-    
-      
-    
+
 - When writing resilient error-handling logic, inspect `error.name` to handle user-driven cancellations silently while reporting actual timeouts to monitoring systems.
-    
-      
-    
 
 ### 3. Cascading & Multi-Controller Cancellation
 
 - **Parent-Child Hierarchy**: In architectures like micro-frontends or large dashboard queries, a parent page navigation should cancel all active child queries.
-    
-      
-    
+
 - **Pattern A (`AbortSignal.any`)**: Pass `AbortSignal.any([childController.signal, masterTimeoutSignal])` directly to each child `fetch`. Zero manual cleanup required; the engine handles deregistration.
-    
-      
-    
+
 - **Pattern B (Registry Pool)**: Maintain a `Set<AbortController>`. Attach a master timeout listener that invokes `.abort()` across the entire registry and clears the set.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -164,7 +127,7 @@ async function fetchWithTimeout(url, timeoutMs = 5000) {
 ```javascript
 async function searchData(query) {
   const userController = new AbortController();
-  
+
   // Wire up manual UI cancel button
   document.querySelector("#cancel-btn").onclick = () => {
     userController.abort(new DOMException("User clicked Cancel", "AbortError"));
@@ -293,40 +256,23 @@ function cancellableSleep(ms, signal) {
 ## Related Topics
 
 - [[DOM Event Listeners, Browser Memory Management & Teardown Mechanics]]
-    
-      
-    
+
 - [[JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns]]
-    
-      
-    
+
 - [[Asynchronous JavaScript, Event Loop & Concurrency Model]]
-    
-      
-    
+
 - [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #abort-controller #abort-signal #timeouts #fetch #async #cancellation
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

@@ -56,83 +56,46 @@
 ## Common Interview Questions
 
 - "What is the `this` keyword in JavaScript, and what determines its value?"
-    
-      
-    
+
 - "What happens when you extract an object method and assign it to a standalone variable before executing it?"
-    
-      
-    
+
 - "How does `this` differ between a regular function and an arrow function?"
-    
-      
-    
+
 - "What does `this` point to inside a DOM event listener callback?"
-    
-      
-    
+
 - "Compare `.call()`, `.apply()`, and `.bind()` with respect to execution and arguments."
-    
-      
-    
+
 - "What is the order of precedence among the four binding rules of `this`?"
-    
-      
-    
+
 - "What does `this` evaluate to when used alone at the root of a script file?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. The Call-Site Dictates `this` (Implicit Loss)
 
 - A method does not "own" its function; it merely holds a reference pointer to a function in heap memory.
-    
-      
-    
+
 - If you tear a method away from its object (`const getAge = person.getAge; getAge();`), the context falls back to **Default Binding** (`undefined` in strict mode, `window` in sloppy mode) because the dot operator is absent at the call-site.
-    
-      
-    
 
 ### 2. Explicit Binding: `.call()`, `.apply()`, and `.bind()`
 
 - **`.call(thisArg, arg1, arg2, ...)`**: Invokes the function immediately with comma-separated arguments.
-    
-      
-    
+
 - **`.apply(thisArg, [argsArray])`**: Invokes the function immediately with arguments passed as an array/array-like.
-    
-      
-    
+
 - **`.bind(thisArg, arg1, ...)`**: Does **not** invoke the function immediately. Instead, it returns a new bound function (a hard-bound wrapper) permanently locking `this` to `thisArg`.
-    
-      
-    
 
 ### 3. Arrow Function Lexical Preservation
 
 - Arrow functions were introduced in ES6 partly to solve closure/callback context leakage (the legacy `var self = this;` or `.bind(this)` hacks).
-    
-      
-    
+
 - Because they lack an internal `[[ThisBindingStatus]]`, the engine treats `this` like any other normal variable lookup, walking straight up the **Lexical Scope Chain**.
-    
-      
-    
 
 ### 4. DOM Event Handlers: Regular vs. Arrow
 
 - In `element.addEventListener('click', function(e) { ... })`, the DOM specification explicitly invokes the callback using `callback.call(element, event)`. Hence, `this === element`.
-    
-      
-    
+
 - If an arrow function is supplied (`element.addEventListener('click', (e) => { ... })`), the invocation step cannot override the lexical arrow binding, so `this` remains bound to whatever outer scope surrounded the registration line (often `window`). Always prefer `e.currentTarget` inside event handlers to avoid ambiguity.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -191,7 +154,7 @@ button.addEventListener("click", function(event) {
 button.addEventListener("click", (event) => {
   console.log(this === window);             // true (if registered in global/module scope)
   // this.classList.add("active");          // TypeError: Cannot read properties of undefined (or window.classList)
-  
+
   // Safe alternative when using arrow functions:
   event.currentTarget.classList.add("active"); // Works correctly
 });
@@ -202,7 +165,7 @@ button.addEventListener("click", (event) => {
 ```javascript
 const counter = {
   count: 0,
-  
+
   // Anti-pattern: Arrow method on object literal
   incrementArrow: () => {
     // Objects do NOT create an execution context/lexical scope—only functions/blocks do!
@@ -237,40 +200,23 @@ counter.startTimer();
 ## Related Topics
 
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[Strict Mode, the Global Object, and Runtime Environments]]
-    
-      
-    
+
 - [[JavaScript Functions. Architecture, Patterns & Mechanics|JavaScript Functions: Architecture, Patterns & Mechanics]]
-    
-      
-    
+
 - [[Prototypal Inheritance, Object Prototypes & Constructor Functions]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #this-keyword #call-apply-bind #event-handling #arrow-functions
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

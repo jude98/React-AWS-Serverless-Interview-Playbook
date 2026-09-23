@@ -62,112 +62,62 @@
 ## Common Interview Questions
 
 - "What is the difference between `for...in` and `for...of`?"
-    
-      
-    
+
 - "Can you stop or break out of an `Array.prototype.forEach()` loop? What happens if you try to `return` inside it?"
-    
-      
-    
+
 - "Why shouldn't you use `for...in` to iterate over an Array?"
-    
-      
-    
+
 - "How do you make a plain JavaScript object iterable using `for...of`?"
-    
-      
-    
+
 - "What is the difference between `map()` and `forEach()`?"
-    
-      
-    
+
 - "How do you loop through an array asynchronously ensuring tasks run in sequence vs. in parallel?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. `for...in` vs. `for...of`
 
 - **`for...in`**:
-    
-      
+
     - Iterates over **all enumerable keys/properties** (strings/symbols), traversing up the entire prototype chain unless filtered with `Object.hasOwn(obj, key)`.
-        
-          
-        
+
     - Does not guarantee index order on arrays; array indices are treated as string property keys (`"0"`, `"1"`).
-        
-          
-        
+
 - **`for...of`**:
-    
-      
+
     - Leverages the `Symbol.iterator` protocol.
-        
-          
-        
+
     - Iterates directly over **values**.
-        
-          
-        
+
     - Does not touch prototype properties.
-        
-          
-        
 
 ### 2. Breaking Out of Loops
 
 - `break` and `continue` work with `for`, `for...of`, `for...in`, `while`, and `do...while`.
-    
-      
-    
+
 - Higher-order methods (`.forEach()`, `.map()`, `.filter()`, `.reduce()`) **cannot be stopped** via `break` or `continue` (throwing a `SyntaxError`). Returning from the callback simply exits that single iteration's callback function (functioning like `continue`).
-    
-      
-    
+
 - _Alternative_: To break early with functional semantics, use `.some()` (break on `true`), `.every()` (break on `false`), or standard `for...of`.
-    
-      
-    
 
 ### 3. Iterating Over Plain Objects
 
 - Plain objects are not iterables. To traverse an object, convert it into an iterable array via:
-    
-      
+
     - `Object.keys(obj)`: Array of own enumerable property names.
-        
-          
-        
+
     - `Object.values(obj)`: Array of own enumerable property values.
-        
-          
-        
+
     - `Object.entries(obj)`: Array of `[key, value]` tuples.
-        
-          
-        
+
 - Or use `for...of` on `Object.entries(obj)` with destructuring.
-    
-      
-    
 
 ### 4. Async Traversal: Sequential vs. Parallel
 
 - **Sequential**: `for...of` with `await` pauses execution of each step until the promise resolves.
-    
-      
-    
+
 - **Parallel**: `array.map(async ...)` launches all async operations concurrently, followed by `Promise.all()`.
-    
-      
-    
+
 - **Anti-pattern**: Using `await` inside `forEach` does _not_ pause the loop; `forEach` is not promise-aware and executes all iterations synchronously without waiting.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -294,40 +244,23 @@ async function brokenForEach(ids) {
 ## Related Topics
 
 - [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
-    
-      
-    
+
 - [[JavaScript Loops, Iteration Protocols & Data Structure Traversal|Iterables, Iterators, and Generators]]
-    
-      
-    
+
 - [[JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns|Asynchronous JavaScript: Promises, Async/Await and Event Loop]]
-    
-      
-    
+
 - [[JavaScript Expressions, Operators & Output Prediction|JavaScript Functional Array Methods: map, filter, and reduce]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #loops #iteration #iterables #control-flow
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

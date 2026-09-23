@@ -3,203 +3,119 @@
 ## Key Concepts
 
 - **The Redrive Lifecycle**: When an individual item returned via `ReportBatchItemFailures` exceeds the queue’s `maxReceiveCount`, SQS automatically moves it to the Dead Letter Queue (DLQ).
-    
-      
-    
+
 - **Metadata Preservation vs. Loss**: SQS preserves original message attributes and system attributes (e.g., `ApproximateReceiveCount`, `SentTimestamp`), but does **not** natively append the failure stack trace, error message, or which processing step failed.
-    
-      
-    
+
 - **Correlation ID Architecture**: A unique tracing ID (e.g., UUID or `x-amzn-trace-id`) injected into the message envelope/attributes by the upstream producer. It persists across all hops (Producer $\to$ EventBridge/SNS $\to$ SQS $\to$ Lambda $\to$ DLQ) to correlate CloudWatch/X-Ray/OpenTelemetry logs with the dead-lettered message.
-    
-      
-    
+
 - **Envelope Enrichment vs. Native DLQ**: Because native SQS redrive to DLQ strips runtime error context, high-resilience systems either:
-    
-      
+
     1. Rely on **Correlation IDs** to look up failure logs in CloudWatch/OpenSearch.
-        
-          
-        
+
     2. Use an **Application-Level DLQ Router**: Catch final failures in code, wrap the payload with the error stack, execution step, and timestamp, and write directly to an enriched SQS error queue.
-        
-          
-        
+
 - **Automated vs. Manual Redrive**:
-    
-      
+
     - **AWS SQS Redrive to Source API**: Batch-moves messages from the DLQ back to the primary queue once bugs or downstream outages are resolved.
-        
-          
-        
+
     - **Dead-Letter Processing Lambda**: A separate consumer attached to the DLQ that runs remediation logic, alerts via PagerDuty, or pushes records to an archival database (DynamoDB/S3).
-        
-          
-        
 
 ## Common Interview Questions
 
 - How do you preserve root-cause failure reasons (stack traces, failure steps) when SQS natively moves a message to a DLQ?
-    
-      
-    
+
 - How does `ReportBatchItemFailures` interact with `maxReceiveCount` on the source queue?
-    
-      
-    
+
 - What is the role of a Correlation ID in debugging poison pill messages that land in an SQS DLQ?
-    
-      
-    
+
 - When should you use native SQS Redrive to Source vs. writing a dedicated DLQ recovery consumer?
-    
-      
-    
+
 - How do you prevent a redrive loop (poison pill endlessly moving between source queue and DLQ)?
-    
-      
-    
+
 - How would you design an automated self-healing pipeline for transient errors versus permanent schema errors in a DLQ?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. How `ReportBatchItemFailures` Routes to DLQ
 
 - When a Lambda ESM uses `ReportBatchItemFailures`, returning `{ itemIdentifier: "msg-123" }` prevents SQS from deleting `msg-123`.
-    
-      
-    
+
 - SQS increments the message's `ApproximateReceiveCount`.
-    
-      
-    
+
 - Once `ApproximateReceiveCount > maxReceiveCount`, SQS automatically moves `msg-123` to the configured `deadLetterTargetArn`.
-    
-      
-    
+
 - Succeeded messages in the same batch are deleted normally—preventing duplicate runs.
-    
-      
-    
 
 ### 2. Identifying Where and Why It Failed using Correlation IDs
 
 Because native SQS redrives do not carry runtime exceptions into the DLQ message body:
 
-  
-
 1. **Producer Side**: Every event includes a `correlationId` in its top-level JSON body or `MessageAttributes`:
-    
-      
-    
-    JSON
-    
-    ```
-    {
-      "correlationId": "ord-9821-uuid",
-      "payload": { ... }
-    }
-    ```
-    
+
+```json
+{
+  "correlationId": "ord-9821-uuid",
+  "payload": { ... }
+}
+```
+
 2. **Consumer Side (Lambda Execution)**:
-    
-      
+
     - When processing fails, the worker logs structured JSON to CloudWatch containing the `correlationId`, `messageId`, `errorName`, `failedStep` (e.g., `PAYMENT_GATEWAY_CHARGE`), and full stack trace.
-        
-          
-        
+
 3. **DLQ Operator / Remediation**:
-    
-      
+
     - Inspect the DLQ message to extract `correlationId`.
-        
-          
-        
+
     - Query CloudWatch Logs Insights:
-        
-          
-        
-        SQL
-        
-        ```
-        fields @timestamp, failedStep, errorMessage, stackTrace
-        | filter correlationId = 'ord-9821-uuid'
-        | sort @timestamp desc
-        ```
-        
+
+```sql
+fields @timestamp, failedStep, errorMessage, stackTrace
+| filter correlationId = 'ord-9821-uuid'
+| sort @timestamp desc
+```
+
     - Instantly reveals the exact code branch, line number, and external dependency that caused the failure without modifying the DLQ message format.
-        
-          
-        
 
 ### 3. Native SQS DLQ vs. Application-Level Enriched DLQ
 
 - **Pattern A: Native SQS Redrive + Structured Log Correlation (Standard)**
-    
-      
+
     - Let SQS handle moving records to DLQ via `maxReceiveCount`.
-        
-          
-        
+
     - Simplest, zero custom queue-routing code.
-        
-          
-        
+
     - Relies entirely on CloudWatch/X-Ray querying using `correlationId`.
-        
-          
-        
+
 - **Pattern B: Intercepted Enriched Dead-Lettering (High-Audit Domains)**
-    
-      
+
     - In the Lambda handler, check if `record.attributes.ApproximateReceiveCount >= maxReceiveCount`.
-        
-          
-        
+
     - Before failing, the worker catches the error, wraps the message into an `ErrorEnvelope`:
-        
-          
-        
-        JSON
-        
-        ```
-        {
-          "originalPayload": { ... },
-          "correlationId": "ord-9821-uuid",
-          "failedAtStep": "INVENTORY_RESERVATION",
-          "error": "HTTP 409 Conflict: Insufficient stock",
-          "failedAt": "2026-09-22T17:50:00Z"
-        }
-        ```
-        
+
+```json
+{
+  "originalPayload": { ... },
+  "correlationId": "ord-9821-uuid",
+  "failedAtStep": "INVENTORY_RESERVATION",
+  "error": "HTTP 409 Conflict: Insufficient stock",
+  "failedAt": "2026-09-22T17:50:00Z"
+}
+```
+
     - Send this directly to an S3 Audit Bucket or dedicated Enriched DLQ, then acknowledge (delete) the original message to avoid un-enriched re-routing.
-        
-          
-        
 
 ### 4. Handling & Draining the DLQ
 
 1. **Classification (Transient vs. Permanent)**:
-    
-      
+
     - _Transient_ (downstream DB outage, 3rd party timeout): Fixed when the dependency recovers $\to$ trigger SQS Redrive to Source.
-        
-          
-        
+
     - _Permanent_ (JSON parse error, schema validation failure, null pointer): Redriving to source will instantly fail again. Requires code fix deployment before redriving, or manual discarding/archival.
-        
-          
-        
+
 2. **Redrive via AWS CLI / Console**:
-    
-      
+
     - Use the native **StartMessageMoveTask** API to safely redrive up to thousands of messages from DLQ back to the primary queue at a throttled rate.
-        
-          
-        
 
 ### Failure Handling Comparison Matrix
 
@@ -313,7 +229,6 @@ aws sqs start-message-move-task \
 
 ## Related Topics
 
-
 - [[Amazon SQS - Queue Types, Internal Mechanics & Limits]]
 
 - [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure]]
@@ -324,25 +239,16 @@ aws sqs start-message-move-task \
 
 - [[AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues]]
 
-
 ## Tags
 
 #fullstack #interview #aws #sqs #lambda #system-design #distributed-systems #observability
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

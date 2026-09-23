@@ -79,7 +79,7 @@
 const total = basePrice + 10;
 
 // Step 1: Scanner (Tokens)
-// [Token: CONST], [Token: IDENTIFIER("total")], [Token: ASSIGN], 
+// [Token: CONST], [Token: IDENTIFIER("total")], [Token: ASSIGN],
 // [Token: IDENTIFIER("basePrice")], [Token: ADD], [Token: NUMBER(10)], [Token: SEMICOLON]
 
 // Step 2: Parser (AST Representation - JSON simplified)
@@ -97,7 +97,6 @@ const total = basePrice + 10;
     }
   }]
 }
-
 ```
 
 ### 2. Triggering TurboFan Optimization & De-optimization
@@ -123,7 +122,6 @@ add(50, 60); // Runs at near C++ speed
 add("50", 60); // Type violation: 'a' is now a String!
 // TurboFan's machine code spec assumptions failed.
 // V8 bails out (de-optimizes) back to Ignition Bytecode to handle string concatenation.
-
 ```
 
 ### 3. Writing Engine-Friendly Code: Consistent Object Shapes
@@ -155,7 +153,6 @@ class PointGood {
 const p1 = new PointGood(1, 2);
 const p2 = new PointGood(3, 4, 5);
 // Both instances share the exact same Hidden Class; property access is ultra-fast via Inline Caching
-
 ```
 
 ## Comparison Matrix: V8 Pipeline Tiers

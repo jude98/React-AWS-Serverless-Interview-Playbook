@@ -61,13 +61,11 @@
 * Each tab typically runs in its own sandboxed **Renderer Process**.
 * **Site Isolation (Out-of-Process Iframes / OOPIF)**: Cross-origin iframes (`<iframe src="[https://bank.com](https://bank.com)">`) run in a *separate OS process* from the parent page (`[https://evil.com](https://evil.com)`), preventing microarchitectural side-channel attacks like **Spectre** from reading cross-origin process memory.
 
-
-
 ### 2. The HTML5 Parsing Stages
 
 The parsing pipeline operates as a streaming state machine:
 
-```
+```text
 Raw Bytes ──(Encoding Sniffing)──> Unicode Characters
                                            │
                                     [ Tokenizer ]  <── (document.write re-entry)
@@ -79,7 +77,6 @@ Raw Bytes ──(Encoding Sniffing)──> Unicode Characters
                         [Open Elements Stack]  [Active Formatting List]
                                            │
                                        DOM Tree
-
 ```
 
 #### Stage A: Tokenization
@@ -98,8 +95,6 @@ Raw Bytes ──(Encoding Sniffing)──> Unicode Characters
 * If a `<tr>` token appears outside a `<table>`, the parser automatically injects `<table>` and `<tbody>` ancestor nodes.
 * If a `<p>` token arrives while another `<p>` is on the open stack, the open `<p>` is implicitly closed before opening the new one.
 
-
-
 ### 3. Misnested Markup & The Adoption Agency Algorithm
 
 * Consider invalid HTML: `<b>1<i>2</b>3</i>`.
@@ -111,8 +106,6 @@ Raw Bytes ──(Encoding Sniffing)──> Unicode Characters
 4. The algorithm "adopts" the nodes, splitting and restructuring the tree into:
 `<b>1<i>2</i></b><i>3</i>`.
 5. The resulting DOM is semantically valid without halting execution.
-
-
 
 ### 4. Speculative Parsing (Preload Scanner)
 
@@ -188,7 +181,6 @@ console.log(tokenizeHTML("<p>Hello</p>"));
 //   { type: 'CHARACTER', data: 'e' }, ...
 //   { type: 'END_TAG', tagName: 'p' }
 // ]
-
 ```
 
 ---
@@ -202,7 +194,7 @@ console.log(tokenizeHTML("<p>Hello</p>"));
   <div>Before script</div>
 
   <script>
-    // document.write re-enters the tokenizer, injecting characters directly 
+    // document.write re-enters the tokenizer, injecting characters directly
     // into the remaining input byte stream during tree construction!
     document.write("<span>Injected inline during parsing</span>");
   </script>
@@ -210,7 +202,6 @@ console.log(tokenizeHTML("<p>Hello</p>"));
   <div>After script</div>
 </body>
 </html>
-
 ```
 
 * When `document.write()` executes, the parser immediately parses the injected text before reading the next byte of the original HTML document.

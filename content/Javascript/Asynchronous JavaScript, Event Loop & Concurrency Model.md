@@ -64,115 +64,62 @@
 ## Common Interview Questions
 
 - "Walk me through how the Event Loop coordinates the Call Stack, Microtask Queue, and Macrotask Queue."
-    
-      
-    
+
 - "Why does a resolved Promise callback execute before a `setTimeout(..., 0)` callback?"
-    
-      
-    
+
 - "What happens if a microtask recursively schedules another microtask? Does the browser render or run timers?"
-    
-      
-    
+
 - "What is the concrete execution order difference between `process.nextTick()` and `setImmediate()` in Node.js?"
-    
-      
-    
+
 - "How does `async/await` work under the hood using Promises and Generators?"
-    
-      
-    
+
 - "What is the difference between `Promise.all`, `Promise.allSettled`, `Promise.race`, and `Promise.any`?"
-    
-      
-    
+
 - "Predict the output of mixed synchronous logs, `setTimeout`, `Promise`, `process.nextTick`, and `async/await` code."
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. The Event Loop Algorithm Step-by-Step
 
 1. Execute synchronous code from the **Call Stack** until empty.
-    
-      
-    
+
 2. Flush the **Microtask Queue** until completely empty.
-    
-      
-    
+
 3. In browsers: check if a render cycle is needed (run `requestAnimationFrame` and recalculate layout/paint).
-    
-      
-    
+
 4. Pull and execute **one single task** from the **Macrotask Queue**.
-    
-      
-    
+
 5. Immediately check and exhaust the **Microtask Queue** again.
-    
-      
-    
+
 6. Repeat the cycle indefinitely.
-    
-      
-    
 
 ### 2. Starvation via Microtasks
 
 - Because the engine drains the _entire_ microtask queue before moving to rendering or the macrotask queue, an infinite loop of microtasks (`function loop() { Promise.resolve().then(loop); }`) completely **starves the macrotask queue and UI rendering**, freezing the application.
-    
-      
-    
 
 ### 3. Promise Combinators Comparison
 
 - **`Promise.all(iterable)`**: Rejects immediately (**fail-fast**) if any promise rejects; resolves with an array of values when all resolve.
-    
-      
-    
+
 - **`Promise.allSettled(iterable)`**: Never rejects early; waits for every promise to either fulfill or reject, returning an array of `{ status, value | reason }` objects.
-    
-      
-    
+
 - **`Promise.race(iterable)`**: Settles as soon as the **first** promise settles (fulfills or rejects).
-    
-      
-    
+
 - **`Promise.any(iterable)`**: Ignores rejections and resolves with the **first successful fulfillment**; only rejects (with an `AggregateError`) if _all_ promises reject.
-    
-      
-    
 
 ### 4. Node.js Libuv Loop Phases
 
 1. **Timers**: Executes callbacks scheduled by `setTimeout` and `setInterval`.
-    
-      
-    
+
 2. **Pending Callbacks**: Executes I/O callbacks deferred to the next loop iteration.
-    
-      
-    
+
 3. **Idle, Prepare**: Used internally by libuv.
-    
-      
-    
+
 4. **Poll**: Retrieves new I/O events; executes I/O related callbacks.
-    
-      
-    
+
 5. **Check**: Executes `setImmediate()` callbacks.
-    
-      
-    
+
 6. **Close Callbacks**: Handles close events (e.g., `socket.on('close')`).
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -318,40 +265,23 @@ class SimplePromise {
 ## Related Topics
 
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries|JavaScript Exception Handling: Try-Catch-Finally, Error Objects & Global Error Boundaries]]
-    
-      
-    
+
 - [[Asynchronous JavaScript, Event Loop & Concurrency Model|Node.js Runtime Architecture and Libuv]]
-    
-      
-    
+
 - [[JavaScript Loops, Iteration Protocols & Data Structure Traversal|Iterables, Iterators, and Generators]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #event-loop #promises #async-await #settimeout #microtasks #nodejs
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

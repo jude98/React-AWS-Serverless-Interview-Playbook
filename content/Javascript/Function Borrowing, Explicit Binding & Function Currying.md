@@ -47,86 +47,48 @@
 ## Common Interview Questions
 
 - "What is the difference between `.call()`, `.apply()`, and `.bind()`?"
-    
-      
-    
+
 - "What is function borrowing, and why would you borrow methods from `Array.prototype` or `Object.prototype`?"
-    
-      
-    
+
 - "How does function currying work, and how can you implement currying using `.bind()` vs. closures?"
-    
-      
-    
+
 - "Write an infinite currying function: `add(1)(2)(3)...()` or `add(1)(2)(3) == 6`."
-    
-      
-    
+
 - "What is the difference between Partial Application and Currying?"
-    
-      
-    
+
 - "How would you write a custom polyfill for `Function.prototype.bind` from scratch?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Function Borrowing in Practice
 
 - **Core Motivation**: Avoid code duplication. If another object or prototype already has the exact method logic needed, borrow it via `.call()` or `.apply()`.
-    
-      
-    
+
 - **Classic Use Case (Array-like Objects)**: Prior to ES6 `Array.from()`, `arguments` objects and DOM `NodeList` collections lacked array methods (`map`, `slice`, `filter`). Developers borrowed array methods: `Array.prototype.slice.call(arguments)`.
-    
-      
-    
+
 - **Defensive Borrowing**: Calling `Object.prototype.hasOwnProperty.call(obj, 'prop')` instead of `obj.hasOwnProperty('prop')` defends against edge cases where `obj` was created via `Object.create(null)` (no prototype) or has its own property named `hasOwnProperty`.
-    
-      
-    
 
 ### 2. Partial Application vs. Currying
 
 - **Currying**: Always translates a function of arity $N$ into $N$ sequential functions of arity 1: $f(a, b, c) \to f(a)(b)(c)$.
-    
-      
-    
+
 - **Partial Application**: Fixes a subset of a function's arguments upfront, returning a function of lower arity (e.g., transforming a 3-argument function into a 2-argument or 1-argument function).
-    
-      
-    
+
 - `Function.prototype.bind` natively implements **partial application**, but is frequently used to emulate curried function behavior.
-    
-      
-    
 
 ### 3. Currying via `.bind()` vs. Closures
 
 - **Via `.bind()`**:
-    
-      
+
     - `const multiplyByTwo = multiply.bind(null, 2);`
-        
-          
-        
+
     - Concise for standard binary functions; leverages the engine's built-in bound-function optimization.
-        
-          
-        
+
 - **Via Closures**:
-    
-      
+
     - `const multiply = a => b => a * b;`
-        
-          
-        
+
     - Idiomatic modern ES6 arrow syntax; avoids allocating unnecessary bound function wrapper objects.
-        
-          
-        
 
 ## Code Snippets / Examples
 
@@ -147,16 +109,16 @@ const person2 = {
 };
 
 // 1. .call() - Comma-separated arguments, executes immediately
-console.log(person1.getFullName.call(person2, "Welcome")); 
+console.log(person1.getFullName.call(person2, "Welcome"));
 // "Welcome, John Smith"
 
 // 2. .apply() - Array of arguments, executes immediately
-console.log(person1.getFullName.apply(person2, ["Greetings"])); 
+console.log(person1.getFullName.apply(person2, ["Greetings"]));
 // "Greetings, John Smith"
 
 // 3. .bind() - Returns a new function with preset this
 const getJohnFullName = person1.getFullName.bind(person2);
-console.log(getJohnFullName("Hi")); 
+console.log(getJohnFullName("Hi"));
 // "Hi, John Smith"
 
 // Defensive Method Borrowing from Object.prototype
@@ -260,40 +222,23 @@ console.log(boundIntroduce("Germany")); // "Alex lives in Berlin, Germany"
 ## Related Topics
 
 - [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
-    
-      
-    
+
 - [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
-    
-      
-    
+
 - [[JavaScript Functions. Architecture, Patterns & Mechanics|JavaScript Functions: Architecture, Patterns & Mechanics]]
-    
-      
-    
+
 - [[JavaScript Functions. Architecture, Patterns & Mechanics|Functional Programming Patterns: Pure Functions, Immutability & Memoization]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #call-apply-bind #function-borrowing #currying #partial-application
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

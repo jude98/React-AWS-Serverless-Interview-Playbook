@@ -51,29 +51,16 @@
 ## Common Interview Questions
 
 - "Walk me through what happens inside the JavaScript engine when a script is executed."
-    
-      
-    
+
 - "What are the two phases of an Execution Context, and what happens in each?"
-    
-      
-    
+
 - "What is hoisting under the hood? Does JavaScript physically move code to the top of the file?"
-    
-      
-    
+
 - "Why does accessing a `var` before declaration give `undefined`, but doing the same for `let` throws a `ReferenceError`?"
-    
-      
-    
+
 - "What is the Temporal Dead Zone (TDZ), and how does it prevent runtime bugs?"
-    
-      
-    
+
 - "How does the Call Stack interact with the Global Execution Context and Function Execution Contexts during recursion?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
@@ -81,76 +68,41 @@
 
 An Execution Context contains three primary components:
 
-  
-
 1. **Lexical Environment**: Holds identifier-to-variable mappings for `let`, `const`, and block-level bindings, plus an outer lexical reference (enabling scope chain traversal).
-    
-      
-    
+
 2. **Variable Environment**: Holds declarations for `var` variables and traditional function declarations.
-    
-      
-    
+
 3. **`this` Binding**: Evaluated when the context is established based on the call-site and function type.
-    
-      
-    
 
 ### 2. Deep Dive: Phase 1 (Creation Phase / Memory Allocation)
 
 - When the engine enters a scope (GEC or FEC), before running line 1:
-    
-      
+
     - Allocates space in memory for all declared variables and functions.
-        
-          
-        
+
     - Traditional functions (`function foo() {}`) are parsed and their pointers to the function body are saved immediately.
-        
-          
-        
+
     - `var` variables are initialized to `undefined`.
-        
-          
-        
+
     - `let` and `const` bindings are declared in the Lexical Environment Record without an initialization flag.
-        
-          
-        
 
 ### 3. Deep Dive: Phase 2 (Code Execution Phase)
 
 - Executes code line-by-line from top to bottom.
-    
-      
-    
+
 - When it reaches an assignment (`x = 5`), the allocated memory slot is updated with the actual value.
-    
-      
-    
+
 - When it reaches a `let`/`const` declaration line, that identifier is marked as initialized (exiting the TDZ).
-    
-      
-    
+
 - When a function is called, the engine pauses current execution, pushes a brand-new Function Execution Context onto the Call Stack, and runs Phase 1 & Phase 2 for that function.
-    
-      
-    
+
 - Once a function returns, its execution context is popped off the Call Stack.
-    
-      
-    
 
 ### 4. Trade-Offs & Why TDZ Exists
 
 - `var`'s early initialization to `undefined` masked runtime bugs: variables could be accessed silently before assignment, causing hard-to-trace bugs.
-    
-      
-    
+
 - TDZ enforces temporal correctness: using a variable before defining it becomes an explicit runtime error rather than silent bug propagation.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -200,40 +152,23 @@ first();
 ## Related Topics
 
 - [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
-    
-      
-    
+
 - [[Strict Mode, the Global Object, and Runtime Environments|JavaScript Variables: var, let, const, and the Global Object]]
-    
-      
-    
+
 - [[Asynchronous JavaScript, Event Loop & Concurrency Model|JavaScript Event Loop and Concurrency Model]]
-    
-      
-    
+
 - [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Call Stack, Heap Memory, and Garbage Collection]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #execution-context #hoisting #tdz
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

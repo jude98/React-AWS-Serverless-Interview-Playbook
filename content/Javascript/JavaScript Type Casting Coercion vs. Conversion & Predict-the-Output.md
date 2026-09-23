@@ -67,97 +67,54 @@
 ## Common Interview Questions
 
 - "What is the difference between explicit type conversion and implicit type coercion?"
-    
-      
-    
+
 - "Why does `[] + []` equal `""`, but `[] + {}` equals `"[object Object]"`?"
-    
-      
-    
+
 - "What is the concrete difference between `==` (loose equality) and `===` (strict equality) under the hood?"
-    
-      
-    
+
 - "Why does `null == undefined` evaluate to `true`, but `null === undefined` evaluate to `false`?"
-    
-      
-    
+
 - "Explain what the unary `+` operator and the `!!` idiom do."
-    
-      
-    
+
 - "What happens step-by-step when evaluating `'5' - - '3'` or `true + false`?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. The Binary `+` Operator vs. Other Arithmetic Operators
 
 - The binary `+` operator is overloaded: it performs **numeric addition** OR **string concatenation**.
-    
-      
-    
+
 - **Rule**: If _either_ operand evaluates to a string (or coerces to one via `ToPrimitive`), concatenation takes priority over addition.
-    
-      
-    
+
 - In contrast, operators like `-`, `*`, `/`, and `%` have no string overload. They _always_ coerce both operands to numbers using the `ToNumber` abstract operation.
-    
-      
-    
 
 ### 2. Loose Equality (`==`) Algorithm (Abstract Equality)
 
 - `===` checks both **type and value** without coercion (with exceptions: `NaN === NaN` is `false`, `-0 === +0` is `true`).
-    
-      
-    
+
 - `==` performs type coercion before comparison following ECMAScript rules:
-    
-      
+
     - If comparing `string` and `number`: string is coerced to number (`'5' == 5` -> `5 == 5`).
-        
-          
-        
+
     - If comparing `boolean` to anything: boolean is coerced to number (`true` -> `1`, `false` -> `0`).
-        
-          
-        
+
     - `null == undefined` is hard-coded to `true` (and neither loosely equals any other value).
-        
-          
-        
+
     - If comparing an `object` to a `primitive`: object is converted to primitive via `ToPrimitive`.
-        
-          
-        
 
 ### 3. Edge Cases: Arrays and Objects in Coercion
 
 - An empty array `[]`:
-    
-      
+
     - `[].toString()` yields `""`.
-        
-          
-        
+
     - `Number("")` yields `0`.
-        
-          
-        
+
     - `Boolean([])` yields `true` (all objects are truthy).
-        
-          
-        
+
 - An empty object `{}`:
-    
-      
+
     - `{}.toString()` yields `"[object Object]"`.
-        
-          
-        
 
 ## Code Snippets / Examples
 
@@ -217,40 +174,23 @@ console.log(Object.is(NaN, NaN));// true
 ## Related Topics
 
 - [[JavaScript Data Types, Objects & Prototypal Inheritance]]
-    
-      
-    
+
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[JavaScript Equality Comparisons & Internal Algorithms|JavaScript Equality Comparisons: == vs === vs Object.is]]
-    
-      
-    
+
 - [[JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output|Symbol.toPrimitive and Object-to-Primitive Algorithms]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #type-coercion #type-casting #predict-the-output
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

@@ -40,75 +40,42 @@
 ## Common Interview Questions
 
 - "How does a `switch` statement compare values under the hood? Does `'5'` match `case 5:`?"
-    
-      
-    
+
 - "What is case fall-through in a `switch` statement, and when is it intentionally useful?"
-    
-      
-    
+
 - "What is the structural difference between an `if...else` block and a ternary expression?"
-    
-      
-    
+
 - "Why can lexical declarations (`let`, `const`) cause syntax errors inside a `switch` statement without block braces?"
-    
-      
-    
+
 - "When would you prefer a lookup object/Map over a complex `switch` or long `if...else if` chain?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. `switch` Uses Strict Equality (`===`)
 
 - Interviewers frequently test coercion in `switch`. A string expression `"10"` will **not** match `case 10:`, because the engine evaluates `expression === caseValue`.
-    
-      
-    
+
 - If you need range evaluations or dynamic conditions in a `switch`, the common pattern is `switch (true)`, where each case evaluates a boolean condition (`case x > 10:`).
-    
-      
-    
 
 ### 2. Lexical Scoping Inside `switch` Blocks
 
 - A `switch` statement forms a **single overarching block scope** across all its `case` clauses.
-    
-      
-    
+
 - Declaring `let x = 1` inside `case 'A':` and another `let x = 2` inside `case 'B':` throws a `SyntaxError: Identifier 'x' has already been declared`.
-    
-      
-    
+
 - **Solution**: Wrap individual cases in explicit curly braces (`case 'A': { let x = 1; break; }`) to create isolated lexical environments per branch.
-    
-      
-    
 
 ### 3. Ternary Operator (`?:`) Best Practices & Trade-offs
 
 - **Pros**: Returns a value inline; useful in functional paradigms, React conditional rendering (`{isLoggedIn ? <Dashboard/> : <Login/>}`), and immutable variable assignments (`const status = active ? 'ON' : 'OFF'`).
-    
-      
-    
+
 - **Cons**: Deeply nested ternaries hurt readability and maintainability. For more than two branches, prefer `if...else`, a `switch`, or an early `return` pattern.
-    
-      
-    
 
 ### 4. Branching Alternatives: Lookup Tables (Objects / Maps)
 
 - Long `if...else if` or `switch` blocks evaluate sequentially in $O(N)$ worst-case time.
-    
-      
-    
+
 - Replacing them with a plain object dictionary or `Map` gives $O(1)$ constant-time lookups, cleaner code separation, and easier unit testing (open-closed principle).
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -218,40 +185,23 @@ function getDiscount(role) {
 ## Related Topics
 
 - [[JavaScript Expressions, Operators & Output Prediction]]
-    
-      
-    
+
 - [[JavaScript Equality Comparisons & Internal Algorithms]]
-    
-      
-    
+
 - [[JavaScript Scope, Lexical Environment, and Shadowing]]
-    
-      
-    
+
 - [[Clean Architecture, Directory Structure & DTOs|Clean Code & Refactoring: Guard Clauses and Early Returns]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #control-flow #conditional #switch-case #ternary
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

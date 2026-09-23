@@ -29,7 +29,6 @@ flowchart TD
         N4["Errors Thrown Inside the Error Boundary Itself"]
         N5["Unhandled Promise Rejections in Data Fetching (fetch/axios)"]
     end
-
 ```
 
 ---
@@ -58,7 +57,6 @@ sequenceDiagram
     EB->>EB: Resets internal state: { hasError: false, error: null }
     EB->>Child: Attempts to re-mount fresh Child instance
     Child->>DOM: Renders healthy UI to screen
-
 ```
 
 ---
@@ -71,7 +69,6 @@ sequenceDiagram
 * `static getDerivedStateFromError(error)`: Pure method used to update state (`{ hasError: true }`) and render the fallback UI during the render phase.
 * `componentDidCatch(error, errorInfo)`: Side-effect method used to log the error and component stack traces to monitoring services (e.g., Sentry, Datadog).
 
-
 * *React has not introduced a functional hook equivalent (like `useErrorBoundary`) as of React 19; production apps use libraries like `react-error-boundary`.*
 
 ### 2. Why Event Handlers Don't Need Error Boundaries
@@ -82,8 +79,6 @@ sequenceDiagram
 * The DOM is completely stable and valid.
 * React doesn't need to unmount the tree to protect UI integrity.
 * Standard JavaScript `try...catch` blocks should be placed directly inside event handlers or async callbacks.
-
-
 
 ### 3. Error Boundary State Latching
 
@@ -97,8 +92,6 @@ To clear the error state and instruct the boundary to attempt re-rendering the c
 1. **Imperative Reset**: Exposing an `onReset` callback that calls `this.setState({ hasError: false })` triggered by a "Try Again" button.
 2. **Declarative Key Reset (The Reset Key Pattern)**: Passing a dynamic dependency or route parameter (e.g., `resetKeys={[userId]}` or standard React `key={userId}`) to the boundary:
 * When the user navigates to a new page or changes input parameters, the boundary detects the key change in `componentDidUpdate` (or React destroys and recreates the boundary Fiber via `key`), immediately resetting `hasError: false` and rendering the fresh tree.
-
-
 
 ---
 
@@ -121,22 +114,16 @@ To clear the error state and instruct the boundary to attempt re-rendering the c
 const [, setError] = useState();
 // Inside async callback / catch block:
 setError(() => { throw new Error('Network Failed'); });
-
 ```
 
-
 * This forces the error into React's render pipeline, triggering the nearest Error Boundary.
-
 
 * **Granular vs Global Boundaries**:
 * *Anti-Pattern*: Wrapping only the root `<App/>` component in a single boundary. A single minor error in a comment widget crashes the whole page.
 * *Best Practice*: Use **nested, granular boundaries**. Wrap independent widgets, sidebars, and route pages in their own boundaries. If the comment widget crashes, only the comment box renders an error card, while the rest of the dashboard remains interactive.
 
-
 * **Errors Inside the Boundary Itself**:
 * An Error Boundary **cannot** catch errors within its own `render()` or `getDerivedStateFromError()` methods. The error will bubble up to the next parent Error Boundary above it in the Fiber tree (or crash to the root).
-
-
 
 ---
 
@@ -196,7 +183,6 @@ export class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
-
 ```
 
 ```jsx
@@ -240,7 +226,6 @@ export function useAsyncError() {
     });
   };
 }
-
 ```
 
 ---

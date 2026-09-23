@@ -49,8 +49,6 @@
 * Changing geometric CSS properties: `width`, `height`, `padding`, `margin`, `border-width`, `font-size`, `display`, `position`, `top`, `left`.
 * Querying layout metrics via JavaScript (reading properties like `offsetWidth`, `clientHeight`, `scrollTop`, or calling `getBoundingClientRect()`).
 
-
-
 ### 2. Repaint (Rasterization) Mechanics
 
 * Once the browser knows the exact coordinates and dimensions from the Reflow stage, it records drawing operations (e.g., "draw a black rectangle at $(x, y)$", "render text glyphs with font X").
@@ -70,7 +68,6 @@ When animating an element moving across the screen:
   transition: left 0.3s;
   left: 200px;
 }
-
 ```
 
 1. **CPU Main Thread Overload**: On every frame, the JavaScript thread must pause, recalculate the bounding box coordinates (Reflow), and re-render the pixels of that element and the background pixels it exposed (Repaint).
@@ -84,7 +81,6 @@ When animating an element moving across the screen:
   transition: transform 0.3s;
   transform: translateX(200px);
 }
-
 ```
 
 1. **Dedicated Compositing Layer**: The element is promoted to its own separate layer texture in GPU VRAM (equivalent to a separate transparent sheet).
@@ -110,10 +106,10 @@ When animating an element moving across the screen:
 function badResize(elements) {
   for (let i = 0; i < elements.length; i++) {
     // READ: Browser is forced to flush pending styles and calculate reflow NOW!
-    const width = elements[i].offsetWidth; 
-    
+    const width = elements[i].offsetWidth;
+
     // WRITE: Invalidates the layout again immediately
-    elements[i].style.width = (width + 10) + "px"; 
+    elements[i].style.width = (width + 10) + "px";
   }
 }
 
@@ -127,7 +123,6 @@ function goodResize(elements) {
     el.style.width = newWidths[index] + "px";
   });
 }
-
 ```
 
 ---
@@ -140,15 +135,14 @@ function goodResize(elements) {
   will-change: transform, opacity;
 }
 
-/* 
+/*
 ⚠️ WARNING ON will-change:
 - Do NOT apply will-change to hundreds of elements simultaneously!
 - Each layer consumes dedicated GPU VRAM (video memory).
-- Excessive layer creation causes memory thrashing, device battery drain, 
+- Excessive layer creation causes memory thrashing, device battery drain,
   and can crash mobile browser tabs.
 - Always remove will-change when animations or interactions finish.
 */
-
 ```
 
 ---
@@ -179,7 +173,6 @@ function goodResize(elements) {
   transform: translate3d(50px, 0, 0) scale(1.1);
   opacity: 0.9;
 }
-
 ```
 
 ---

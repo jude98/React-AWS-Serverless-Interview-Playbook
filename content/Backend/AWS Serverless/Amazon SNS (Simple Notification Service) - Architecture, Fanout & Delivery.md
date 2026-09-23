@@ -3,66 +3,36 @@
 ## Key Concepts
 
 - **Core Pattern:** Fully managed **Publish/Subscribe (Pub/Sub)** messaging service providing instantaneous, many-to-many (`1-to-N`) push notifications to distributed subscribers.
-    
-      
-    
+
 - **Topics & Subscriptions:**
-    
-      
+
     - **Topic:** A communication channel where publishers broadcast messages without awareness of consumers.
-        
-          
-        
+
     - **Subscriber:** Endpoints that subscribe to a topic to receive messages automatically (AWS Lambda, SQS, HTTP/HTTPS webhooks, Email, SMS, Mobile Push).
-        
-          
-        
+
 - **Two Topic Types:**
-    
-      
+
     - **Standard Topics:** Nearly unlimited message throughput, best-effort message ordering, at-least-once message delivery.
-        
-          
-        
+
     - **FIFO Topics:** Strictly preserved message ordering, exactly-once delivery/deduplication, throughput capped (up to 300 msg/s or 3,000 msg/s with batching, expandable with high throughput mode).
-        
-          
-        
+
 - **Fanout Pattern:** Publishing an event to a single SNS topic that simultaneously pushes the message to multiple downstream Amazon SQS queues, decoupling independent microservice domains.
-    
-      
-    
+
 - **Message Filtering:** Subscribers can attach JSON **Subscription Filter Policies** to filter messages by attributes or body, preventing unnecessary invocations or queue clutter.
-    
-      
-    
 
 ## Common Interview Questions
 
 - What is the difference between Amazon SNS and Amazon SQS, and how do they work together in the Fanout pattern?
-    
-      
-    
+
 - When would you use Amazon SNS over Amazon EventBridge?
-    
-      
-    
+
 - How does SNS handle delivery retries, backoff strategies, and Dead Letter Queues (DLQs) for failed push endpoints?
-    
-      
-    
+
 - What are Subscription Filter Policies in SNS, and how do they reduce downstream compute costs?
-    
-      
-    
+
 - What is the difference between SNS Standard Topics and SNS FIFO Topics?
-    
-      
-    
+
 - How do you secure an SNS topic to prevent unauthorized publishers or subscriber hijacking?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
@@ -80,43 +50,24 @@
 ### 2. The SNS-to-SQS Fanout Architecture
 
 - **Problem:** When an event occurs (e.g., `OrderPlaced`), multiple independent microservices must react (Inventory Service reserves items, Shipping Service generates labels, Analytics Service records data).
-    
-      
-    
+
 - **Anti-Pattern:** Order service sending sequential HTTP requests to each service—leads to tight coupling, high latency, and cascading failure if one service is down.
-    
-      
-    
+
 - **Fanout Solution:**
-    
-      
+
     1. The Order Service publishes `OrderPlaced` **once** to an SNS Topic.
-        
-          
-        
+
     2. Multiple SQS queues (one for Inventory, one for Shipping, one for Analytics) subscribe to the SNS Topic.
-        
-          
-        
+
     3. SNS duplicates and delivers the message to all subscribed SQS queues simultaneously in parallel.
-        
-          
-        
+
     4. Each service's worker pool (or Lambda ESM) reads from its dedicated queue at its own pace.
-        
-          
-        
 
 ### 3. Message Filtering & Dead Letter Queues (DLQs)
 
 - **Subscription Filter Policy:** Evaluates attributes on incoming messages. If a filter policy matches, the subscriber receives the message; otherwise, it is skipped entirely without incurring subscriber compute or ingestion costs.
-    
-      
-    
+
 - **Subscriber DLQs:** If an endpoint (like an HTTP webhook or Lambda) fails to receive the message after retry attempts (up to 100 retries over hours/days depending on delivery policy), SNS routes the unhandled message to a configured **SQS Dead Letter Queue (DLQ)** attached to the subscription.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -217,44 +168,25 @@ Resources:
 ## Related Topics
 
 - [[Amazon SQS - Queue Types, Internal Mechanics & Limits|Amazon-SQS-Queue-Types-and-Internal-Mechanics]]
-    
-      
-    
+
 - [[AWS Serverless & Event-Driven Architecture (EDA)|AWS-Serverless-and-Event-Driven-Architecture]]
-    
-      
-    
+
 - [[Amazon SQS - Queue Types, Internal Mechanics & Limits|Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
-    
-      
-    
+
 - [[Amazon EventBridge - Event Buses, Pipes, Patterns & Schemas|Amazon-EventBridge-and-Event-Driven-Routing]]
-    
-      
-    
+
 - [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency-in-Distributed-Systems]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #aws #sns #pubsub #system-design #event-driven
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

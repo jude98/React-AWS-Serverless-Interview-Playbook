@@ -66,8 +66,6 @@
 4. **Idle / Terminated**: Service workers do not stay alive in memory. The browser terminates idle workers to conserve battery/RAM, spinning them back up on demand when a `fetch`, `push`, or `sync` event arrives.
 5. **Fetch (`fetch` event)**: Intercepts network calls via `event.respondWith()`.
 
-
-
 ---
 
 ## Code Snippets / Examples
@@ -91,7 +89,6 @@ console.log("Main thread buffer after transfer:", rawBuffer.byteLength); // 0
 worker.onmessage = (event) => {
   console.log("Processed buffer received back:", event.data.byteLength);
 };
-
 ```
 
 ```javascript
@@ -108,7 +105,6 @@ self.onmessage = (event) => {
   // Transfer back to main thread
   self.postMessage(buffer, [buffer]);
 };
-
 ```
 
 ---
@@ -130,7 +126,6 @@ port.onmessage = (event) => {
 function broadcastMessage(text) {
   port.postMessage({ type: "BROADCAST", payload: text });
 }
-
 ```
 
 ```javascript
@@ -152,7 +147,6 @@ self.onconnect = (event) => {
 
   port.start();
 };
-
 ```
 
 ---
@@ -210,7 +204,6 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
 ```
 
 ---

@@ -21,7 +21,6 @@
 
 ## How React Tracks Hooks Under the Hood
 
-
 ```mermaid
 flowchart LR
     subgraph FIBER_NODE ["Fiber Node in Heap Memory"]
@@ -39,7 +38,7 @@ flowchart LR
         W4["Hook 2 runs: reads currentHook, advances pointer"]
         W5["currentHook = currentHook.next"]
         W6["Hook 3 runs: reads currentHook"]
-        
+
         W1 --> W2 --> W3 --> W4 --> W5 --> W6
     end
 ```
@@ -75,152 +74,91 @@ sequenceDiagram
 
 Every time a hook is invoked in your component, React creates or inspects a plain JavaScript node on the Fiber:
 
-  
-
 - `memoizedState`: Stores the current hook value (for `useState`, the state value; for `useEffect`, the effect object containing cleanup and tag flags).
-    
-      
-    
+
 - `queue`: Enqueued state updates waiting to be processed.
-    
-      
-    
+
 - `next`: Pointer referencing the next hook in the component.
-    
-      
-    
 
 ### 2. The Pointer Advancement Mechanism
 
 - On **Mount**: React creates hook nodes one by one, chaining them via `next` pointers to form `fiber.memoizedState`.
-    
-      
-    
+
 - On **Update**: React resets its internal pointer `workInProgressHook = fiber.memoizedState`.
-    
-      
-    
+
 - Each subsequent hook invocation reads the value from `workInProgressHook` and immediately sets `workInProgressHook = workInProgressHook.next`.
-    
-      
-    
+
 - Because this relies entirely on call order, **the exact sequence and count of hooks must remain identical on every single render**.
-    
-      
-    
 
 ### 3. Why Not Use Keys or Identifiers?
 
 - A common interview question is: _"Why didn't React just accept a key like `useState('userName', 'Alice')`?"_
-    
-      
-    
+
 - Reasons the React team rejected named keys:
-    
-      
+
     - **Namespace collisions**: Passing keys down through nested custom hooks creates name collision bugs across libraries.
-        
-          
-        
+
     - **Refactoring friction**: Changing variable names would require manually updating string keys.
-        
-          
-        
+
     - **Bundle size & overhead**: Passing string identifiers adds bundle payload and requires hash map lookups on every single render pass instead of $O(1)$ pointer steps.
-        
-          
-        
 
 ### 4. Enforcement via ESLint (`eslint-plugin-react-hooks`)
 
 - Because JavaScript runtimes cannot natively prevent conditional hook placement, React provides an official ESLint rule: `react-hooks/rules-of-hooks`.
-    
-      
-    
+
 - It performs static AST analysis on code to guarantee all hooks are called strictly at the top level of a component before any early returns.
-    
-      
-    
 
 ## Common Interview Questions
 
 - What are the two official Rules of Hooks?
-    
-      
-    
+
 - How does React manage hook state internally without requiring a key or ID?
-    
-      
-    
+
 - What data structure does React use inside the Fiber to store hook values?
-    
-      
-    
+
 - Exactly what breaks if you call a hook inside an `if` block or a `for` loop?
-    
-      
-    
+
 - Why can’t you call hooks after an early `if (!data) return null;` statement?
-    
-      
-    
+
 - How would you conditionally apply hook logic without violating the Rules of Hooks?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 - **Early Return Gotcha**:
-    
-      
+
     - Placing a hook after an early return violates the top-level rule:
-        
-          
-        
-        
-        ```JavaScript
-        function UserProfile({ data }) {
-          if (!data) return null; // Early return
-          const [tab, setTab] = useState(0); // DANGEROUS: Hook count varies!
-        }
-        ```
-        
+
+```javascript
+function UserProfile({ data }) {
+  if (!data) return null; // Early return
+  const [tab, setTab] = useState(0); // DANGEROUS: Hook count varies!
+}
+```
+
     - If `data` is null on render 1 and present on render 2, the number of hooks called changes from 0 to 1, corrupting the Fiber pointer. All hooks must precede all conditional returns.
-        
-          
-        
+
 - **Conditional Logic Belongs INSIDE the Hook, Not Around It**:
-    
-      
+
     - You cannot conditionally call a hook, but you **can** execute conditional logic within the hook itself:
-        
-          
-        
-        
-        ```JavaScript
-        // BAD: Conditional hook
-        if (isPremium) useEffect(() => { ... }, []);
-        
-        // GOOD: Condition inside the hook
-        useEffect(() => {
-          if (!isPremium) return;
-          // Perform synchronization
-        }, [isPremium]);
-        ```
-        
+
+```javascript
+// BAD: Conditional hook
+if (isPremium) useEffect(() => { ... }, []);
+
+// GOOD: Condition inside the hook
+useEffect(() => {
+  if (!isPremium) return;
+  // Perform synchronization
+}, [isPremium]);
+```
+
 - **Custom Hooks as Abstraction Boundaries**:
-    
-      
+
     - Custom hooks are standard functions that execute within the calling component’s current Fiber context. Their internal hooks are seamlessly inserted into the caller's linked list in the exact order they execute.
-        
-          
-        
 
 ## Code Snippets / Examples
 
-
-```JavaScript
+```javascript
 import { useState, useEffect } from 'react';
 
 // 1. VIOLATION: Conditional Hook Placement
@@ -284,40 +222,23 @@ function mountWorkInProgressHook() {
 ## Related Topics
 
 - [[React Fiber Architecture and Non-Blocking Rendering|React Fiber Architecture]]
-    
-      
-    
+
 - [[React useEffect and Synchronization Architecture]]
-    
-      
-    
+
 - [[React Lifecycle and Execution Flow|React Component Lifecycle]]
-    
-      
-    
+
 - [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #react-hooks #rules-of-hooks #fiber #linked-list #mermaid
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

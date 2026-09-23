@@ -56,101 +56,56 @@
 ## Common Interview Questions
 
 - "What is event loop starvation, and how does it happen in a single-threaded runtime like Node.js or the browser?"
-    
-      
-    
+
 - "Why does an infinite recursive `Promise.resolve().then(...)` freeze an application, while a recursive `setTimeout(..., 0)` does not?"
-    
-      
-    
+
 - "What is the difference in starvation potential between `process.nextTick()` and `setImmediate()` in Node.js?"
-    
-      
-    
+
 - "How would you process an array with 1,000,000 items on the main thread without blocking incoming network requests or freezing the UI?"
-    
-      
-    
+
 - "What is the new `scheduler.yield()` API in modern browsers, and how does it improve upon `setTimeout(fn, 0)`?"
-    
-      
-    
+
 - "How do you detect event loop lag or starvation in a production Node.js service?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Microtask Recursion vs. Macrotask Recursion
 
 - **Recursive Microtask (`Promise.resolve().then(...)`)**:
-    
-      
+
     - The Event Loop drains the Microtask Queue _until it contains zero tasks_.
-        
-          
-        
+
     - If Microtask A enqueues Microtask B, Microtask B is added to the _current_ draining cycle and executed immediately after A.
-        
-          
-        
+
     - The Event Loop **never leaves the microtask phase**. Timers, network I/O, and UI repaints starve completely.
-        
-          
-        
+
 - **Recursive Macrotask (`setTimeout(..., 0)` or `setImmediate`)**:
-    
-      
+
     - The Event Loop processes **one macrotask at a time** (or up to a batch limit in some engines).
-        
-          
-        
+
     - Enqueueing another macrotask places it at the _back_ of the Macrotask Queue for the _next_ iteration of the loop.
-        
-          
-        
+
     - Between iterations, the Call Stack clears, the Microtask Queue is inspected, pending I/O events are polled, and browser render pipelines can run. **No starvation occurs.**
-        
-          
-        
 
 ### 2. Node.js Specifics: `process.nextTick` vs `setImmediate`
 
 - `process.nextTick` is processed prior to standard microtasks and before returning to the libuv event loop phases.
-    
-      
-    
+
 - Recursive `process.nextTick` calls will completely block the libuv event loop from entering the `Poll` phase (where I/O happens), meaning no database queries or HTTP requests can be served.
-    
-      
-    
+
 - `setImmediate` queues callbacks in the `Check` phase of libuv; even if scheduled repeatedly, libuv processes other phases (timers, poll, I/O) on subsequent turns of the loop.
-    
-      
-    
 
 ### 3. Chunking & Time-Slicing Strategies
 
 - Instead of computing 10,000,000 items in a single blocking `for` loop, process items in batches (e.g., 500 items per tick).
-    
-      
-    
+
 - After each batch, yield execution back to the host environment using a macrotask or browser scheduling API, allowing pending network packets, clicks, or paints to interleave.
-    
-      
-    
 
 ### 4. Production Detection: Event Loop Delay Monitoring
 
 - In Node.js, monitor the event loop lag using `perf_hooks.monitorEventLoopDelay({ resolution: 20 })`.
-    
-      
-    
+
 - If the delay spikes above a safety threshold (e.g., > 50-100ms), alert monitoring systems (Datadog/Prometheus), shed incoming traffic (return `503 Service Unavailable`), or offload work to worker pools.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -171,7 +126,7 @@ function starveLoop() {
 // ==========================================
 function nonStarvingLoop() {
   // Yields to macrotask queue; allows timers, I/O, and rendering between ticks
-  setTimeout(nonStarvingLoop, 0); 
+  setTimeout(nonStarvingLoop, 0);
 }
 nonStarvingLoop();
 setTimeout(() => console.log("I WILL print successfully!"), 100);
@@ -289,40 +244,23 @@ if (isMainThread) {
 ## Related Topics
 
 - [[Asynchronous JavaScript, Event Loop & Concurrency Model]]
-    
-      
-    
+
 - [[Asynchronous JavaScript, Event Loop & Concurrency Model|Node.js Runtime Architecture and Libuv]]
-    
-      
-    
+
 - [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Web Workers and Multithreaded JavaScript in Browsers]]
-    
-      
-    
+
 - [[Web Vitals Optimization LCP INP and FCP|Frontend Performance: INP, Long Tasks and Main Thread Scheduling]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #event-loop #starvation #concurrency #nodejs #performance
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

@@ -64,96 +64,54 @@
 ## Common Interview Questions
 
 - "What is the difference between `prototype` and `__proto__`?"
-    
-      
-    
+
 - "What four steps happen behind the scenes when the `new` keyword is executed?"
-    
-      
-    
+
 - "How do you implement inheritance using pure ES5 constructor functions and `Object.create()`?"
-    
-      
-    
+
 - "Why should methods be added to `Constructor.prototype` instead of inside `this.method = function()` inside the constructor?"
-    
-      
-    
+
 - "What are static methods in JavaScript, how were they created before ES6 `class`, and can instances access them?"
-    
-      
-    
+
 - "What does `Object.create(proto)` do under the hood, and how does it differ from `new`?"
-    
-      
-    
+
 - "What happens if a constructor function explicitly returns a primitive vs. an object?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Memory Efficiency: Prototype Methods vs. In-Constructor Methods
 
 - Defining methods inside a constructor (`this.greet = function() { ... }`):
-    
-      
+
     - Every single instance allocates a completely new closure/function object in heap memory. 10,000 instances create 10,000 separate function instances.
-        
-          
-        
+
 - Defining methods on `Constructor.prototype` (`Constructor.prototype.greet = function() { ... }`):
-    
-      
+
     - Only **one** copy of the function exists in memory on the prototype object. All 10,000 instances delegate lookups to that single shared reference via the prototype chain.
-        
-          
-        
 
 ### 2. Prototypal Inheritance Implementation (ES5 Pattern)
 
 - To make a child constructor inherit from a parent constructor:
-    
-      
+
     1. **Call Parent Constructor for Own Properties**: Use `Parent.call(this, args)` inside `Child` to initialize instance properties on the newly created `this`.
-        
-          
-        
+
     2. **Link the Prototypes**: Use `Child.prototype = Object.create(Parent.prototype)` so child instances delegate method lookups to parent prototype.
-        
-          
-        
+
     3. **Reset the Constructor Pointer**: `Object.create` overwrites `Child.prototype.constructor`. Always manually reset `Child.prototype.constructor = Child`, or instance checks like `instance.constructor` will erroneously point to `Parent`.
-        
-          
-        
 
 ### 3. Static Methods: Placement and Inheritance
 
 - Static methods are utility functions that belong to the namespace of the constructor/class (e.g., `Array.isArray()`, `Object.keys()`).
-    
-      
-    
+
 - In ES5: Defined by assigning directly to the constructor: `Child.myStaticMethod = function() {}`.
-    
-      
-    
+
 - In ES6 `class Child extends Parent`: Static methods are also inherited because the engine sets `Object.setPrototypeOf(Child, Parent)`. In manual ES5 prototypes, static methods on `Parent` must be manually copied or linked via `Object.setPrototypeOf(Child, Parent)`.
-    
-      
-    
 
 ### 4. Constructor Return Values
 
 - If a constructor returns a primitive (`return 42;`, `return "string";`, `return true;`), the engine **ignores** the return statement and returns the freshly constructed `this` instance.
-    
-      
-    
+
 - If a constructor returns a complex object (`return { custom: true };`), the engine **discards** `this` and returns that custom object instead (breaking the instance prototype link to `Constructor.prototype`).
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -267,40 +225,23 @@ console.log(new OverriddenObject().value);   // "Hijacked Object"
 ## Related Topics
 
 - [[JavaScript Data Types, Objects & Prototypal Inheritance]]
-    
-      
-    
+
 - [[JavaScript Functions. Architecture, Patterns & Mechanics|JavaScript Functions: Architecture, Patterns & Mechanics]]
-    
-      
-    
+
 - [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
-    
-      
-    
+
 - [[Object-Oriented Programming (OOP) in JavaScript & TypeScript|ES6 Classes: Private Fields, Inheritance, and Method Overriding]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #prototype #prototypal-inheritance #constructor-functions #new-operator
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

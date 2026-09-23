@@ -63,135 +63,74 @@
 ## Common Interview Questions
 
 - "What is the difference between `Map` and a plain JavaScript object? When would you choose one over the other?"
-    
-      
-    
+
 - "What are `WeakMap` and `WeakSet` used for in real-world applications? Why can't you iterate over them?"
-    
-      
-    
+
 - "What types are dropped or mutated when passing an object through `JSON.stringify()`?"
-    
-      
-    
+
 - "How does a `TypedArray` differ from a standard JavaScript `Array` in terms of memory layout and performance?"
-    
-      
-    
+
 - "How does `Set` evaluate uniqueness? Does it treat `{ id: 1 }` and `{ id: 1 }` as duplicates?"
-    
-      
-    
+
 - "What happens when you try to stringify an object containing circular references or a `BigInt`?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. `Map` vs. Plain `Object`: Decision Matrix
 
 - **Use `Map` when**:
-    
-      
+
     - Keys are unknown until runtime, or keys are complex types (objects, DOM nodes, functions).
-        
-          
-        
+
     - You need frequent additions and removals (engines optimize `Map` for frequent mutations).
-        
-          
-        
+
     - Preserving insertion order is critical for iteration.
-        
-          
-        
+
     - You need quick access to total entry count via `.size`.
-        
-          
-        
+
 - **Use Plain `Object` when**:
-    
-      
+
     - You have fixed, known schemas/shapes (allowing V8 hidden classes and inline caching to optimize property access).
-        
-          
-        
+
     - You need direct JSON serialization (`JSON.stringify` works natively on plain objects, not `Map`).
-        
-          
-        
+
     - You need simple record-like key-value structures.
-        
-          
-        
 
 ### 2. Weak Collections (`WeakMap`, `WeakSet`) & Memory Leaks
 
 - **Core Mechanism**: They do not prevent the Garbage Collector from freeing their keys.
-    
-      
-    
+
 - **Why Non-Iterable**: Because garbage collection is non-deterministic (depends on engine heuristics), exposing iteration, keys, or `.size` would yield non-deterministic results across runs.
-    
-      
-    
+
 - **Primary Use Cases**:
-    
-      
+
     - **DOM Node Metadata**: Storing listener state, analytics tags, or cache data tied to DOM elements. When the DOM element is removed from the tree, the associated cache entry is cleaned up automatically without explicit teardown code.
-        
-          
-        
+
     - **Private Data / Encapsulation**: Storing private instance fields in legacy/pre-ES2022 code without exposing properties on the instance.
-        
-          
-        
 
 ### 3. JSON Serialization Edge Cases
 
 - Properties with values of `undefined`, `Function`, or `Symbol` are:
-    
-      
+
     - **Omitted** entirely when found in objects.
-        
-          
-        
+
     - Converted to `null` when found in arrays.
-        
-          
-        
+
 - `NaN` and `Infinity` are converted to `null`.
-    
-      
-    
+
 - `Date` objects are converted to ISO strings via `Date.prototype.toJSON()`.
-    
-      
-    
+
 - `BigInt` throws a `TypeError: Do not know how to serialize a BigInt`.
-    
-      
-    
+
 - Circular references throw `TypeError: Converting circular structure to JSON`.
-    
-      
-    
 
 ### 4. `ArrayBuffer` and `TypedArray` Mechanics
 
 - An `ArrayBuffer` represents a fixed-length raw binary buffer; you cannot directly access or mutate its byte values.
-    
-      
-    
+
 - A `TypedArray` (or `DataView`) is an indexed view over an `ArrayBuffer` allocating specific byte widths (e.g., `Uint8Array` uses 1 byte per slot, `Float64Array` uses 8 bytes per slot).
-    
-      
-    
+
 - Standard arrays can suffer from de-optimizations when transitioning between dense (continuous indices) and sparse (holey) layouts; `TypedArray` guarantees contiguous, unboxed numeric memory allocations.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -214,7 +153,7 @@ clickTracker.set(domElement, { clickCount: 0 });
 
 // Later, when domElement is removed from DOM:
 domElement.remove();
-domElement = null; 
+domElement = null;
 // The { clickCount: 0 } entry in WeakMap is eligible for Garbage Collection
 ```
 
@@ -272,40 +211,23 @@ console.log(int32View.byteLength); // 16
 ## Related Topics
 
 - [[JavaScript Data Types, Objects & Prototypal Inheritance]]
-    
-      
-    
+
 - [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Memory Management and Garbage Collection in V8]]
-    
-      
-    
+
 - [[JavaScript Loops, Iteration Protocols & Data Structure Traversal|Iterables, Iterators, and Generators]]
-    
-      
-    
+
 - [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Streams, Buffers, and Binary Data in Node.js]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #data-structures #map #set #typedarray #json
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

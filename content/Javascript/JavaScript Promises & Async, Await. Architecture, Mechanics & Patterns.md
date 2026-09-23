@@ -68,9 +68,7 @@ getUser().then(user => {
     return generateInvoice(user, orders);
   });
 });
-
 ```
-
 
 With `async/await`, both `user` and `orders` remain in the same function scope naturally without nesting.
 
@@ -114,7 +112,6 @@ async function fetchDashboardDataClean(userId) {
     throw error;
   }
 }
-
 ```
 
 ### 2. Avoiding the Sequential Waterfall: Concurrency Optimization
@@ -142,7 +139,6 @@ async function loadConcurrent() {
   const [user, config] = await Promise.all([userPromise, configPromise]);
   return { user, config };
 }
-
 ```
 
 ### 3. How Async/Await Functions Under the Hood (Generator Polyfill)
@@ -187,7 +183,6 @@ const calculate = runner(function* () {
 });
 
 calculate().then(console.log); // 30
-
 ```
 
 ### 4. Handling Errors with Async/Await: The Go-Style Tuple Pattern
@@ -208,7 +203,6 @@ async function handleRequest(userId) {
 
   return { status: 200, user };
 }
-
 ```
 
 ## Comparison Matrix: Raw Promises vs. Async/Await

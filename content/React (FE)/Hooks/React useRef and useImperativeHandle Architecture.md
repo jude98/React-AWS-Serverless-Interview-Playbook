@@ -14,7 +14,6 @@
 
 ## State vs Ref Mental Model
 
-
 ```mermaid
 flowchart TD
     subgraph SET_STATE ["useState Flow"]
@@ -38,7 +37,6 @@ flowchart TD
 
 ## How useImperativeHandle Encapsulates Component APIs
 
-
 ```mermaid
 flowchart LR
     subgraph PARENT ["Parent Component"]
@@ -59,20 +57,18 @@ flowchart LR
 
 ## Decision Matrix: When to Use vs Avoid useRef
 
-
-
 ```mermaid
 flowchart TD
     Q1{"Does changing the value need<br/>to update what is visible on screen?"}
-    
+
     Q1 -->|YES| A1["DO NOT USE useRef!<br/>Use useState or useReducer"]
-    
+
     Q1 -->|NO| Q2{"Are you directly controlling non-React APIs?<br/>(DOM focus, media playback, canvas, WebSockets)"}
-    
+
     Q2 -->|YES| USE_REF["USE useRef: Essential DOM Escape Hatch"]
-    
+
     Q2 -->|NO| Q3{"Are you storing mutable operational metadata?<br/>(Timer IDs, prev props, render counters, abort controllers)"}
-    
+
     Q3 -->|YES| USE_REF
     Q3 -->|NO| A2["Calculate value inline during render"]
 ```
@@ -82,149 +78,87 @@ flowchart TD
 ### 1. What is `useRef`?
 
 - Returns a plain JavaScript object: `{ current: initialValue }`.
-    
-      
-    
+
 - React preserves this exact object instance across every single render pass within the component's Fiber node (`hook.memoizedState`).
-    
-      
-    
+
 - **Two Distinct Use Cases**:
-    
-      
+
     1. **Referencing DOM nodes**: Directly accessing native DOM elements (`<div ref={myRef}>`).
-        
-          
-        
+
     2. **Storing Mutable Class-like Instance Variables**: Storing timer IDs, animation frame handles, previous state snapshots, or flag booleans that persist across renders without triggering layout or re-renders.
-        
-          
-        
 
 ### 2. When to Use `useRef`
 
 - **DOM Manipulations**: Managing focus, text selection, measuring layout dimensions (`getBoundingClientRect()`), scrolling to a view, or controlling HTML5 `<video>` / `<audio>` playback.
-    
-      
-    
+
 - **Integrating Third-Party Imperative Libraries**: Wrapping D3 charts, Leaflet/Mapbox maps, or GSAP animations that manage their own internal DOM.
-    
-      
-    
+
 - **Storing Mutable State Independent of UI**:
-    
-      
+
     - `setInterval` / `setTimeout` IDs for clean disposal.
-        
-          
-        
+
     - Tracking whether a component has mounted (`isMountedRef.current`).
-        
-          
-        
+
     - Storing previous state or prop values across renders.
-        
-          
-        
 
 ### 3. When NOT to Use `useRef` (Anti-Patterns)
 
 - **Do NOT use it for values displayed in JSX**: If changing a variable must make changes visible in the UI, it belongs in `useState`. Mutating `ref.current` will leave the UI stale.
-    
-      
-    
+
 - **Do NOT read or write `ref.current` during rendering**:
-    
-      
-    
-    ```JavaScript
-    // CRITICAL ANTI-PATTERN: Reading/writing ref during render
-    function BadComponent() {
-      const myRef = useRef(0);
-      myRef.current++; // IMPURE! Modifying ref during render phase
-      return <div>{myRef.current}</div>;
-    }
-    ```
-    
+
+```javascript
+// CRITICAL ANTI-PATTERN: Reading/writing ref during render
+function BadComponent() {
+  const myRef = useRef(0);
+  myRef.current++; // IMPURE! Modifying ref during render phase
+  return <div>{myRef.current}</div>;
+}
+```
+
     _Why_: The Render Phase can be paused, aborted, and re-executed multiple times by the concurrent scheduler. Mutating refs during render introduces non-deterministic bugs. **Refs should only be read or written inside event handlers or `useEffect`**.
-    
-      
-    
+
 - **Do NOT bypass React’s declarative model**: Avoid using refs to modify DOM properties that React manages (e.g., manually updating `ref.current.textContent = 'hello'` or calling `ref.current.remove()`), as this corrupts React's internal Virtual DOM tree tracking.
-    
-      
-    
 
 ### 4. What is `useImperativeHandle`?
 
 - Customizes the instance value exposed when a parent attaches a `ref` to a child component.
-    
-      
-    
+
 - **Syntax**: `useImperativeHandle(ref, createHandle, dependencies)`
-    
-      
-    
+
 - **Why it matters**: Protects component encapsulation. Instead of leaking the raw DOM node to the parent (which allows the parent to read arbitrary values or mutate child styles), the child exposes a limited set of strictly defined methods.
-    
-      
-    
 
 ## Common Interview Questions
 
 - What is `useRef`, and how does it differ fundamentally from `useState`?
-    
-      
-    
+
 - Why doesn't mutating `ref.current` trigger a component re-render?
-    
-      
-    
+
 - Why is reading or writing `ref.current` during the Render Phase considered an anti-pattern?
-    
-      
-    
+
 - What problem does `useImperativeHandle` solve, and when should it be preferred over a raw DOM ref?
-    
-      
-    
+
 - How does passing a `ref` to a custom component work in React 19 vs older React versions using `forwardRef`?
-    
-      
-    
+
 - How do you preserve the previous value of a prop or state across renders using `useRef`?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 - **The Heap Storage Analogy**:
-    
-      
+
     - `useRef` is conceptually equivalent to an instance field on a class component (`this.myVariable = value`). It lives directly on the Fiber's hook node in heap memory, independent of functional closures.
-        
-          
-        
+
 - **The Purity Rule of Rendering**:
-    
-      
+
     - React components must be pure functions during rendering. Reading or mutating `ref.current` in the function body makes the render output non-deterministic. If React's concurrent mode restarts an interrupted render pass, the ref could contain an unexpected, half-mutated value.
-        
-          
-        
+
 - **Encapsulation with `useImperativeHandle`**:
-    
-      
+
     - Exposing raw DOM nodes via ref breaks component abstraction boundaries. If a parent can reach into a child and mutate its DOM styles directly, the child is no longer self-contained. `useImperativeHandle` restores encapsulation by defining an explicit imperative contract between parent and child.
-        
-          
-        
 
 ## Code Snippets / Examples
 
-
-```JavaScript
+```javascript
 import { useRef, useEffect, useState } from 'react';
 
 // 1. Correct Use Case: Storing Timer IDs & Preserving Previous State
@@ -259,8 +193,7 @@ export function TimerComponent({ count }) {
 }
 ```
 
-
-```JavaScript
+```javascript
 import { useRef, useImperativeHandle } from 'react';
 
 // 2. useImperativeHandle: Exposing a safe, restricted API to parents
@@ -306,40 +239,23 @@ export function App() {
 ## Related Topics
 
 - [[React State and Props Architecture]]
-    
-      
-    
+
 - [[React useEffect and Synchronization Architecture]]
-    
-      
-    
+
 - [[React Fiber Architecture and Non-Blocking Rendering]]
-    
-      
-    
+
 - [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #react-hooks #useref #useimperativehandle #dom-manipulation #mermaid
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

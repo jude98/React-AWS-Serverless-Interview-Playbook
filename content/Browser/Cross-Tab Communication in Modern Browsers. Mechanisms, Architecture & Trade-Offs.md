@@ -42,133 +42,74 @@
 ## Common Interview Questions
 
 - "What are the different ways to communicate between two browser tabs under the same origin?"
-    
-      
-    
+
 - "Compare `BroadcastChannel` vs. `localStorage` + `storage` event for cross-tab communication."
-    
-      
-    
+
 - "How does a `SharedWorker` coordinate state between tabs, and what are its browser compatibility limitations?"
-    
-      
-    
+
 - "Does the `storage` event fire in the same tab that updated `localStorage`? Why or why not?"
-    
-      
-    
+
 - "How do you ensure only ONE tab maintains an active WebSocket connection while sharing received messages across 10 open tabs?"
-    
-      
-    
+
 - "What are the trade-offs of using `IndexedDB` with polling vs. `BroadcastChannel`?"
-    
-      
-    
 
 ## Deep Dive: Mechanisms & Trade-Offs
 
 ### 1. BroadcastChannel API
 
 - **How it works**: Creates an named pub/sub channel. Any tab, iframe, or worker that joins that same channel name receives broadcast messages via `postMessage()`.
-    
-      
-    
+
 - **Data Transmission**: Uses the **Structured Clone Algorithm** (transfers objects, arrays, blobs, and maps without manual `JSON.stringify()`).
-    
-      
-    
+
 - **Trade-Offs**:
-    
-      
+
     - _Pros_: Clean, modern API; lowest latency for pub/sub; zero disk I/O; clean lifecycle.
-        
-          
-        
+
     - _Cons_: **Ephemeral** (fire-and-forget). If a tab opens after a message was sent, it will never receive that message (no message persistence).
-        
-          
-        
 
 ### 2. SharedWorker
 
 - **How it works**: Spawns a single worker thread shared across all open tabs. Each tab establishes an explicit two-way bidirectional connection via a `MessagePort`.
-    
-      
-    
+
 - **Centralized Brain**: Because the `SharedWorker` persists in memory as long as at least one connected tab remains open, it can hold in-memory singletons, manage an authoritative state store, or maintain a **single shared WebSocket connection** across 20 open tabs.
-    
-      
-    
+
 - **Trade-Offs**:
-    
-      
+
     - _Pros_: True shared state memory; enables bidirectional hub-and-spoke coordination; reduces server load.
-        
-          
-        
+
     - _Cons_: **Poor mobile browser support** (unsupported in Android Chrome and iOS Safari); more complex connection boilerplate (`port.start()`, `onconnect`).
-        
-          
-        
 
 ### 3. `localStorage` + `storage` Event
 
 - **How it works**: When Tab A executes `localStorage.setItem('key', val)`, the browser fires a `storage` event on `window` in **all other tabs** of the same origin. The writing tab does **not** receive the event.
-    
-      
-    
+
 - **Data Transmission**: Strings only (requires manual serialization via `JSON.stringify()`).
-    
-      
-    
+
 - **Trade-Offs**:
-    
-      
+
     - _Pros_: Universal compatibility (even ancient legacy browsers); built-in persistence (new tabs can read current state on load).
-        
-          
-        
+
     - _Cons_: Synchronous disk I/O blocks the main thread; 5MB quota limit; only triggers when the stored value _actually changes_ (workaround: appending `Date.now()`).
-        
-          
-        
 
 ### 4. Service Worker (`Clients.matchAll()`)
 
 - **How it works**: Tabs post a message to the active Service Worker via `navigator.serviceWorker.controller.postMessage()`. The Service Worker uses `self.clients.matchAll()` to iterate over and broadcast messages to all open tab clients.
-    
-      
-    
+
 - **Trade-Offs**:
-    
-      
+
     - _Pros_: Works offline; unifies network caching and cross-tab notification pipelines.
-        
-          
-        
+
     - _Cons_: Ephemeral lifecycle (Service Workers are killed by the browser when idle and spun back up on demand); overkill for simple tab-to-tab messaging.
-        
-          
-        
 
 ### 5. `window.postMessage` (Direct Parent-Child)
 
 - **How it works**: If Tab A opened Tab B via `const tabB = window.open('...')`, Tab A holds a direct reference to Tab B's `window` object, and Tab B accesses Tab A via `window.opener`.
-    
-      
-    
+
 - **Trade-Offs**:
-    
-      
+
     - _Pros_: Can bypass the Same-Origin Policy if explicit target origins are supplied (`postMessage(msg, '[https://other-domain.com](https://other-domain.com)')`).
-        
-          
-        
+
     - _Cons_: **Only works between windows with an opener hierarchy**. Independent tabs opened separately by the user cannot communicate this way.
-        
-          
-        
 
 ## Code Snippets / Examples
 
@@ -253,7 +194,7 @@ let socket = null;
 function initSocket() {
   if (socket) return;
   socket = new WebSocket("wss://api.example.com/live-feed");
-  
+
   socket.onmessage = (event) => {
     // Fan-out socket messages to ALL connected tabs
     for (const port of ports) {
@@ -265,7 +206,7 @@ function initSocket() {
 self.onconnect = (event) => {
   const port = event.ports[0];
   ports.add(port);
-  
+
   initSocket(); // Connect to server once across all tabs
 
   port.onmessage = (e) => {
@@ -282,15 +223,13 @@ self.onconnect = (event) => {
 
 In many real-world systems, you want **one tab** to act as the leader (handling polling or maintaining a WebSocket), while other tabs stay passive:
 
-  
-
 ```javascript
 // Modern standard: Web Locks API automatically elects and migrates leadership
 async function participateInLeaderElection() {
   // Navigator.locks manages cross-tab mutexes natively
   await navigator.locks.request("app_master_coordinator", async (lock) => {
     console.log("This tab is now the elected LEADER!");
-    
+
     // Start active background tasks
     const pollInterval = setInterval(() => fetchServerUpdates(), 5000);
 
@@ -315,40 +254,23 @@ participateInLeaderElection();
 ## Related Topics
 
 - [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Client-Side Browser Storage: Mechanisms, Architecture & Security]]
-    
-      
-    
+
 - [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
-    
-      
-    
+
 - [[DOM Event Listeners, Browser Memory Management & Teardown Mechanics]]
-    
-      
-    
+
 - [[Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs|WebSockets, Server-Sent Events (SSE) & Real-Time Architectures]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #browser #cross-tab-communication #broadcast-channel #shared-worker #localstorage #weblocks
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

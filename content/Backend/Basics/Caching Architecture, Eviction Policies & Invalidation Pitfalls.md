@@ -3,66 +3,36 @@
 ## Key Concepts
 
 - **Caching Objective:** Trade memory overhead for sub-millisecond retrieval latency, protecting primary data stores (e.g., PostgreSQL, DynamoDB) from query amplification and CPU bottlenecks.
-    
-      
-    
+
 - **Cache Topologies:**
-    
-      
+
     - **In-Memory / Local:** Stored directly inside application process memory (e.g., Node.js Heap, LRU-cache). Ultra-fast (nanoseconds), but isolated to specific instances and vulnerable to memory thrashing/cold starts across autoscaling fleets.
-        
-          
-        
+
     - **Distributed / Remote:** Dedicated external storage cluster (e.g., Redis, Memcached) shared across all application instances. Guarantees global consistency across the fleet at the cost of a network hop (1–5ms).
-        
-          
-        
+
 - **Core Caching Patterns:** Cache-Aside (Lazy Loading), Read-Through, Write-Through, and Write-Behind (Write-Back).
-    
-      
-    
+
 - **Eviction vs. Expiration:**
-    
-      
+
     - _Expiration (TTL):_ Deletes data when its lifespan expires.
-        
-          
-        
+
     - _Eviction:_ Proactively purges valid keys to free up space when memory limits (`maxmemory`) are reached.
-        
-          
-        
+
 - **Classic Caching Anomalies:** Cache Stampede (Dog-piling / Thundering Herd), Cache Penetration, Cache Breakdown, Hot Key Saturation, and Dual-Write Drift (Consistency).
-    
-      
-    
 
 ## Common Interview Questions
 
 - What are the operational trade-offs between Cache-Aside and Write-Through caching?
-    
-      
-    
+
 - In Write-Behind (Write-Back) caching, how do you handle potential data loss during node crashes?
-    
-      
-    
+
 - How do LRU, LFU, and FIFO eviction algorithms differ in implementation complexity and use cases?
-    
-      
-    
+
 - What is a Cache Stampede (Thundering Herd), and what strategies mitigate it under high concurrency?
-    
-      
-    
+
 - How do you resolve the "Dual-Write Problem" when updating both a cache and a database?
-    
-      
-    
+
 - How do you detect, scale, and protect against "Hot Keys" in distributed clusters like Redis?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
@@ -79,119 +49,69 @@
 
 When the cache hits memory boundaries (e.g., Redis `maxmemory-policy`), an eviction policy decides what to purge:
 
-  
-
 - **LRU (Least Recently Used):**
-    
-      
+
     - Purges keys that have not been requested for the longest time.
-        
-          
-        
+
     - _Mechanism:_ Doubly linked list + Hash map ($O(1)$ operations).
-        
-          
-        
+
     - _Best For:_ General web workloads where recent access predicts future access.
-        
-          
-        
+
 - **LFU (Least Frequently Used):**
-    
-      
+
     - Purges keys with the lowest hit counter over time.
-        
-          
-        
+
     - _Best For:_ Long-tail catalogs where popular assets must stay pinned regardless of short-lived bursts.
-        
-          
-        
+
 - **FIFO (First-In, First-Out):**
-    
-      
+
     - Purges the oldest keys by creation order, ignoring access frequency/recency.
-        
-          
-        
+
     - _Best For:_ Sequential time-series processing where older data loses relevance quickly.
-        
-          
-        
+
 - **Random / TTL-based (`volatile-ttl`):**
-    
-      
+
     - Purges random keys or prioritizes keys closest to their expiration timestamp.
-        
-          
-        
 
 ### 3. Critical Caching Pathologies & Production Fixes
 
 #### A. Cache Stampede (Thundering Herd / Breakdown)
 
 - **Problem:** A high-traffic key (e.g., homepage banner or live sports score) expires or gets invalidated. Hundreds of concurrent requests experience a cache miss simultaneously and hammer the primary database at the same instant, leading to thread exhaustion and cascade failure.
-    
-      
-    
+
 - **Mitigations:**
-    
-      
+
     1. **Distributed Mutex (Locking):** Only the first worker that misses the cache acquires a lock (via `SET NX EX`) to query the database and rebuild the cache; all other requests wait or return slightly stale data.
-        
-          
-        
+
     2. **Probabilistic Early Recomputation (XFetch Algorithm):** Recompute the key in the background _before_ it formally expires based on the cost of computing it and remaining TTL.
-        
-          
-        
+
     3. **Stale-While-Revalidate:** Return stale data immediately while triggering an asynchronous background job to fetch fresh state.
-        
-          
-        
 
 #### B. The Dual-Write Consistency Problem
 
 - **Problem:** Updating the DB and updating the cache concurrently can lead to out-of-order execution, leaving stale data permanently in the cache.
-    
-      
+
     - _Anti-Pattern:_ Updating DB, then calling `cache.set(key, newValue)`. Two concurrent updates ($T_1$ and $T_2$) can interleave: $T_1$ writes DB $\rightarrow$ $T_2$ writes DB $\rightarrow$ $T_2$ writes Cache $\rightarrow$ $T_1$ writes Cache (Cache now permanently holds stale $T_1$ data).
-        
-          
-        
+
 - **Solution:**
-    
-      
+
     - **Cache Eviction on Write:** Update the DB first, then **delete** the cache key (`cache.del(key)`). Next read repopulates from the DB.
-        
-          
-        
+
     - **Change Data Capture (CDC):** Use tools like Debezium + Kafka tailing the PostgreSQL write-ahead log (WAL) to invalidate cache asynchronously.
-        
-          
-        
 
 #### C. Hot Key Saturation
 
 - **Problem:** In a Redis cluster sharded by hash slots, an ultra-popular key lives on a single node. If that key receives 100k req/sec, that single shard reaches 100% CPU capacity while other cluster nodes sit idle.
-    
-      
-    
+
 - **Mitigations:**
-    
-      
+
     1. **Multi-Key Salted Sharding:** Append random suffixes to the key (`product:42:shard_1`, `product:42:shard_2`) and randomly balance client reads across shards.
-        
-          
-        
+
     2. **Local In-Process Layer (L1/L2 Cache):** Place a tiny in-memory LRU cache inside the application instances (L1, TTL 2–5 seconds) to absorb 95% of hits before reaching Redis (L2).
-        
-          
-        
 
 ## Code Snippets / Examples
 
-```TypeScript
+```typescript
 // ============================================================================
 // 1. Production Cache-Aside Pattern with Distributed Locking (Anti-Stampede)
 // ============================================================================
@@ -225,7 +145,7 @@ export class ProductService {
     const acquired = await this.cache.acquireLock(lockKey, 5); // 5 sec lock TTL
 
     if (!acquired) {
-      // Another thread is already regenerating the cache. 
+      // Another thread is already regenerating the cache.
       // Back off briefly and re-read cache instead of hitting the DB.
       await new Promise((resolve) => setTimeout(resolve, 100));
       const retryCached = await this.cache.get(cacheKey);
@@ -268,44 +188,25 @@ export class ProductService {
 ## Related Topics
 
 - [[CAP Theorem]]
-    
-      
-    
+
 - [[HTTP Methods, CORS, Status Codes & Caching]]
-    
-      
-    
+
 - [[Database Partitioning vs. Sharding|Database Replication Strategies]]
-    
-      
-    
+
 - [[CAP Theorem|Eventual Consistency]]
-    
-      
-    
+
 - [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Distributed Locking (Redlock, Optimistic Locking)]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #caching #redis #system-design #distributed-systems #performance
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

@@ -14,7 +14,6 @@
 
 ## Shared Code Definition vs Independent Fiber Allocations
 
-
 ```mermaid
 flowchart TD
     subgraph DEFINITION ["Single Shared Definition (Source Code)"]
@@ -27,7 +26,7 @@ flowchart TD
 
     subgraph FIBER_TREE ["Fiber Tree in Heap Memory (Completely Independent)"]
         F_Parent["App Fiber Node"]
-        
+
         subgraph FIBER_A ["Fiber Instance A (Element 1)"]
             A_State["memoizedState: count = 5"]
             A_Queue["updateQueue: empty"]
@@ -95,105 +94,60 @@ flowchart LR
 ### 1. State Isolation (No Global Contamination)
 
 - If you render `<Counter/>` ten times on the same page, there are ten separate `count` variables stored in memory.
-    
-      
-    
+
 - Modifying the state of Counter #1 has **zero impact** on Counter #2 through #10.
-    
-      
-    
+
 - State is tied to the **position of the element in the component tree**, not the function name.
-    
-      
-    
 
 ### 2. Independent Effect Lifecycles and Cleanups
 
 - Each instance tracks its own timers, event listeners, and cleanup callbacks.
-    
-      
-    
+
 - If Counter #1 unmounts, only Counter #1's `useEffect` cleanup function fires. Counter #2 keeps its event listeners and intervals running without interruption.
-    
-      
-    
 
 ### 3. Independent Reference Identity (`useRef`)
 
 - Every mounted element receives a dedicated `useRef` object (`{ current: ... }`).
-    
-      
-    
+
 - DOM references do not collide: `ref1.current` references the native DOM node of Element 1, while `ref2.current` references the distinct DOM node of Element 2.
-    
-      
-    
 
 ### 4. Independent Update Queues
 
 - Each Fiber node maintains its own `updateQueue`.
-    
-      
-    
+
 - When an interaction occurs on Element 1, React marks only Fiber 1 with dirty Lane flags. Element 2 is not scheduled for re-execution unless the shared parent re-renders and passes down new props.
-    
-      
-    
 
 ## Common Interview Questions
 
 - What does the phrase "each component instance has its own isolated state" mean in React?
-    
-      
-    
+
 - If two elements use the exact same custom hook, do they share state?
-    
-      
-    
+
 - How does React maintain separate state for two identical `<Dropdown/>` components rendered side-by-side?
-    
-      
-    
+
 - What would happen if a developer used an external variable outside the component body to store state instead of `useState`?
-    
-      
-    
+
 - How do you intentionally share state between two independent component instances?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 - **The Custom Hook Illusion**:
-    
-      
+
     - _Common misconception_: Candidates often assume that using a custom hook (e.g., `useAuth()` or `useWindowSize()`) shares state between components.
-        
-          
-        
+
     - _Accurate answer_: Custom hooks share **stateful logic**, not state itself. Each component calling a custom hook allocates its own set of hook nodes on its own Fiber.
-        
-          
-        
+
 - **The Module-Level Variable Trap**:
-    
-      
+
     - If a developer declares `let globalCount = 0;` outside the component function, all instances read and mutate the same shared pointer, breaking component isolation and introducing severe race conditions and non-deterministic UI bugs.
-        
-          
-        
+
 - **Breaking Isolation Deliberately (Lifting State Up)**:
-    
-      
+
     - If two elements _must_ coordinate (e.g., an accordion where opening one tab closes the other), you must deliberately break isolation by **lifting state up** to their closest common ancestor or placing it into a shared Context / external store.
-        
-          
-        
 
 ## Code Snippets / Examples
 
-```JavaScript
+```javascript
 import { useState, useRef, useEffect } from 'react';
 
 // Shared function definition:
@@ -246,8 +200,7 @@ export function Dashboard() {
 }
 ```
 
-
-```JavaScript
+```javascript
 // THE ANTI-PATTERN: Breaking isolation with module-level state
 let sharedCount = 0; // BUG: Shared across ALL instances globally!
 
@@ -266,40 +219,23 @@ export function BrokenWidget() {
 ## Related Topics
 
 - [[React State and Props Architecture]]
-    
-      
-    
+
 - [[Rules of Hooks and Internal Linked List Architecture]]
-    
-      
-    
+
 - [[React Fiber Architecture and Non-Blocking Rendering]]
-    
-      
-    
+
 - [[React Reconciliation and Diffing Algorithm]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #react-architecture #component-isolation #fiber #state-management #mermaid
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

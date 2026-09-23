@@ -86,7 +86,6 @@ const account = createBankAccount(100);
 account.deposit(50);
 console.log(account.getBalance()); // 150
 console.log(account.balance);       // undefined (cannot be accessed or tampered with directly!)
-
 ```
 
 ### 2. Function Currying & Custom Memoization
@@ -123,7 +122,6 @@ const slowSquare = (n) => {
 const fastSquare = memoize(slowSquare);
 console.log(fastSquare(4)); // Computed: 16
 console.log(fastSquare(4)); // Pulled from cache: 16
-
 ```
 
 ### 3. Classic Output Prediction Interview Puzzles
@@ -185,7 +183,6 @@ const [getVal, setVal] = setupGettersSetters();
 console.log(getVal()); // 0
 setVal(42);
 console.log(getVal()); // 42 (Both functions close over the EXACT SAME memory location)
-
 ```
 
 ## Comparison Matrix: Closure vs. Class / Prototype State

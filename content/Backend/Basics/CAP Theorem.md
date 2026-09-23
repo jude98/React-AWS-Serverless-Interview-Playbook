@@ -3,60 +3,32 @@
 ## Key Concepts
 
 - Formulated by Eric Brewer; states that a distributed data store can simultaneously provide at most two out of three guarantees: **Consistency**, **Availability**, and **Partition Tolerance**.
-    
-      
-    
+
 - In any distributed network, network partitions (dropped messages, network latency spikes, node isolation) are inevitable.
-    
-      
-    
+
 - Therefore, the real architectural choice is not "pick two out of three," but **how the system behaves during a network partition: Consistency vs. Availability (CP vs. AP)**.
-    
-      
-    
+
 - **Consistency ($C$):** Linearizability / Single-system image. Every read receives the most recent write or an error.
-    
-      
-    
+
 - **Availability ($A$):** Every non-failing node returns a non-error response for every request (no guarantee it contains the latest write).
-    
-      
-    
+
 - **Partition Tolerance ($P$):** The system continues to operate despite arbitrary message loss or communication delay across nodes.
-    
-      
-    
+
 - When no partition exists ($P$ is healthy), the trade-off shifts to **Latency vs. Consistency** (formalized by the [[CAP Theorem|PACELC Theorem]]).
-    
-      
-    
 
 ## Common Interview Questions
 
 - What is the CAP theorem, and why is "pick two of three" technically misleading?
-    
-      
-    
+
 - How does "Consistency" in CAP differ from the "C" in ACID?
-    
-      
-    
+
 - What happens to a CP system versus an AP system when a network partition occurs?
-    
-      
-    
+
 - Can you classify databases like PostgreSQL, Cassandra, MongoDB, and DynamoDB under CAP?
-    
-      
-    
+
 - What is the PACELC theorem, and how does it extend CAP?
-    
-      
-    
+
 - How do consensus algorithms like Raft or Paxos relate to CAP guarantees?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
@@ -69,38 +41,22 @@
 >   
 
 - **Consistency ($C$):**
-    
-      
+
     - Academic definition: **Linearizability**.
-        
-          
-        
+
     - Contrast with ACID: ACID consistency means data integrity rules/invariants (e.g., foreign keys, check constraints) are preserved. CAP consistency strictly means read-after-write recency across replicas.
-        
-          
-        
+
 - **Availability ($A$):**
-    
-      
+
     - Academic definition: Every request to a healthy node must yield a non-error response.
-        
-          
-        
+
     - Contrast with SLA availability: High availability (99.999% uptime) is an operational metric. CAP availability explicitly disallows returning a `500 Internal Server Error` or a timeout during a partition.
-        
-          
-        
+
 - **Partition Tolerance ($P$):**
-    
-      
+
     - You cannot choose "CA" over wide-area networks; physical networks will eventually partition.
-        
-          
-        
+
     - Rejecting $P$ means assuming network communication never fails, which is impossible in real-world distributed infrastructure.
-        
-          
-        
 
 ### 2. CP vs. AP: Architectural Scenarios
 
@@ -114,40 +70,24 @@
 ### 3. When to Choose What (Trade-Off Framing)
 
 - **Choose CP when data divergence causes permanent business loss:**
-    
-      
+
     - _Example:_ Financial transactions, payment processing, ledger balances. It is better to fail the request with a timeout or retry error than to allow double-spending.
-        
-          
-        
+
 - **Choose AP when customer experience degrades more from downtime than temporary staleness:**
-    
-      
+
     - _Example:_ Product reviews, social media feeds, session carts. Users prefer viewing data that is a few seconds old over an application crash or blocked request.
-        
-          
-        
+
 - **Beyond CAP (PACELC):**
-    
-      
+
     - If Partition ($P$): Trade-off between Availability ($A$) and Consistency ($C$).
-        
-          
-        
+
     - Else ($E$): Trade-off between Latency ($L$) and Consistency ($C$).
-        
-          
-        
+
     - _Example:_ DynamoDB is PA/EL (favors availability during partitions, favors low latency during normal operation).
-        
-          
-        
 
 ## Code Snippets / Examples
 
-
-
-```TypeScript
+```typescript
 // Conceptual demonstration: Node behavior under a Network Partition
 
 type NodeState = {
@@ -176,7 +116,6 @@ function handleReadAP(node: NodeState): { status: number; data: string; warning?
 
 ## Related Topics
 
-
 - [[ACID Properties & Transaction Isolation Levels]]
 
 - [[Database Partitioning vs. Sharding]]
@@ -187,25 +126,16 @@ function handleReadAP(node: NodeState): { status: number; data: string; warning?
 
 - [[Amazon DynamoDB -  Architecture, Data Modeling & Scaling]]
 
-
 ## Tags
 
 #fullstack #interview #system-design #distributed-systems #cap-theorem
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

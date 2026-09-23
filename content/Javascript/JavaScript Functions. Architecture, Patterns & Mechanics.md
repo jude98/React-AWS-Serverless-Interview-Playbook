@@ -89,131 +89,72 @@
 ## Common Interview Questions
 
 - "What does it mean that functions are 'first-class citizens' in JavaScript?"
-    
-      
-    
+
 - "Compare Function Declarations, Anonymous Function Expressions, and Named Function Expressions in terms of hoisting and stack traces."
-    
-      
-    
+
 - "What are the four architectural differences between an arrow function and a regular function?"
-    
-      
-    
+
 - "Explain the difference between `arguments` and rest parameters (`...args`)."
-    
-      
-    
+
 - "What is an IIFE (Immediately Invoked Function Expression), and what problem did it solve before ES6?"
-    
-      
-    
+
 - "What is function composition, and how do you implement a `pipe` or `compose` utility from scratch?"
-    
-      
-    
+
 - "What is a Factory Function, and why would you use it instead of a Constructor Function or ES6 `class`?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Function Statement vs. Expression vs. Named Function Expression (NFE)
 
 - **Declaration / Statement**: `function calculateTotal() {}`. Hoisted in full; can live anywhere in the file.
-    
-      
-    
+
 - **Anonymous Expression**: `const handler = function() {}`. Anonymous expressions historically caused `(anonymous function)` entries in call stacks, making profiling and production error logs harder to debug.
-    
-      
-    
+
 - **Named Function Expression (NFE)**: `const factorial = function fact(n) { return n <= 1 ? 1 : n * fact(n - 1); };`.
-    
-      
+
     - The identifier `fact` is scoped exclusively to the function itself.
-        
-          
-        
+
     - Improves debuggability in call stacks.
-        
-          
-        
+
     - Prevents tight coupling to external variable names during recursion.
-        
-          
-        
 
 ### 2. The Mechanics of IIFEs (Immediately Invoked Function Expressions)
 
 - **Syntax**: `(function() { /* code */ })();` or `(() => { /* code */ })();`.
-    
-      
-    
+
 - **Primary Use Case**: Before ES6 block-scoping (`let`/`const`) and native ESM modules, any variable declared with `var` at the top level leaked onto `window`. IIFEs wrapped variables in an isolated function execution context, creating privacy and preventing global namespace pollution (Module Pattern).
-    
-      
-    
 
 ### 3. Constructor Functions vs. Factory Functions
 
 - **Constructor Functions**:
-    
-      
+
     - Capitalized convention: `function User(name) { this.name = name; }`.
-        
-          
-        
+
     - Calling with `new`:
-        
-          
+
         1. Creates a blank object `{}`.
-            
-              
-            
+
         2. Sets its `[[Prototype]]` link to `User.prototype`.
-            
-              
-            
+
         3. Executes `User` with `this` bound to the new object.
-            
-              
-            
+
         4. Returns `this` (unless the function explicitly returns another non-primitive object).
-            
-              
-            
+
 - **Factory Functions**:
-    
-      
+
     - `function createUser(name) { return { name, login() {} }; }`.
-        
-          
-        
+
     - Avoids `this` context binding issues (no bugs if someone forgets `new`).
-        
-          
-        
+
     - Simplifies composition over inheritance and enforces true data privacy via closures.
-        
-          
-        
 
 ### 4. Function Composition (`compose` vs. `pipe`)
 
 - Combines multiple pure, unary (single-argument) functions so the output of one function becomes the input of the next: $f(g(x))$.
-    
-      
-    
+
 - **`compose`**: Evaluates functions from **right to left** (mathematical standard: `compose(f, g)(x)` $\to$ `f(g(x))`).
-    
-      
-    
+
 - **`pipe`**: Evaluates functions from **left to right** (data-pipeline standard: `pipe(f, g)(x)` $\to$ `g(f(x))`).
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -300,7 +241,7 @@ const personA = new PersonConstructor("Alice");
 function createPersonFactory(name) {
   // Encapsulated private state via closure
   const createdAt = Date.now();
-  
+
   return {
     name,
     greet() {
@@ -355,40 +296,23 @@ console.log(formatPipeline("   HELLO WORLD  ")); // "<span>hello world</span>"
 ## Related Topics
 
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
-    
-      
-    
+
 - [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
-    
-      
-    
+
 - [[JavaScript Data Types, Objects & Prototypal Inheritance]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #functions #arrow-functions #iife #functional-programming #factory-pattern
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

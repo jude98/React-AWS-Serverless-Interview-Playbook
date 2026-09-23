@@ -72,33 +72,18 @@
 ## Common Interview Questions
 
 - "Compare `localStorage`, `sessionStorage`, and Cookies across capacity, lifecycle, server access, and performance."
-    
-      
-    
+
 - "Why should you NEVER store sensitive authentication tokens (like JWTs) in `localStorage`?"
-    
-      
-    
+
 - "What do the `HttpOnly`, `Secure`, and `SameSite` cookie attributes do?"
-    
-      
-    
+
 - "Explain the difference between `SameSite=Strict`, `SameSite=Lax`, and `SameSite=None`."
-    
-      
-    
+
 - "How does the `storage` event work, and does it fire in the same tab that performed the write?"
-    
-      
-    
+
 - "What are the limitations of `localStorage`, and when should you migrate to `IndexedDB`?"
-    
-      
-    
+
 - "How do you synchronize state across multiple open tabs using browser storage?"
-    
-      
-    
 
 ## Deep Dive & Talking Points
 
@@ -106,111 +91,61 @@
 
 Cookies were designed for server-side session continuity. Every HTTP request matching the cookie’s domain/path automatically serializes and transmits these cookies inside the `Cookie` request header.
 
-  
-
 - **`HttpOnly`**: Blocks client-side JavaScript access via `document.cookie`. Protects session identifiers from being stolen via XSS vulnerabilities.
-    
-      
-    
+
 - **`Secure`**: Enforces cookie transmission **only over HTTPS**. Prevents eavesdropping and packet-sniffing on unencrypted channels.
-    
-      
-    
+
 - **`SameSite`**: Mitigates CSRF:
-    
-      
+
     - `SameSite=Strict`: The cookie is never sent in cross-site requests (e.g., following a link from an external website to your site omits the cookie).
-        
-          
-        
+
     - `SameSite=Lax` (Default in modern browsers): Cookies are withheld on cross-site subrequests (images, iframes, POST submissions), but sent when a user navigates to the origin via a top-level link click (`<a href="...">`).
-        
-          
-        
+
     - `SameSite=None`: Cookies sent in all cross-site requests. **Requires** the `Secure` flag (`SameSite=None; Secure`).
-        
-          
-        
 
 ### 2. `localStorage` vs. `sessionStorage` Mechanics
 
 - **Capacity**: Typically capped at ~5MB per origin (vs. 4KB for total cookies).
-    
-      
-    
+
 - **Serialization**: Can only store string values. Storing objects requires `JSON.stringify()`, which drops functions, `undefined`, and symbols, and adds serialization CPU overhead.
-    
-      
-    
+
 - **The `storage` Event**:
-    
-      
+
     - `window.addEventListener('storage', (e) => { ... })`
-        
-          
-        
+
     - Fires **only in other tabs/windows of the same origin**, not in the tab that executed `localStorage.setItem()`. This makes it an effective broadcast mechanism for inter-tab synchronization without polling.
-        
-          
-        
 
 ### 3. The JWT Storage Debate: Where to Store Auth Tokens?
 
 - **Option A (`localStorage`)**:
-    
-      
+
     - _Pros_: Immune to CSRF; simple to implement across SPA/API architectures.
-        
-          
-        
+
     - _Cons_: Highly vulnerable to **XSS**. If an attacker injects a script (via a compromised third-party npm package, CDN, or unescaped HTML), they can run `localStorage.getItem('token')` and exfiltrate the credential.
-        
-          
-        
+
 - **Option B (`HttpOnly` Cookie)**:
-    
-      
+
     - _Pros_: JavaScript cannot read or exfiltrate the token during an XSS attack.
-        
-          
-        
+
     - _Cons_: Vulnerable to **CSRF** unless protected with `SameSite=Strict`/`Lax` flags and anti-CSRF tokens.
-        
-          
-        
+
 - **Best Practice (Enterprise Standard)**: Store short-lived access tokens (e.g., 5–15 min expiry) in **JavaScript memory** (a closure or state store), and store a long-lived refresh token in an **`HttpOnly`, `Secure`, `SameSite=Strict` cookie**.
-    
-      
-    
 
 ### 4. Modern Heavyweight Alternatives: `IndexedDB` & OPFS
 
 - **IndexedDB**:
-    
-      
+
     - Asynchronous (uses events/promises); does not block the main thread.
-        
-          
-        
+
     - Supports large storage limits (often 50% of available disk space, requested dynamically).
-        
-          
-        
+
     - Can store structured cloneable objects, `Blob`, `File`, and `ArrayBuffer` directly without manual stringification.
-        
-          
-        
+
     - Can create secondary indexes for fast key range queries ($O(\log N)$).
-        
-          
-        
+
 - **Origin Private File System (OPFS)**:
-    
-      
+
     - Fast, low-latency, private disk access available inside Web Workers via `createWritable()` or synchronous access handles (`createSyncAccessHandle()`).
-        
-          
-        
 
 ## Code Snippets / Examples
 
@@ -239,20 +174,15 @@ window.addEventListener("storage", (event) => {
 
 HTTP
 
-```
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 Set-Cookie: session_id=abc123xyz789; Max-Age=86400; Path=/; Domain=.example.com; Secure; HttpOnly; SameSite=Strict
 ```
 
 - Client JavaScript reading `document.cookie` will see only non-`HttpOnly` cookies.
-    
-      
-    
+
 - Browser blocks transmission on any unencrypted HTTP requests or cross-site requests.
-    
-      
-    
 
 ### 3. Safe `localStorage` Wrapper with Quota Exhaustion Guard
 
@@ -323,7 +253,7 @@ async function saveLog(entry) {
     // Transaction runs asynchronously off the main thread
     const transaction = db.transaction(["logs"], "readwrite");
     const store = transaction.objectStore("logs");
-    
+
     const request = store.add({ ...entry, timestamp: Date.now() });
 
     request.onsuccess = () => resolve(request.result);
@@ -345,40 +275,23 @@ async function saveLog(entry) {
 ## Related Topics
 
 - [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
-    
-      
-    
+
 - [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Web Security: XSS, CSRF, CORS & CSP]]
-    
-      
-    
+
 - [[Web Vitals Optimization LCP INP and FCP|Performance Profiling: Main Thread Blocking, INP, and Long Tasks]]
-    
-      
-    
+
 - [[Storage Strategies for Authorization Tokens. Access vs Refresh Tokens|Authentication Patterns: JWTs, Refresh Tokens & Session Cookies]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #browser #storage #localstorage #sessionstorage #cookies #indexeddb #security
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

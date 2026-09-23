@@ -64,155 +64,84 @@
 ## Common Interview Questions
 
 - "What is the difference between `==`, `===`, and `Object.is()`?"
-    
-      
-    
+
 - "Explain step-by-step why `[] == ![]` evaluates to `true`."
-    
-      
-    
+
 - "Why does `null == undefined` evaluate to `true`, but `null >= 0` evaluates to `true` while `null == 0` is `false`?"
-    
-      
-    
+
 - "How do `Set` and `Array.prototype.includes` treat `NaN`, and why does that differ from `===`?"
-    
-      
-    
+
 - "What equality algorithm does `Object.is` implement, and what problem does it solve that `===` doesn't?"
-    
-      
-    
+
 - "How does React utilize `Object.is` under the hood in `React.memo` and `useEffect` dependency arrays?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. The Four Internal Algorithms
 
 - **IsLooselyEqual ($x == y$)**:
-    
-      
+
     - If types match, delegates directly to `IsStrictlyEqual`.
-        
-          
-        
+
     - If `null` and `undefined`, returns `true`.
-        
-          
-        
+
     - If `number` and `string`, runs `ToNumber(string) == number`.
-        
-          
-        
+
     - If one operand is `boolean`, runs `ToNumber(boolean) == other`.
-        
-          
-        
+
     - If comparing `object` to `string | number | symbol | bigint`, runs `ToPrimitive(object) == primitive`.
-        
-          
-        
+
     - Otherwise, returns `false`.
-        
-          
-        
+
 - **IsStrictlyEqual ($x === y$)**:
-    
-      
+
     - If types differ, returns `false`.
-        
-          
-        
+
     - If both are numbers: if either is `NaN`, returns `false`; if `+0` and `-0`, returns `true`.
-        
-          
-        
+
     - Otherwise, checks value equality or object reference identity.
-        
-          
-        
+
 - **SameValue ($Object.is(x, y)$)**:
-    
-      
+
     - Identical to `IsStrictlyEqual`, except:
-        
-          
+
         - `Object.is(NaN, NaN)` is `true`.
-            
-              
-            
+
         - `Object.is(+0, -0)` is `false`.
-            
-              
-            
+
 - **SameValueZero**:
-    
-      
+
     - Used in `Map.prototype.set`, `Set.prototype.add`, `Array.prototype.indexOf` vs `includes`.
-        
-          
-        
+
     - Identical to `SameValue`, except it treats `+0` and `-0` as equal (`SameValueZero(+0, -0)` is `true`).
-        
-          
-        
+
     - Solves the classic bug where `[NaN].indexOf(NaN)` was `-1` (because `indexOf` uses `===`), whereas `[NaN].includes(NaN)` is `true` (uses `SameValueZero`).
-        
-          
-        
 
 ### 2. Dissecting the Classic Trap: `[] == ![]`
 
 1. Evaluate right side: `![]` coerces `[]` to a boolean. All objects are truthy, so `!true` evaluates to `false`.
-    
-      
-    
+
 2. Expression is now: `[] == false`.
-    
-      
-    
+
 3. Rule (boolean to number): `false` becomes `0`.
-    
-      
-    
+
 4. Expression is now: `[] == 0`.
-    
-      
-    
+
 5. Rule (object to primitive): `ToPrimitive([])` calls `[].toString()`, returning `""`.
-    
-      
-    
+
 6. Expression is now: `"" == 0`.
-    
-      
-    
+
 7. Rule (string to number): `ToNumber("")` converts empty string to `0`.
-    
-      
-    
+
 8. Expression is now: `0 == 0`, which evaluates to `true`.
-    
-      
-    
 
 ### 3. The `null` Relational Comparison Paradox
 
 - `null == 0` evaluates to `false` because `null` only loosely equals `null` or `undefined`.
-    
-      
-    
+
 - `null > 0` evaluates to `false` because relational comparison converts `null` to `0` via `ToNumber(null)`: `0 > 0` is `false`.
-    
-      
-    
+
 - `null >= 0` evaluates to `true` because the `>=` operator is evaluated as the logical negation of `<`: `!(null < 0)` $\to$ `!(0 < 0)` $\to$ `!false` $\to$ `true`.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -282,40 +211,23 @@ console.log({} == {});          // false (distinct object reference addresses in
 ## Related Topics
 
 - [[JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output|JavaScript Type Casting: Coercion vs. Conversion & Predict-the-Output]]
-    
-      
-    
+
 - [[JavaScript Data Types, Objects & Prototypal Inheritance]]
-    
-      
-    
+
 - [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
-    
-      
-    
+
 - [[React State and Props Architecture|React State Reconciliation and Shallow Comparison]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #equality #object-is #same-value #type-coercion
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

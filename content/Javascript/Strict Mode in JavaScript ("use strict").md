@@ -61,90 +61,50 @@
 ## Common Interview Questions
 
 - "What is `'use strict'` and what problems does it solve compared to sloppy mode?"
-    
-      
-    
+
 - "What happens to the `this` keyword inside a regular, standalone function in strict mode?"
-    
-      
-    
+
 - "Can you name three operations that fail silently in sloppy mode but throw errors in strict mode?"
-    
-      
-    
+
 - "Why is `'use strict'` not required in modern React or Next.js codebases?"
-    
-      
-    
+
 - "How does strict mode change the behavior of the `arguments` object?"
-    
-      
-    
+
 - "What happens if you concatenate a strict-mode file with a non-strict-mode file in a legacy build pipeline?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Eliminating Accidental Global Variables
 
 - **Sloppy Mode**: Executing `count = 10;` without `let`, `const`, or `var` walks the entire scope chain. When reaching the global execution context without finding `count`, the engine creates a property `count` directly on the global object (`window.count = 10`). This creates severe namespace pollution and hard-to-trace bugs.
-    
-      
-    
+
 - **Strict Mode**: Halts execution and immediately throws `ReferenceError: count is not defined`.
-    
-      
-    
 
 ### 2. Securing the `this` Context
 
 - **Sloppy Mode**: Calling a free function (`fn()`) assigns `this` to the global object (`window` in browsers, `global` in Node.js). If the function attempts to modify `this.property`, it mutates global state.
-    
-      
-    
+
 - **Strict Mode**: `this` remains strictly `undefined`. If someone calls `this.property`, the engine halts with `TypeError: Cannot set properties of undefined`.
-    
-      
-    
 
 ### 3. Turning Silent Failures into Throwing Errors
 
 - **Read-Only / Non-Writable Properties**: Attempting to write to a property defined with `writable: false` or to global constants like `NaN = 5;` or `undefined = 5;` does nothing in sloppy mode. Strict mode throws `TypeError`.
-    
-      
-    
+
 - **Frozen / Sealed Objects**: Writing to an object frozen via `Object.freeze()` throws a `TypeError`.
-    
-      
-    
+
 - **Deleting Un-deletable Identifiers**: Calling `delete Object.prototype` or `delete myVar` throws a `TypeError` or `SyntaxError`.
-    
-      
-    
 
 ### 4. Scoping & `eval` Isolation
 
 - **Sloppy Mode**: Calling `eval("var secret = 42;")` injects `secret` directly into the enclosing lexical scope, creating unpredictable variable mutations.
-    
-      
-    
+
 - **Strict Mode**: `eval()` runs inside its own isolated lexical environment, preventing variables declared inside `eval` from leaking into the containing scope.
-    
-      
-    
 
 ### 5. `arguments` Object Disconnection
 
 - **Sloppy Mode**: Modifying named parameters modifies the `arguments` array entries and vice versa (aliasing).
-    
-      
-    
+
 - **Strict Mode**: Named parameters and `arguments[i]` are decoupled; changing one does not affect the other. Additionally, `arguments.callee` and `arguments.caller` are deprecated and throw errors if accessed.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -243,40 +203,23 @@ console.log(strictNoAlias(10)); // 10
 ## Related Topics
 
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[JavaScript Variables, Scopes, and Execution Context|JavaScript Variable Declarations: var, let, and const]]
-    
-      
-    
+
 - [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
-    
-      
-    
+
 - [[JavaScript Scope, Lexical Environment, and Shadowing]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #strict-mode #use-strict #runtime-rules #clean-code
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

@@ -14,7 +14,6 @@
 
 ## Evolution: Class Instances vs Functional Closure State
 
-
 ```mermaid
 flowchart TD
     subgraph PRE_16_8 ["Pre-16.8: Class Instance State"]
@@ -66,7 +65,6 @@ sequenceDiagram
 
 ## Automatic Batching vs Opting Out via `flushSync`
 
-
 ```mermaid
 flowchart TD
     subgraph REACT_18_BATCHING ["React 18+ Automatic Batching (Default)"]
@@ -92,144 +90,84 @@ flowchart TD
 ### 1. Why Functional Components Needed Hooks (The Heap Bridge)
 
 - In JavaScript, a plain function call allocates a local scope frame on the call stack. When the function returns JSX, its execution context is popped off the stack, and all local variables are destroyed by garbage collection.
-    
-      
-    
+
 - Class components preserved state because they were instantiated using `new Component()`. The instance reference persisted in memory, making `this.state` accessible over time.
-    
-      
-    
+
 - React introduced hooks to allow plain functions to be stateless themselves while having their reactive state managed externally on the **Fiber node** in the heap. When `useState(initialValue)` runs:
-    
-      
+
     - On mount: It allocates a hook object in the Fiber's linked list and registers the initial value.
-        
-          
-        
+
     - On re-render: It looks up the existing hook node in the Fiber and returns the latest committed state.
-        
-          
-        
 
 ### 2. Why State Updates Are Asynchronous and Batched
 
 - **Batching** groups multiple state mutations within the same execution frame into a single re-render pass.
-    
-      
-    
+
 - If state updates were synchronous, calling:
-    
-      
-    
-    ```JavaScript
-    setCount(c => c + 1);
-    setFlag(true);
-    setUser(newUser);
-    ```
-    
+
+```javascript
+setCount(c => c + 1);
+setFlag(true);
+setUser(newUser);
+```
+
     would trigger **three distinct render and commit cycles**, causing three separate layouts/repaints and exposing intermediate, half-updated states to the UI.
-    
-      
-    
 
 ### 3. The Closure Problem & Functional Updates
 
 - JavaScript closures capture the values of variables in their lexical scope at the time the function was instantiated.
-    
-      
-    
+
 - If an event handler triggers multiple `setState(count + 1)` calls, each call captures the exact same closed-over `count` value from the current render.
-    
-      
-    
+
 - **The Functional Callback Queue**:
-    
-      
+
     - When passing a function `setState(prev => prev + 1)`, React appends the callback to the Fiber’s `updateQueue`.
-        
-          
-        
+
     - During the render phase, React processes this queue in order, feeding the output of the previous updater function as the input `prev` argument to the next updater function.
-        
-          
-        
 
 ### 4. Automatic Batching (React 17 vs React 18+)
 
 - **React <= 17**: Only batched updates occurring directly inside React's synthetic event handlers. Updates occurring inside native promises (`fetch().then()`), `setTimeout`, or native event listeners were **not batched**, triggering multiple re-renders.
-    
-      
-    
+
 - **React 18+**: Introduces **Automatic Batching** via `createRoot`. All updates—regardless of whether they originate in synthetic events, native event handlers, asynchronous callbacks, or timers—are batched into a single render pass automatically.
-    
-      
-    
 
 ### 5. Forcing Immediate Render with `flushSync`
 
 - Occasionally, you need DOM mutations to apply immediately (e.g., reading element dimensions or positioning right before triggering an animation or scrolling to the bottom of a message list).
-    
-      
-    
+
 - `ReactDOM.flushSync(callback)` instructs React to bypass batching and force a synchronous render and DOM commit immediately inside the provided callback.
-    
-      
-    
 
 ## Common Interview Questions
 
 - Why were functional components called "stateless components" prior to React 16.8?
-    
-      
-    
+
 - Where does React store the state of `useState` if functional components have no `this` reference?
-    
-      
-    
+
 - Why does calling `setCount(count + 1)` three times in a row only increment the value by 1?
-    
-      
-    
+
 - How does the functional updater `setCount(prev => prev + 1)` resolve the stale closure issue?
-    
-      
-    
+
 - How did state batching change between React 17 and React 18?
-    
-      
-    
+
 - When would you use `flushSync`, and what are its performance trade-offs?
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 - **The Fiber Storage Mechanism**:
-    
-      
+
     - `useState` does not store values inside the functional component closure. It stores them in a linked-list node on the component's Fiber instance (`fiber.memoizedState`). The functional component is merely a pure projection function executed repeatedly with state injected from the Fiber.
-        
-          
-        
+
 - **Why Automatic Batching in React 18 is a Major Milestone**:
-    
-      
+
     - In React 17, developers had to import `unstable_batchedUpdates` to batch asynchronous state changes manually. React 18 aligns all asynchronous primitives with the Fiber Scheduler by leveraging the Lane priority system, eliminating inconsistent rendering patterns.
-        
-          
-        
+
 - **Trade-offs of `flushSync`**:
-    
-      
+
     - `flushSync` degrades performance because it forces React to synchronously interrupt the work loop, calculate the Virtual DOM diff, and block the main thread while applying real DOM mutations and triggering layout reflow. It should be reserved exclusively for DOM integration edge cases.
-        
-          
-        
 
 ## Code Snippets / Examples
 
-```JavaScript
+```javascript
 import { useState } from 'react';
 import { flushSync } from 'react-dom';
 
@@ -291,40 +229,23 @@ export function StateBatchingDemo() {
 ## Related Topics
 
 - [[Rules of Hooks and Internal Linked List Architecture]]
-    
-      
-    
+
 - [[React Fiber Architecture and Non-Blocking Rendering]]
-    
-      
-    
+
 - [[React Concurrent Multitasking, Scheduling, and Priority Interruptions]]
-    
-      
-    
+
 - [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #react-hooks #usestate #batching #flushsync #mermaid
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

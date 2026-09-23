@@ -209,7 +209,7 @@ export { HeavyChart } from './HeavyChart.js'; // Imports 500KB Chart.js internal
 import { Button } from './components';
 
 // PROBLEM:
-// If 'HeavyChart.js' contains ANY top-level side effects (or if the bundler 
+// If 'HeavyChart.js' contains ANY top-level side effects (or if the bundler
 // cannot verify purity and package.json lacks "sideEffects": false),
 // the entire 500KB Chart.js library will be included in app.js!
 ```
@@ -235,7 +235,7 @@ function subtract(a, b) { return a - b; }
 module.exports = { add, subtract };
 
 // consumer-cjs.js
-const { add } = require('./math-cjs'); 
+const { add } = require('./math-cjs');
 // The entire module.exports object is evaluated and bundled at runtime.
 
 // ==========================================
@@ -282,71 +282,41 @@ export const PrimaryButton = /*#__PURE__*/ configureButton({
 ## Mitigation Strategies for Barrel Files in Production
 
 1. **Direct Path Imports**:
-    
-      
+
     - Instead of `import { Icon } from 'lucide-react'`, configure your bundler or write `import Icon from 'lucide-react/dist/esm/icons/icon'`.
-        
-          
-        
+
 2. **Framework Barrel Optimization**:
-    
-      
+
     - Modern frameworks (e.g., Next.js `experimental.optimizePackageImports`, Vite plugins) rewrite barrel imports automatically at build time to direct module paths under the hood.
-        
-          
-        
+
 3. **Granular Barrel Partitioning**:
-    
-      
+
     - Avoid a single monolithic root `index.ts`. Split into domain-specific entry points (e.g., `@ui/buttons`, `@ui/modals`, `@ui/charts`).
-        
-          
-        
+
 4. **Enforce `"sideEffects": false`**:
-    
-      
+
     - Add `"sideEffects": false` to library `package.json` files to unlock bundler-level barrel stripping.
-        
-          
-        
 
 ## Related Topics
 
 - [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
-    
-      
-    
+
 - [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
-    
-      
-    
+
 - [[Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)|Web Performance: Bundle Analysis, Code Splitting & Dynamic Imports]]
-    
-      
-    
+
 - [[JavaScript Fundamentals & Module Systems|Module Systems: ESM, CJS, AMD, UMD and SystemJS]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #tree-shaking #barrel-files #esm #commonjs #bundling #webpack #vite
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups

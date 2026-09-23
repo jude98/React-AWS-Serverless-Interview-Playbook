@@ -85,7 +85,6 @@ function handleClick(event) {
 button.addEventListener("click", handleClick);
 // Successfully deregistered and freed from browser memory
 button.removeEventListener("click", handleClick);
-
 ```
 
 ### 2. Modern Teardown via `AbortController` (Preferred Pattern)
@@ -102,9 +101,8 @@ document.addEventListener("keydown", handleKeydown, { signal });
 // When user navigates away or component unmounts:
 function cleanup() {
   // Removes all three listeners simultaneously and releases memory
-  controller.abort(); 
+  controller.abort();
 }
-
 ```
 
 ### 3. Preventing Memory Leaks in React (`useEffect` Teardown)
@@ -128,7 +126,6 @@ function WindowTracker() {
 
   return <div>Tracking active...</div>;
 }
-
 ```
 
 ### 4. Memory Optimization via Event Delegation
@@ -145,7 +142,6 @@ userList.addEventListener("click", (event) => {
   const userId = targetItem.dataset.id;
   console.log("Selected user:", userId);
 });
-
 ```
 
 ## Comparison Matrix: Event Listener Cleanup Strategies

@@ -51,88 +51,48 @@
 ## Common Interview Questions
 
 - "What is `'use strict'` and what specific problems does it solve in legacy JavaScript?"
-    
-      
-    
+
 - "What happens to the `this` keyword inside a free/standalone function in strict mode vs. sloppy mode?"
-    
-      
-    
+
 - "Why does assignment to an undeclared variable behave differently in strict mode?"
-    
-      
-    
+
 - "Where is strict mode enabled automatically without writing the string pragma?"
-    
-      
-    
+
 - "How does the global object differ between the browser, Node.js, and Web Workers, and why was `globalThis` introduced?"
-    
-      
-    
+
 - "Can you apply `'use strict'` to only a single function instead of the entire file?"
-    
-      
-    
 
 ## Strong Answers / Talking Points
 
 ### 1. Key Behavioral Shifts Enforced by `"use strict"`
 
 - **Prevents Accidental Globals**: In sloppy mode, assigning to an undeclared variable (`x = 42`) implicitly attaches `x` to `window`/`global`. Strict mode throws an explicit `ReferenceError: x is not defined`.
-    
-      
-    
+
 - **Eliminates Silent Assignment Failures**: Attempting to write to read-only properties (e.g., modifying `NaN` or a property marked `writable: false`, or writing to an `Object.freeze()` object) fails silently in sloppy mode, but throws a `TypeError` in strict mode.
-    
-      
-    
+
 - **De-duplication of Function Parameter Names**: Writing `function sum(a, a, c) {}` is permitted in sloppy mode (the latter shadows the former), but throws a `SyntaxError` in strict mode.
-    
-      
-    
+
 - **Securing `this`**: Prevents accidental leakage or modification of `window` by setting default function call `this` to `undefined`.
-    
-      
-    
+
 - **Disables Deprecated Syntax**: Disallows the `with` statement and disallows octal numeric literals using legacy zero prefixes (`010`).
-    
-      
-    
 
 ### 2. Scope & Application Scenarios of `"use strict"`
 
 - **File-Level**: Placed at the very top of a script before any code, applying to all statements in that file.
-    
-      
-    
+
 - **Function-Level**: Placed at the very top of a specific function body, scoping strictness only to that function and its inner functions.
-    
-      
-    
+
 - **Implicit Strictness**: Modern full-stack codebases (Vite, Next.js, Webpack, NestJS, TypeScript) transpile or bundle into ESM modules or ES6 classes, making manual `"use strict"` declarations largely unnecessary in modern projects.
-    
-      
-    
 
 ### 3. Global Object Evolution: `window` vs. `global` vs. `globalThis`
 
 - **Browser (`window`)**: Combines JavaScript's runtime global state with the Browser Object Model (BOM) and Document Object Model (DOM) APIs (`window.document`, `window.localStorage`, `window.location`).
-    
-      
-    
+
 - **Node.js (`global`)**: Contains server-side primitives like `process`, `Buffer`, and timer functions (`setImmediate`), but has no DOM or UI APIs.
-    
-      
-    
+
 - **Web Workers (`self`)**: Have no access to `window` or DOM, relying on `DedicatedWorkerGlobalScope` accessible via `self`.
-    
-      
-    
+
 - **`globalThis`**: Eliminates fragile environment sniffing (e.g., `typeof window !== 'undefined' ? window : global`) by providing a standardized cross-platform reference.
-    
-      
-    
 
 ## Code Snippets / Examples
 
@@ -202,40 +162,23 @@ console.log(globalThis === window); // true in browser main thread
 ## Related Topics
 
 - [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-    
-      
-    
+
 - [[JavaScript Variables, Scopes, and Execution Context|JavaScript Variable Declarations: var, let, and const]]
-    
-      
-    
+
 - [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
-    
-      
-    
+
 - [[JavaScript Fundamentals & Module Systems|JavaScript Modules: CommonJS vs ECMAScript Modules]]
-    
-      
-    
 
 ## Tags
 
 #fullstack #interview #javascript #strict-mode #global-object #globalthis
 
-  
-
 ## Revision Checklist
 
 - [ ] Can explain in 60 seconds
-    
-      
-    
+
 - [ ] Can explain trade-offs
-    
-      
-    
+
 - [ ] Can give a real project example
-    
-      
-    
+
 - [ ] Can answer common follow-ups
