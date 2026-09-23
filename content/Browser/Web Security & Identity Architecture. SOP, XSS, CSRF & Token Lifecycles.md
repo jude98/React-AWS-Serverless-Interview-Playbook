@@ -1,3 +1,4 @@
+# Web Security & Identity Architecture: SOP, XSS, CSRF & Token Lifecycles
 
 ## Key Concepts
 
@@ -267,9 +268,7 @@ Client (Browser)                 Auth Server / Backend API
 
 ### 1. Hardening Server Cookies (Express.js Example)
 
-JavaScript
-
-```
+```javascript
 import express from "express";
 
 const app = express();
@@ -295,9 +294,7 @@ app.post("/api/auth/login", async (req, res) => {
 
 ### 2. Client-Side Silent Refresh & Axios Interceptor Pattern
 
-JavaScript
-
-```
+```javascript
 // client/apiClient.js
 import axios from "axios";
 
@@ -381,9 +378,7 @@ apiClient.interceptors.response.use(
 
 ### 3. XSS Sanitization & DOM Insertion
 
-JavaScript
-
-```
+```javascript
 import DOMPurify from "dompurify";
 
 function renderUserComment(rawCommentString) {
@@ -419,19 +414,19 @@ function renderUserComment(rawCommentString) {
 
 ## Related Topics
 
-- [[Client-Side Browser Storage: Mechanisms, Architecture & Security]]
+- [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Client-Side Browser Storage: Mechanisms, Architecture & Security]]
     
       
     
-- [[What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
+- [[What Happens When You Enter a URL in the Browser. The End-to-End Lifecycle|What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
     
       
     
-- [[Network Protocols: Transport, Security & Application Layers]]
+- [[Network Protocols. Transport, Security & Application Layers|Network Protocols: Transport, Security & Application Layers]]
     
       
     
-- [[Browser Architecture: High-Level Components, Rendering Engines & HTML Parsing]]
+- [[Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing|Browser Architecture: High-Level Components, Rendering Engines & HTML Parsing]]
     
       
     

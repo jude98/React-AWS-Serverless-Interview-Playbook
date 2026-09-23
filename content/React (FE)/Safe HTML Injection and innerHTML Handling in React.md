@@ -1,3 +1,4 @@
+# Safe HTML Injection and innerHTML Handling in React
 
 > [!note] The Core Concept
 > 
@@ -180,19 +181,19 @@ export function ParsedHTMLComponent({ cleanMarkup }) {
 
 ## Related Topics
 
-- [[JSX and Cross-Site Scripting Prevention]]
+- [[JSX and Cross-Site Scripting (XSS) Prevention|JSX and Cross-Site Scripting Prevention]]
     
       
     
-- [[JSX to Real DOM Pipeline]]
+- [[JSX and ReactDOM Execution Pipeline|JSX to Real DOM Pipeline]]
     
       
     
-- [[Frontend Security and OWASP Top 10]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Security and OWASP Top 10]]
     
       
     
-- [[ReactDOM and Host Mutations]]
+- [[JSX and ReactDOM Execution Pipeline|ReactDOM and Host Mutations]]
     
       
     

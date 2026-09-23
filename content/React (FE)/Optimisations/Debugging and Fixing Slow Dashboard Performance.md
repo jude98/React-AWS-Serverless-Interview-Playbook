@@ -1,4 +1,4 @@
-
+# Debugging and Fixing Slow Dashboard Performance
 
 > [!abstract] High-Level Diagnostic Flow
 > 
@@ -253,23 +253,23 @@ app.use((req, res, next) => {
 
 ## Related Topics
 
-- [[React Performance Optimization]]
+- [[Comprehensive Performance Optimization Architecture in React|React Performance Optimization]]
     
       
     
-- [[Core Web Vitals LCP FID CLS]]
+- [[Web Vitals Optimization LCP INP and FCP|Core Web Vitals LCP FID CLS]]
     
       
     
-- [[HTTP Caching and CDN Architecture]]
+- [[Caching Architecture, Eviction Policies & Invalidation Pitfalls|HTTP Caching and CDN Architecture]]
     
       
     
-- [[Code Splitting and Dynamic Imports]]
+- [[Code Splitting vs Lazy Loading in React|Code Splitting and Dynamic Imports]]
     
       
     
-- [[Virtualization and Large Data Rendering]]
+- [[High-Scale Data Table Architecture Handling Millions of Records|Virtualization and Large Data Rendering]]
     
       
     

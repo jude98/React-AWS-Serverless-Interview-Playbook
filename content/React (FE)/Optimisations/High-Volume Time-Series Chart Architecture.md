@@ -1,4 +1,4 @@
-
+# High-Volume Time-Series Chart Architecture
 
 > [!abstract] Architectural Overview
 > 
@@ -338,19 +338,19 @@ export const HighVolumeChart: React.FC<ChartProps> = ({ data, width, height }) =
 
 ## Related Topics
 
-- [[Browser Rendering Engine and Critical Rendering Path]]
+- [[Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing|Browser Rendering Engine and Critical Rendering Path]]
     
       
     
-- [[Web Workers and Off-Main-Thread Processing]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Web Workers and Off-Main-Thread Processing]]
     
       
     
-- [[Virtualization and Large Data Rendering]]
+- [[High-Scale Data Table Architecture Handling Millions of Records|Virtualization and Large Data Rendering]]
     
       
     
-- [[React Performance Optimization]]
+- [[Comprehensive Performance Optimization Architecture in React|React Performance Optimization]]
     
       
     

@@ -1,3 +1,4 @@
+# HTTP Methods, CORS, Status Codes & Caching
 
 ## Key Concepts
 
@@ -332,23 +333,23 @@ server.listen(3000);
 
 ## Related Topics
 
-- [[HTTP Fundamentals & HTTP-1.1 vs HTTP-2]]
+- [[HTTP Fundamentals|HTTP Fundamentals & HTTP-1.1 vs HTTP-2]]
     
       
     
-- [[RESTful API Design & Idempotency]]
+- [[API Paradigms (REST, GraphQL, gRPC), OpenAPI & Production API Design|RESTful API Design & Idempotency]]
     
       
     
-- [[Web Security: SOP, CORS, CSRF, and XSS]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Web Security: SOP, CORS, CSRF, and XSS]]
     
       
     
-- [[CDN Architecture and Edge Caching]]
+- [[Caching Architecture, Eviction Policies & Invalidation Pitfalls|CDN Architecture and Edge Caching]]
     
       
     
-- [[TCP vs UDP]]
+- [[TCP vs. UDP|TCP vs UDP]]
     
       
     

@@ -1,4 +1,4 @@
-
+# Rules of Hooks and Internal Linked List Architecture
 
 > [!note] The Two Rules of Hooks
 > 
@@ -283,7 +283,7 @@ function mountWorkInProgressHook() {
 
 ## Related Topics
 
-- [[React Fiber Architecture]]
+- [[React Fiber Architecture and Non-Blocking Rendering|React Fiber Architecture]]
     
       
     
@@ -291,11 +291,11 @@ function mountWorkInProgressHook() {
     
       
     
-- [[React Component Lifecycle]]
+- [[React Lifecycle and Execution Flow|React Component Lifecycle]]
     
       
     
-- [[Stale Closures in React Hooks]]
+- [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
     
       
     

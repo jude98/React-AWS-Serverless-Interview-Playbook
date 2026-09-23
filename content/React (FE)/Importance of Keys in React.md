@@ -1,4 +1,4 @@
-
+# Importance of Keys in React
 
 > [!note] Core Definition
 > 
@@ -269,15 +269,15 @@ function UserForm({ userId }) {
     
       
     
-- [[Virtual DOM and Reconciliation]]
+- [[React Reconciliation and Diffing Algorithm|Virtual DOM and Reconciliation]]
     
       
     
-- [[React Component Lifecycle]]
+- [[React Lifecycle and Execution Flow|React Component Lifecycle]]
     
       
     
-- [[React State and Props]]
+- [[React State and Props Architecture|React State and Props]]
     
       
     

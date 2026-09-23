@@ -1,4 +1,4 @@
-
+# Form Handling Controlled vs Uncontrolled Components and File Inputs
 
 > [!note] Core Mental Model
 > 
@@ -311,11 +311,11 @@ export function FileUploadForm() {
     
       
     
-- [[Frontend Security and OWASP Top 10]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Security and OWASP Top 10]]
     
       
     
-- [[Browser Event Propagation and Synthetic Events]]
+- [[React Synthetic Events and Event Delegation|Browser Event Propagation and Synthetic Events]]
     
       
     

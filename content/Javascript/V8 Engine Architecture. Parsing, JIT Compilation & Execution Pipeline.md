@@ -1,3 +1,4 @@
+# V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline
 
 ## Key Concepts
 
@@ -171,7 +172,7 @@ const p2 = new PointGood(3, 4, 5);
 ## Related Topics
 
 * [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
-* [[Memory Management and Garbage Collection in V8]]
+* [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Memory Management and Garbage Collection in V8]]
 * [[Asynchronous JavaScript, Event Loop & Concurrency Model]]
 * [[JavaScript Data Types, Objects & Prototypal Inheritance]]
 

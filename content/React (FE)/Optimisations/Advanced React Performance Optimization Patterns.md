@@ -1,4 +1,4 @@
-
+# Advanced React Performance Optimization Patterns
 
 > [!abstract] Architectural Overview
 > 
@@ -276,15 +276,15 @@ export const FastSearchInput = () => {
 
 ## Related Topics
 
-- [[React Concurrency Transitions and Suspense]]
+- [[React useTransition, useDeferredValue, and Concurrent Prioritization|React Concurrency Transitions and Suspense]]
     
       
     
-- [[React Context API and Performance Anti Patterns]]
+- [[Combining React Context and useReducer Architecture|React Context API and Performance Anti Patterns]]
     
       
     
-- [[Browser Rendering Engine and Critical Rendering Path]]
+- [[Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing|Browser Rendering Engine and Critical Rendering Path]]
     
       
     
@@ -292,7 +292,7 @@ export const FastSearchInput = () => {
     
       
     
-- [[Redux vs Zustand vs TanStack Query]]
+- [[Why You Might Not Need Redux and Modern State Alternatives|Redux vs Zustand vs TanStack Query]]
     
       
     

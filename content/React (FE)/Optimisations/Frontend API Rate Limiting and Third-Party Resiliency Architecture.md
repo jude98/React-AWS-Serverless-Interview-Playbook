@@ -1,4 +1,4 @@
-
+# Frontend API Rate Limiting and Third-Party Resiliency Architecture
 
 > [!abstract] Resiliency Principle
 > 
@@ -327,15 +327,15 @@ export const ThirdPartyStockWidget = () => {
     
       
     
-- [[Distributed Tracing and Client Side RUM]]
+- [[AWS Observability - CloudWatch, AWS X-Ray & CloudTrail|Distributed Tracing and Client Side RUM]]
     
       
     
-- [[API Gateway Rate Limiting and Leaky Bucket Algorithms]]
+- [[Frontend API Rate Limiting and Third-Party Resiliency Architecture|API Gateway Rate Limiting and Leaky Bucket Algorithms]]
     
       
     
-- [[Backend for Frontend BFF Architecture]]
+- [[Clean Architecture, Directory Structure & DTOs|Backend for Frontend BFF Architecture]]
     
       
     

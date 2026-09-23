@@ -1,4 +1,4 @@
-
+# Web Vitals Optimization LCP INP and FCP
 
 > [!abstract] Core Metric Focus
 > 
@@ -252,23 +252,23 @@ export const LargeDataSetViewer = ({ items }: { items: string[] }) => {
 
 ## Related Topics
 
-- [[React Performance Optimization]]
+- [[Comprehensive Performance Optimization Architecture in React|React Performance Optimization]]
     
       
     
-- [[Browser Rendering Engine and Critical Rendering Path]]
+- [[Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing|Browser Rendering Engine and Critical Rendering Path]]
     
       
     
-- [[React Concurrency Transitions and Suspense]]
+- [[React useTransition, useDeferredValue, and Concurrent Prioritization|React Concurrency Transitions and Suspense]]
     
       
     
-- [[Edge Caching and CDN Architecture]]
+- [[Caching Architecture, Eviction Policies & Invalidation Pitfalls|Edge Caching and CDN Architecture]]
     
       
     
-- [[Web Workers and Off-Main-Thread Processing]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Web Workers and Off-Main-Thread Processing]]
     
       
     

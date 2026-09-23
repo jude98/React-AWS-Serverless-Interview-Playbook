@@ -1,4 +1,4 @@
-
+# SOLID Principles
 
 ## Key Concepts
 
@@ -234,19 +234,19 @@ export class AnalyticsReportGenerator {
     
       
     
-- [[Design Patterns: Factory, Strategy, and Observer]]
+- [[Clean Architecture, Directory Structure & DTOs|Design Patterns: Factory, Strategy, and Observer]]
     
       
     
-- [[Clean Architecture and Hexagonal / Ports & Adapters Architecture]]
+- [[Clean Architecture, Directory Structure & DTOs|Clean Architecture and Hexagonal / Ports & Adapters Architecture]]
     
       
     
-- [[Inversion of Control & Dependency Injection Frameworks]]
+- [[Clean Architecture, Directory Structure & DTOs|Inversion of Control & Dependency Injection Frameworks]]
     
       
     
-- [[Unit Testing, Mocks, and Test-Driven Development (TDD)]]
+- [[Engineering Execution, Collaboration & Behavioral Scenarios|Unit Testing, Mocks, and Test-Driven Development (TDD)]]
     
       
     

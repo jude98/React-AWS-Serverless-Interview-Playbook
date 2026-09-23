@@ -1,4 +1,4 @@
-
+# React useState Hook and State Batching Architecture
 
 > [!note] The Stateless Nature of Plain Functions
 > 
@@ -302,7 +302,7 @@ export function StateBatchingDemo() {
     
       
     
-- [[Stale Closures in React Hooks]]
+- [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
     
       
     

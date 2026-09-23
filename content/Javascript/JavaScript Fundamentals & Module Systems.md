@@ -1,3 +1,4 @@
+# JavaScript Fundamentals & Module Systems
 
 ## Key Concepts
 
@@ -202,9 +203,7 @@
 
 ### Static vs. Dynamic Resolution (ESM & CJS)
 
-JavaScript
-
-```
+```javascript
 // Static Resolution (ESM) - parsed before execution; cannot be conditional
 import { render } from './renderer.js';
 
@@ -221,9 +220,7 @@ const loadedModule = require(moduleName);
 
 ### package.json Dependency Configuration
 
-JSON
-
-```
+```json
 {
   "name": "ui-component-library",
   "version": "1.0.0",
@@ -242,19 +239,19 @@ JSON
 
 ## Related Topics
 
-- [[JavaScript Event Loop and Concurrency Model]]
+- [[Asynchronous JavaScript, Event Loop & Concurrency Model|JavaScript Event Loop and Concurrency Model]]
     
       
     
-- [[Bundlers and Build Tools: Webpack, Vite, and Rollup]]
+- [[Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)|Bundlers and Build Tools: Webpack, Vite, and Rollup]]
     
       
     
-- [[Node.js Runtime Architecture and Libuv]]
+- [[Asynchronous JavaScript, Event Loop & Concurrency Model|Node.js Runtime Architecture and Libuv]]
     
       
     
-- [[Monorepos and Package Management: NPM, PNPM, and Yarn]]
+- [[Monorepo and Micro-Frontend Architecture Evaluation|Monorepos and Package Management: NPM, PNPM, and Yarn]]
     
       
     

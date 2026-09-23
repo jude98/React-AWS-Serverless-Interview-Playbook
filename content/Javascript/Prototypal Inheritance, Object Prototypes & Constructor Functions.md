@@ -1,3 +1,4 @@
+# Prototypal Inheritance, Object Prototypes & Constructor Functions
 
 ## Key Concepts
 
@@ -158,9 +159,7 @@
 
 ### Hand-Rolling Prototypal Inheritance (ES5 Mechanics)
 
-JavaScript
-
-```
+```javascript
 // 1. Parent Constructor
 function Animal(name) {
   this.name = name;
@@ -209,9 +208,7 @@ console.log(Dog.compareSize({name: "A"}, {name: "BB"})); // -1 (inherited static
 
 ### Polyfilling the `new` Keyword
 
-JavaScript
-
-```
+```javascript
 // Implementing custom 'new' operator to demonstrate underlying engine behavior
 function customNew(Constructor, ...args) {
   // Step 1: Create a fresh object whose prototype links to Constructor.prototype
@@ -241,9 +238,7 @@ console.log(user instanceof Person); // true
 
 ### Constructor Return Value Behavior
 
-JavaScript
-
-```
+```javascript
 function IgnoredPrimitive() {
   this.value = "Original Instance";
   return 100; // Primitive return is ignored by the engine
@@ -275,15 +270,15 @@ console.log(new OverriddenObject().value);   // "Hijacked Object"
     
       
     
-- [[JavaScript Functions: Architecture, Patterns & Mechanics]]
+- [[JavaScript Functions. Architecture, Patterns & Mechanics|JavaScript Functions: Architecture, Patterns & Mechanics]]
     
       
     
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     
-- [[ES6 Classes: Private Fields, Inheritance, and Method Overriding]]
+- [[Object-Oriented Programming (OOP) in JavaScript & TypeScript|ES6 Classes: Private Fields, Inheritance, and Method Overriding]]
     
       
     

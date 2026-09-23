@@ -1,3 +1,4 @@
+# Authentication, Authorization, OAuth OIDC & Permission-Based RBAC
 
 ## Key Concepts
 
@@ -282,26 +283,17 @@ export const UserManagementRow = ({ currentUser, targetUser }: any) => {
 
 ## Related Topics
 
-- [[Web Security: SOP, CORS, CSRF, and XSS]]
-    
-      
-    
-- [[HTTP Fundamentals & HTTP-1.1 vs HTTP-2]]
-    
-      
-    
-- [[Clean Architecture, Directory Structure & DTOs]]
-    
-      
-    
-- [[JSON Web Tokens (JWT) Deep Dive & Cryptographic Signing]]
-    
-      
-    
-- [[OAuth 2.0 Grants & PKCE Flow]]
-    
-      
-    
+
+- [[Storage Strategies for Authorization Tokens. Access vs Refresh Tokens]]
+
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles]]
+
+- [[AWS Identity and Access Management (IAM) - Identities, Policies, Roles & Best Practices]]
+
+- [[AWS API Gateway - Architecture, Security & Limitations]]
+
+- [[Client-Side Browser Storage. Mechanisms, Architecture & Security]]
+
 
 ## Tags
 

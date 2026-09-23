@@ -1,3 +1,4 @@
+# AWS SNS vs. Amazon EventBridge: Architecture, Differences, and Combined Patterns
 
 ## Key Concepts
 
@@ -161,9 +162,7 @@ Combining EventBridge and SNS leverages **EventBridge as the routing brain** and
 
 ### AWS SAM: EventBridge Routing Directly to an SNS Target
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: EventBridge evaluating payment events and routing VIP alerts to SNS.
@@ -228,7 +227,7 @@ Resources:
 
 ## Related Topics
 
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
+- [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure|AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
     
       
     
@@ -236,15 +235,15 @@ Resources:
     
       
     
-- [[AWS Step Functions: Orchestration vs Choreography]]
+- [[AWS Step Functions - Workflow Types, State Machine Patterns & Integration|AWS Step Functions: Orchestration vs Choreography]]
     
       
     
-- [[Decoupled Microservice Communication Patterns]]
+- [[AWS Serverless & Event-Driven Architecture (EDA)|Decoupled Microservice Communication Patterns]]
     
       
     
-- [[Idempotency in Distributed Systems]]
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency in Distributed Systems]]
     
       
     

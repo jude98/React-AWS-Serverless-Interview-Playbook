@@ -1,3 +1,4 @@
+# JavaScript Variables, Scopes, and Execution Context
 
 ## Key Concepts
 
@@ -149,9 +150,7 @@
 
 ### Scope & Global Object Attachment
 
-JavaScript
-
-```
+```javascript
 // Function vs. Block Scope
 if (true) {
   var leakedVar = "I escaped the block";
@@ -171,9 +170,7 @@ console.log(window.globalLet); // undefined
 
 ### The Loop & Closure Behavior
 
-JavaScript
-
-```
+```javascript
 // Problem with var: shared single binding
 for (var i = 0; i < 3; i++) {
   setTimeout(() => console.log(`var: ${i}`), 100);
@@ -189,9 +186,7 @@ for (let j = 0; j < 3; j++) {
 
 ### `const` Reassignment vs. Mutation
 
-JavaScript
-
-```
+```javascript
 const user = { name: "Alice" };
 
 // Valid: mutating an interior property
@@ -223,15 +218,15 @@ const frozenUser = Object.freeze({ name: "Alice" });
     
       
     
-- [[JavaScript Closures and Scope Chains]]
+- [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
     
       
     
-- [[JavaScript Memory Management and Object Mutability]]
+- [[DOM Event Listeners, Browser Memory Management & Teardown Mechanics|JavaScript Memory Management and Object Mutability]]
     
       
     
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     

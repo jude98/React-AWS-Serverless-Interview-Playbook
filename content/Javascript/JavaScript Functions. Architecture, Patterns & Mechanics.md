@@ -1,3 +1,4 @@
+# JavaScript Functions: Architecture, Patterns & Mechanics
 
 ## Key Concepts
 
@@ -218,9 +219,7 @@
 
 ### Declarations, Expressions & NFE
 
-JavaScript
-
-```
+```javascript
 // 1. Function Declaration (Hoisted completely)
 hoistedFn(); // Output: "Callable before definition"
 function hoistedFn() {
@@ -244,9 +243,7 @@ const compute = function calculateFibonacci(n) {
 
 ### Arrow Function Differences
 
-JavaScript
-
-```
+```javascript
 const counter = {
   count: 0,
   // Regular method: 'this' binds to counter when invoked as counter.increment()
@@ -271,9 +268,7 @@ const ArrowConstructor = () => {};
 
 ### Rest Parameters vs. `arguments`
 
-JavaScript
-
-```
+```javascript
 // Legacy arguments object (array-like, missing array methods)
 function legacySum() {
   // arguments lacks .reduce, must convert: Array.from(arguments)
@@ -291,9 +286,7 @@ console.log(modernSum(2, 1, 2, 3)); // (1*2) + (2*2) + (3*2) = 12
 
 ### Factory Function vs. Constructor Function
 
-JavaScript
-
-```
+```javascript
 // 1. Constructor Function (Requires 'new')
 function PersonConstructor(name) {
   this.name = name;
@@ -323,9 +316,7 @@ const personB = createPersonFactory("Bob");
 
 ### Implementing `pipe` and `compose`
 
-JavaScript
-
-```
+```javascript
 // Functional Composition Implementations using Array.prototype.reduce
 
 // Pipe: Left-to-Right execution
@@ -367,11 +358,11 @@ console.log(formatPipeline("   HELLO WORLD  ")); // "<span>hello world</span>"
     
       
     
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     
-- [[JavaScript Closures and Scope Chains]]
+- [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
     
       
     

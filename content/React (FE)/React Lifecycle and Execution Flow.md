@@ -1,4 +1,4 @@
-
+# React Lifecycle and Execution Flow
 
 > [!note] Lifecycle Summary
 > 
@@ -213,15 +213,15 @@ export function LifecycleDemo({ triggerUpdate }) {
     
       
     
-- [[Virtual DOM and Reconciliation]]
+- [[React Reconciliation and Diffing Algorithm|Virtual DOM and Reconciliation]]
     
       
     
-- [[React useEffect vs useLayoutEffect]]
+- [[React useEffect and Synchronization Architecture|React useEffect vs useLayoutEffect]]
     
       
     
-- [[React Fiber Architecture]]
+- [[React Fiber Architecture and Non-Blocking Rendering|React Fiber Architecture]]
     
       
     

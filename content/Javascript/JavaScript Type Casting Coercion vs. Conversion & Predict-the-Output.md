@@ -1,3 +1,4 @@
+# JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output
 
 ## Key Concepts
 
@@ -162,9 +163,7 @@
 
 ### Explicit Conversion Patterns
 
-JavaScript
-
-```
+```javascript
 // To Number
 Number("42");       // 42
 Number("");         // 0
@@ -186,9 +185,7 @@ Boolean("hello");   // true
 
 ### Classic "Predict the Output" Traps
 
-JavaScript
-
-```
+```javascript
 // Trap 1: Plus vs Minus
 console.log("5" + 2);     // "52" (string concatenation)
 console.log("5" - 2);     // 3    (numeric subtraction)
@@ -227,11 +224,11 @@ console.log(Object.is(NaN, NaN));// true
     
       
     
-- [[JavaScript Equality Comparisons: == vs === vs Object.is]]
+- [[JavaScript Equality Comparisons & Internal Algorithms|JavaScript Equality Comparisons: == vs === vs Object.is]]
     
       
     
-- [[Symbol.toPrimitive and Object-to-Primitive Algorithms]]
+- [[JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output|Symbol.toPrimitive and Object-to-Primitive Algorithms]]
     
       
     

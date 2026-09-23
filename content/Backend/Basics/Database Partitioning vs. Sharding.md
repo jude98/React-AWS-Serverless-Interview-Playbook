@@ -1,3 +1,5 @@
+# Database Partitioning vs. Sharding
+
 ## Key Concepts
 
 - **Core Distinction:** Partitioning is the general term for dividing a database into distinct subsets; **sharding is a specific form of horizontal partitioning across multiple distinct physical machines or instances**.
@@ -199,9 +201,7 @@
 
 ## Code Snippets / Examples
 
-SQL
-
-```
+```sql
 -- ============================================================================
 -- 1. Single-Node Declarative Partitioning (PostgreSQL)
 -- All partitions live on the SAME database instance
@@ -228,9 +228,7 @@ EXPLAIN SELECT * FROM orders
 WHERE created_at >= '2026-06-01' AND created_at < '2026-07-01';
 ```
 
-TypeScript
-
-```
+```typescript
 // ============================================================================
 // 2. Application-Level Sharding Router (Distributed Nodes)
 // Directs queries across separate physical connection pools
@@ -270,11 +268,11 @@ export class ShardedDatabaseRouter {
 
 ## Related Topics
 
-- [[Database Replication Strategies]]
+- [[Database Partitioning vs. Sharding|Database Replication Strategies]]
     
       
     
-- [[Consistent Hashing]]
+- [[Database Partitioning vs. Sharding|Consistent Hashing]]
     
       
     
@@ -282,11 +280,11 @@ export class ShardedDatabaseRouter {
     
       
     
-- [[Database Indexing & Cursor vs Offset Pagination]]
+- [[High-Scale Data Table Architecture Handling Millions of Records|Database Indexing & Cursor vs Offset Pagination]]
     
       
     
-- [[Distributed Transactions and 2PC (Two-Phase Commit)]]
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Distributed Transactions and 2PC (Two-Phase Commit)]]
     
       
     

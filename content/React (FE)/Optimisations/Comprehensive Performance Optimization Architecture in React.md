@@ -1,4 +1,4 @@
-
+# Comprehensive Performance Optimization Architecture in React
 
 > [!note] The Core Philosophy of React Performance
 > 
@@ -416,11 +416,11 @@ To justify optimizations during architectural reviews or interviews, anchor your
     
       
     
-- [[React State Management Architecture: Context vs External Stores vs React Query]]
+- [[React State Management Architecture, Context vs External Stores vs React Query|React State Management Architecture: Context vs External Stores vs React Query]]
     
       
     
-- [[Browser Rendering Pipeline and Core Web Vitals]]
+- [[The Browser Rendering Pipeline. Reflow, Repaint, and Composite|Browser Rendering Pipeline and Core Web Vitals]]
     
       
     

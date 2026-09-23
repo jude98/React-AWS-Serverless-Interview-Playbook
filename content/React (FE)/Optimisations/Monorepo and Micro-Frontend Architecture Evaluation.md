@@ -1,4 +1,4 @@
-
+# Monorepo and Micro-Frontend Architecture Evaluation
 
 > [!abstract] Architectural Thesis
 > 
@@ -266,11 +266,11 @@ export function subscribeToEvent<T>(
     
       
     
-- [[Webpack and Vite Asset Bundling]]
+- [[Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)|Webpack and Vite Asset Bundling]]
     
       
     
-- [[Distributed Tracing and Client Side RUM]]
+- [[AWS Observability - CloudWatch, AWS X-Ray & CloudTrail|Distributed Tracing and Client Side RUM]]
     
       
     

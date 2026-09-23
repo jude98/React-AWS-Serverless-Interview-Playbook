@@ -1,3 +1,4 @@
+# API Paradigms (REST, GraphQL, gRPC), OpenAPI & Production API Design
 
 ## Key Concepts
 
@@ -253,7 +254,7 @@ async function fetchUsersByCursor(opts: { cursor?: string; limit: number }) {
 
 ## Related Topics
 
-- [[HTTP Fundamentals & HTTP-1.1 vs HTTP-2]]
+- [[HTTP Fundamentals|HTTP Fundamentals & HTTP-1.1 vs HTTP-2]]
     
       
     
@@ -265,11 +266,11 @@ async function fetchUsersByCursor(opts: { cursor?: string; limit: number }) {
     
       
     
-- [[WebSockets vs WebRTC vs Server-Sent Events (SSE)]]
+- [[Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs|WebSockets vs WebRTC vs Server-Sent Events (SSE)]]
     
       
     
-- [[Database Indexing & Cursor vs Offset Pagination]]
+- [[High-Scale Data Table Architecture Handling Millions of Records|Database Indexing & Cursor vs Offset Pagination]]
     
       
     

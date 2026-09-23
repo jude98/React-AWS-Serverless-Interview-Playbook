@@ -1,3 +1,4 @@
+# Amazon SQS: Queue Types, Internal Mechanics & Limits
 
 ## Key Concepts
 
@@ -161,9 +162,7 @@
 
 ### 1. Producing to a FIFO Queue with Deduplication (Node.js / SDK v3)
 
-TypeScript
-
-```
+```typescript
 import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
 
 const sqs = new SQSClient({});
@@ -184,9 +183,7 @@ export async function sendOrderedTransaction(userId: string, txId: string, paylo
 
 ### 2. AWS SAM Template: FIFO Queue with Dead-Letter Queue (DLQ)
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Production SQS FIFO with DLQ and High Throughput Mode
@@ -218,26 +215,17 @@ Resources:
 
 ## Related Topics
 
-- [[AWS-Lambda-Event-Invocations-Synchronous-vs-Asynchronous]]
-    
-      
-    
-- [[AWS-Serverless-and-Event-Driven-Architecture]]
-    
-      
-    
-- [[Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
-    
-      
-    
-- [[Idempotency-in-Distributed-Systems]]
-    
-      
-    
-- [[Publish-Subscribe-Fanout-with-Amazon-SNS]]
-    
-      
-    
+
+- [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure]]
+
+- [[SQS DLQ Processing - Correlation IDs, Error Context, and Redrive Pipelines]]
+
+- [[AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues]]
+
+- [[AWS SNS vs. Amazon EventBridge - Architecture, Differences, and Combined Patterns]]
+
+- [[High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling]]
+
 
 ## Tags
 

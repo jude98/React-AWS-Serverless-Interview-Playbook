@@ -1,4 +1,4 @@
-
+# React useRef and useImperativeHandle Architecture
 
 > [!note] The Core Mental Model of useRef
 > 
@@ -317,7 +317,7 @@ export function App() {
     
       
     
-- [[Stale Closures in React Hooks]]
+- [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
     
       
     

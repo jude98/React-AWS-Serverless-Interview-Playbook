@@ -1,3 +1,4 @@
+# Function Borrowing, Explicit Binding & Function Currying
 
 ## Key Concepts
 
@@ -131,9 +132,7 @@
 
 ### 1. Explicit Binding & Method Borrowing
 
-JavaScript
-
-```
+```javascript
 const person1 = {
   firstName: "Jane",
   lastName: "Doe",
@@ -169,9 +168,7 @@ console.log(Object.prototype.hasOwnProperty.call(bareObject, "id")); // true
 
 ### 2. Currying via `.bind()` (Partial Application)
 
-JavaScript
-
-```
+```javascript
 function calculateDiscount(discountPercent, price) {
   return price - (price * discountPercent);
 }
@@ -186,9 +183,7 @@ console.log(twentyPercentDiscount(100)); // 80
 
 ### 3. Modern Currying via Closures & Infinite Currying
 
-JavaScript
-
-```
+```javascript
 // 1. Standard 3-argument curried pipeline (ES6 arrow syntax)
 const buildUrl = (protocol) => (domain) => (path) =>
   `${protocol}://${domain}/${path}`;
@@ -231,9 +226,7 @@ console.log(+curriedSum(1)(2)(3)); // 6 (coerced via valueOf)
 
 ### 4. Polyfill: `Function.prototype.bind`
 
-JavaScript
-
-```
+```javascript
 // Hand-rolling a basic Function.prototype.bind polyfill
 Function.prototype.myBind = function(context, ...boundArgs) {
   const originalFunction = this;
@@ -266,19 +259,19 @@ console.log(boundIntroduce("Germany")); // "Alex lives in Berlin, Germany"
 
 ## Related Topics
 
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     
-- [[JavaScript Closures and Scope Chains]]
+- [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
     
       
     
-- [[JavaScript Functions: Architecture, Patterns & Mechanics]]
+- [[JavaScript Functions. Architecture, Patterns & Mechanics|JavaScript Functions: Architecture, Patterns & Mechanics]]
     
       
     
-- [[Functional Programming Patterns: Pure Functions, Immutability & Memoization]]
+- [[JavaScript Functions. Architecture, Patterns & Mechanics|Functional Programming Patterns: Pure Functions, Immutability & Memoization]]
     
       
     

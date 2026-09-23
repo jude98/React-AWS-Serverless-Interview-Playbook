@@ -1,4 +1,4 @@
-
+# React Synthetic Events and Event Delegation
 
 > [!note] Core Definition
 > 
@@ -257,7 +257,7 @@ function AsyncEventDemo() {
 
 ## Related Topics
 
-- [[JSX to Real DOM Pipeline]]
+- [[JSX and ReactDOM Execution Pipeline|JSX to Real DOM Pipeline]]
     
       
     
@@ -265,11 +265,11 @@ function AsyncEventDemo() {
     
       
     
-- [[React Fiber Architecture]]
+- [[React Fiber Architecture and Non-Blocking Rendering|React Fiber Architecture]]
     
       
     
-- [[Browser Event Propagation (Capture, Target, Bubble)]]
+- [[DOM Event Propagation. Bubbling, Capturing & Event Delegation|Browser Event Propagation (Capture, Target, Bubble)]]
     
       
     

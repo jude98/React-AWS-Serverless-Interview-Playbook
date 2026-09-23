@@ -1,4 +1,4 @@
-
+# Amazon EventBridge: Event Buses, Pipes, Patterns & Schemas
 
 ## Key Concepts
 
@@ -309,23 +309,23 @@ Resources:
 
 ## Related Topics
 
-- [[AWS-Serverless-and-Event-Driven-Architecture]]
+- [[AWS Serverless & Event-Driven Architecture (EDA)|AWS-Serverless-and-Event-Driven-Architecture]]
     
       
     
-- [[Amazon-SNS-Architecture-Fanout-and-Delivery]]
+- [[Amazon SNS (Simple Notification Service) - Architecture, Fanout & Delivery|Amazon-SNS-Architecture-Fanout-and-Delivery]]
     
       
     
-- [[Amazon-SQS-Queue-Types-and-Internal-Mechanics]]
+- [[Amazon SQS - Queue Types, Internal Mechanics & Limits|Amazon-SQS-Queue-Types-and-Internal-Mechanics]]
     
       
     
-- [[AWS-Step-Functions-Workflow-Types-and-Patterns]]
+- [[AWS Step Functions - Workflow Types, State Machine Patterns & Integration|AWS-Step-Functions-Workflow-Types-and-Patterns]]
     
       
     
-- [[Microservices-Choreography-vs-Orchestration]]
+- [[AWS Step Functions - Workflow Types, State Machine Patterns & Integration|Microservices-Choreography-vs-Orchestration]]
     
       
     

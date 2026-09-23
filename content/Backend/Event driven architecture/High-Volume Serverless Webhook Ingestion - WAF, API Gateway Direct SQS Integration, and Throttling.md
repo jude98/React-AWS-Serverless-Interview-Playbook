@@ -1,3 +1,4 @@
+# High-Volume Serverless Webhook Ingestion: WAF, API Gateway Direct SQS Integration, and Throttling
 
 ## Key Concepts
 
@@ -150,9 +151,7 @@
 
 ### Complete AWS SAM Template: WAF + API Gateway Direct to SQS + Bounded ESM
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: High-volume webhook ingestion using direct SQS integration and bounded Lambda processing.
@@ -287,9 +286,7 @@ Resources:
 
 ### Worker: Delayed Signature Verification and Safe Batch Processing
 
-TypeScript
-
-```
+```typescript
 import { SQSEvent, SQSBatchResponse } from "aws-lambda";
 import { createHmac, timingSafeEqual } from "crypto";
 
@@ -342,11 +339,11 @@ async function processWebhook(payload: Record<string, unknown>): Promise<void> {
 
 ## Related Topics
 
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
+- [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure|AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
     
       
     
-- [[SQS DLQ Processing: Correlation IDs, Error Context, and Redrive Pipelines]]
+- [[SQS DLQ Processing - Correlation IDs, Error Context, and Redrive Pipelines|SQS DLQ Processing: Correlation IDs, Error Context, and Redrive Pipelines]]
     
       
     
@@ -354,11 +351,11 @@ async function processWebhook(payload: Record<string, unknown>): Promise<void> {
     
       
     
-- [[Distributed Rate Limiting and Token Bucket Algorithm]]
+- [[Frontend API Rate Limiting and Third-Party Resiliency Architecture|Distributed Rate Limiting and Token Bucket Algorithm]]
     
       
     
-- [[Idempotency in Distributed Systems]]
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency in Distributed Systems]]
     
       
     

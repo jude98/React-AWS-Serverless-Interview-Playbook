@@ -1,4 +1,4 @@
-
+# React Image and Icon Optimization
 
 > [!abstract] High-Level Summary
 > 
@@ -221,23 +221,23 @@ export const Icon: React.FC<IconProps> = ({ name, size = 24, className = '' }) =
 
 ## Related Topics
 
-- [[Core Web Vitals LCP FID CLS]]
+- [[Web Vitals Optimization LCP INP and FCP|Core Web Vitals LCP FID CLS]]
     
       
     
-- [[React Performance Optimization]]
+- [[Comprehensive Performance Optimization Architecture in React|React Performance Optimization]]
     
       
     
-- [[Webpack and Vite Asset Bundling]]
+- [[Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)|Webpack and Vite Asset Bundling]]
     
       
     
-- [[CDN and Asset Caching Strategies]]
+- [[Caching Architecture, Eviction Policies & Invalidation Pitfalls|CDN and Asset Caching Strategies]]
     
       
     
-- [[Nextjs Image Component Internals]]
+- [[React Image and Icon Optimization|Nextjs Image Component Internals]]
     
       
     

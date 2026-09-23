@@ -1,3 +1,4 @@
+# JavaScript Scope, Lexical Environment, and Shadowing
 
 ## Key Concepts
 
@@ -118,9 +119,7 @@
 
 ### The Scope Chain & Lexical Environment
 
-JavaScript
-
-```
+```javascript
 const globalVar = "Global";
 
 function outer() {
@@ -140,9 +139,7 @@ outer();
 
 ### Valid Variable Shadowing
 
-JavaScript
-
-```
+```javascript
 let count = 10;
 var score = 100;
 
@@ -157,9 +154,7 @@ console.log(count, score); // 10, 100 (outer scope remains unaffected)
 
 ### Illegal Shadowing
 
-JavaScript
-
-```
+```javascript
 let name = "Alice";
 
 if (true) {
@@ -181,15 +176,15 @@ if (true) {
     
       
     
-- [[JavaScript Closures and Scope Chains]]
+- [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
     
       
     
-- [[JavaScript Variable Declarations: var, let, and const]]
+- [[JavaScript Variables, Scopes, and Execution Context|JavaScript Variable Declarations: var, let, and const]]
     
       
     
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     

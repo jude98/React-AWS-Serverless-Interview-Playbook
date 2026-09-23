@@ -1,3 +1,4 @@
+# Engineering Execution, Collaboration & Behavioral Scenarios
 
 ## Key Concepts
 
@@ -320,9 +321,7 @@ Use a structured, multi-phase framework:
 
 ### Structured Production Deployment Checklist (Markdown Template)
 
-Markdown
-
-```
+```markdown
 ### Pre-Deployment Verification
 - [ ] Schema migrations applied & backward-compatible (expand-and-contract pattern)
 - [ ] Environment variables & SSM/Secrets Manager keys verified in target environment
@@ -343,26 +342,17 @@ Markdown
 
 ## Related Topics
 
-- [[CI/CD Pipeline Design with AWS CodePipeline and CodeDeploy]]
-    
-      
-    
-- [[Blue-Green vs Rolling vs Canary Deployment Strategies]]
-    
-      
-    
-- [[Contract Testing with Pact in Distributed Systems]]
-    
-      
-    
-- [[Feature Flags and Trunk-Based Development]]
-    
-      
-    
-- [[Blameless Post-Mortems and Incident Management]]
-    
-      
-    
+
+- [[AWS Serverless Deployments - CloudFormation, Lambda Versions, Aliases, and Safe Deployments]]
+
+- [[Clean Architecture, Directory Structure & DTOs]]
+
+- [[AWS Observability - CloudWatch, AWS X-Ray & CloudTrail]]
+
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads]]
+
+- [[Monorepo and Micro-Frontend Architecture Evaluation]]
+
 
 ## Tags
 

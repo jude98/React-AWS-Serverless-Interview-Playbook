@@ -1,3 +1,4 @@
+# Adding a Global Secondary Index (GSI) to a Large DynamoDB Table
 
 ## Key Concepts
 
@@ -171,9 +172,7 @@
 
 ### AWS CLI: Adding a GSI to an Existing Table
 
-Bash
-
-```
+```bash
 # Adding a GSI requires the UpdateTable API.
 # Only ONE index can be created at a time.
 aws dynamodb update-table \
@@ -204,9 +203,7 @@ aws dynamodb update-table \
 
 ### Checking Backfill Progress via Node.js SDK v3
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, DescribeTableCommand } from "@aws-sdk/client-dynamodb";
 
 const ddb = new DynamoDBClient({ region: "us-east-1" });
@@ -247,9 +244,7 @@ async function pollGsiCreationProgress(): Promise<void> {
 
 ### AWS CloudFormation / SAM Representation
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
@@ -289,26 +284,17 @@ Resources:
 
 ## Related Topics
 
-- [[DynamoDB Indexing: GSI vs LSI Architectural Differences]]
-    
-      
-    
-- [[DynamoDB Sparse Indexes: Design and Cost Optimization]]
-    
-      
-    
-- [[DynamoDB Partitioning Mechanics and Hot Partition Mitigation]]
-    
-      
-    
-- [[DynamoDB Capacity Modes: On-Demand vs Provisioned]]
-    
-      
-    
-- [[Bulk Updating 1 Million Rows in DynamoDB: Architectural Approaches and Trade-offs]]
-    
-      
-    
+
+- [[Amazon DynamoDB -  Architecture, Data Modeling & Scaling]]
+
+- [[Debugging DynamoDB Hot Partitions & Hot Keys]]
+
+- [[DynamoDB Capacity Modes - Provisioned with Auto Scaling vs. On-Demand]]
+
+- [[DynamoDB Single-Table Design - Inventory Management Scenario]]
+
+- [[Bulk Updating 1 Million Rows in DynamoDB - Architectural Approaches and Trade-offs]]
+
 
 ## Tags
 

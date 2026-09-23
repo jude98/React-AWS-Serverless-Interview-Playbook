@@ -1,4 +1,4 @@
-
+# Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)
 
 > [!note] The Core Objective
 > 
@@ -452,11 +452,11 @@ _Brotli achieves approximately **15–25% higher compression ratios** on text-ba
     
       
     
-- [[Browser Rendering Pipeline and Core Web Vitals]]
+- [[The Browser Rendering Pipeline. Reflow, Repaint, and Composite|Browser Rendering Pipeline and Core Web Vitals]]
     
       
     
-- [[Frontend Security and OWASP Top 10]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Security and OWASP Top 10]]
     
       
     

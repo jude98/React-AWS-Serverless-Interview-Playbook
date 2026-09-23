@@ -1,4 +1,4 @@
-
+# HTTP Fundamentals
 
 ## Key Concepts
 
@@ -188,23 +188,23 @@ server.listen(8443, () => {
 
 ## Related Topics
 
-- [[TCP vs UDP]]
+- [[TCP vs. UDP|TCP vs UDP]]
     
       
     
-- [[HTTP-3 and QUIC]]
+- [[Network Protocols. Transport, Security & Application Layers|HTTP-3 and QUIC]]
     
       
     
-- [[RESTful API Design & Idempotency]]
+- [[API Paradigms (REST, GraphQL, gRPC), OpenAPI & Production API Design|RESTful API Design & Idempotency]]
     
       
     
-- [[Web Security: Cookies, CSRF, and CORS]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Web Security: Cookies, CSRF, and CORS]]
     
       
     
-- [[TLS Handshake & ALPN (Application-Layer Protocol Negotiation)]]
+- [[Network Protocols. Transport, Security & Application Layers|TLS Handshake & ALPN (Application-Layer Protocol Negotiation)]]
     
       
     

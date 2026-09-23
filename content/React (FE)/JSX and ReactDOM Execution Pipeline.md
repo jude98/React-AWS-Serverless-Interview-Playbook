@@ -1,4 +1,4 @@
-
+# JSX and ReactDOM Execution Pipeline
 
 > [!note] Core Definition of JSX
 > 
@@ -306,15 +306,15 @@ function mountElementToDom(reactElement, container) {
     
       
     
-- [[Virtual DOM and Reconciliation]]
+- [[React Reconciliation and Diffing Algorithm|Virtual DOM and Reconciliation]]
     
       
     
-- [[React Fiber Architecture]]
+- [[React Fiber Architecture and Non-Blocking Rendering|React Fiber Architecture]]
     
       
     
-- [[React Render and Commit Phases]]
+- [[React Lifecycle and Execution Flow|React Render and Commit Phases]]
     
       
     

@@ -1,3 +1,4 @@
+# JavaScript Data Types, Objects & Prototypal Inheritance
 
 ## Key Concepts
 
@@ -41,7 +42,7 @@
 
 > [!tip] Prototype & Prototypal Inheritance
 > 
-> Every JavaScript object contains an internal slot called `[[Prototype]]` (accessible via `Object.getPrototypeOf(obj)` or legacy `__proto__`). If a property is not found on the object itself, the engine traverses up the **Prototype Chain** until it reaches `Object.prototype.[[Prototype]]`, which terminates at `null`.
+> Every JavaScript object contains an internal slot called `[[Prototype]]` (accessible via `Object.getPrototypeOf(obj)` or legacy `__proto__`). If a property is not found on the object itself, the engine traverses up the **Prototype Chain** until it reaches `Object.prototype.`[[Prototype]]`, which terminates at `null`.
 > 
 >   
 
@@ -159,9 +160,7 @@
 
 ### `typeof` Quirks & Robust Type Checking
 
-JavaScript
-
-```
+```javascript
 // Quirks
 console.log(typeof null);        // "object" (historical bug)
 console.log(typeof NaN);         // "number"
@@ -181,9 +180,7 @@ console.log(getType(/regex/));   // "RegExp"
 
 ### Autoboxing Demonstration
 
-JavaScript
-
-```
+```javascript
 const str = "hello";
 str.customProp = 42; 
 
@@ -196,9 +193,7 @@ console.log(str.customProp); // undefined (accesses a new wrapper instance with 
 
 ### Prototype Chain & Prototypal Delegation
 
-JavaScript
-
-```
+```javascript
 const animal = {
   eats: true,
   walk() {
@@ -227,15 +222,15 @@ console.log(Object.getPrototypeOf(Object.prototype));            // null
     
       
     
-- [[JavaScript Variable Declarations: var, let, and const]]
+- [[JavaScript Variables, Scopes, and Execution Context|JavaScript Variable Declarations: var, let, and const]]
     
       
     
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     
-- [[Object Immutability, Deep Clones, and Memory References]]
+- [[JavaScript Data Types, Objects & Prototypal Inheritance|Object Immutability, Deep Clones, and Memory References]]
     
       
     

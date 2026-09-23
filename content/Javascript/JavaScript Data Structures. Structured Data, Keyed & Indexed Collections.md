@@ -1,3 +1,4 @@
+# JavaScript Data Structures: Structured Data, Keyed & Indexed Collections
 
 ## Key Concepts
 
@@ -196,9 +197,7 @@
 
 ### `Map` vs. `WeakMap` Garbage Collection Pattern
 
-JavaScript
-
-```
+```javascript
 // Strong reference holding via Map
 let user = { id: 101, name: "Alice" };
 const userMap = new Map();
@@ -221,9 +220,7 @@ domElement = null;
 
 ### JSON Serialization Quirks & Replacer Function
 
-JavaScript
-
-```
+```javascript
 const payload = {
   id: 1,
   tag: Symbol("admin"),
@@ -248,9 +245,7 @@ console.log(jsonString); // {"id":"1","name":"Metric"}
 
 ### Memory Buffers and TypedArrays
 
-JavaScript
-
-```
+```javascript
 // Allocate 16 bytes of contiguous memory
 const buffer = new ArrayBuffer(16);
 
@@ -280,15 +275,15 @@ console.log(int32View.byteLength); // 16
     
       
     
-- [[Memory Management and Garbage Collection in V8]]
+- [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Memory Management and Garbage Collection in V8]]
     
       
     
-- [[Iterables, Iterators, and Generators]]
+- [[JavaScript Loops, Iteration Protocols & Data Structure Traversal|Iterables, Iterators, and Generators]]
     
       
     
-- [[Streams, Buffers, and Binary Data in Node.js]]
+- [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Streams, Buffers, and Binary Data in Node.js]]
     
       
     

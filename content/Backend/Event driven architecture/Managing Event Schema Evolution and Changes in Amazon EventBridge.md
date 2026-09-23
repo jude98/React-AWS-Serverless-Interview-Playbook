@@ -1,4 +1,4 @@
-
+# Managing Event Schema Evolution and Changes in Amazon EventBridge
 
 ## Key Concepts
 
@@ -173,9 +173,7 @@
 
 ### Producer: Dual-Publishing Strategy during Schema Migration
 
-TypeScript
-
-```
+```typescript
 import { EventBridgeClient, PutEventsCommand, PutEventsRequestEntry } from "@aws-sdk/client-eventbridge";
 
 const ebClient = new EventBridgeClient({ region: "us-east-1" });
@@ -237,9 +235,7 @@ export async function publishOrderPlaced(order: { id: string; total: number; cur
 
 ### SAM Template: EventBridge Schema Registry & Version-Filtered Rules
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Schema Registry and EventBridge Rule routing by versioned detail-type.
@@ -300,9 +296,7 @@ Resources:
 
 ### Consumer: Tolerant Reader Implementation (Node.js with Zod)
 
-TypeScript
-
-```
+```typescript
 import { z } from "zod";
 
 // Non-strict schema: accepts unknown future fields without error
@@ -332,26 +326,17 @@ export const handler = async (event: { detail: unknown }) => {
 
 ## Related Topics
 
-- [[Event-Driven Architecture: SNS vs SQS vs EventBridge]]
-    
-      
-    
-- [[Event Sourcing and Schema Versioning Patterns]]
-    
-      
-    
-- [[Dead Letter Queue Redrive Strategies]]
-    
-      
-    
-- [[Contract Testing with Pact in Distributed Systems]]
-    
-      
-    
-- [[API Versioning: URL vs Header vs Content Negotiation]]
-    
-      
-    
+
+- [[Amazon EventBridge - Event Buses, Pipes, Patterns & Schemas]]
+
+- [[Handling Event Clogging and Backpressure in Amazon EventBridge]]
+
+- [[AWS SNS vs. Amazon EventBridge - Architecture, Differences, and Combined Patterns]]
+
+- [[AWS Serverless & Event-Driven Architecture (EDA)]]
+
+- [[Clean Architecture, Directory Structure & DTOs]]
+
 
 ## Tags
 

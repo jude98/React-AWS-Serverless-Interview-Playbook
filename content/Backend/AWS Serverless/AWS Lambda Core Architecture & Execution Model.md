@@ -1,3 +1,4 @@
+# AWS Lambda Core Architecture & Execution Model
 
 ## Key Concepts
 
@@ -277,26 +278,17 @@ Resources:
 
 ## Related Topics
 
-- [[AWS-Serverless-and-Event-Driven-Architecture]]
-    
-      
-    
-- [[API-Gateway-and-Authentication-Strategies]]
-    
-      
-    
-- [[Containerization-Docker-and-ECR]]
-    
-      
-    
-- [[Distributed-System-Performance-Optimization]]
-    
-      
-    
-- [[Infrastructure-as-Code-AWS-SAM-and-CloudFormation]]
-    
-      
-    
+
+- [[AWS Lambda Event Invocations - Synchronous, Asynchronous & Event Source Mappings]]
+
+- [[AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues]]
+
+- [[AWS Serverless Deployments - CloudFormation, Lambda Versions, Aliases, and Safe Deployments]]
+
+- [[AWS Observability - CloudWatch, AWS X-Ray & CloudTrail]]
+
+- [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security]]
+
 
 ## Tags
 

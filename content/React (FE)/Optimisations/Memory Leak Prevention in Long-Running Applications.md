@@ -1,3 +1,4 @@
+# Memory Leak Prevention in Long-Running Applications
 
 > [!abstract] Architectural Overview
 > 
@@ -344,11 +345,11 @@ export class RingBuffer<T> {
     
       
     
-- [[Web Workers and Off-Main-Thread Processing]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Web Workers and Off-Main-Thread Processing]]
     
       
     
-- [[Browser Rendering Engine and Critical Rendering Path]]
+- [[Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing|Browser Rendering Engine and Critical Rendering Path]]
     
       
     

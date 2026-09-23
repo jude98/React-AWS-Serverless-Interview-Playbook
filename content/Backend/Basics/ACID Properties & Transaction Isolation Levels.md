@@ -1,4 +1,4 @@
-
+# ACID Properties & Transaction Isolation Levels
 
 ## Key Concepts
 
@@ -200,26 +200,17 @@ COMMIT;
 
 ## Related Topics
 
+
 - [[CAP Theorem]]
-    
-      
-    
-- [[MVCC (Multi-Version Concurrency Control)]]
-    
-      
-    
-- [[Database Locking Mechanisms (Pessimistic vs Optimistic)]]
-    
-      
-    
-- [[Write-Ahead Logging (WAL)]]
-    
-      
-    
-- [[Distributed Transactions and 2PC (Two-Phase Commit)]]
-    
-      
-    
+
+- [[Database Partitioning vs. Sharding]]
+
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection]]
+
+- [[Caching Architecture, Eviction Policies & Invalidation Pitfalls]]
+
+- [[DynamoDB Single-Table Design - Inventory Management Scenario]]
+
 
 ## Tags
 

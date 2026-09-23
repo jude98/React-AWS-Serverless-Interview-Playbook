@@ -1,3 +1,4 @@
+# Amazon S3: Architecture, Storage Classes, Security & Large Uploads
 
 ## Key Concepts
 
@@ -204,26 +205,17 @@ export async function getUploadPresignedUrl(fileName: string, fileType: string):
 
 ## Related Topics
 
-- [[API-Gateway-and-Authentication-Strategies]]
-    
-      
-    
-- [[AWS-KMS-and-Data-Encryption-At-Rest]]
-    
-      
-    
-- [[Content-Delivery-Networks-CloudFront-and-OAC]]
-    
-      
-    
-- [[Amazon-DynamoDB-Architecture-and-Scaling]]
-    
-      
-    
-- [[System-Design-Large-File-Processing-Pipelines]]
-    
-      
-    
+
+- [[AWS Identity and Access Management (IAM) - Identities, Policies, Roles & Best Practices]]
+
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads]]
+
+- [[Caching Architecture, Eviction Policies & Invalidation Pitfalls]]
+
+- [[Client-Side Browser Storage. Mechanisms, Architecture & Security]]
+
+- [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security]]
+
 
 ## Tags
 

@@ -1,4 +1,4 @@
-
+# Advanced JavaScript Output Prediction: Interview Mastery Deck
 
 A curated collection of tricky, high-signal JavaScript output prediction puzzles covering runtime mechanics, edge cases, scope, coercion, and concurrency.
 
@@ -668,3 +668,11 @@ P2
 | `await` in loops | `Array.prototype.forEach` does **not** wait for `await`; use `for...of` for sequential execution. |
 | Object key ordering | Integer-like keys are sorted numerically first; all other strings/symbols follow insertion order. |
 | Arrow function `this` | Determined **lexically at declaration**, never dynamically altered by `.call()`, `.apply()`, or `.bind()`. |
+
+## Related Topics
+
+- [[JavaScript Expressions, Operators & Output Prediction]]
+- [[JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output]]
+- [[The `this` Keyword & Execution Bindings]]
+- [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
+- [[JavaScript Closures. Encapsulation, Currying & Output Puzzles]]

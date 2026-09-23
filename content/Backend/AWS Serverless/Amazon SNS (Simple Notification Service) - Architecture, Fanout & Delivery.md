@@ -1,4 +1,4 @@
-
+# Amazon SNS (Simple Notification Service): Architecture, Fanout & Delivery
 
 ## Key Concepts
 
@@ -122,9 +122,7 @@
 
 ### 1. Publishing an Event with Message Attributes (TypeScript / Node.js)
 
-TypeScript
-
-```
+```typescript
 import { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
 
 const sns = new SNSClient({});
@@ -152,9 +150,7 @@ export async function publishOrderEvent(orderId: string, orderTotal: number) {
 
 ### 2. AWS SAM Template: SNS Topic to SQS Fanout with Subscription Filtering
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: SNS to SQS Fanout pattern with filter policy
@@ -220,23 +216,23 @@ Resources:
 
 ## Related Topics
 
-- [[Amazon-SQS-Queue-Types-and-Internal-Mechanics]]
+- [[Amazon SQS - Queue Types, Internal Mechanics & Limits|Amazon-SQS-Queue-Types-and-Internal-Mechanics]]
     
       
     
-- [[AWS-Serverless-and-Event-Driven-Architecture]]
+- [[AWS Serverless & Event-Driven Architecture (EDA)|AWS-Serverless-and-Event-Driven-Architecture]]
     
       
     
-- [[Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
+- [[Amazon SQS - Queue Types, Internal Mechanics & Limits|Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
     
       
     
-- [[Amazon-EventBridge-and-Event-Driven-Routing]]
+- [[Amazon EventBridge - Event Buses, Pipes, Patterns & Schemas|Amazon-EventBridge-and-Event-Driven-Routing]]
     
       
     
-- [[Idempotency-in-Distributed-Systems]]
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency-in-Distributed-Systems]]
     
       
     

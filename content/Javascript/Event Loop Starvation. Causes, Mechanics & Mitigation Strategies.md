@@ -1,3 +1,4 @@
+# Event Loop Starvation: Causes, Mechanics & Mitigation Strategies
 
 ## Key Concepts
 
@@ -155,9 +156,7 @@
 
 ### 1. Demonstrating Starvation: Microtask vs. Macrotask
 
-JavaScript
-
-```
+```javascript
 // ==========================================
 // SCENARIO A: Complete Starvation (Browser Freezes)
 // ==========================================
@@ -180,9 +179,7 @@ setTimeout(() => console.log("I WILL print successfully!"), 100);
 
 ### 2. Time-Slicing a Heavy Synchronous Job (Browser & Node.js)
 
-JavaScript
-
-```
+```javascript
 // Processing large dataset cooperatively without blocking the main thread
 function processLargeDataset(items, processItemChunk) {
   return new Promise((resolve) => {
@@ -218,9 +215,7 @@ function processLargeDataset(items, processItemChunk) {
 
 ### 3. Modern Browser Solution: `scheduler.yield()`
 
-JavaScript
-
-```
+```javascript
 // Modern standard for cooperative yielding in web applications
 async function performResponsiveWork(tasks) {
   for (const task of tasks) {
@@ -240,9 +235,7 @@ async function performResponsiveWork(tasks) {
 
 ### 4. Offloading Heavy Computation: Worker Threads (Node.js)
 
-JavaScript
-
-```
+```javascript
 // server.js - Keeping the Event Loop responsive for incoming HTTP requests
 import { Worker, isMainThread, parentPort, workerData } from "node:worker_threads";
 import http from "node:http";
@@ -299,15 +292,15 @@ if (isMainThread) {
     
       
     
-- [[Node.js Runtime Architecture and Libuv]]
+- [[Asynchronous JavaScript, Event Loop & Concurrency Model|Node.js Runtime Architecture and Libuv]]
     
       
     
-- [[Web Workers and Multithreaded JavaScript in Browsers]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Web Workers and Multithreaded JavaScript in Browsers]]
     
       
     
-- [[Frontend Performance: INP, Long Tasks and Main Thread Scheduling]]
+- [[Web Vitals Optimization LCP INP and FCP|Frontend Performance: INP, Long Tasks and Main Thread Scheduling]]
     
       
     

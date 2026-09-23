@@ -1,4 +1,4 @@
-
+# Building a Multi-Team Enterprise Component Library
 
 > [!abstract] Architectural Overview
 > 
@@ -279,11 +279,11 @@ Button.displayName = 'Button';
     
       
     
-- [[Webpack and Vite Asset Bundling]]
+- [[Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)|Webpack and Vite Asset Bundling]]
     
       
     
-- [[Browser Accessibility ARIA and W3C Standards]]
+- [[Component Isolation and Independent State Architecture|Browser Accessibility ARIA and W3C Standards]]
     
       
     

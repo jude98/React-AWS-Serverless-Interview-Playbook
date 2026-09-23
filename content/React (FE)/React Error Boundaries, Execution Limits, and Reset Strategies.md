@@ -1,4 +1,4 @@
-
+# React Error Boundaries, Execution Limits, and Reset Strategies
 
 > [!note] Core Mental Model
 > An **Error Boundary** is a specialized React component that acts like an imperative `try...catch` block for declarative UI trees. It catches JavaScript runtime errors in child components during **rendering, lifecycle methods, and constructors**, prevents the entire application from crashing with an unhandled white-screen exception, and displays a graceful fallback UI.
@@ -247,10 +247,10 @@ export function useAsyncError() {
 
 ## Related Topics
 
-* [[React Component Lifecycle]]
+* [[React Lifecycle and Execution Flow|React Component Lifecycle]]
 * [[React Fiber Architecture and Non-Blocking Rendering]]
 * [[Code Splitting vs Lazy Loading in React]]
-* [[Frontend Security and OWASP Top 10]]
+* [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Security and OWASP Top 10]]
 
 ---
 

@@ -1,4 +1,4 @@
-
+# AWS Serverless Interview Scenarios: Advanced System Design & Debugging
 
 ## Key Concepts
 
@@ -164,27 +164,27 @@
 - Reference individual system design notes for deep-dive implementations:
     
       
-    - See [[AWS Lambda Execution Context and Lifecycle]] for p95/cold-start latency profiling.
+    - See [[AWS Lambda Core Architecture & Execution Model|AWS Lambda Execution Context and Lifecycle]] for p95/cold-start latency profiling.
         
           
         
-    - See [[AWS Cross-Account IAM and S3 Bucket Policies]] for cross-account boundary debugging.
+    - See [[AWS Identity and Access Management (IAM) - Identities, Policies, Roles & Best Practices|AWS Cross-Account IAM and S3 Bucket Policies]] for cross-account boundary debugging.
         
           
         
-    - See [[Serverless Circuit Breakers: DynamoDB and Redis Implementations]] for distributed state management.
+    - See [[AWS Serverless Interview Scenarios - Advanced System Design & Debugging|Serverless Circuit Breakers: DynamoDB and Redis Implementations]] for distributed state management.
         
           
         
-    - See [[AWS Lambda Power Tuning and Cost Optimization]] for vCPU vs. duration billing dynamics.
+    - See [[AWS Lambda Core Architecture & Execution Model|AWS Lambda Power Tuning and Cost Optimization]] for vCPU vs. duration billing dynamics.
         
           
         
-    - See [[AWS Serverless Deployments: CloudFormation, Lambda Versions, Aliases, and Safe Deployments]] for automated rollback triggers.
+    - See [[AWS Serverless Deployments - CloudFormation, Lambda Versions, Aliases, and Safe Deployments|AWS Serverless Deployments: CloudFormation, Lambda Versions, Aliases, and Safe Deployments]] for automated rollback triggers.
         
           
         
-    - See [[Handling Event Clogging and Backpressure in Amazon EventBridge]] and [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]] for backpressure patterns.
+    - See [[Handling Event Clogging and Backpressure in Amazon EventBridge]] and [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure|AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]] for backpressure patterns.
         
           
         
@@ -193,9 +193,7 @@
 
 ### Exponential Backoff with Full Jitter
 
-TypeScript
-
-```
+```typescript
 /**
  * Executes an asynchronous operation with exponential backoff and full jitter.
  * Formula: sleep = random_between(0, min(cap, base * 2^attempt))
@@ -231,30 +229,17 @@ export async function retryWithBackoff<T>(
 
 ## Related Topics
 
-- [[AWS Lambda Execution Context and Lifecycle]]
-    
-      
-    
-- [[AWS Serverless Deployments: CloudFormation, Lambda Versions, Aliases, and Safe Deployments]]
-    
-      
-    
-- [[Handling Event Clogging and Backpressure in Amazon EventBridge]]
-    
-      
-    
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
-    
-      
-    
-- [[Adding a Global Secondary Index (GSI) to a Large DynamoDB Table]]
-    
-      
-    
-- [[Debugging DynamoDB Hot Partitions & Hot Keys]]
-    
-      
-    
+
+- [[AWS Observability - CloudWatch, AWS X-Ray & CloudTrail]]
+
+- [[AWS Lambda Core Architecture & Execution Model]]
+
+- [[DynamoDB Single-Table Design - Inventory Management Scenario]]
+
+- [[High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling]]
+
+- [[AWS Serverless Deployments - CloudFormation, Lambda Versions, Aliases, and Safe Deployments]]
+
 
 ## Tags
 

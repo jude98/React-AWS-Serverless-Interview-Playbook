@@ -1,3 +1,5 @@
+# Strict Mode in JavaScript ("use strict")
+
 ## Key Concepts
 
 > [!summary] What is Strict Mode?
@@ -148,9 +150,7 @@
 
 ### Declaring Strict Mode (Global vs. Local)
 
-JavaScript
-
-```
+```javascript
 // File-level strict mode (must be first line)
 "use strict";
 
@@ -171,9 +171,7 @@ function sloppyScope() {
 
 ### Sloppy Mode Silent Failures vs. Strict Mode Exceptions
 
-JavaScript
-
-```
+```javascript
 "use strict";
 
 // 1. Assignment to non-writable property
@@ -197,9 +195,7 @@ const user = Object.freeze({ name: "Alice" });
 
 ### Standalone Function `this` Resolution
 
-JavaScript
-
-```
+```javascript
 function showThisSloppy() {
   return this;
 }
@@ -215,9 +211,7 @@ console.log(showThisStrict());            // undefined
 
 ### Decoupling `arguments` from Named Parameters
 
-JavaScript
-
-```
+```javascript
 function sloppyAlias(a) {
   a = 42;
   return arguments[0]; // Returns 42 (aliased to parameter)
@@ -252,11 +246,11 @@ console.log(strictNoAlias(10)); // 10
     
       
     
-- [[JavaScript Variable Declarations: var, let, and const]]
+- [[JavaScript Variables, Scopes, and Execution Context|JavaScript Variable Declarations: var, let, and const]]
     
       
     
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     

@@ -1,3 +1,4 @@
+# React useMemo, useCallback, and Fiber Memoization Architecture
 
 > [!note] Core Mental Model
 > 
@@ -310,15 +311,15 @@ export function EquivalenceDemo(props) {
     
       
     
-- [[Pure Components and React memo]]
+- [[React useMemo, useCallback, and Fiber Memoization Architecture|Pure Components and React memo]]
     
       
     
-- [[Stale Closures in React Hooks]]
+- [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
     
       
     
-- [[JavaScript Pass-by-Reference vs Pass-by-Value]]
+- [[JavaScript Data Types, Objects & Prototypal Inheritance|JavaScript Pass-by-Reference vs Pass-by-Value]]
     
       
     

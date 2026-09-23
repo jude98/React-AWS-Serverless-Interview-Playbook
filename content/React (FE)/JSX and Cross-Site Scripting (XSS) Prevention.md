@@ -1,4 +1,4 @@
-
+# JSX and Cross-Site Scripting (XSS) Prevention
 
 > [!note] Core Defense Mechanisms
 > 
@@ -180,19 +180,19 @@ export function ExternalLink({ url, children }) {
 
 ## Related Topics
 
-- [[JSX and Babel Compilation]]
+- [[JSX and ReactDOM Execution Pipeline|JSX and Babel Compilation]]
     
       
     
-- [[JSX to Real DOM Pipeline]]
+- [[JSX and ReactDOM Execution Pipeline|JSX to Real DOM Pipeline]]
     
       
     
-- [[Virtual DOM and Reconciliation]]
+- [[React Reconciliation and Diffing Algorithm|Virtual DOM and Reconciliation]]
     
       
     
-- [[Frontend Security and OWASP Top 10]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Security and OWASP Top 10]]
     
       
     

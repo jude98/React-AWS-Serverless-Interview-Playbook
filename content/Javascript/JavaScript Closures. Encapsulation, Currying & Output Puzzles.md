@@ -1,3 +1,4 @@
+# JavaScript Closures: Encapsulation, Currying & Output Puzzles
 
 ## Key Concepts
 
@@ -200,9 +201,9 @@ console.log(getVal()); // 42 (Both functions close over the EXACT SAME memory lo
 
 * [[JavaScript Execution Context, Memory Creation & Hoisting Mechanics]]
 * [[JavaScript Scope, Lexical Environment, and Shadowing]]
-* [[The this Keyword and Execution Bindings]]
+* [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
 * [[Function Borrowing, Explicit Binding & Function Currying]]
-* [[Memory Management and Garbage Collection in V8]]
+* [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Memory Management and Garbage Collection in V8]]
 
 ## Tags
 

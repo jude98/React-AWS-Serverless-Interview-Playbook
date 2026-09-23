@@ -1,3 +1,4 @@
+# AWS Lambda Event Invocations: Synchronous, Asynchronous & Event Source Mappings
 
 ## Key Concepts
 
@@ -237,23 +238,23 @@ Resources:
 
 ## Related Topics
 
-- [[AWS-Lambda-Core-Architecture]]
+- [[AWS Lambda Core Architecture & Execution Model|AWS-Lambda-Core-Architecture]]
     
       
     
-- [[AWS-Serverless-and-Event-Driven-Architecture]]
+- [[AWS Serverless & Event-Driven Architecture (EDA)|AWS-Serverless-and-Event-Driven-Architecture]]
     
       
     
-- [[Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
+- [[Amazon SQS - Queue Types, Internal Mechanics & Limits|Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
     
       
     
-- [[Idempotency-in-Distributed-Systems]]
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency-in-Distributed-Systems]]
     
       
     
-- [[Streaming-Architectures-Kinesis-vs-DynamoDB-Streams]]
+- [[Scaling DynamoDB Streams - High-Volume Event Processing|Streaming-Architectures-Kinesis-vs-DynamoDB-Streams]]
     
       
     

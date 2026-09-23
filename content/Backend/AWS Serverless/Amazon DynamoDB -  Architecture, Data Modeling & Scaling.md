@@ -1,3 +1,4 @@
+# Amazon DynamoDB: Architecture, Data Modeling & Scaling
 
 ## Key Concepts
 
@@ -259,26 +260,17 @@ export async function saveRecord(id: string, largePayload: object) {
 
 ## Related Topics
 
-- [[Single-Table-Design-Patterns]]
-    
-      
-    
-- [[NoSQL-vs-SQL-Data-Modeling]]
-    
-      
-    
-- [[Distributed-Consensus-Paxos-and-Raft]]
-    
-      
-    
-- [[Caching-Strategies-Redis-vs-DAX]]
-    
-      
-    
-- [[AWS-Serverless-and-Event-Driven-Architecture]]
-    
-      
-    
+
+- [[DynamoDB Capacity Modes - Provisioned with Auto Scaling vs. On-Demand]]
+
+- [[DynamoDB Single-Table Design - Inventory Management Scenario]]
+
+- [[Debugging DynamoDB Hot Partitions & Hot Keys]]
+
+- [[Adding a Global Secondary Index (GSI) to a Large DynamoDB Table]]
+
+- [[Scaling DynamoDB Streams - High-Volume Event Processing]]
+
 
 ## Tags
 

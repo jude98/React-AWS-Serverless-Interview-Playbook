@@ -1,3 +1,4 @@
+# AWS Observability: CloudWatch, AWS X-Ray & CloudTrail
 
 ## Key Concepts
 
@@ -194,26 +195,17 @@ Resources:
 
 ## Related Topics
 
-- [[AWS-Lambda-Core-Architecture]]
-    
-      
-    
-- [[Site-Reliability-Engineering-SLIs-SLOs-and-Error-Budgets]]
-    
-      
-    
-- [[OpenTelemetry-ADOT-and-Distributed-Tracing]]
-    
-      
-    
-- [[AWS-CloudTrail-Security-and-Compliance-Auditing]]
-    
-      
-    
-- [[Centralized-Logging-Elasticsearch-OpenSearch-CloudWatch]]
-    
-      
-    
+
+- [[AWS Lambda Core Architecture & Execution Model]]
+
+- [[AWS API Gateway - Architecture, Security & Limitations]]
+
+- [[SQS DLQ Processing - Correlation IDs, Error Context, and Redrive Pipelines]]
+
+- [[AWS Serverless Interview Scenarios - Advanced System Design & Debugging]]
+
+- [[Engineering Execution, Collaboration & Behavioral Scenarios]]
+
 
 ## Tags
 

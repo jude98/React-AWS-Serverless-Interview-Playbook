@@ -1,3 +1,4 @@
+# Handling Event Clogging and Backpressure in Amazon EventBridge
 
 ## Key Concepts
 
@@ -136,9 +137,7 @@ When an architecture faces exponential fan-out ($N$ event producers emitting eve
 
 ### AWS SAM: Clogging-Resistant Architecture (Bus $\to$ SQS Buffer $\to$ Throttled ESM + DLQ)
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Production anti-clogging pattern using SQS buffering, target DLQ, and bounded ESM.
@@ -219,9 +218,7 @@ Resources:
 
 ### EventBridge API Destination Rate Limiting (CloudFormation / SAM)
 
-YAML
-
-```
+```yaml
   # Connection authorization for external target
   ThirdPartyConnection:
     Type: AWS::Events::Connection
@@ -244,23 +241,23 @@ YAML
 
 ## Related Topics
 
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
+- [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure|AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
     
       
     
-- [[AWS SNS vs. Amazon EventBridge: Architecture, Differences, and Combined Patterns]]
+- [[AWS SNS vs. Amazon EventBridge - Architecture, Differences, and Combined Patterns|AWS SNS vs. Amazon EventBridge: Architecture, Differences, and Combined Patterns]]
     
       
     
-- [[AWS Lambda Concurrency: Reserved vs Provisioned]]
+- [[AWS Lambda Event Invocations - Synchronous, Asynchronous & Event Source Mappings|AWS Lambda Concurrency: Reserved vs Provisioned]]
     
       
     
-- [[Leaky Bucket and Token Bucket Rate Limiting]]
+- [[Frontend API Rate Limiting and Third-Party Resiliency Architecture|Leaky Bucket and Token Bucket Rate Limiting]]
     
       
     
-- [[Dead Letter Queue Redrive Strategies]]
+- [[SQS DLQ Processing - Correlation IDs, Error Context, and Redrive Pipelines|Dead Letter Queue Redrive Strategies]]
     
       
     

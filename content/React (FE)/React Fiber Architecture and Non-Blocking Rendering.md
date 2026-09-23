@@ -1,4 +1,4 @@
-
+# React Fiber Architecture and Non-Blocking Rendering
 
 > [!note] Core Definition of React Fiber
 > 
@@ -383,15 +383,15 @@ function performUnitOfWork(unitOfWorkFiber) {
     
       
     
-- [[React Render and Commit Phases]]
+- [[React Lifecycle and Execution Flow|React Render and Commit Phases]]
     
       
     
-- [[React useEffect vs useLayoutEffect]]
+- [[React useEffect and Synchronization Architecture|React useEffect vs useLayoutEffect]]
     
       
     
-- [[React Concurrent Mode and Transitions]]
+- [[React Concurrent Multitasking, Scheduling, and Priority Interruptions|React Concurrent Mode and Transitions]]
     
       
     

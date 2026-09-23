@@ -1,3 +1,4 @@
+# AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues
 
 ## Key Concepts
 
@@ -143,9 +144,7 @@
 
 ### AWS SAM: Defining an ESM vs. Asynchronous Destination
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
@@ -193,9 +192,7 @@ Resources:
 
 ### Programmatic Async Invocation (Hits Internal Queue)
 
-TypeScript
-
-```
+```typescript
 import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
 
 const lambda = new LambdaClient({ region: "us-east-1" });
@@ -216,23 +213,23 @@ export async function triggerAsyncProcess(payload: Record<string, unknown>): Pro
 
 ## Related Topics
 
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
+- [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure|AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
     
       
     
-- [[AWS Lambda Execution Context and Lifecycle]]
+- [[AWS Lambda Core Architecture & Execution Model|AWS Lambda Execution Context and Lifecycle]]
     
       
     
-- [[Push vs Pull Architectures in Cloud Systems]]
+- [[Amazon SNS (Simple Notification Service) - Architecture, Fanout & Delivery|Push vs Pull Architectures in Cloud Systems]]
     
       
     
-- [[Kinesis and DynamoDB Streams with Lambda ESM]]
+- [[Scaling DynamoDB Streams - High-Volume Event Processing|Kinesis and DynamoDB Streams with Lambda ESM]]
     
       
     
-- [[Lambda Concurrency: Reserved vs Provisioned]]
+- [[AWS Lambda Event Invocations - Synchronous, Asynchronous & Event Source Mappings|Lambda Concurrency: Reserved vs Provisioned]]
     
       
     

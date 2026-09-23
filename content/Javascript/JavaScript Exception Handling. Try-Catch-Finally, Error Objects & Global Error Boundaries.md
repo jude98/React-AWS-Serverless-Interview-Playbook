@@ -1,3 +1,4 @@
+# JavaScript Exception Handling: Try-Catch-Finally, Error Objects & Global Error Boundaries
 
 ## Key Concepts
 
@@ -144,9 +145,7 @@
 
 ### `finally` Block Return Overwrite Trap
 
-JavaScript
-
-```
+```javascript
 function trapDemo() {
   try {
     throw new Error("Something broke!");
@@ -162,9 +161,7 @@ console.log(trapDemo()); // "Overridden by finally!"
 
 ### The Asynchronous Callback Pitfall
 
-JavaScript
-
-```
+```javascript
 // BROKEN: try...catch cannot trap callback errors
 try {
   setTimeout(() => {
@@ -186,9 +183,7 @@ setTimeout(() => {
 
 ### Creating Custom Typed Errors
 
-JavaScript
-
-```
+```javascript
 class ValidationError extends Error {
   constructor(message, field) {
     super(message);
@@ -213,9 +208,7 @@ try {
 
 ### Global Unhandled Error Handlers (Browser & Node.js)
 
-JavaScript
-
-```
+```javascript
 // ==========================================
 // 1. CLIENT-SIDE (Browser Environment)
 // ==========================================
@@ -257,7 +250,7 @@ process.on("uncaughtException", (error) => {
 
 ## Related Topics
 
-- [[JavaScript Asynchronous Programming: Promises, Async/Await and Event Loop]]
+- [[JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns|JavaScript Asynchronous Programming: Promises, Async/Await and Event Loop]]
     
       
     
@@ -265,11 +258,11 @@ process.on("uncaughtException", (error) => {
     
       
     
-- [[Node.js Process Lifecycle and Exit Codes]]
+- [[JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries|Node.js Process Lifecycle and Exit Codes]]
     
       
     
-- [[Frontend Error Logging and Observability: Sentry and Datadog]]
+- [[Debugging and Fixing Slow Dashboard Performance|Frontend Error Logging and Observability: Sentry and Datadog]]
     
       
     

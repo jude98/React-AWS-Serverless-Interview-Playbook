@@ -1,3 +1,4 @@
+# Object-Oriented Programming (OOP) in JavaScript & TypeScript
 
 ## Key Concepts
 
@@ -251,23 +252,23 @@ BaseGateway.logVersion();
 
 ## Related Topics
 
-- [[Prototypal Inheritance & The Prototype Chain]]
+- [[Prototypal Inheritance, Object Prototypes & Constructor Functions|Prototypal Inheritance & The Prototype Chain]]
     
       
     
-- [[Composition over Inheritance]]
+- [[Object-Oriented Programming (OOP) in JavaScript & TypeScript|Composition over Inheritance]]
     
       
     
-- [[SOLID Principles in Fullstack Architecture]]
+- [[SOLID Principles|SOLID Principles in Fullstack Architecture]]
     
       
     
-- [[Factory and Singleton Design Patterns]]
+- [[Clean Architecture, Directory Structure & DTOs|Factory and Singleton Design Patterns]]
     
       
     
-- [[TypeScript Type System: Type Aliases vs Interfaces]]
+- [[Object-Oriented Programming (OOP) in JavaScript & TypeScript|TypeScript Type System: Type Aliases vs Interfaces]]
     
       
     

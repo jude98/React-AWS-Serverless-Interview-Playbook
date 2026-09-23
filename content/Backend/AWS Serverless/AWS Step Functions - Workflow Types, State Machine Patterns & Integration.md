@@ -1,3 +1,4 @@
+# AWS Step Functions: Workflow Types, State Machine Patterns & Integration
 
 ## Key Concepts
 
@@ -228,26 +229,17 @@ export async function completeTask(taskToken: string, approved: boolean, approve
 
 ## Related Topics
 
-- [[AWS-Serverless-and-Event-Driven-Architecture]]
-    
-      
-    
-- [[Distributed-Transactions-and-Saga-Pattern]]
-    
-      
-    
-- [[AWS-Lambda-Core-Architecture]]
-    
-      
-    
-- [[Amazon-EventBridge-and-Event-Driven-Routing]]
-    
-      
-    
-- [[Asynchronous-Workflows-with-SQS-and-Step-Functions]]
-    
-      
-    
+
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection]]
+
+- [[Amazon SQS - Queue Types, Internal Mechanics & Limits]]
+
+- [[Amazon EventBridge - Event Buses, Pipes, Patterns & Schemas]]
+
+- [[Amazon SNS (Simple Notification Service) - Architecture, Fanout & Delivery]]
+
+- [[AWS Lambda Event Invocations - Synchronous, Asynchronous & Event Source Mappings]]
+
 
 ## Tags
 

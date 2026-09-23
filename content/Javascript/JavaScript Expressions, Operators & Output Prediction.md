@@ -1,3 +1,4 @@
+# JavaScript Expressions, Operators & Output Prediction
 
 ## Key Concepts
 
@@ -177,9 +178,7 @@
 
 ### Logical Operators, Short-Circuiting & Nullish Coalescing
 
-JavaScript
-
-```
+```javascript
 // Short-circuiting evaluation
 console.log("hello" && 0 && "world"); // 0 (stops at first falsy)
 console.log(null || false || "fallback"); // "fallback" (stops at first truthy)
@@ -203,9 +202,7 @@ console.log(config.debug ?? true); // false
 
 ### Unary & Comma Operator Traps
 
-JavaScript
-
-```
+```javascript
 // Comma operator evaluation
 let result = (1 + 1, 2 * 3, 4 + 5);
 console.log(result); // 9 (last expression is returned)
@@ -228,9 +225,7 @@ console.log(+undefined); // NaN
 
 ### Predict the Output: Common Interview Operator Puzzles
 
-JavaScript
-
-```
+```javascript
 // Puzzle 1: Relational chaining
 console.log(1 < 2 < 3); // true  ((1 < 2) -> true -> 1 < 3)
 console.log(3 > 2 > 1); // false ((3 > 2) -> true -> 1 > 1)
@@ -277,7 +272,7 @@ console.log(void 0);       // undefined (idiomatic safe replacement for global u
 
 ## Related Topics
 
-- [[JavaScript Type Casting: Coercion vs. Conversion & Predict-the-Output]]
+- [[JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output|JavaScript Type Casting: Coercion vs. Conversion & Predict-the-Output]]
     
       
     
@@ -289,7 +284,7 @@ console.log(void 0);       // undefined (idiomatic safe replacement for global u
     
       
     
-- [[Control Flow and Conditional Statements]]
+- [[JavaScript Control Flow. If-Else, Ternary & Switch Statements|Control Flow and Conditional Statements]]
     
       
     

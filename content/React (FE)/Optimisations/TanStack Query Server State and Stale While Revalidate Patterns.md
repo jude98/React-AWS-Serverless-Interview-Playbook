@@ -1,4 +1,4 @@
-
+# TanStack Query Server State and Stale While Revalidate Patterns
 
 > [!abstract] Fundamental Paradigm Shift
 > 
@@ -228,23 +228,23 @@ export const useAddTodo = () => {
 
 ## Related Topics
 
-- [[Client State vs Server State Architecture]]
+- [[React State Management Architecture, Context vs External Stores vs React Query|Client State vs Server State Architecture]]
     
       
     
-- [[HTTP Caching ETag and Stale While Revalidate]]
+- [[TanStack Query Server State and Stale While Revalidate Patterns|HTTP Caching ETag and Stale While Revalidate]]
     
       
     
-- [[React Performance Optimization]]
+- [[Comprehensive Performance Optimization Architecture in React|React Performance Optimization]]
     
       
     
-- [[Race Conditions and AbortController in JavaScript]]
+- [[AbortController & Multi-Signal Timeout Architectures|Race Conditions and AbortController in JavaScript]]
     
       
     
-- [[Redux vs Zustand vs TanStack Query]]
+- [[Why You Might Not Need Redux and Modern State Alternatives|Redux vs Zustand vs TanStack Query]]
     
       
     

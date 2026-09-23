@@ -1,3 +1,4 @@
+# Distributed Transactions & Event-Driven Architecture: Sagas, 2PC, Resilience & Messaging Selection
 
 ## Key Concepts
 
@@ -139,23 +140,23 @@
 - _Note: Reference individual topic notes for full technical breakdown and implementation architecture._
     
       
-    - See [[Distributed Transactions: 2PC vs Saga Pattern]] for comparison tables, isolation mitigation, and pivot step modeling.
+    - See [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Distributed Transactions: 2PC vs Saga Pattern]] for comparison tables, isolation mitigation, and pivot step modeling.
         
           
         
-    - See [[AWS Step Functions: Orchestration vs Choreography]] for Step Functions state machine implementations of Sagas.
+    - See [[AWS Step Functions - Workflow Types, State Machine Patterns & Integration|AWS Step Functions: Orchestration vs Choreography]] for Step Functions state machine implementations of Sagas.
         
           
         
-    - See [[Serverless Circuit Breakers: DynamoDB and Redis Implementations]] for distributed state synchronization (`CLOSED`, `OPEN`, `HALF-OPEN`).
+    - See [[AWS Serverless Interview Scenarios - Advanced System Design & Debugging|Serverless Circuit Breakers: DynamoDB and Redis Implementations]] for distributed state synchronization (`CLOSED`, `OPEN`, `HALF-OPEN`).
         
           
         
-    - See [[AWS SNS vs. Amazon EventBridge: Architecture, Differences, and Combined Patterns]] for routing vs. pub/sub distinctions.
+    - See [[AWS SNS vs. Amazon EventBridge - Architecture, Differences, and Combined Patterns|AWS SNS vs. Amazon EventBridge: Architecture, Differences, and Combined Patterns]] for routing vs. pub/sub distinctions.
         
           
         
-    - See [[Transactional Outbox Pattern with Debezium and DynamoDB Streams]] for atomic event publishing without dual-writes.
+    - See [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Transactional Outbox Pattern with Debezium and DynamoDB Streams]] for atomic event publishing without dual-writes.
         
           
         
@@ -164,9 +165,7 @@
 
 ### Distributed Circuit Breaker State Transition Handler (TypeScript / Redis)
 
-TypeScript
-
-```
+```typescript
 import { Redis } from "ioredis";
 
 export enum CircuitState {
@@ -224,30 +223,17 @@ export class DistributedCircuitBreaker {
 
 ## Related Topics
 
-- [[Distributed Transactions: 2PC vs Saga Pattern]]
-    
-      
-    
-- [[AWS Step Functions: Orchestration vs Choreography]]
-    
-      
-    
-- [[Transactional Outbox Pattern with Debezium and DynamoDB Streams]]
-    
-      
-    
-- [[AWS SNS vs. Amazon EventBridge: Architecture, Differences, and Combined Patterns]]
-    
-      
-    
-- [[Serverless Circuit Breakers: DynamoDB and Redis Implementations]]
-    
-      
-    
-- [[Handling Event Clogging and Backpressure in Amazon EventBridge]]
-    
-      
-    
+
+- [[AWS Step Functions - Workflow Types, State Machine Patterns & Integration]]
+
+- [[AWS Serverless & Event-Driven Architecture (EDA)]]
+
+- [[Event-Driven Architecture Scenarios - Flash Sales, High-Scale Ordering & Extreme Inventory Contention]]
+
+- [[Scaling DynamoDB Streams - High-Volume Event Processing]]
+
+- [[CAP Theorem]]
+
 
 ## Tags
 

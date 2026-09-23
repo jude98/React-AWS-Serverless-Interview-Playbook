@@ -1,4 +1,4 @@
-
+# CAP Theorem
 
 ## Key Concepts
 
@@ -26,7 +26,7 @@
     
       
     
-- When no partition exists ($P$ is healthy), the trade-off shifts to **Latency vs. Consistency** (formalized by the [[PACELC Theorem]]).
+- When no partition exists ($P$ is healthy), the trade-off shifts to **Latency vs. Consistency** (formalized by the [[CAP Theorem|PACELC Theorem]]).
     
       
     
@@ -176,30 +176,17 @@ function handleReadAP(node: NodeState): { status: number; data: string; warning?
 
 ## Related Topics
 
-- [[PACELC Theorem]]
-    
-      
-    
-- [[ACID vs BASE]]
-    
-      
-    
-- [[Eventual Consistency]]
-    
-      
-    
-- [[Distributed Consensus (Raft, Paxos)]]
-    
-      
-    
-- [[Database Replication Strategies]]
-    
-      
-    
-- [[CRDTs and Conflict Resolution]]
-    
-      
-    
+
+- [[ACID Properties & Transaction Isolation Levels]]
+
+- [[Database Partitioning vs. Sharding]]
+
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection]]
+
+- [[AWS Serverless & Event-Driven Architecture (EDA)]]
+
+- [[Amazon DynamoDB -  Architecture, Data Modeling & Scaling]]
+
 
 ## Tags
 

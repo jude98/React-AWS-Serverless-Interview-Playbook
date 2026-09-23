@@ -1,3 +1,4 @@
+# The `this` Keyword & Execution Bindings
 
 ## Key Concepts
 
@@ -137,9 +138,7 @@
 
 ### The 4 Binding Scenarios & Implicit Loss
 
-JavaScript
-
-```
+```javascript
 "use strict";
 
 // 1. Default Binding (Standalone invocation)
@@ -178,9 +177,7 @@ console.log(newUser.name); // "Marcus"
 
 ### `this` in DOM Event Handlers: Regular vs. Arrow
 
-JavaScript
-
-```
+```javascript
 const button = document.querySelector("#submit-btn");
 
 // Regular Function: 'this' dynamically bound to currentTarget element
@@ -202,9 +199,7 @@ button.addEventListener("click", (event) => {
 
 ### Arrow Function Lexical Capture in Object Methods
 
-JavaScript
-
-```
+```javascript
 const counter = {
   count: 0,
   
@@ -249,7 +244,7 @@ counter.startTimer();
     
       
     
-- [[JavaScript Functions: Architecture, Patterns & Mechanics]]
+- [[JavaScript Functions. Architecture, Patterns & Mechanics|JavaScript Functions: Architecture, Patterns & Mechanics]]
     
       
     

@@ -1,3 +1,4 @@
+# Caching Architecture, Eviction Policies & Invalidation Pitfalls
 
 ## Key Concepts
 
@@ -274,15 +275,15 @@ export class ProductService {
     
       
     
-- [[Database Replication Strategies]]
+- [[Database Partitioning vs. Sharding|Database Replication Strategies]]
     
       
     
-- [[Eventual Consistency]]
+- [[CAP Theorem|Eventual Consistency]]
     
       
     
-- [[Distributed Locking (Redlock, Optimistic Locking)]]
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Distributed Locking (Redlock, Optimistic Locking)]]
     
       
     

@@ -1,4 +1,4 @@
-
+# Code Splitting vs Lazy Loading in React
 
 > [!note] Core Mental Model
 > 
@@ -271,15 +271,15 @@ export function App() {
     
       
     
-- [[Browser Rendering Pipeline and Core Web Vitals]]
+- [[The Browser Rendering Pipeline. Reflow, Repaint, and Composite|Browser Rendering Pipeline and Core Web Vitals]]
     
       
     
-- [[Webpack and Vite Bundling Strategies]]
+- [[Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)|Webpack and Vite Bundling Strategies]]
     
       
     
-- [[React Suspense and Streaming SSR]]
+- [[React Concurrent Multitasking, Scheduling, and Priority Interruptions|React Suspense and Streaming SSR]]
     
       
     

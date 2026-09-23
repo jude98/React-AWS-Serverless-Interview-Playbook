@@ -1,4 +1,4 @@
-
+# Bulk Updating 1 Million Rows in DynamoDB: Architectural Approaches and Trade-offs
 
 ## Key Concepts
 
@@ -212,9 +212,7 @@
 
 ### AWS Step Functions: Distributed Map over S3 Export JSON (ASL Definition)
 
-JSON
-
-```
+```json
 {
   "Comment": "Zero-RCU bulk update reading S3 PITR export via Distributed Map",
   "StartAt": "ProcessS3ExportFiles",
@@ -263,9 +261,7 @@ JSON
 
 ### Worker Lambda: Idempotent `UpdateItem` with Condition Expression
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 
 const ddb = new DynamoDBClient({ region: "us-east-1" });
@@ -329,26 +325,17 @@ export const handler = async (event: LambdaEvent): Promise<{ updated: number; sk
 
 ## Related Topics
 
-- [[DynamoDB Parallel Scan: Segments, Throughput, and Distributed Processing]]
-    
-      
-    
-- [[DynamoDB Point-in-Time Recovery (PITR) Export to S3 vs Application Scans]]
-    
-      
-    
-- [[AWS Step Functions Distributed Map Architecture]]
-    
-      
-    
-- [[DynamoDB Conditional Writes and Optimistic Locking]]
-    
-      
-    
-- [[Cost Optimization: On-Demand vs Provisioned Capacity Mode in DynamoDB]]
-    
-      
-    
+
+- [[DynamoDB Parallel Scan - Segments, Throughput, and Distributed Processing]]
+
+- [[DynamoDB Capacity Modes - Provisioned with Auto Scaling vs. On-Demand]]
+
+- [[Debugging DynamoDB Hot Partitions & Hot Keys]]
+
+- [[Scaling DynamoDB Streams - High-Volume Event Processing]]
+
+- [[Amazon DynamoDB -  Architecture, Data Modeling & Scaling]]
+
 
 ## Tags
 

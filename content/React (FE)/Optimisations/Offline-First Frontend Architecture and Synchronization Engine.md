@@ -1,3 +1,4 @@
+# Offline-First Frontend Architecture and Synchronization Engine
 
 > [!abstract] Architectural Overview
 > 
@@ -386,7 +387,7 @@ export const OfflineNoteEditor = ({ noteId }: { noteId: string }) => {
     
       
     
-- [[Service Workers and Progressive Web Apps Architecture]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Service Workers and Progressive Web Apps Architecture]]
     
       
     

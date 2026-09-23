@@ -1,3 +1,4 @@
+# The Browser Rendering Pipeline: Reflow, Repaint, and Composite
 
 ## Key Concepts
 
@@ -198,10 +199,10 @@ function goodResize(elements) {
 
 ## Related Topics
 
-* [[What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
-* [[Browser Architecture: High-Level Components, Rendering Engines & HTML Parsing]]
-* [[V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
-* [[DOM Event Propagation: Bubbling, Capturing & Event Delegation]]
+* [[What Happens When You Enter a URL in the Browser. The End-to-End Lifecycle|What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
+* [[Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing|Browser Architecture: High-Level Components, Rendering Engines & HTML Parsing]]
+* [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
+* [[DOM Event Propagation. Bubbling, Capturing & Event Delegation|DOM Event Propagation: Bubbling, Capturing & Event Delegation]]
 
 ---
 

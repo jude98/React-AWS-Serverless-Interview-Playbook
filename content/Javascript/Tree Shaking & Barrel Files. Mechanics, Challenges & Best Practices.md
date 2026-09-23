@@ -1,3 +1,4 @@
+# Tree Shaking & Barrel Files: Mechanics, Challenges & Best Practices
 
 ## Key Concepts
 
@@ -115,9 +116,7 @@ Even if an exported function is never invoked, importing its module might execut
 
   
 
-JavaScript
-
-```
+```javascript
 // analytics.js
 window.__APP_ANALYTICS_INITIALIZED__ = true; // Side effect!
 
@@ -143,9 +142,7 @@ When you write:
 
   
 
-JavaScript
-
-```
+```javascript
 import { Button } from './components'; // refers to components/index.js
 ```
 
@@ -172,9 +169,7 @@ To inform bundlers that unused re-exported modules can be safely pruned without 
 
   
 
-JSON
-
-```
+```json
 {
   "name": "my-ui-library",
   "sideEffects": false
@@ -185,9 +180,7 @@ Or specify explicit exceptions:
 
   
 
-JSON
-
-```
+```json
 {
   "sideEffects": [
     "*.css",
@@ -205,9 +198,7 @@ When a bundler encounters `"sideEffects": false`, it bypasses unreferenced re-ex
 
 ### 1. The Barrel File Trap
 
-JavaScript
-
-```
+```javascript
 // ❌ The Barrel File: components/index.js
 export { Button } from './Button.js';
 export { Modal } from './Modal.js';
@@ -223,9 +214,7 @@ import { Button } from './components';
 // the entire 500KB Chart.js library will be included in app.js!
 ```
 
-JavaScript
-
-```
+```javascript
 // ✅ Fix Option A: Direct Path Imports (Bypassing the barrel)
 import { Button } from './components/Button.js';
 
@@ -235,9 +224,7 @@ import { Button } from './components/Button.js';
 
 ### 2. CommonJS vs. ESM Tree Shaking Demonstration
 
-JavaScript
-
-```
+```javascript
 // ==========================================
 // COMMONJS: Dynamic (Cannot Tree Shake)
 // ==========================================
@@ -270,9 +257,7 @@ When bundlers cannot determine whether a top-level function call produces side e
 
   
 
-JavaScript
-
-```
+```javascript
 // Bundler cannot be sure if configureButton() modifies globals or DOM
 export const PrimaryButton = /*#__PURE__*/ configureButton({
   type: "primary",
@@ -327,19 +312,19 @@ export const PrimaryButton = /*#__PURE__*/ configureButton({
 
 ## Related Topics
 
-- [[V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
+- [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
     
       
     
-- [[JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
+- [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
     
       
     
-- [[Web Performance: Bundle Analysis, Code Splitting & Dynamic Imports]]
+- [[Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)|Web Performance: Bundle Analysis, Code Splitting & Dynamic Imports]]
     
       
     
-- [[Module Systems: ESM, CJS, AMD, UMD and SystemJS]]
+- [[JavaScript Fundamentals & Module Systems|Module Systems: ESM, CJS, AMD, UMD and SystemJS]]
     
       
     

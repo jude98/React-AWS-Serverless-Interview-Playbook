@@ -1,3 +1,4 @@
+# SQS DLQ Processing: Correlation IDs, Error Context, and Redrive Pipelines
 
 ## Key Concepts
 
@@ -212,9 +213,7 @@ Because native SQS redrives do not carry runtime exceptions into the DLQ message
 
 ### Structured Logging with Correlation ID on Failure
 
-TypeScript
-
-```
+```typescript
 import { SQSEvent, SQSBatchResponse } from "aws-lambda";
 
 export const handler = async (event: SQSEvent): Promise<SQSBatchResponse> => {
@@ -262,9 +261,7 @@ async function callThirdPartyApi(data: any, correlationId: string) { /* ... */ }
 
 ### AWS SAM: Primary Queue + DLQ + Lambda Redrive Infrastructure
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
@@ -306,9 +303,7 @@ Resources:
 
 ### Initiating Native DLQ Redrive via AWS CLI
 
-Bash
-
-```
+```bash
 # Redrives up to 5,000 messages from the DLQ back to the source queue
 aws sqs start-message-move-task \
     --source-arn "arn:aws:sqs:us-east-1:123456789012:orders-processing-dlq" \
@@ -318,26 +313,17 @@ aws sqs start-message-move-task \
 
 ## Related Topics
 
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
-    
-      
-    
+
+- [[Amazon SQS - Queue Types, Internal Mechanics & Limits]]
+
+- [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure]]
+
+- [[AWS Observability - CloudWatch, AWS X-Ray & CloudTrail]]
+
+- [[High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling]]
+
 - [[AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues]]
-    
-      
-    
-- [[Distributed Tracing: Correlation IDs vs OpenTelemetry Context Propagation]]
-    
-      
-    
-- [[Handling Event Clogging and Backpressure in Amazon EventBridge]]
-    
-      
-    
-- [[Idempotency in Distributed Systems]]
-    
-      
-    
+
 
 ## Tags
 

@@ -1,3 +1,4 @@
+# JavaScript Promises & Async, Await: Architecture, Mechanics & Patterns
 
 ## Key Concepts
 
@@ -225,9 +226,9 @@ async function handleRequest(userId) {
 ## Related Topics
 
 * [[Asynchronous JavaScript, Event Loop & Concurrency Model]]
-* [[Event Loop Starvation: Causes, Mechanics & Mitigation Strategies]]
-* [[JavaScript Exception Handling: Try-Catch-Finally, Error Objects & Global Error Boundaries]]
-* [[Iterables, Iterators, and Generators]]
+* [[Event Loop Starvation. Causes, Mechanics & Mitigation Strategies|Event Loop Starvation: Causes, Mechanics & Mitigation Strategies]]
+* [[JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries|JavaScript Exception Handling: Try-Catch-Finally, Error Objects & Global Error Boundaries]]
+* [[JavaScript Loops, Iteration Protocols & Data Structure Traversal|Iterables, Iterators, and Generators]]
 
 ## Tags
 

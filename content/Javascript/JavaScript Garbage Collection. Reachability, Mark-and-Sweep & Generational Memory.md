@@ -1,3 +1,4 @@
+# JavaScript Garbage Collection: Reachability, Mark-and-Sweep & Generational Memory
 
 ## Key Concepts
 
@@ -196,9 +197,7 @@
 
 ### 1. Circular References Reclaimed Under Mark-and-Sweep
 
-JavaScript
-
-```
+```javascript
 function allocateFamily() {
   const mother = {};
   const father = {};
@@ -220,9 +219,7 @@ allocateFamily();
 
 ### 2. Unreachable Islands vs. Root-Connected Memory
 
-JavaScript
-
-```
+```javascript
 let user = { name: "Alice" }; // 'user' is a Root reference on the global scope
 let admin = user;             // Second reference to the same heap object
 
@@ -232,9 +229,7 @@ admin = null; // Object is now completely UNREACHABLE from Roots -> Eligible for
 
 ### 3. Preventing Memory Leaks with Weak References
 
-JavaScript
-
-```
+```javascript
 // BAD: Strong reference map prevents Garbage Collection
 const strongMetadataCache = new Map();
 
@@ -260,9 +255,7 @@ button = null; // The associated cache object in weakMetadataCache is automatica
 
 ### 4. Diagnosing Memory Leaks in Node.js
 
-JavaScript
-
-```
+```javascript
 // Exposing GC in Node for memory profiling (run with: node --expose-gc script.js)
 if (globalThis.gc) {
   console.log("Memory before:", process.memoryUsage().heapUsed / 1024 / 1024, "MB");
@@ -287,11 +280,11 @@ if (globalThis.gc) {
 
 ## Related Topics
 
-- [[V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
+- [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
     
       
     
-- [[JavaScript Closures: Encapsulation, Currying & Output Puzzles]]
+- [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures: Encapsulation, Currying & Output Puzzles]]
     
       
     
@@ -299,7 +292,7 @@ if (globalThis.gc) {
     
       
     
-- [[JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
+- [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
     
       
     

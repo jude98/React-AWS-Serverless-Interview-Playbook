@@ -1,3 +1,4 @@
+# Browser Architecture: High-Level Components, Rendering Engines & HTML Parsing
 
 ## Key Concepts
 
@@ -244,10 +245,10 @@ console.log(tokenizeHTML("<p>Hello</p>"));
 
 ## Related Topics
 
-* [[What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
-* [[V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
-* [[DOM Event Propagation: Bubbling, Capturing & Event Delegation]]
-* [[Web Performance: DOM Manipulation, Reflow & Repaint]]
+* [[What Happens When You Enter a URL in the Browser. The End-to-End Lifecycle|What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
+* [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
+* [[DOM Event Propagation. Bubbling, Capturing & Event Delegation|DOM Event Propagation: Bubbling, Capturing & Event Delegation]]
+* [[The Browser Rendering Pipeline. Reflow, Repaint, and Composite|Web Performance: DOM Manipulation, Reflow & Repaint]]
 
 ---
 

@@ -1,3 +1,4 @@
+# DOM Event Listeners, Browser Memory Management & Teardown Mechanics
 
 ## Key Concepts
 
@@ -158,10 +159,10 @@ userList.addEventListener("click", (event) => {
 
 ## Related Topics
 
-* [[JavaScript Closures: Encapsulation, Currying & Output Puzzles]]
-* [[Memory Management and Garbage Collection in V8]]
-* [[JavaScript Event Loop, Callbacks & Task Queues]]
-* [[DOM Event Propagation: Bubbling, Capturing and Custom Events]]
+* [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures: Encapsulation, Currying & Output Puzzles]]
+* [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Memory Management and Garbage Collection in V8]]
+* [[Asynchronous JavaScript, Event Loop & Concurrency Model|JavaScript Event Loop, Callbacks & Task Queues]]
+* [[DOM Event Propagation. Bubbling, Capturing & Event Delegation|DOM Event Propagation: Bubbling, Capturing and Custom Events]]
 
 ## Tags
 

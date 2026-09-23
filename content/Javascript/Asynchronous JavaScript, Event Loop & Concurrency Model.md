@@ -1,3 +1,5 @@
+# Asynchronous JavaScript, Event Loop & Concurrency Model
+
 ## Key Concepts
 
 > [!summary] Single-Threaded Non-Blocking Architecture
@@ -176,9 +178,7 @@
 
 ### 1. The Classic Output Prediction Puzzle (Browser & Node.js Common Core)
 
-JavaScript
-
-```
+```javascript
 console.log("1 - Sync Start");
 
 setTimeout(() => {
@@ -214,9 +214,7 @@ console.log("7 - Sync End");
 
 ### 2. Node.js Event Loop Hierarchy (`nextTick` vs `setImmediate`)
 
-JavaScript
-
-```
+```javascript
 // Run in Node.js environment
 setTimeout(() => console.log("1 - setTimeout 0ms"), 0);
 setImmediate(() => console.log("2 - setImmediate"));
@@ -235,9 +233,7 @@ Promise.resolve().then(() => console.log("4 - Promise microtask"));
 
 ### 3. Solving Callback Hell: Callbacks vs Promises vs Async/Await
 
-JavaScript
-
-```
+```javascript
 // 1. Callback Hell (Pyramid of Doom + Inversion of Control)
 getUser(userId, (userErr, user) => {
   if (userErr) return handleError(userErr);
@@ -272,9 +268,7 @@ async function showOrderDetails(userId) {
 
 ### 4. Custom Promise Implementation Core (Mental Model)
 
-JavaScript
-
-```
+```javascript
 class SimplePromise {
   constructor(executor) {
     this.state = "pending";
@@ -327,15 +321,15 @@ class SimplePromise {
     
       
     
-- [[JavaScript Exception Handling: Try-Catch-Finally, Error Objects & Global Error Boundaries]]
+- [[JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries|JavaScript Exception Handling: Try-Catch-Finally, Error Objects & Global Error Boundaries]]
     
       
     
-- [[Node.js Runtime Architecture and Libuv]]
+- [[Asynchronous JavaScript, Event Loop & Concurrency Model|Node.js Runtime Architecture and Libuv]]
     
       
     
-- [[Iterables, Iterators, and Generators]]
+- [[JavaScript Loops, Iteration Protocols & Data Structure Traversal|Iterables, Iterators, and Generators]]
     
       
     

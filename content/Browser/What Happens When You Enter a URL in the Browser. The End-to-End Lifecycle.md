@@ -1,3 +1,4 @@
+# What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle
 
 ## Key Concepts
 
@@ -298,9 +299,7 @@ HTML
 
 ### 2. Triggering Layout Thrashing / Forced Synchronous Reflow
 
-JavaScript
-
-```
+```javascript
 // ❌ ANTI-PATTERN: Forced Synchronous Layout (Layout Thrashing)
 // Alternating reads and writes inside a loop forces the engine to recalculate layout repeatedly
 function resizeBad(boxes) {
@@ -334,11 +333,11 @@ function resizeGood(boxes) {
 
 ## Related Topics
 
-- [[Client-Side Browser Storage: Mechanisms, Architecture & Security]]
+- [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Client-Side Browser Storage: Mechanisms, Architecture & Security]]
     
       
     
-- [[V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
+- [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
     
       
     
@@ -346,7 +345,7 @@ function resizeGood(boxes) {
     
       
     
-- [[DOM Event Propagation: Bubbling, Capturing & Event Delegation]]
+- [[DOM Event Propagation. Bubbling, Capturing & Event Delegation|DOM Event Propagation: Bubbling, Capturing & Event Delegation]]
     
       
     

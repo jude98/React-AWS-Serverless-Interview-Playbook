@@ -1,3 +1,4 @@
+# Client-Side Browser Storage: Mechanisms, Architecture & Security
 
 ## Key Concepts
 
@@ -215,9 +216,7 @@ Cookies were designed for server-side session continuity. Every HTTP request mat
 
 ### 1. Inter-Tab State Synchronization via the `storage` Event
 
-JavaScript
-
-```
+```javascript
 // tab-a.js (Runs in Tab A)
 function logoutUser() {
   // Set timestamp to ensure storage event triggers even on duplicate values
@@ -257,9 +256,7 @@ Set-Cookie: session_id=abc123xyz789; Max-Age=86400; Path=/; Domain=.example.com;
 
 ### 3. Safe `localStorage` Wrapper with Quota Exhaustion Guard
 
-JavaScript
-
-```
+```javascript
 const storage = {
   set(key, value) {
     try {
@@ -301,9 +298,7 @@ console.log(storage.get("preferences").theme); // "dark"
 
 ### 4. Basic Transaction in IndexedDB
 
-JavaScript
-
-```
+```javascript
 function openDB() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("AppDatabase", 1);
@@ -349,19 +344,19 @@ async function saveLog(entry) {
 
 ## Related Topics
 
-- [[Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
     
       
     
-- [[Frontend Web Security: XSS, CSRF, CORS & CSP]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Web Security: XSS, CSRF, CORS & CSP]]
     
       
     
-- [[Performance Profiling: Main Thread Blocking, INP, and Long Tasks]]
+- [[Web Vitals Optimization LCP INP and FCP|Performance Profiling: Main Thread Blocking, INP, and Long Tasks]]
     
       
     
-- [[Authentication Patterns: JWTs, Refresh Tokens & Session Cookies]]
+- [[Storage Strategies for Authorization Tokens. Access vs Refresh Tokens|Authentication Patterns: JWTs, Refresh Tokens & Session Cookies]]
     
       
     

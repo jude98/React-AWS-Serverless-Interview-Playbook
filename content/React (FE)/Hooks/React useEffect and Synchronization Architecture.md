@@ -1,3 +1,4 @@
+# React useEffect and Synchronization Architecture
 
 > [!note] The True Mental Model of useEffect
 > 
@@ -282,11 +283,11 @@ export function WindowScrollTracker() {
 
 ## Related Topics
 
-- [[React Component Lifecycle]]
+- [[React Lifecycle and Execution Flow|React Component Lifecycle]]
     
       
     
-- [[React useEffect vs useLayoutEffect]]
+- [[React useEffect and Synchronization Architecture|React useEffect vs useLayoutEffect]]
     
       
     
@@ -294,11 +295,11 @@ export function WindowScrollTracker() {
     
       
     
-- [[Client State vs Server State (TanStack Query)]]
+- [[TanStack Query Server State and Stale While Revalidate Patterns|Client State vs Server State (TanStack Query)]]
     
       
     
-- [[Stale Closures in React Hooks]]
+- [[React useEffect and Synchronization Architecture|Stale Closures in React Hooks]]
     
       
     

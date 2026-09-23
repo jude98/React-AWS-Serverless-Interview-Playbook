@@ -1,3 +1,4 @@
+# Scaling DynamoDB Streams: High-Volume Event Processing
 
 ## Key Concepts
 
@@ -145,9 +146,7 @@
 
 ### AWS SAM: Production-Grade DynamoDB Stream Event Source Mapping
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: High-throughput DynamoDB Stream consumer with resilience controls.
@@ -189,9 +188,7 @@ Resources:
 
 ### Lambda Handler: Partial Batch Failure with DynamoDB Stream Records
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBStreamEvent, DynamoDBBatchResponse } from "aws-lambda";
 
 export const handler = async (event: DynamoDBStreamEvent): Promise<DynamoDBBatchResponse> => {
@@ -227,26 +224,17 @@ async function processChange(eventType?: string, oldImg?: unknown, newImg?: unkn
 
 ## Related Topics
 
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
-    
-      
-    
+
+- [[Amazon DynamoDB -  Architecture, Data Modeling & Scaling]]
+
 - [[AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues]]
-    
-      
-    
-- [[DynamoDB Parallel Scan: Segments, Throughput, and Distributed Processing]]
-    
-      
-    
-- [[Kinesis Data Streams: Enhanced Fan-Out and Shard Splitting]]
-    
-      
-    
-- [[Change Data Capture (CDC) Architecture and Event Sourcing]]
-    
-      
-    
+
+- [[DynamoDB Single-Table Design - Inventory Management Scenario]]
+
+- [[Debugging DynamoDB Hot Partitions & Hot Keys]]
+
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection]]
+
 
 ## Tags
 

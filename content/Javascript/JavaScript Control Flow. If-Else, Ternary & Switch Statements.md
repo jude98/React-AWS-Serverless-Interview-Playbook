@@ -1,3 +1,4 @@
+# JavaScript Control Flow: If-Else, Ternary & Switch Statements
 
 ## Key Concepts
 
@@ -113,9 +114,7 @@
 
 ### `switch` Lexical Scope Pitfall & Fix
 
-JavaScript
-
-```
+```javascript
 const action = "LOGIN";
 
 // Broken: SyntaxError due to shared switch block scope
@@ -149,9 +148,7 @@ switch (action) {
 
 ### Intentional Fall-Through & `switch (true)` Pattern
 
-JavaScript
-
-```
+```javascript
 // 1. Grouping multiple cases via intentional fall-through
 function getDayCategory(dayNumber) {
   switch (dayNumber) {
@@ -186,9 +183,7 @@ function getGrade(score) {
 
 ### Refactoring Branching Logic: Dictionary / Map Pattern
 
-JavaScript
-
-```
+```javascript
 // Before: Verbose switch statement
 function getDiscountByRole(role) {
   switch (role) {
@@ -234,7 +229,7 @@ function getDiscount(role) {
     
       
     
-- [[Clean Code & Refactoring: Guard Clauses and Early Returns]]
+- [[Clean Architecture, Directory Structure & DTOs|Clean Code & Refactoring: Guard Clauses and Early Returns]]
     
       
     

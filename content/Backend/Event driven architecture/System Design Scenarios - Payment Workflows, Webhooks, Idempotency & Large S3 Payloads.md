@@ -1,4 +1,4 @@
-
+# System Design Scenarios: Payment Workflows, Webhooks, Idempotency & Large S3 Payloads
 
 ## Key Concepts
 
@@ -106,23 +106,23 @@
 - _Note: Reference individual topic notes for full technical breakdown and implementation architecture._
     
       
-    - See [[Idempotency in Distributed Systems]] and AWS Lambda Powertools Idempotency persistence layers for state-machine locking (`IN_PROGRESS`, `COMPLETE`).
+    - See [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency in Distributed Systems]] and AWS Lambda Powertools Idempotency persistence layers for state-machine locking (`IN_PROGRESS`, `COMPLETE`).
         
           
         
-    - See [[High-Volume Serverless Webhook Ingestion: WAF, API Gateway Direct SQS Integration, and Throttling]] for decoupled webhook ingestion.
+    - See [[High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling|High-Volume Serverless Webhook Ingestion: WAF, API Gateway Direct SQS Integration, and Throttling]] for decoupled webhook ingestion.
         
           
         
-    - See [[AWS Step Functions: Orchestration vs Choreography]] for Saga pattern and compensating transactions.
+    - See [[AWS Step Functions - Workflow Types, State Machine Patterns & Integration|AWS Step Functions: Orchestration vs Choreography]] for Saga pattern and compensating transactions.
         
           
         
-    - See [[Transactional Outbox Pattern with Debezium and DynamoDB Streams]] for dual-write mitigation.
+    - See [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Transactional Outbox Pattern with Debezium and DynamoDB Streams]] for dual-write mitigation.
         
           
         
-    - See [[S3 Multipart Upload Architecture with Presigned URLs]] for client-to-storage direct uploads.
+    - See [[Amazon S3 - Architecture, Storage Classes, Security & Large Uploads|S3 Multipart Upload Architecture with Presigned URLs]] for client-to-storage direct uploads.
         
           
         
@@ -131,9 +131,7 @@
 
 ### DynamoDB-Backed Idempotent Execution Lock Pattern
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, PutItemCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 
 const ddb = new DynamoDBClient({ region: "us-east-1" });
@@ -211,26 +209,17 @@ export async function processIdempotentTransaction<T>(
 
 ## Related Topics
 
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
-    
-      
-    
-- [[High-Volume Serverless Webhook Ingestion: WAF, API Gateway Direct SQS Integration, and Throttling]]
-    
-      
-    
-- [[DynamoDB Conditional Writes and Optimistic Locking]]
-    
-      
-    
-- [[Distributed Transactions: 2PC vs Saga Pattern]]
-    
-      
-    
-- [[AWS Lambda Memory Sizing, Disk Limits, and Streaming Responses]]
-    
-      
-    
+
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection]]
+
+- [[High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling]]
+
+- [[Amazon S3 - Architecture, Storage Classes, Security & Large Uploads]]
+
+- [[AWS Step Functions - Workflow Types, State Machine Patterns & Integration]]
+
+- [[Event-Driven Architecture Scenarios - Flash Sales, High-Scale Ordering & Extreme Inventory Contention]]
+
 
 ## Tags
 

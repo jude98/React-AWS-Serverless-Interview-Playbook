@@ -1,3 +1,4 @@
+# JavaScript Loops, Iteration Protocols & Data Structure Traversal
 
 ## Key Concepts
 
@@ -172,9 +173,7 @@
 
 ### Traversal by Data Structure
 
-JavaScript
-
-```
+```javascript
 // 1. Array Traversal
 const nums = [10, 20, 30];
 
@@ -209,9 +208,7 @@ for (const [key, value] of Object.entries(user)) {
 
 ### Labeled Statement & Break Traps
 
-JavaScript
-
-```
+```javascript
 // Breaking out of an outer loop using a label
 outerLoop: for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
@@ -233,9 +230,7 @@ items.some((item) => {
 
 ### Making a Plain Object Iterable
 
-JavaScript
-
-```
+```javascript
 const collection = {
   items: ["Alpha", "Beta", "Gamma"],
   [Symbol.iterator]() {
@@ -258,9 +253,7 @@ for (const item of collection) {
 
 ### Asynchronous Loops: Sequential vs. Broken forEach
 
-JavaScript
-
-```
+```javascript
 const fetchItem = (id) => new Promise(res => setTimeout(() => res(id * 10), 100));
 
 // 1. Sequential: for...of with await
@@ -300,19 +293,19 @@ async function brokenForEach(ids) {
 
 ## Related Topics
 
-- [[JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
+- [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
     
       
     
-- [[Iterables, Iterators, and Generators]]
+- [[JavaScript Loops, Iteration Protocols & Data Structure Traversal|Iterables, Iterators, and Generators]]
     
       
     
-- [[Asynchronous JavaScript: Promises, Async/Await and Event Loop]]
+- [[JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns|Asynchronous JavaScript: Promises, Async/Await and Event Loop]]
     
       
     
-- [[JavaScript Functional Array Methods: map, filter, and reduce]]
+- [[JavaScript Expressions, Operators & Output Prediction|JavaScript Functional Array Methods: map, filter, and reduce]]
     
       
     

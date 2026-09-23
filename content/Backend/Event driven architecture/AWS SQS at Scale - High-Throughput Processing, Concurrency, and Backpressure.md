@@ -1,4 +1,4 @@
-
+# AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure
 
 ## Key Concepts
 
@@ -148,9 +148,7 @@
 
 ### AWS SAM Template: High-Throughput Queue + ESM with Batch Failures
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Production-grade SQS + Lambda ESM pattern for millions of requests.
@@ -201,9 +199,7 @@ Resources:
 
 ### Sender: Producer-Side Batching (Node.js SDK v3)
 
-TypeScript
-
-```
+```typescript
 import { SQSClient, SendMessageBatchCommand, SendMessageBatchRequestEntry } from "@aws-sdk/client-sqs";
 import { randomUUID } from "crypto";
 
@@ -240,9 +236,7 @@ export async function sendBatchedMessages(queueUrl: string, payloads: Record<str
 
 ### Receiver: Lambda Handler with Partial Batch Failure Reporting
 
-TypeScript
-
-```
+```typescript
 import { SQSBatchResponse, SQSEvent } from "aws-lambda";
 
 export const handler = async (event: SQSEvent): Promise<SQSBatchResponse> => {
@@ -269,23 +263,23 @@ async function processRecord(data: unknown): Promise<void> {
 
 ## Related Topics
 
-- [[AWS Lambda Concurrency and Event Source Mappings]]
+- [[AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues|AWS Lambda Concurrency and Event Source Mappings]]
     
       
     
-- [[Idempotency in Distributed Systems]]
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency in Distributed Systems]]
     
       
     
-- [[Dead Letter Queue Redrive Strategies]]
+- [[SQS DLQ Processing - Correlation IDs, Error Context, and Redrive Pipelines|Dead Letter Queue Redrive Strategies]]
     
       
     
-- [[Event-Driven Architecture: SNS vs SQS vs EventBridge]]
+- [[AWS Serverless & Event-Driven Architecture (EDA)|Event-Driven Architecture: SNS vs SQS vs EventBridge]]
     
       
     
-- [[Database Connection Pooling with AWS RDS Proxy]]
+- [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security|Database Connection Pooling with AWS RDS Proxy]]
     
       
     

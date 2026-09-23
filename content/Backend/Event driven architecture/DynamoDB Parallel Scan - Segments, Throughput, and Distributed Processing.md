@@ -1,3 +1,4 @@
+# DynamoDB Parallel Scan: Segments, Throughput, and Distributed Processing
 
 ## Key Concepts
 
@@ -117,9 +118,7 @@
 
 ### Concurrent Parallel Scan Worker (Node.js SDK v3)
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, ScanCommand, ScanCommandInput } from "@aws-sdk/client-dynamodb";
 
 const client = new DynamoDBClient({ region: "us-east-1" });
@@ -177,9 +176,7 @@ async function processBatch(items: Record<string, any>[]): Promise<void> {
 
 ### Serverless Fan-Out Pattern (AWS SAM / Step Functions)
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Fan-out step function triggering Lambda parallel scan workers.
@@ -203,23 +200,23 @@ Resources:
 
 ## Related Topics
 
-- [[DynamoDB Partitioning Mechanics and Hot Partition Mitigation]]
+- [[Debugging DynamoDB Hot Partitions & Hot Keys|DynamoDB Partitioning Mechanics and Hot Partition Mitigation]]
     
       
     
-- [[DynamoDB Capacity Modes: On-Demand vs Provisioned]]
+- [[DynamoDB Capacity Modes - Provisioned with Auto Scaling vs. On-Demand|DynamoDB Capacity Modes: On-Demand vs Provisioned]]
     
       
     
-- [[DynamoDB PITR Export to S3 vs Application Scans]]
+- [[Bulk Updating 1 Million Rows in DynamoDB - Architectural Approaches and Trade-offs|DynamoDB PITR Export to S3 vs Application Scans]]
     
       
     
-- [[Distributed Rate Limiting and Token Bucket Algorithm]]
+- [[Frontend API Rate Limiting and Third-Party Resiliency Architecture|Distributed Rate Limiting and Token Bucket Algorithm]]
     
       
     
-- [[Batch Ingestion Pipelines: SQS to DynamoDB]]
+- [[High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling|Batch Ingestion Pipelines: SQS to DynamoDB]]
     
       
     

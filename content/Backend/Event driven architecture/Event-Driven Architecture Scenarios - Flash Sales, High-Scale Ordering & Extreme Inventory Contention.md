@@ -1,4 +1,4 @@
-
+# Event-Driven Architecture Scenarios: Flash Sales, High-Scale Ordering & Extreme Inventory Contention
 
 ## Key Concepts
 
@@ -120,11 +120,11 @@
 - _Note: Reference individual topic notes for full technical breakdown and implementation architecture._
     
       
-    - See [[Distributed Transactions: 2PC vs Saga Pattern]] for order workflow orchestration and compensating refund steps.
+    - See [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Distributed Transactions: 2PC vs Saga Pattern]] for order workflow orchestration and compensating refund steps.
         
           
         
-    - See [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]] for burst absorption during flash sales.
+    - See [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure|AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]] for burst absorption during flash sales.
         
           
         
@@ -132,11 +132,11 @@
         
           
         
-    - See [[Transactional Outbox Pattern with Debezium and DynamoDB Streams]] for dual-write avoidance between order state and event publishing.
+    - See [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Transactional Outbox Pattern with Debezium and DynamoDB Streams]] for dual-write avoidance between order state and event publishing.
         
           
         
-    - See [[Idempotency in Distributed Systems]] for handling duplicate order submissions.
+    - See [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency in Distributed Systems]] for handling duplicate order submissions.
         
           
         
@@ -170,9 +170,7 @@ end
 
 ### DynamoDB Atomic Inventory Decrement with Conditional Check
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 
 const ddb = new DynamoDBClient({ region: "us-east-1" });
@@ -204,19 +202,19 @@ export async function reserveInventory(itemId: string, quantityToBuy: number): P
 
 ## Related Topics
 
-- [[Distributed Transactions: 2PC vs Saga Pattern]]
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Distributed Transactions: 2PC vs Saga Pattern]]
     
       
     
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
+- [[AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure|AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
     
       
     
-- [[Transactional Outbox Pattern with Debezium and DynamoDB Streams]]
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Transactional Outbox Pattern with Debezium and DynamoDB Streams]]
     
       
     
-- [[High-Volume Serverless Webhook Ingestion: WAF, API Gateway Direct SQS Integration, and Throttling]]
+- [[High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling|High-Volume Serverless Webhook Ingestion: WAF, API Gateway Direct SQS Integration, and Throttling]]
     
       
     
@@ -224,7 +222,7 @@ export async function reserveInventory(itemId: string, quantityToBuy: number): P
     
       
     
-- [[Idempotency in Distributed Systems]]
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency in Distributed Systems]]
     
       
     

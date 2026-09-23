@@ -1,3 +1,4 @@
+# DynamoDB Single-Table Design: Inventory Management Scenario
 
 ## Key Concepts
 
@@ -184,9 +185,7 @@
 
 ### API 1 Implementation: Fetch Product + Inventories (AWS SDK v3)
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 
@@ -217,9 +216,7 @@ export async function getProductWithAllWarehouseStock(productId: string) {
 
 ### API 3 Implementation: Conditional Atomic Decrement
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 
 const ddb = new DynamoDBClient({ region: "us-east-1" });
@@ -263,26 +260,17 @@ export async function reserveWarehouseStock(
 
 ## Related Topics
 
+
+- [[Amazon DynamoDB -  Architecture, Data Modeling & Scaling]]
+
+- [[Event-Driven Architecture Scenarios - Flash Sales, High-Scale Ordering & Extreme Inventory Contention]]
+
 - [[Debugging DynamoDB Hot Partitions & Hot Keys]]
-    
-      
-    
-- [[DynamoDB Indexing: GSI vs LSI Architectural Differences]]
-    
-      
-    
-- [[DynamoDB Sparse Indexes: Design and Cost Optimization]]
-    
-      
-    
-- [[DynamoDB Conditional Writes and Optimistic Locking]]
-    
-      
-    
-- [[Transactional Outbox Pattern with Debezium and DynamoDB Streams]]
-    
-      
-    
+
+- [[Adding a Global Secondary Index (GSI) to a Large DynamoDB Table]]
+
+- [[Scaling DynamoDB Streams - High-Volume Event Processing]]
+
 
 ## Tags
 

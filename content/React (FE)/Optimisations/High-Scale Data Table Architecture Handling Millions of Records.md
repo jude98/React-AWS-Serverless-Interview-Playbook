@@ -1,4 +1,4 @@
-
+# High-Scale Data Table Architecture Handling Millions of Records
 
 > [!abstract] Architectural Strategy
 > 
@@ -245,11 +245,11 @@ export const LargeScaleVirtualTable = ({ approximateTotal = 1_000_000 }: { appro
 
 ## Related Topics
 
-- [[Virtualization and Large Data Rendering]]
+- [[High-Scale Data Table Architecture Handling Millions of Records|Virtualization and Large Data Rendering]]
     
       
     
-- [[Database Indexing and Cursor Pagination]]
+- [[High-Scale Data Table Architecture Handling Millions of Records|Database Indexing and Cursor Pagination]]
     
       
     
@@ -257,11 +257,11 @@ export const LargeScaleVirtualTable = ({ approximateTotal = 1_000_000 }: { appro
     
       
     
-- [[Browser Layout Thrashing and CSS Containment]]
+- [[The Browser Rendering Pipeline. Reflow, Repaint, and Composite|Browser Layout Thrashing and CSS Containment]]
     
       
     
-- [[Web Workers and Off-Main-Thread Processing]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Web Workers and Off-Main-Thread Processing]]
     
       
     

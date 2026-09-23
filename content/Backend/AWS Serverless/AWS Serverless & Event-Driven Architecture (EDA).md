@@ -1,3 +1,4 @@
+# AWS Serverless & Event-Driven Architecture (EDA)
 
 ## Key Concepts
 
@@ -168,23 +169,23 @@ export const handler: SQSHandler = async (event: SQSEvent) => {
 
 ## Related Topics
 
-- [[Microservices-Architecture]]
+- [[Clean Architecture, Directory Structure & DTOs|Microservices-Architecture]]
     
       
     
-- [[AWS-Lambda-and-Serverless-Patterns]]
+- [[AWS Lambda Core Architecture & Execution Model|AWS-Lambda-and-Serverless-Patterns]]
     
       
     
-- [[Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
+- [[Amazon SQS - Queue Types, Internal Mechanics & Limits|Message-Brokers-Kafka-vs-RabbitMQ-vs-SQS]]
     
       
     
-- [[Distributed-Transactions-and-Saga-Pattern]]
+- [[Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection|Distributed-Transactions-and-Saga-Pattern]]
     
       
     
-- [[Idempotency-in-Distributed-Systems]]
+- [[System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads|Idempotency-in-Distributed-Systems]]
     
       
     

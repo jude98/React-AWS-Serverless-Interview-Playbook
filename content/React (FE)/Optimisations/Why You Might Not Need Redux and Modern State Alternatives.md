@@ -1,4 +1,4 @@
-
+# Why You Might Not Need Redux and Modern State Alternatives
 
 > [!abstract] Architectural Thesis
 > 
@@ -218,11 +218,11 @@ export const SidebarToggle = () => {
     
       
     
-- [[Client State vs Server State Architecture]]
+- [[React State Management Architecture, Context vs External Stores vs React Query|Client State vs Server State Architecture]]
     
       
     
-- [[React Context API and Performance Anti Patterns]]
+- [[Combining React Context and useReducer Architecture|React Context API and Performance Anti Patterns]]
     
       
     

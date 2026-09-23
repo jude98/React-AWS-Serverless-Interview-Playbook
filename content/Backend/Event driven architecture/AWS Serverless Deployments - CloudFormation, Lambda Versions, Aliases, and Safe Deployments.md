@@ -1,3 +1,4 @@
+# AWS Serverless Deployments: CloudFormation, Lambda Versions, Aliases, and Safe Deployments
 
 ## Key Concepts
 
@@ -152,9 +153,7 @@ Instead of switching $100\%$ of traffic instantaneously, CodeDeploy supports thr
 
 ### AWS SAM Template: Safe Canary Deployment with Alarms & Hooks
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Production Lambda canary deployment with CloudWatch alarm rollbacks and validation hooks.
@@ -218,9 +217,7 @@ Resources:
 
 ### Pre-Traffic Hook Implementation (Node.js SDK v3)
 
-TypeScript
-
-```
+```typescript
 import { CodeDeployClient, PutLifecycleEventHookExecutionStatusCommand } from "@aws-sdk/client-codedeploy";
 import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
 
@@ -273,26 +270,17 @@ export const handler = async (event: CodeDeployHookEvent): Promise<void> => {
 
 ## Related Topics
 
-- [[AWS CloudFormation: Custom Resources and Drift Detection]]
-    
-      
-    
-- [[CI/CD Pipeline Design with AWS CodePipeline and CodeDeploy]]
-    
-      
-    
-- [[Synthetic Monitoring and Canary Testing in Distributed Systems]]
-    
-      
-    
-- [[Blue-Green vs Rolling vs Canary Deployment Strategies]]
-    
-      
-    
-- [[AWS Lambda Cold Starts: Provisioned Concurrency vs SnapStart]]
-    
-      
-    
+
+- [[AWS Lambda Core Architecture & Execution Model]]
+
+- [[AWS Observability - CloudWatch, AWS X-Ray & CloudTrail]]
+
+- [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security]]
+
+- [[Engineering Execution, Collaboration & Behavioral Scenarios]]
+
+- [[AWS API Gateway - Architecture, Security & Limitations]]
+
 
 ## Tags
 

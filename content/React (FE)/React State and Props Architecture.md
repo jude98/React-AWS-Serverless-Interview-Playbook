@@ -1,4 +1,4 @@
-
+# React State and Props Architecture
 
 > [!note] State vs Props Core Mental Model
 > 
@@ -315,7 +315,7 @@ function AppLayout({ header, children }) {
 
 ## Related Topics
 
-- [[React Component Lifecycle]]
+- [[React Lifecycle and Execution Flow|React Component Lifecycle]]
     
       
     
@@ -323,15 +323,15 @@ function AppLayout({ header, children }) {
     
       
     
-- [[React Context API vs State Libraries]]
+- [[React State Management Architecture, Context vs External Stores vs React Query|React Context API vs State Libraries]]
     
       
     
-- [[Pure Components and React memo]]
+- [[React useMemo, useCallback, and Fiber Memoization Architecture|Pure Components and React memo]]
     
       
     
-- [[JavaScript Pass-by-Reference vs Pass-by-Value]]
+- [[JavaScript Data Types, Objects & Prototypal Inheritance|JavaScript Pass-by-Reference vs Pass-by-Value]]
     
       
     

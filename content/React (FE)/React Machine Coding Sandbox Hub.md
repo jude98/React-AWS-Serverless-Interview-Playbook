@@ -1,4 +1,4 @@
-
+# React Machine Coding Sandbox Hub
 
 > [!abstract] Overview
 > 
@@ -198,15 +198,15 @@ export const SandboxFeatureDirectory = () => {
     
       
     
-- [[React Performance Optimization]]
+- [[Comprehensive Performance Optimization Architecture in React|React Performance Optimization]]
     
       
     
-- [[Browser Rendering Engine and Critical Rendering Path]]
+- [[Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing|Browser Rendering Engine and Critical Rendering Path]]
     
       
     
-- [[React Context API and Performance Anti Patterns]]
+- [[Combining React Context and useReducer Architecture|React Context API and Performance Anti Patterns]]
     
       
     

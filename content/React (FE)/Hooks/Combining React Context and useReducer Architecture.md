@@ -1,4 +1,4 @@
-
+# Combining React Context and useReducer Architecture
 
 > [!note] Core Mental Model
 > 
@@ -322,7 +322,7 @@ export function TaskList() {
     
       
     
-- [[Pure Components and React memo]]
+- [[React useMemo, useCallback, and Fiber Memoization Architecture|Pure Components and React memo]]
     
       
     

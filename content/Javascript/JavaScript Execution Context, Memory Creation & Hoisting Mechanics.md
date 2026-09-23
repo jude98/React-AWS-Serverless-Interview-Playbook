@@ -1,3 +1,4 @@
+# JavaScript Execution Context, Memory Creation & Hoisting Mechanics
 
 ## Key Concepts
 
@@ -155,9 +156,7 @@ An Execution Context contains three primary components:
 
 ### Execution Phases & Hoisting in Practice
 
-JavaScript
-
-```
+```javascript
 console.log(varGreeting); // Output: undefined (hoisted + initialized to undefined)
 // console.log(letGreeting); // Uncaught ReferenceError: Cannot access 'letGreeting' before initialization (TDZ)
 
@@ -178,9 +177,7 @@ var sayGoodbye = function() {
 
 ### Call Stack Execution Flow
 
-JavaScript
-
-```
+```javascript
 function second() {
   console.log("Inside second");
 }
@@ -202,19 +199,19 @@ first();
 
 ## Related Topics
 
-- [[JavaScript Closures and Scope Chains]]
+- [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures and Scope Chains]]
     
       
     
-- [[JavaScript Variables: var, let, const, and the Global Object]]
+- [[Strict Mode, the Global Object, and Runtime Environments|JavaScript Variables: var, let, const, and the Global Object]]
     
       
     
-- [[JavaScript Event Loop and Concurrency Model]]
+- [[Asynchronous JavaScript, Event Loop & Concurrency Model|JavaScript Event Loop and Concurrency Model]]
     
       
     
-- [[Call Stack, Heap Memory, and Garbage Collection]]
+- [[JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory|Call Stack, Heap Memory, and Garbage Collection]]
     
       
     

@@ -1,3 +1,4 @@
+# Cross-Tab Communication in Modern Browsers: Mechanisms, Architecture & Trade-Offs
 
 ## Key Concepts
 
@@ -173,9 +174,7 @@
 
 ### 1. BroadcastChannel API (Modern Standard)
 
-JavaScript
-
-```
+```javascript
 // Tab A & Tab B: Join the exact same channel
 const authChannel = new BroadcastChannel("auth_sync_channel");
 
@@ -202,9 +201,7 @@ authChannel.onmessage = (event) => {
 
 ### 2. `localStorage` + `storage` Event (Fallback Pattern)
 
-JavaScript
-
-```
+```javascript
 // Tab A: Updates shared state (Workaround: timestamp ensures value changes)
 function notifyCartUpdate(cartData) {
   localStorage.setItem("shopping_cart_event", JSON.stringify({
@@ -226,9 +223,7 @@ window.addEventListener("storage", (event) => {
 
 ### 3. SharedWorker: Shared WebSocket Connection Hub
 
-JavaScript
-
-```
+```javascript
 // ==========================================
 // 1. Tab Script (tab.js)
 // ==========================================
@@ -248,9 +243,7 @@ function sendChatMessage(text) {
 }
 ```
 
-JavaScript
-
-```
+```javascript
 // ==========================================
 // 2. Worker Script (shared-socket-worker.js)
 // ==========================================
@@ -291,9 +284,7 @@ In many real-world systems, you want **one tab** to act as the leader (handling 
 
   
 
-JavaScript
-
-```
+```javascript
 // Modern standard: Web Locks API automatically elects and migrates leadership
 async function participateInLeaderElection() {
   // Navigator.locks manages cross-tab mutexes natively
@@ -323,11 +314,11 @@ participateInLeaderElection();
 
 ## Related Topics
 
-- [[Client-Side Browser Storage: Mechanisms, Architecture & Security]]
+- [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Client-Side Browser Storage: Mechanisms, Architecture & Security]]
     
       
     
-- [[Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
     
       
     
@@ -335,7 +326,7 @@ participateInLeaderElection();
     
       
     
-- [[WebSockets, Server-Sent Events (SSE) & Real-Time Architectures]]
+- [[Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs|WebSockets, Server-Sent Events (SSE) & Real-Time Architectures]]
     
       
     

@@ -1,3 +1,5 @@
+# AWS Identity and Access Management (IAM): Identities, Policies, Roles & Best Practices
+
 ## Key Concepts
 
 - **Core Purpose:** The central control plane for identity and access management across AWS resources, operating on the principle of **explicit denial** (default deny unless explicitly allowed).
@@ -265,26 +267,17 @@ export async function fetchCrossAccountBucket() {
 
 ## Related Topics
 
-- [[AWS-Security-and-Compliance]]
-    
-      
-    
-- [[Amazon-S3-Architecture-and-Security]]
-    
-      
-    
-- [[AWS-API-Gateway-and-Authentication-Strategies]]
-    
-      
-    
-- [[AWS-Organizations-and-Multi-Account-Architecture]]
-    
-      
-    
-- [[OAuth2-OIDC-and-Federated-Identities]]
-    
-      
-    
+
+- [[AWS API Gateway - Architecture, Security & Limitations]]
+
+- [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security]]
+
+- [[Authentication, Authorization, OAuth OIDC & Permission-Based RBAC]]
+
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles]]
+
+- [[Amazon S3 - Architecture, Storage Classes, Security & Large Uploads]]
+
 
 ## Tags
 

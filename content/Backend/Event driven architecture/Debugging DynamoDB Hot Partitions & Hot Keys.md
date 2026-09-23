@@ -1,3 +1,4 @@
+# Debugging DynamoDB Hot Partitions & Hot Keys
 
 ## Key Concepts
 
@@ -186,9 +187,7 @@ Once Contributor Insights identifies the problematic key:
 
 ### Enabling Contributor Insights via AWS CLI
 
-Bash
-
-```
+```bash
 # Enable Contributor Insights on the base table
 aws dynamodb update-contributor-insights \
     --table-name HighVolumeOrders \
@@ -203,9 +202,7 @@ aws dynamodb update-contributor-insights \
 
 ### Querying CloudTrail Data Events via CloudWatch Logs Insights
 
-SQL
-
-```
+```sql
 -- Identify the top 20 partition key targets for throttled PutItem/UpdateItem calls
 fields @timestamp, eventName, userIdentity.arn, responseElements
 | filter eventSource = 'dynamodb.amazonaws.com'
@@ -218,9 +215,7 @@ fields @timestamp, eventName, userIdentity.arn, responseElements
 
 ### Mitigating Hot Write Keys via Partition Key Salting (TypeScript)
 
-TypeScript
-
-```
+```typescript
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 
 const ddb = new DynamoDBClient({ region: "us-east-1" });
@@ -252,26 +247,17 @@ export async function recordTelemetryEvent(metricName: string, value: number): P
 
 ## Related Topics
 
-- [[DynamoDB Partitioning Mechanics and Hot Partition Mitigation]]
-    
-      
-    
-- [[DynamoDB Parallel Scan: Segments, Throughput, and Distributed Processing]]
-    
-      
-    
-- [[DynamoDB Capacity Modes: On-Demand vs Provisioned]]
-    
-      
-    
-- [[Amazon DAX (DynamoDB Accelerator) In-Memory Caching Architecture]]
-    
-      
-    
-- [[Distributed Rate Limiting and Token Bucket Algorithm]]
-    
-      
-    
+
+- [[Amazon DynamoDB -  Architecture, Data Modeling & Scaling]]
+
+- [[DynamoDB Capacity Modes - Provisioned with Auto Scaling vs. On-Demand]]
+
+- [[DynamoDB Parallel Scan - Segments, Throughput, and Distributed Processing]]
+
+- [[DynamoDB Single-Table Design - Inventory Management Scenario]]
+
+- [[Adding a Global Secondary Index (GSI) to a Large DynamoDB Table]]
+
 
 ## Tags
 

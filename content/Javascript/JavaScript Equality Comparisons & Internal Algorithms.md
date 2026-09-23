@@ -1,3 +1,5 @@
+# JavaScript Equality Comparisons & Internal Algorithms
+
 ## Key Concepts
 
 > [!summary] The Four Equality Operations
@@ -216,9 +218,7 @@
 
 ### Algorithm Comparison Matrix in Code
 
-JavaScript
-
-```
+```javascript
 // 1. NaN Comparison
 console.log(NaN === NaN);           // false
 console.log(Object.is(NaN, NaN));   // true
@@ -254,9 +254,7 @@ function shallowEqual(objA, objB) {
 
 ### Predict the Output: Equality Corner Cases
 
-JavaScript
-
-```
+```javascript
 console.log(null == undefined); // true
 console.log(null === undefined);// false
 
@@ -283,7 +281,7 @@ console.log({} == {});          // false (distinct object reference addresses in
 
 ## Related Topics
 
-- [[JavaScript Type Casting: Coercion vs. Conversion & Predict-the-Output]]
+- [[JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output|JavaScript Type Casting: Coercion vs. Conversion & Predict-the-Output]]
     
       
     
@@ -291,11 +289,11 @@ console.log({} == {});          // false (distinct object reference addresses in
     
       
     
-- [[JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
+- [[JavaScript Data Structures. Structured Data, Keyed & Indexed Collections|JavaScript Data Structures: Structured Data, Keyed & Indexed Collections]]
     
       
     
-- [[React State Reconciliation and Shallow Comparison]]
+- [[React State and Props Architecture|React State Reconciliation and Shallow Comparison]]
     
       
     

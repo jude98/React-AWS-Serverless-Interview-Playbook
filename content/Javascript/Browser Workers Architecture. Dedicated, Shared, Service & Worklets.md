@@ -1,4 +1,4 @@
-
+# Browser Workers Architecture: Dedicated, Shared, Service & Worklets
 
 ## Key Concepts
 
@@ -232,9 +232,9 @@ self.addEventListener("fetch", (event) => {
 ## Related Topics
 
 * [[Asynchronous JavaScript, Event Loop & Concurrency Model]]
-* [[Event Loop Starvation: Causes, Mechanics & Mitigation Strategies]]
-* [[V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
-* [[Browser Storage APIs: IndexedDB, Cache API, and WebSockets]]
+* [[Event Loop Starvation. Causes, Mechanics & Mitigation Strategies|Event Loop Starvation: Causes, Mechanics & Mitigation Strategies]]
+* [[V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline|V8 Engine Architecture: Parsing, JIT Compilation & Execution Pipeline]]
+* [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Browser Storage APIs: IndexedDB, Cache API, and WebSockets]]
 
 ---
 

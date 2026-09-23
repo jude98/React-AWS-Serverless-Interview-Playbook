@@ -1,4 +1,4 @@
-
+# Component Isolation and Independent State Architecture
 
 > [!note] Core Mental Model
 > 

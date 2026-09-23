@@ -1,3 +1,4 @@
+# DynamoDB Capacity Modes: Provisioned with Auto Scaling vs. On-Demand
 
 ## Key Concepts
 
@@ -172,9 +173,7 @@ Unpredictable / Spiky / Low Utilization            Predictable / Steady / High V
 
 ### AWS SAM: Provisioned Table with Application Auto Scaling Policies
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: DynamoDB table configured with Provisioned mode and Application Auto Scaling.
@@ -223,9 +222,7 @@ Resources:
 
 ### AWS SAM: On-Demand Table (Zero Configuration)
 
-YAML
-
-```
+```yaml
 Resources:
   ServerlessOrdersTable:
     Type: AWS::DynamoDB::Table
@@ -246,11 +243,11 @@ Resources:
     
       
     
-- [[DynamoDB Parallel Scan: Segments, Throughput, and Distributed Processing]]
+- [[DynamoDB Parallel Scan - Segments, Throughput, and Distributed Processing|DynamoDB Parallel Scan: Segments, Throughput, and Distributed Processing]]
     
       
     
-- [[Bulk Updating 1 Million Rows in DynamoDB: Architectural Approaches and Trade-offs]]
+- [[Bulk Updating 1 Million Rows in DynamoDB - Architectural Approaches and Trade-offs|Bulk Updating 1 Million Rows in DynamoDB: Architectural Approaches and Trade-offs]]
     
       
     
@@ -258,7 +255,7 @@ Resources:
     
       
     
-- [[AWS Lambda Cold Starts: Provisioned Concurrency vs SnapStart]]
+- [[AWS Lambda Core Architecture & Execution Model|AWS Lambda Cold Starts: Provisioned Concurrency vs SnapStart]]
     
       
     

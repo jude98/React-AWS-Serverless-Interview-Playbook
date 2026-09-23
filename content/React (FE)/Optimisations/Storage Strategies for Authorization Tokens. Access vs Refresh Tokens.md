@@ -1,4 +1,4 @@
-
+# Storage Strategies for Authorization Tokens: Access vs Refresh Tokens
 
 > [!note] The Core Security Dilemma
 > Web token storage is a fundamental trade-off between **Cross-Site Scripting (XSS)** vulnerability and **Cross-Site Request Forgery (CSRF)** vulnerability:
@@ -287,10 +287,10 @@ api.interceptors.response.use(
 
 ## Related Topics
 
-* [[Frontend Security and OWASP Top 10]]
+* [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Security and OWASP Top 10]]
 * [[Safe HTML Injection and innerHTML Handling in React]]
-* [[Browser Event Propagation and Synthetic Events]]
-* [[Client State vs Server State (TanStack Query)]]
+* [[React Synthetic Events and Event Delegation|Browser Event Propagation and Synthetic Events]]
+* [[TanStack Query Server State and Stale While Revalidate Patterns|Client State vs Server State (TanStack Query)]]
 
 ---
 

@@ -1,3 +1,4 @@
+# Network Protocols: Transport, Security & Application Layers
 
 ## Key Concepts
 
@@ -253,9 +254,7 @@ Stream 3 (GET /styles.css)   ─────[HEADERS Frame]──[DATA Frame]─
 
 ### 2. Node.js Raw TCP vs. UDP Server Implementation
 
-JavaScript
-
-```
+```javascript
 // ==========================================
 // 1. TCP Server (Reliable, Stream-oriented)
 // ==========================================
@@ -294,9 +293,7 @@ udpServer.bind(8081, () => console.log("UDP Server listening on 8081"));
 
 ### 3. Establishing HTTPS with Native Node.js TLS
 
-JavaScript
-
-```
+```javascript
 import https from "node:https";
 import fs from "node:fs";
 
@@ -343,19 +340,19 @@ server.listen(443, () => {
 
 ## Related Topics
 
-- [[What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
+- [[What Happens When You Enter a URL in the Browser. The End-to-End Lifecycle|What Happens When You Enter a URL in the Browser: The End-to-End Lifecycle]]
     
       
     
-- [[Client-Side Browser Storage: Mechanisms, Architecture & Security]]
+- [[Client-Side Browser Storage. Mechanisms, Architecture & Security|Client-Side Browser Storage: Mechanisms, Architecture & Security]]
     
       
     
-- [[Frontend Web Security: XSS, CSRF, CORS & CSP]]
+- [[Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles|Frontend Web Security: XSS, CSRF, CORS & CSP]]
     
       
     
-- [[WebSockets, Server-Sent Events (SSE) & Real-Time Architectures]]
+- [[Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs|WebSockets, Server-Sent Events (SSE) & Real-Time Architectures]]
     
       
     

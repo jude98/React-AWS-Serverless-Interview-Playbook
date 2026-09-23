@@ -1,4 +1,4 @@
-
+# AbortController & Multi-Signal Timeout Architectures
 
 ## Key Concepts
 
@@ -138,9 +138,7 @@
 
 ### 1. Basic Fetch with Custom Timeout & Error Discrimination
 
-JavaScript
-
-```
+```javascript
 async function fetchWithTimeout(url, timeoutMs = 5000) {
   // AbortSignal.timeout automatically fires after timeoutMs with TimeoutError
   const timeoutSignal = AbortSignal.timeout(timeoutMs);
@@ -163,9 +161,7 @@ async function fetchWithTimeout(url, timeoutMs = 5000) {
 
 ### 2. Multi-Signal Composition via `AbortSignal.any` (User Cancel OR Timeout)
 
-JavaScript
-
-```
+```javascript
 async function searchData(query) {
   const userController = new AbortController();
   
@@ -194,9 +190,7 @@ async function searchData(query) {
 
 ### 3. Timing Out a Pool of Multiple `AbortController`s
 
-JavaScript
-
-```
+```javascript
 class BatchRequestManager {
   constructor(globalTimeoutMs = 8000) {
     // Master timeout signal for the entire batch
@@ -261,9 +255,7 @@ manager.runBatch([
 
 ### 4. Making Custom Async Utilities Cancellable via `AbortSignal`
 
-JavaScript
-
-```
+```javascript
 // Making a custom polling / sleep utility respect an AbortSignal
 function cancellableSleep(ms, signal) {
   return new Promise((resolve, reject) => {
@@ -312,7 +304,7 @@ function cancellableSleep(ms, signal) {
     
       
     
-- [[Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
+- [[Browser Workers Architecture. Dedicated, Shared, Service & Worklets|Browser Workers Architecture: Dedicated, Shared, Service & Worklets]]
     
       
     

@@ -1,4 +1,4 @@
-
+# Framework Evaluation and Migration Architectural Decision Framework
 
 > [!abstract] Architectural Decision Matrix
 > 
@@ -208,11 +208,11 @@ export default async function MetricsPage() {
 
 ## Related Topics
 
-- [[Core Web Vitals LCP FID CLS]]
+- [[Web Vitals Optimization LCP INP and FCP|Core Web Vitals LCP FID CLS]]
     
       
     
-- [[React Performance Optimization]]
+- [[Comprehensive Performance Optimization Architecture in React|React Performance Optimization]]
     
       
     
@@ -224,7 +224,7 @@ export default async function MetricsPage() {
     
       
     
-- [[Client State vs Server State Architecture]]
+- [[React State Management Architecture, Context vs External Stores vs React Query|Client State vs Server State Architecture]]
     
       
     

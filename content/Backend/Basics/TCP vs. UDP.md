@@ -1,4 +1,4 @@
-
+# TCP vs. UDP
 
 ## Key Concepts
 
@@ -173,23 +173,23 @@ udpSocket.bind(8081);
 
 ## Related Topics
 
-- [[OSI Model vs TCP-IP Stack]]
+- [[Network Protocols. Transport, Security & Application Layers|OSI Model vs TCP-IP Stack]]
     
       
     
-- [[HTTP Evolution (HTTP-1.1 vs HTTP-2 vs HTTP-3 / QUIC)]]
+- [[HTTP Fundamentals|HTTP Evolution (HTTP-1.1 vs HTTP-2 vs HTTP-3 / QUIC)]]
     
       
     
-- [[WebSockets vs WebRTC]]
+- [[Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs|WebSockets vs WebRTC]]
     
       
     
-- [[Socket Programming & Network I-O Multiplexing (epoll, kqueue)]]
+- [[Network Protocols. Transport, Security & Application Layers|Socket Programming & Network I-O Multiplexing (epoll, kqueue)]]
     
       
     
-- [[Head-of-Line Blocking]]
+- [[HTTP Fundamentals|Head-of-Line Blocking]]
     
       
     

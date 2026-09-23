@@ -1,3 +1,4 @@
+# Clean Architecture, Directory Structure & DTOs
 
 ## Key Concepts
 
@@ -282,15 +283,15 @@ export class UserController {
 
 ## Related Topics
 
-- [[SOLID Principles in Fullstack Architecture]]
+- [[SOLID Principles|SOLID Principles in Fullstack Architecture]]
     
       
     
-- [[Hexagonal Architecture (Ports and Adapters)]]
+- [[Clean Architecture, Directory Structure & DTOs|Hexagonal Architecture (Ports and Adapters)]]
     
       
     
-- [[Domain-Driven Design (DDD) Fundamentals]]
+- [[Clean Architecture, Directory Structure & DTOs|Domain-Driven Design (DDD) Fundamentals]]
     
       
     
@@ -298,7 +299,7 @@ export class UserController {
     
       
     
-- [[API Security: Mass Assignment and Input Validation]]
+- [[Clean Architecture, Directory Structure & DTOs|API Security: Mass Assignment and Input Validation]]
     
       
     

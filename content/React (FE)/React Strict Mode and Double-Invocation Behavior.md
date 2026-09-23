@@ -1,3 +1,4 @@
+# React Strict Mode and Double-Invocation Behavior
 
 > [!note] Strict Mode Core Purpose
 > 
@@ -186,19 +187,19 @@ _Console Output on Initial Mount under Strict Mode:_
 
 ## Related Topics
 
-- [[React Component Lifecycle]]
+- [[React Lifecycle and Execution Flow|React Component Lifecycle]]
     
       
     
-- [[React useEffect and Side Effects]]
+- [[React useEffect and Synchronization Architecture|React useEffect and Side Effects]]
     
       
     
-- [[Virtual DOM and Reconciliation]]
+- [[React Reconciliation and Diffing Algorithm|Virtual DOM and Reconciliation]]
     
       
     
-- [[React Fiber Architecture]]
+- [[React Fiber Architecture and Non-Blocking Rendering|React Fiber Architecture]]
     
       
     

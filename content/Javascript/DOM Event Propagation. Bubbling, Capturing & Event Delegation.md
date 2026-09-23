@@ -1,3 +1,4 @@
+# DOM Event Propagation: Bubbling, Capturing & Event Delegation
 
 ## Key Concepts
 
@@ -186,9 +187,9 @@ table.addEventListener("click", (event) => {
 ## Related Topics
 
 * [[DOM Event Listeners, Browser Memory Management & Teardown Mechanics]]
-* [[The this Keyword & Execution Bindings]]
-* [[JavaScript Closures: Encapsulation, Currying & Output Puzzles]]
-* [[Web Performance: DOM Manipulation, Reflow & Repaint]]
+* [[The `this` Keyword & Execution Bindings|The this Keyword & Execution Bindings]]
+* [[JavaScript Closures. Encapsulation, Currying & Output Puzzles|JavaScript Closures: Encapsulation, Currying & Output Puzzles]]
+* [[The Browser Rendering Pipeline. Reflow, Repaint, and Composite|Web Performance: DOM Manipulation, Reflow & Repaint]]
 
 ## Tags
 

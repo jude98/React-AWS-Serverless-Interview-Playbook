@@ -1,3 +1,4 @@
+# AWS VPC & Networking Scenarios: Subnets, Lambda VPC Integration, Endpoints & Security
 
 ## Key Concepts
 
@@ -188,23 +189,23 @@
 - _Note: Reference individual topic notes for full technical breakdown and implementation architecture._
     
       
-    - See [[AWS Lambda Execution Context and Lifecycle]] for Hyperplane ENI behavior and VPC cold starts.
+    - See [[AWS Lambda Core Architecture & Execution Model|AWS Lambda Execution Context and Lifecycle]] for Hyperplane ENI behavior and VPC cold starts.
         
           
         
-    - See [[AWS Cross-Account IAM and S3 Bucket Policies]] for `aws:sourceVpce` and `aws:sourceVpc` condition keys.
+    - See [[AWS Identity and Access Management (IAM) - Identities, Policies, Roles & Best Practices|AWS Cross-Account IAM and S3 Bucket Policies]] for `aws:sourceVpce` and `aws:sourceVpc` condition keys.
         
           
         
-    - See [[AWS VPC Gateway Endpoints vs Interface Endpoints Architecture]] for cost vs. hybrid connectivity comparisons.
+    - See [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security|AWS VPC Gateway Endpoints vs Interface Endpoints Architecture]] for cost vs. hybrid connectivity comparisons.
         
           
         
-    - See [[Network Security: Security Groups, NACLs, and VPC Flow Logs Analysis]] for ephemeral port mechanics.
+    - See [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security|Network Security: Security Groups, NACLs, and VPC Flow Logs Analysis]] for ephemeral port mechanics.
         
           
         
-    - See [[AWS Transit Gateway vs VPC Peering at Enterprise Scale]] for transitive routing topologies.
+    - See [[AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security|AWS Transit Gateway vs VPC Peering at Enterprise Scale]] for transitive routing topologies.
         
           
         
@@ -213,9 +214,7 @@
 
 ### Securing S3 Access via VPC Gateway Endpoint Policy & S3 Bucket Policy
 
-JSON
-
-```
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -240,9 +239,7 @@ JSON
 
 ### AWS SAM: Lambda Function Attached to Multi-AZ Private Subnets
 
-YAML
-
-```
+```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Lambda function configured with Multi-AZ VPC attachment and private routing.
@@ -286,26 +283,17 @@ Resources:
 
 ## Related Topics
 
-- [[AWS Lambda Execution Context and Lifecycle]]
-    
-      
-    
-- [[AWS Cross-Account IAM and S3 Bucket Policies]]
-    
-      
-    
-- [[High-Volume Serverless Webhook Ingestion: WAF, API Gateway Direct SQS Integration, and Throttling]]
-    
-      
-    
-- [[AWS SQS at Scale: High-Throughput Processing, Concurrency, and Backpressure]]
-    
-      
-    
-- [[Debugging DynamoDB Hot Partitions & Hot Keys]]
-    
-      
-    
+
+- [[AWS Lambda Core Architecture & Execution Model]]
+
+- [[Network Protocols. Transport, Security & Application Layers]]
+
+- [[TCP vs. UDP]]
+
+- [[AWS Identity and Access Management (IAM) - Identities, Policies, Roles & Best Practices]]
+
+- [[AWS Serverless Interview Scenarios - Advanced System Design & Debugging]]
+
 
 ## Tags
 

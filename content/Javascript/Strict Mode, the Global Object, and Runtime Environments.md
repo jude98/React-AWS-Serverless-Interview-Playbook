@@ -1,3 +1,4 @@
+# Strict Mode, the Global Object, and Runtime Environments
 
 ## Key Concepts
 
@@ -137,9 +138,7 @@
 
 ### Strict Mode vs. Sloppy Mode Violations
 
-JavaScript
-
-```
+```javascript
 // Function-level strict mode example
 function sloppyFunction() {
   leakedGlobal = "I pollute the global scope"; // Allowed in sloppy mode
@@ -156,9 +155,7 @@ strictFunction();
 
 ### Standalone Function `this` Resolution
 
-JavaScript
-
-```
+```javascript
 function checkThisSloppy() {
   return this;
 }
@@ -174,9 +171,7 @@ console.log(checkThisStrict());            // undefined
 
 ### Silent Failures Turned to Explicit Errors
 
-JavaScript
-
-```
+```javascript
 "use strict";
 
 // 1. Assignment to non-writable property
@@ -194,9 +189,7 @@ const config = Object.freeze({ env: "production" });
 
 ### Cross-Environment Global Access (`globalThis`)
 
-JavaScript
-
-```
+```javascript
 // Universal way to access the global scope across Node.js and Browser
 function getGlobal() {
   return globalThis;
@@ -212,15 +205,15 @@ console.log(globalThis === window); // true in browser main thread
     
       
     
-- [[JavaScript Variable Declarations: var, let, and const]]
+- [[JavaScript Variables, Scopes, and Execution Context|JavaScript Variable Declarations: var, let, and const]]
     
       
     
-- [[The this Keyword and Execution Bindings]]
+- [[The `this` Keyword & Execution Bindings|The this Keyword and Execution Bindings]]
     
       
     
-- [[JavaScript Modules: CommonJS vs ECMAScript Modules]]
+- [[JavaScript Fundamentals & Module Systems|JavaScript Modules: CommonJS vs ECMAScript Modules]]
     
       
     
