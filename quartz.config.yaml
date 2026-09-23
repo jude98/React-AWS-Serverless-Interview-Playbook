@@ -159,6 +159,39 @@ plugins:
     enabled: true
   - source: "@quartz-community/explorer"
     enabled: true
+    options:
+      folderDefaultState: "collapsed"
+      folderClickBehavior: "link"
+      useSavedState: true
+      sortFn: |
+        (a, b) => {
+          const FOLDER_RANKS = {
+            "javascript": 0,
+            "browser": 32,
+            "react-(fe)": 38,
+            "react": 38,
+            "hooks": 48.5,
+            "optimisations": 59.5,
+            "backend": 81,
+            "basics": 81,
+            "aws-serverless": 93,
+            "aws serverless": 93,
+            "event-driven-architecture": 105,
+            "event driven architecture": 105,
+          };
+          const ranks = (typeof window !== "undefined" && window.__CURRICULUM_RANKS) || {};
+          const getRank = (node) => {
+            if (node.isFolder) {
+              const seg = node.slugSegment?.toLowerCase();
+              return FOLDER_RANKS[seg] ?? FOLDER_RANKS[node.displayName?.toLowerCase()] ?? 999;
+            }
+            return ranks[node.data?.filePath] ?? ranks[node.data?.slug] ?? ranks[node.slug] ?? 9999;
+          };
+          const rA = getRank(a);
+          const rB = getRank(b);
+          if (rA !== rB) return rA - rB;
+          return (a.displayName || "").localeCompare(b.displayName || "", void 0, { numeric: true, sensitivity: "base" });
+        }
     layout:
       position: left
       priority: 50

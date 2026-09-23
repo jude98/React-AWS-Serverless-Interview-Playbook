@@ -1,0 +1,884 @@
+[
+  {
+    "index": 0,
+    "filePath": "Javascript/JavaScript Fundamentals & Module Systems.md",
+    "slug": "javascript/javascript-fundamentals--and--module-systems",
+    "title": "JavaScript Fundamentals & Module Systems",
+    "folder": "Javascript"
+  },
+  {
+    "index": 1,
+    "filePath": "Javascript/JavaScript Variables, Scopes, and Execution Context.md",
+    "slug": "javascript/javascript-variables,-scopes,-and-execution-context",
+    "title": "JavaScript Variables, Scopes, and Execution Context",
+    "folder": "Javascript"
+  },
+  {
+    "index": 2,
+    "filePath": "Javascript/JavaScript Scope, Lexical Environment, and Shadowing.md",
+    "slug": "javascript/javascript-scope,-lexical-environment,-and-shadowing",
+    "title": "JavaScript Scope, Lexical Environment, and Shadowing",
+    "folder": "Javascript"
+  },
+  {
+    "index": 3,
+    "filePath": "Javascript/JavaScript Execution Context, Memory Creation & Hoisting Mechanics.md",
+    "slug": "javascript/javascript-execution-context,-memory-creation--and--hoisting-mechanics",
+    "title": "JavaScript Execution Context, Memory Creation & Hoisting Mechanics",
+    "folder": "Javascript"
+  },
+  {
+    "index": 4,
+    "filePath": "Javascript/JavaScript Data Types, Objects & Prototypal Inheritance.md",
+    "slug": "javascript/javascript-data-types,-objects--and--prototypal-inheritance",
+    "title": "JavaScript Data Types, Objects & Prototypal Inheritance",
+    "folder": "Javascript"
+  },
+  {
+    "index": 5,
+    "filePath": "Javascript/JavaScript Data Structures. Structured Data, Keyed & Indexed Collections.md",
+    "slug": "javascript/javascript-data-structures.-structured-data,-keyed--and--indexed-collections",
+    "title": "JavaScript Data Structures. Structured Data, Keyed & Indexed Collections",
+    "folder": "Javascript"
+  },
+  {
+    "index": 6,
+    "filePath": "Javascript/JavaScript Expressions, Operators & Output Prediction.md",
+    "slug": "javascript/javascript-expressions,-operators--and--output-prediction",
+    "title": "JavaScript Expressions, Operators & Output Prediction",
+    "folder": "Javascript"
+  },
+  {
+    "index": 7,
+    "filePath": "Javascript/JavaScript Equality Comparisons & Internal Algorithms.md",
+    "slug": "javascript/javascript-equality-comparisons--and--internal-algorithms",
+    "title": "JavaScript Equality Comparisons & Internal Algorithms",
+    "folder": "Javascript"
+  },
+  {
+    "index": 8,
+    "filePath": "Javascript/JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output.md",
+    "slug": "javascript/javascript-type-casting-coercion-vs.-conversion--and--predict-the-output",
+    "title": "JavaScript Type Casting Coercion vs. Conversion & Predict-the-Output",
+    "folder": "Javascript"
+  },
+  {
+    "index": 9,
+    "filePath": "Javascript/JavaScript Control Flow. If-Else, Ternary & Switch Statements.md",
+    "slug": "javascript/javascript-control-flow.-if-else,-ternary--and--switch-statements",
+    "title": "JavaScript Control Flow. If-Else, Ternary & Switch Statements",
+    "folder": "Javascript"
+  },
+  {
+    "index": 10,
+    "filePath": "Javascript/JavaScript Loops, Iteration Protocols & Data Structure Traversal.md",
+    "slug": "javascript/javascript-loops,-iteration-protocols--and--data-structure-traversal",
+    "title": "JavaScript Loops, Iteration Protocols & Data Structure Traversal",
+    "folder": "Javascript"
+  },
+  {
+    "index": 11,
+    "filePath": "Javascript/JavaScript Functions. Architecture, Patterns & Mechanics.md",
+    "slug": "javascript/javascript-functions.-architecture,-patterns--and--mechanics",
+    "title": "JavaScript Functions. Architecture, Patterns & Mechanics",
+    "folder": "Javascript"
+  },
+  {
+    "index": 12,
+    "filePath": "Javascript/The `this` Keyword & Execution Bindings.md",
+    "slug": "javascript/the-`this`-keyword--and--execution-bindings",
+    "title": "The `this` Keyword & Execution Bindings",
+    "folder": "Javascript"
+  },
+  {
+    "index": 13,
+    "filePath": "Javascript/Function Borrowing, Explicit Binding & Function Currying.md",
+    "slug": "javascript/function-borrowing,-explicit-binding--and--function-currying",
+    "title": "Function Borrowing, Explicit Binding & Function Currying",
+    "folder": "Javascript"
+  },
+  {
+    "index": 14,
+    "filePath": "Javascript/JavaScript Closures. Encapsulation, Currying & Output Puzzles.md",
+    "slug": "javascript/javascript-closures.-encapsulation,-currying--and--output-puzzles",
+    "title": "JavaScript Closures. Encapsulation, Currying & Output Puzzles",
+    "folder": "Javascript"
+  },
+  {
+    "index": 15,
+    "filePath": "Javascript/Prototypal Inheritance, Object Prototypes & Constructor Functions.md",
+    "slug": "javascript/prototypal-inheritance,-object-prototypes--and--constructor-functions",
+    "title": "Prototypal Inheritance, Object Prototypes & Constructor Functions",
+    "folder": "Javascript"
+  },
+  {
+    "index": 16,
+    "filePath": "Javascript/Strict Mode, the Global Object, and Runtime Environments.md",
+    "slug": "javascript/strict-mode,-the-global-object,-and-runtime-environments",
+    "title": "Strict Mode, the Global Object, and Runtime Environments",
+    "folder": "Javascript"
+  },
+  {
+    "index": 17,
+    "filePath": "Javascript/Strict Mode in JavaScript (\"use strict\").md",
+    "slug": "javascript/strict-mode-in-javascript-(use-strict)",
+    "title": "Strict Mode in JavaScript (\"use strict\")",
+    "folder": "Javascript"
+  },
+  {
+    "index": 18,
+    "filePath": "Javascript/JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries.md",
+    "slug": "javascript/javascript-exception-handling.-try-catch-finally,-error-objects--and--global-error-boundaries",
+    "title": "JavaScript Exception Handling. Try-Catch-Finally, Error Objects & Global Error Boundaries",
+    "folder": "Javascript"
+  },
+  {
+    "index": 19,
+    "filePath": "Javascript/JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory.md",
+    "slug": "javascript/javascript-garbage-collection.-reachability,-mark-and-sweep--and--generational-memory",
+    "title": "JavaScript Garbage Collection. Reachability, Mark-and-Sweep & Generational Memory",
+    "folder": "Javascript"
+  },
+  {
+    "index": 20,
+    "filePath": "Javascript/DOM Event Propagation. Bubbling, Capturing & Event Delegation.md",
+    "slug": "javascript/dom-event-propagation.-bubbling,-capturing--and--event-delegation",
+    "title": "DOM Event Propagation. Bubbling, Capturing & Event Delegation",
+    "folder": "Javascript"
+  },
+  {
+    "index": 21,
+    "filePath": "Javascript/DOM Event Listeners, Browser Memory Management & Teardown Mechanics.md",
+    "slug": "javascript/dom-event-listeners,-browser-memory-management--and--teardown-mechanics",
+    "title": "DOM Event Listeners, Browser Memory Management & Teardown Mechanics",
+    "folder": "Javascript"
+  },
+  {
+    "index": 22,
+    "filePath": "Javascript/Asynchronous JavaScript, Event Loop & Concurrency Model.md",
+    "slug": "javascript/asynchronous-javascript,-event-loop--and--concurrency-model",
+    "title": "Asynchronous JavaScript, Event Loop & Concurrency Model",
+    "folder": "Javascript"
+  },
+  {
+    "index": 23,
+    "filePath": "Javascript/Event Loop Starvation. Causes, Mechanics & Mitigation Strategies.md",
+    "slug": "javascript/event-loop-starvation.-causes,-mechanics--and--mitigation-strategies",
+    "title": "Event Loop Starvation. Causes, Mechanics & Mitigation Strategies",
+    "folder": "Javascript"
+  },
+  {
+    "index": 24,
+    "filePath": "Javascript/JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns.md",
+    "slug": "javascript/javascript-promises--and--async,-await.-architecture,-mechanics--and--patterns",
+    "title": "JavaScript Promises & Async, Await. Architecture, Mechanics & Patterns",
+    "folder": "Javascript"
+  },
+  {
+    "index": 25,
+    "filePath": "Javascript/AbortController & Multi-Signal Timeout Architectures.md",
+    "slug": "javascript/abortcontroller--and--multi-signal-timeout-architectures",
+    "title": "AbortController & Multi-Signal Timeout Architectures",
+    "folder": "Javascript"
+  },
+  {
+    "index": 26,
+    "filePath": "Javascript/Browser Workers Architecture. Dedicated, Shared, Service & Worklets.md",
+    "slug": "javascript/browser-workers-architecture.-dedicated,-shared,-service--and--worklets",
+    "title": "Browser Workers Architecture. Dedicated, Shared, Service & Worklets",
+    "folder": "Javascript"
+  },
+  {
+    "index": 27,
+    "filePath": "Javascript/Client-Side Browser Storage. Mechanisms, Architecture & Security.md",
+    "slug": "javascript/client-side-browser-storage.-mechanisms,-architecture--and--security",
+    "title": "Client-Side Browser Storage. Mechanisms, Architecture & Security",
+    "folder": "Javascript"
+  },
+  {
+    "index": 28,
+    "filePath": "Javascript/Tree Shaking & Barrel Files. Mechanics, Challenges & Best Practices.md",
+    "slug": "javascript/tree-shaking--and--barrel-files.-mechanics,-challenges--and--best-practices",
+    "title": "Tree Shaking & Barrel Files. Mechanics, Challenges & Best Practices",
+    "folder": "Javascript"
+  },
+  {
+    "index": 29,
+    "filePath": "Javascript/V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline.md",
+    "slug": "javascript/v8-engine-architecture.-parsing,-jit-compilation--and--execution-pipeline",
+    "title": "V8 Engine Architecture. Parsing, JIT Compilation & Execution Pipeline",
+    "folder": "Javascript"
+  },
+  {
+    "index": 30,
+    "filePath": "Javascript/JavaScript Polyfills & Core Runtime Implementations.md",
+    "slug": "javascript/javascript-polyfills--and--core-runtime-implementations",
+    "title": "JavaScript Polyfills & Core Runtime Implementations",
+    "folder": "Javascript"
+  },
+  {
+    "index": 31,
+    "filePath": "Javascript/Advanced JavaScript Output Prediction. Interview Mastery Deck.md",
+    "slug": "javascript/advanced-javascript-output-prediction.-interview-mastery-deck",
+    "title": "Advanced JavaScript Output Prediction. Interview Mastery Deck",
+    "folder": "Javascript"
+  },
+  {
+    "index": 32,
+    "filePath": "Browser/Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing.md",
+    "slug": "browser/browser-architecture.-high-level-components,-rendering-engines--and--html-parsing",
+    "title": "Browser Architecture. High-Level Components, Rendering Engines & HTML Parsing",
+    "folder": "Browser"
+  },
+  {
+    "index": 33,
+    "filePath": "Browser/The Browser Rendering Pipeline. Reflow, Repaint, and Composite.md",
+    "slug": "browser/the-browser-rendering-pipeline.-reflow,-repaint,-and-composite",
+    "title": "The Browser Rendering Pipeline. Reflow, Repaint, and Composite",
+    "folder": "Browser"
+  },
+  {
+    "index": 34,
+    "filePath": "Browser/What Happens When You Enter a URL in the Browser. The End-to-End Lifecycle.md",
+    "slug": "browser/what-happens-when-you-enter-a-url-in-the-browser.-the-end-to-end-lifecycle",
+    "title": "What Happens When You Enter a URL in the Browser. The End-to-End Lifecycle",
+    "folder": "Browser"
+  },
+  {
+    "index": 35,
+    "filePath": "Browser/Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs.md",
+    "slug": "browser/cross-tab-communication-in-modern-browsers.-mechanisms,-architecture--and--trade-offs",
+    "title": "Cross-Tab Communication in Modern Browsers. Mechanisms, Architecture & Trade-Offs",
+    "folder": "Browser"
+  },
+  {
+    "index": 36,
+    "filePath": "Browser/Network Protocols. Transport, Security & Application Layers.md",
+    "slug": "browser/network-protocols.-transport,-security--and--application-layers",
+    "title": "Network Protocols. Transport, Security & Application Layers",
+    "folder": "Browser"
+  },
+  {
+    "index": 37,
+    "filePath": "Browser/Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles.md",
+    "slug": "browser/web-security--and--identity-architecture.-sop,-xss,-csrf--and--token-lifecycles",
+    "title": "Web Security & Identity Architecture. SOP, XSS, CSRF & Token Lifecycles",
+    "folder": "Browser"
+  },
+  {
+    "index": 38,
+    "filePath": "React (FE)/React Fundamentals and Core Concepts.md",
+    "slug": "react-(fe)/react-fundamentals-and-core-concepts",
+    "title": "React Fundamentals and Core Concepts",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 39,
+    "filePath": "React (FE)/JSX and ReactDOM Execution Pipeline.md",
+    "slug": "react-(fe)/jsx-and-reactdom-execution-pipeline",
+    "title": "JSX and ReactDOM Execution Pipeline",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 40,
+    "filePath": "React (FE)/JSX and Cross-Site Scripting (XSS) Prevention.md",
+    "slug": "react-(fe)/jsx-and-cross-site-scripting-(xss)-prevention",
+    "title": "JSX and Cross-Site Scripting (XSS) Prevention",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 41,
+    "filePath": "React (FE)/Safe HTML Injection and innerHTML Handling in React.md",
+    "slug": "react-(fe)/safe-html-injection-and-innerhtml-handling-in-react",
+    "title": "Safe HTML Injection and innerHTML Handling in React",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 42,
+    "filePath": "React (FE)/React State and Props Architecture.md",
+    "slug": "react-(fe)/react-state-and-props-architecture",
+    "title": "React State and Props Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 43,
+    "filePath": "React (FE)/Component Isolation and Independent State Architecture.md",
+    "slug": "react-(fe)/component-isolation-and-independent-state-architecture",
+    "title": "Component Isolation and Independent State Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 44,
+    "filePath": "React (FE)/Importance of Keys in React.md",
+    "slug": "react-(fe)/importance-of-keys-in-react",
+    "title": "Importance of Keys in React",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 45,
+    "filePath": "React (FE)/React Lifecycle and Execution Flow.md",
+    "slug": "react-(fe)/react-lifecycle-and-execution-flow",
+    "title": "React Lifecycle and Execution Flow",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 46,
+    "filePath": "React (FE)/React Strict Mode and Double-Invocation Behavior.md",
+    "slug": "react-(fe)/react-strict-mode-and-double-invocation-behavior",
+    "title": "React Strict Mode and Double-Invocation Behavior",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 47,
+    "filePath": "React (FE)/React Synthetic Events and Event Delegation.md",
+    "slug": "react-(fe)/react-synthetic-events-and-event-delegation",
+    "title": "React Synthetic Events and Event Delegation",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 48,
+    "filePath": "React (FE)/Form Handling Controlled vs Uncontrolled Components and File Inputs.md",
+    "slug": "react-(fe)/form-handling-controlled-vs-uncontrolled-components-and-file-inputs",
+    "title": "Form Handling Controlled vs Uncontrolled Components and File Inputs",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 49,
+    "filePath": "React (FE)/Hooks/Rules of Hooks and Internal Linked List Architecture.md",
+    "slug": "react-(fe)/hooks/rules-of-hooks-and-internal-linked-list-architecture",
+    "title": "Rules of Hooks and Internal Linked List Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 50,
+    "filePath": "React (FE)/Hooks/React useState Hook and State Batching Architecture.md",
+    "slug": "react-(fe)/hooks/react-usestate-hook-and-state-batching-architecture",
+    "title": "React useState Hook and State Batching Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 51,
+    "filePath": "React (FE)/Hooks/React useEffect and Synchronization Architecture.md",
+    "slug": "react-(fe)/hooks/react-useeffect-and-synchronization-architecture",
+    "title": "React useEffect and Synchronization Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 52,
+    "filePath": "React (FE)/Hooks/React useMemo, useCallback, and Fiber Memoization Architecture.md",
+    "slug": "react-(fe)/hooks/react-usememo,-usecallback,-and-fiber-memoization-architecture",
+    "title": "React useMemo, useCallback, and Fiber Memoization Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 53,
+    "filePath": "React (FE)/Hooks/React useRef and useImperativeHandle Architecture.md",
+    "slug": "react-(fe)/hooks/react-useref-and-useimperativehandle-architecture",
+    "title": "React useRef and useImperativeHandle Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 54,
+    "filePath": "React (FE)/Hooks/Combining React Context and useReducer Architecture.md",
+    "slug": "react-(fe)/hooks/combining-react-context-and-usereducer-architecture",
+    "title": "Combining React Context and useReducer Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 55,
+    "filePath": "React (FE)/Hooks/React useTransition, useDeferredValue, and Concurrent Prioritization.md",
+    "slug": "react-(fe)/hooks/react-usetransition,-usedeferredvalue,-and-concurrent-prioritization",
+    "title": "React useTransition, useDeferredValue, and Concurrent Prioritization",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 56,
+    "filePath": "React (FE)/React Reconciliation and Diffing Algorithm.md",
+    "slug": "react-(fe)/react-reconciliation-and-diffing-algorithm",
+    "title": "React Reconciliation and Diffing Algorithm",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 57,
+    "filePath": "React (FE)/React Fiber Architecture and Non-Blocking Rendering.md",
+    "slug": "react-(fe)/react-fiber-architecture-and-non-blocking-rendering",
+    "title": "React Fiber Architecture and Non-Blocking Rendering",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 58,
+    "filePath": "React (FE)/React Concurrent Multitasking, Scheduling, and Priority Interruptions.md",
+    "slug": "react-(fe)/react-concurrent-multitasking,-scheduling,-and-priority-interruptions",
+    "title": "React Concurrent Multitasking, Scheduling, and Priority Interruptions",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 59,
+    "filePath": "React (FE)/React Error Boundaries, Execution Limits, and Reset Strategies.md",
+    "slug": "react-(fe)/react-error-boundaries,-execution-limits,-and-reset-strategies",
+    "title": "React Error Boundaries, Execution Limits, and Reset Strategies",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 60,
+    "filePath": "React (FE)/Optimisations/Comprehensive Performance Optimization Architecture in React.md",
+    "slug": "react-(fe)/optimisations/comprehensive-performance-optimization-architecture-in-react",
+    "title": "Comprehensive Performance Optimization Architecture in React",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 61,
+    "filePath": "React (FE)/Optimisations/Advanced React Performance Optimization Patterns.md",
+    "slug": "react-(fe)/optimisations/advanced-react-performance-optimization-patterns",
+    "title": "Advanced React Performance Optimization Patterns",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 62,
+    "filePath": "React (FE)/Optimisations/React State Management Architecture, Context vs External Stores vs React Query.md",
+    "slug": "react-(fe)/optimisations/react-state-management-architecture,-context-vs-external-stores-vs-react-query",
+    "title": "React State Management Architecture, Context vs External Stores vs React Query",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 63,
+    "filePath": "React (FE)/Optimisations/Why You Might Not Need Redux and Modern State Alternatives.md",
+    "slug": "react-(fe)/optimisations/why-you-might-not-need-redux-and-modern-state-alternatives",
+    "title": "Why You Might Not Need Redux and Modern State Alternatives",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 64,
+    "filePath": "React (FE)/Optimisations/TanStack Query Server State and Stale While Revalidate Patterns.md",
+    "slug": "react-(fe)/optimisations/tanstack-query-server-state-and-stale-while-revalidate-patterns",
+    "title": "TanStack Query Server State and Stale While Revalidate Patterns",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 65,
+    "filePath": "React (FE)/Optimisations/Code Splitting vs Lazy Loading in React.md",
+    "slug": "react-(fe)/optimisations/code-splitting-vs-lazy-loading-in-react",
+    "title": "Code Splitting vs Lazy Loading in React",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 66,
+    "filePath": "React (FE)/Optimisations/Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup).md",
+    "slug": "react-(fe)/optimisations/bundle-size-optimization-and-build-analysis-architecture-in-react-(vite--and--rollup)",
+    "title": "Bundle Size Optimization and Build Analysis Architecture in React (Vite & Rollup)",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 67,
+    "filePath": "React (FE)/Optimisations/Web Vitals Optimization LCP INP and FCP.md",
+    "slug": "react-(fe)/optimisations/web-vitals-optimization-lcp-inp-and-fcp",
+    "title": "Web Vitals Optimization LCP INP and FCP",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 68,
+    "filePath": "React (FE)/Optimisations/High-Scale Data Table Architecture Handling Millions of Records.md",
+    "slug": "react-(fe)/optimisations/high-scale-data-table-architecture-handling-millions-of-records",
+    "title": "High-Scale Data Table Architecture Handling Millions of Records",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 69,
+    "filePath": "React (FE)/Optimisations/High-Volume Time-Series Chart Architecture.md",
+    "slug": "react-(fe)/optimisations/high-volume-time-series-chart-architecture",
+    "title": "High-Volume Time-Series Chart Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 70,
+    "filePath": "React (FE)/Optimisations/Offline-First Frontend Architecture and Synchronization Engine.md",
+    "slug": "react-(fe)/optimisations/offline-first-frontend-architecture-and-synchronization-engine",
+    "title": "Offline-First Frontend Architecture and Synchronization Engine",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 71,
+    "filePath": "React (FE)/Optimisations/Frontend API Rate Limiting and Third-Party Resiliency Architecture.md",
+    "slug": "react-(fe)/optimisations/frontend-api-rate-limiting-and-third-party-resiliency-architecture",
+    "title": "Frontend API Rate Limiting and Third-Party Resiliency Architecture",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 72,
+    "filePath": "React (FE)/Optimisations/Storage Strategies for Authorization Tokens. Access vs Refresh Tokens.md",
+    "slug": "react-(fe)/optimisations/storage-strategies-for-authorization-tokens.-access-vs-refresh-tokens",
+    "title": "Storage Strategies for Authorization Tokens. Access vs Refresh Tokens",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 73,
+    "filePath": "React (FE)/Optimisations/Memory Leak Prevention in Long-Running Applications.md",
+    "slug": "react-(fe)/optimisations/memory-leak-prevention-in-long-running-applications",
+    "title": "Memory Leak Prevention in Long-Running Applications",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 74,
+    "filePath": "React (FE)/Optimisations/React Image and Icon Optimization.md",
+    "slug": "react-(fe)/optimisations/react-image-and-icon-optimization",
+    "title": "React Image and Icon Optimization",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 75,
+    "filePath": "React (FE)/Optimisations/Building a Multi-Team Enterprise Component Library.md",
+    "slug": "react-(fe)/optimisations/building-a-multi-team-enterprise-component-library",
+    "title": "Building a Multi-Team Enterprise Component Library",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 76,
+    "filePath": "React (FE)/Optimisations/Monorepo and Micro-Frontend Architecture Evaluation.md",
+    "slug": "react-(fe)/optimisations/monorepo-and-micro-frontend-architecture-evaluation",
+    "title": "Monorepo and Micro-Frontend Architecture Evaluation",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 77,
+    "filePath": "React (FE)/Optimisations/Framework Evaluation and Migration Architectural Decision Framework.md",
+    "slug": "react-(fe)/optimisations/framework-evaluation-and-migration-architectural-decision-framework",
+    "title": "Framework Evaluation and Migration Architectural Decision Framework",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 78,
+    "filePath": "React (FE)/Optimisations/Large-Scale Frontend System Design React at 10M to 1B Users.md",
+    "slug": "react-(fe)/optimisations/large-scale-frontend-system-design-react-at-10m-to-1b-users",
+    "title": "Large-Scale Frontend System Design React at 10M to 1B Users",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 79,
+    "filePath": "React (FE)/Optimisations/Debugging and Fixing Slow Dashboard Performance.md",
+    "slug": "react-(fe)/optimisations/debugging-and-fixing-slow-dashboard-performance",
+    "title": "Debugging and Fixing Slow Dashboard Performance",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 80,
+    "filePath": "React (FE)/React Machine Coding Sandbox Hub.md",
+    "slug": "react-(fe)/react-machine-coding-sandbox-hub",
+    "title": "React Machine Coding Sandbox Hub",
+    "folder": "React (FE)"
+  },
+  {
+    "index": 81,
+    "filePath": "Backend/Basics/TCP vs. UDP.md",
+    "slug": "backend/basics/tcp-vs.-udp",
+    "title": "TCP vs. UDP",
+    "folder": "Backend"
+  },
+  {
+    "index": 82,
+    "filePath": "Backend/Basics/HTTP Fundamentals.md",
+    "slug": "backend/basics/http-fundamentals",
+    "title": "HTTP Fundamentals",
+    "folder": "Backend"
+  },
+  {
+    "index": 83,
+    "filePath": "Backend/Basics/HTTP Methods, CORS, Status Codes & Caching.md",
+    "slug": "backend/basics/http-methods,-cors,-status-codes--and--caching",
+    "title": "HTTP Methods, CORS, Status Codes & Caching",
+    "folder": "Backend"
+  },
+  {
+    "index": 84,
+    "filePath": "Backend/Basics/API Paradigms (REST, GraphQL, gRPC), OpenAPI & Production API Design.md",
+    "slug": "backend/basics/api-paradigms-(rest,-graphql,-grpc),-openapi--and--production-api-design",
+    "title": "API Paradigms (REST, GraphQL, gRPC), OpenAPI & Production API Design",
+    "folder": "Backend"
+  },
+  {
+    "index": 85,
+    "filePath": "Backend/Basics/Authentication, Authorization, OAuth OIDC & Permission-Based RBAC.md",
+    "slug": "backend/basics/authentication,-authorization,-oauth-oidc--and--permission-based-rbac",
+    "title": "Authentication, Authorization, OAuth OIDC & Permission-Based RBAC",
+    "folder": "Backend"
+  },
+  {
+    "index": 86,
+    "filePath": "Backend/Basics/SOLID Principles.md",
+    "slug": "backend/basics/solid-principles",
+    "title": "SOLID Principles",
+    "folder": "Backend"
+  },
+  {
+    "index": 87,
+    "filePath": "Backend/Basics/Object-Oriented Programming (OOP) in JavaScript & TypeScript.md",
+    "slug": "backend/basics/object-oriented-programming-(oop)-in-javascript--and--typescript",
+    "title": "Object-Oriented Programming (OOP) in JavaScript & TypeScript",
+    "folder": "Backend"
+  },
+  {
+    "index": 88,
+    "filePath": "Backend/Basics/Clean Architecture, Directory Structure & DTOs.md",
+    "slug": "backend/basics/clean-architecture,-directory-structure--and--dtos",
+    "title": "Clean Architecture, Directory Structure & DTOs",
+    "folder": "Backend"
+  },
+  {
+    "index": 89,
+    "filePath": "Backend/Basics/ACID Properties & Transaction Isolation Levels.md",
+    "slug": "backend/basics/acid-properties--and--transaction-isolation-levels",
+    "title": "ACID Properties & Transaction Isolation Levels",
+    "folder": "Backend"
+  },
+  {
+    "index": 90,
+    "filePath": "Backend/Basics/CAP Theorem.md",
+    "slug": "backend/basics/cap-theorem",
+    "title": "CAP Theorem",
+    "folder": "Backend"
+  },
+  {
+    "index": 91,
+    "filePath": "Backend/Basics/Caching Architecture, Eviction Policies & Invalidation Pitfalls.md",
+    "slug": "backend/basics/caching-architecture,-eviction-policies--and--invalidation-pitfalls",
+    "title": "Caching Architecture, Eviction Policies & Invalidation Pitfalls",
+    "folder": "Backend"
+  },
+  {
+    "index": 92,
+    "filePath": "Backend/Basics/Database Partitioning vs. Sharding.md",
+    "slug": "backend/basics/database-partitioning-vs.-sharding",
+    "title": "Database Partitioning vs. Sharding",
+    "folder": "Backend"
+  },
+  {
+    "index": 93,
+    "filePath": "Backend/AWS Serverless/AWS Serverless & Event-Driven Architecture (EDA).md",
+    "slug": "backend/aws-serverless/aws-serverless--and--event-driven-architecture-(eda)",
+    "title": "AWS Serverless & Event-Driven Architecture (EDA)",
+    "folder": "Backend"
+  },
+  {
+    "index": 94,
+    "filePath": "Backend/AWS Serverless/AWS Lambda Core Architecture & Execution Model.md",
+    "slug": "backend/aws-serverless/aws-lambda-core-architecture--and--execution-model",
+    "title": "AWS Lambda Core Architecture & Execution Model",
+    "folder": "Backend"
+  },
+  {
+    "index": 95,
+    "filePath": "Backend/AWS Serverless/AWS Lambda Event Invocations - Synchronous, Asynchronous & Event Source Mappings.md",
+    "slug": "backend/aws-serverless/aws-lambda-event-invocations---synchronous,-asynchronous--and--event-source-mappings",
+    "title": "AWS Lambda Event Invocations - Synchronous, Asynchronous & Event Source Mappings",
+    "folder": "Backend"
+  },
+  {
+    "index": 96,
+    "filePath": "Backend/AWS Serverless/AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues.md",
+    "slug": "backend/aws-serverless/aws-lambda-event-source-mapping-(esm)--and--lambda-internal-queues",
+    "title": "AWS Lambda Event Source Mapping (ESM) & Lambda Internal Queues",
+    "folder": "Backend"
+  },
+  {
+    "index": 97,
+    "filePath": "Backend/AWS Serverless/AWS API Gateway - Architecture, Security & Limitations.md",
+    "slug": "backend/aws-serverless/aws-api-gateway---architecture,-security--and--limitations",
+    "title": "AWS API Gateway - Architecture, Security & Limitations",
+    "folder": "Backend"
+  },
+  {
+    "index": 98,
+    "filePath": "Backend/AWS Serverless/Amazon S3 - Architecture, Storage Classes, Security & Large Uploads.md",
+    "slug": "backend/aws-serverless/amazon-s3---architecture,-storage-classes,-security--and--large-uploads",
+    "title": "Amazon S3 - Architecture, Storage Classes, Security & Large Uploads",
+    "folder": "Backend"
+  },
+  {
+    "index": 99,
+    "filePath": "Backend/AWS Serverless/Amazon DynamoDB -  Architecture, Data Modeling & Scaling.md",
+    "slug": "backend/aws-serverless/amazon-dynamodb----architecture,-data-modeling--and--scaling",
+    "title": "Amazon DynamoDB -  Architecture, Data Modeling & Scaling",
+    "folder": "Backend"
+  },
+  {
+    "index": 100,
+    "filePath": "Backend/AWS Serverless/Amazon SQS - Queue Types, Internal Mechanics & Limits.md",
+    "slug": "backend/aws-serverless/amazon-sqs---queue-types,-internal-mechanics--and--limits",
+    "title": "Amazon SQS - Queue Types, Internal Mechanics & Limits",
+    "folder": "Backend"
+  },
+  {
+    "index": 101,
+    "filePath": "Backend/AWS Serverless/Amazon SNS (Simple Notification Service) - Architecture, Fanout & Delivery.md",
+    "slug": "backend/aws-serverless/amazon-sns-(simple-notification-service)---architecture,-fanout--and--delivery",
+    "title": "Amazon SNS (Simple Notification Service) - Architecture, Fanout & Delivery",
+    "folder": "Backend"
+  },
+  {
+    "index": 102,
+    "filePath": "Backend/AWS Serverless/Amazon EventBridge - Event Buses, Pipes, Patterns & Schemas.md",
+    "slug": "backend/aws-serverless/amazon-eventbridge---event-buses,-pipes,-patterns--and--schemas",
+    "title": "Amazon EventBridge - Event Buses, Pipes, Patterns & Schemas",
+    "folder": "Backend"
+  },
+  {
+    "index": 103,
+    "filePath": "Backend/AWS Serverless/AWS Step Functions - Workflow Types, State Machine Patterns & Integration.md",
+    "slug": "backend/aws-serverless/aws-step-functions---workflow-types,-state-machine-patterns--and--integration",
+    "title": "AWS Step Functions - Workflow Types, State Machine Patterns & Integration",
+    "folder": "Backend"
+  },
+  {
+    "index": 104,
+    "filePath": "Backend/AWS Serverless/AWS Observability - CloudWatch, AWS X-Ray & CloudTrail.md",
+    "slug": "backend/aws-serverless/aws-observability---cloudwatch,-aws-x-ray--and--cloudtrail",
+    "title": "AWS Observability - CloudWatch, AWS X-Ray & CloudTrail",
+    "folder": "Backend"
+  },
+  {
+    "index": 105,
+    "filePath": "Backend/AWS Serverless/AWS Identity and Access Management (IAM) - Identities, Policies, Roles & Best Practices.md",
+    "slug": "backend/aws-serverless/aws-identity-and-access-management-(iam)---identities,-policies,-roles--and--best-practices",
+    "title": "AWS Identity and Access Management (IAM) - Identities, Policies, Roles & Best Practices",
+    "folder": "Backend"
+  },
+  {
+    "index": 106,
+    "filePath": "Backend/Event driven architecture/AWS SNS vs. Amazon EventBridge - Architecture, Differences, and Combined Patterns.md",
+    "slug": "backend/event-driven-architecture/aws-sns-vs.-amazon-eventbridge---architecture,-differences,-and-combined-patterns",
+    "title": "AWS SNS vs. Amazon EventBridge - Architecture, Differences, and Combined Patterns",
+    "folder": "Backend"
+  },
+  {
+    "index": 107,
+    "filePath": "Backend/Event driven architecture/AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure.md",
+    "slug": "backend/event-driven-architecture/aws-sqs-at-scale---high-throughput-processing,-concurrency,-and-backpressure",
+    "title": "AWS SQS at Scale - High-Throughput Processing, Concurrency, and Backpressure",
+    "folder": "Backend"
+  },
+  {
+    "index": 108,
+    "filePath": "Backend/Event driven architecture/SQS DLQ Processing - Correlation IDs, Error Context, and Redrive Pipelines.md",
+    "slug": "backend/event-driven-architecture/sqs-dlq-processing---correlation-ids,-error-context,-and-redrive-pipelines",
+    "title": "SQS DLQ Processing - Correlation IDs, Error Context, and Redrive Pipelines",
+    "folder": "Backend"
+  },
+  {
+    "index": 109,
+    "filePath": "Backend/Event driven architecture/Managing Event Schema Evolution and Changes in Amazon EventBridge.md",
+    "slug": "backend/event-driven-architecture/managing-event-schema-evolution-and-changes-in-amazon-eventbridge",
+    "title": "Managing Event Schema Evolution and Changes in Amazon EventBridge",
+    "folder": "Backend"
+  },
+  {
+    "index": 110,
+    "filePath": "Backend/Event driven architecture/Handling Event Clogging and Backpressure in Amazon EventBridge.md",
+    "slug": "backend/event-driven-architecture/handling-event-clogging-and-backpressure-in-amazon-eventbridge",
+    "title": "Handling Event Clogging and Backpressure in Amazon EventBridge",
+    "folder": "Backend"
+  },
+  {
+    "index": 111,
+    "filePath": "Backend/Event driven architecture/Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection.md",
+    "slug": "backend/event-driven-architecture/distributed-transactions--and--event-driven-architecture---sagas,-2pc,-resilience--and--messaging-selection",
+    "title": "Distributed Transactions & Event-Driven Architecture - Sagas, 2PC, Resilience & Messaging Selection",
+    "folder": "Backend"
+  },
+  {
+    "index": 112,
+    "filePath": "Backend/Event driven architecture/High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling.md",
+    "slug": "backend/event-driven-architecture/high-volume-serverless-webhook-ingestion---waf,-api-gateway-direct-sqs-integration,-and-throttling",
+    "title": "High-Volume Serverless Webhook Ingestion - WAF, API Gateway Direct SQS Integration, and Throttling",
+    "folder": "Backend"
+  },
+  {
+    "index": 113,
+    "filePath": "Backend/Event driven architecture/System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads.md",
+    "slug": "backend/event-driven-architecture/system-design-scenarios---payment-workflows,-webhooks,-idempotency--and--large-s3-payloads",
+    "title": "System Design Scenarios - Payment Workflows, Webhooks, Idempotency & Large S3 Payloads",
+    "folder": "Backend"
+  },
+  {
+    "index": 114,
+    "filePath": "Backend/Event driven architecture/DynamoDB Single-Table Design - Inventory Management Scenario.md",
+    "slug": "backend/event-driven-architecture/dynamodb-single-table-design---inventory-management-scenario",
+    "title": "DynamoDB Single-Table Design - Inventory Management Scenario",
+    "folder": "Backend"
+  },
+  {
+    "index": 115,
+    "filePath": "Backend/Event driven architecture/Scaling DynamoDB Streams - High-Volume Event Processing.md",
+    "slug": "backend/event-driven-architecture/scaling-dynamodb-streams---high-volume-event-processing",
+    "title": "Scaling DynamoDB Streams - High-Volume Event Processing",
+    "folder": "Backend"
+  },
+  {
+    "index": 116,
+    "filePath": "Backend/Event driven architecture/DynamoDB Parallel Scan - Segments, Throughput, and Distributed Processing.md",
+    "slug": "backend/event-driven-architecture/dynamodb-parallel-scan---segments,-throughput,-and-distributed-processing",
+    "title": "DynamoDB Parallel Scan - Segments, Throughput, and Distributed Processing",
+    "folder": "Backend"
+  },
+  {
+    "index": 117,
+    "filePath": "Backend/Event driven architecture/Adding a Global Secondary Index (GSI) to a Large DynamoDB Table.md",
+    "slug": "backend/event-driven-architecture/adding-a-global-secondary-index-(gsi)-to-a-large-dynamodb-table",
+    "title": "Adding a Global Secondary Index (GSI) to a Large DynamoDB Table",
+    "folder": "Backend"
+  },
+  {
+    "index": 118,
+    "filePath": "Backend/Event driven architecture/Debugging DynamoDB Hot Partitions & Hot Keys.md",
+    "slug": "backend/event-driven-architecture/debugging-dynamodb-hot-partitions--and--hot-keys",
+    "title": "Debugging DynamoDB Hot Partitions & Hot Keys",
+    "folder": "Backend"
+  },
+  {
+    "index": 119,
+    "filePath": "Backend/Event driven architecture/DynamoDB Capacity Modes - Provisioned with Auto Scaling vs. On-Demand.md",
+    "slug": "backend/event-driven-architecture/dynamodb-capacity-modes---provisioned-with-auto-scaling-vs.-on-demand",
+    "title": "DynamoDB Capacity Modes - Provisioned with Auto Scaling vs. On-Demand",
+    "folder": "Backend"
+  },
+  {
+    "index": 120,
+    "filePath": "Backend/Event driven architecture/Bulk Updating 1 Million Rows in DynamoDB - Architectural Approaches and Trade-offs.md",
+    "slug": "backend/event-driven-architecture/bulk-updating-1-million-rows-in-dynamodb---architectural-approaches-and-trade-offs",
+    "title": "Bulk Updating 1 Million Rows in DynamoDB - Architectural Approaches and Trade-offs",
+    "folder": "Backend"
+  },
+  {
+    "index": 121,
+    "filePath": "Backend/Event driven architecture/AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security.md",
+    "slug": "backend/event-driven-architecture/aws-vpc--and--networking-scenarios---subnets,-lambda-vpc-integration,-endpoints--and--security",
+    "title": "AWS VPC & Networking Scenarios - Subnets, Lambda VPC Integration, Endpoints & Security",
+    "folder": "Backend"
+  },
+  {
+    "index": 122,
+    "filePath": "Backend/Event driven architecture/AWS Serverless Deployments - CloudFormation, Lambda Versions, Aliases, and Safe Deployments.md",
+    "slug": "backend/event-driven-architecture/aws-serverless-deployments---cloudformation,-lambda-versions,-aliases,-and-safe-deployments",
+    "title": "AWS Serverless Deployments - CloudFormation, Lambda Versions, Aliases, and Safe Deployments",
+    "folder": "Backend"
+  },
+  {
+    "index": 123,
+    "filePath": "Backend/Event driven architecture/Event-Driven Architecture Scenarios - Flash Sales, High-Scale Ordering & Extreme Inventory Contention.md",
+    "slug": "backend/event-driven-architecture/event-driven-architecture-scenarios---flash-sales,-high-scale-ordering--and--extreme-inventory-contention",
+    "title": "Event-Driven Architecture Scenarios - Flash Sales, High-Scale Ordering & Extreme Inventory Contention",
+    "folder": "Backend"
+  },
+  {
+    "index": 124,
+    "filePath": "Backend/Event driven architecture/AWS Serverless Interview Scenarios - Advanced System Design & Debugging.md",
+    "slug": "backend/event-driven-architecture/aws-serverless-interview-scenarios---advanced-system-design--and--debugging",
+    "title": "AWS Serverless Interview Scenarios - Advanced System Design & Debugging",
+    "folder": "Backend"
+  },
+  {
+    "index": 125,
+    "filePath": "Engineering Execution, Collaboration & Behavioral Scenarios.md",
+    "slug": "engineering-execution,-collaboration--and--behavioral-scenarios",
+    "title": "Engineering Execution, Collaboration & Behavioral Scenarios",
+    "folder": "Root"
+  }
+]

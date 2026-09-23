@@ -1,3 +1,203 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// ============================================================
+// CURRICULUM NEXT & BACK (PAGER) STYLING
+// ============================================================
+
+.curriculum-pager-wrapper {
+  margin: 3.5rem 0 2rem 0;
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: rgba(128, 128, 128, 0.3);
+  }
+}
+
+.curriculum-pager-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+
+  .pager-meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(40, 75, 99, 0.08);
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--tertiary);
+    }
+  }
+
+  .pager-meta-counter {
+    color: var(--gray);
+    font-size: 0.8rem;
+
+    strong {
+      color: var(--darkgray);
+    }
+  }
+}
+
+.pager-progress-bar {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--lightgray);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+
+  .pager-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+}
+
+.curriculum-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.pager-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 1.25rem;
+  border-radius: 10px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 0.25s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--secondary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+    &::before {
+      background: var(--secondary);
+    }
+
+    .pager-card-title {
+      color: var(--secondary);
+    }
+
+    .pager-card-direction svg {
+      transform: translateX(0);
+    }
+  }
+
+  .pager-card-direction {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+    margin-bottom: 0.4rem;
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .pager-card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.4;
+    transition: color 0.2s ease;
+  }
+}
+
+.pager-prev {
+  text-align: left;
+  align-items: flex-start;
+
+  &:hover .pager-card-direction svg {
+    transform: translateX(-3px);
+  }
+}
+
+.pager-next {
+  text-align: right;
+  align-items: flex-end;
+
+  .pager-card-direction {
+    justify-content: flex-end;
+  }
+
+  &:hover .pager-card-direction svg {
+    transform: translateX(3px);
+  }
+}
+
+.pager-complete {
+  opacity: 0.7;
+  border-style: dashed;
+  cursor: default;
+
+  &:hover {
+    transform: none;
+    border-color: var(--lightgray);
+    box-shadow: none;
+
+    &::before {
+      background: transparent;
+    }
+  }
+}
+
+// ============================================================
+// EXPLORER TREE CLEANUP
+// ============================================================
+.explorer {
+  .folder-title {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-file-title {
+    line-height: 1.35;
+    padding: 0.25rem 0;
+  }
+}
